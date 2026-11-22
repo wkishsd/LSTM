@@ -48,9 +48,17 @@ def offline(*_args, **_kwargs):
     raise RuntimeError("The control must use the existing candle cache; a missing cache file would need the API")
 
 
-def settings_from(manifest):
+def settings_from(manifest, stop_timeframe=None):
     exit_settings = dict(manifest["exit_settings"])
+    if stop_timeframe:
+        exit_settings["stop_timeframe"] = stop_timeframe
     return pipeline.ExitSettings(**exit_settings)
+
+
+def label(native, entries, settings, output, workers):
+    audit = pipeline.label_mlp_entries(entries, native, settings, output, workers=workers).reindex(entries.index)
+    audit["entry_at"] = entries.entry_at
+    return audit
 
 
 def atr_over_close(native, decision_times):
@@ -107,11 +115,17 @@ def main():
     parser.add_argument("--samples", type=int, default=12000)
     parser.add_argument("--seed", type=int, default=20261121)
     parser.add_argument("--workers", type=int, default=6)
+    parser.add_argument("--stop-timeframe", choices=pipeline.STOP_TIMEFRAMES, default=None,
+                        help="Stop timeframe. When given, anchor entries are relabeled with the current exit "
+                             "code too, so both sides use identical rules (the export may predate rule changes).")
+    parser.add_argument("--anchor-samples", type=int, default=0,
+                        help="With --stop-timeframe: relabel this many sampled anchor entries (0 = all)")
     args = parser.parse_args()
 
     manifest = json.loads((args.anchor_export / "manifest.json").read_text(encoding="utf-8"))
-    settings = settings_from(manifest)
+    settings = settings_from(manifest, args.stop_timeframe)
     settings.namespace()
+    relabel = args.stop_timeframe is not None
     start, end, cutoff = (pd.Timestamp(manifest[k]) for k in ("start_inclusive", "end_exclusive", "snapshot_cutoff"))
     pipeline.request_candles = offline
     native, cutoff = pipeline.collect_training_history(start, cutoff, args.history_cache, manifest["window_minutes"])
@@ -131,13 +145,22 @@ def main():
 
     entries = pipeline.entries_from_decisions(native, selected, settings.initial_entry_offset_down)
     args.output.mkdir(parents=True, exist_ok=True)
-    audit = pipeline.label_mlp_entries(entries, native, settings, args.output, workers=args.workers)
-    audit = audit.reindex(entries.index)
-    audit["entry_at"] = entries.entry_at
+    audit = label(native, entries, settings, args.output, args.workers)
     audit["atr_over_close"] = atr_over_close(native, entries.entry_at)
     audit.to_csv(args.output / "random_entry_targets.csv")
 
-    anchor = pd.read_csv(args.anchor_export / "entry_targets.csv", parse_dates=["entry_at"])
+    if relabel:
+        # The export's labels used other exit rules; relabel the anchor entries the same way.
+        anchor_entries, _ = pipeline.filter_main_anchor_entries(native, 0, start, end,
+                                                                settings.initial_entry_offset_down)
+        if 0 < args.anchor_samples < len(anchor_entries):
+            keep = np.sort(rng.choice(len(anchor_entries), size=args.anchor_samples, replace=False))
+            anchor_entries = anchor_entries.iloc[keep]
+        print(f"Relabeling {len(anchor_entries):,} anchor entries with {settings.stop_timeframe} stops", flush=True)
+        anchor = label(native, anchor_entries, settings, args.output, args.workers)
+        anchor.to_csv(args.output / "anchor_entry_targets.csv")
+    else:
+        anchor = pd.read_csv(args.anchor_export / "entry_targets.csv", parse_dates=["entry_at"])
     anchor["atr_over_close"] = atr_over_close(native, anchor.entry_at)
     edges = list(pd.date_range(first, last, periods=5))
     atr_edges = list(np.quantile(anchor.atr_over_close.dropna(), [0.25, 0.5, 0.75]))

@@ -101,6 +101,22 @@ python Pipelines/Bitfinex/random_minute_control.py --samples 20000 --workers 8
 
 It runs offline from `Exports/candle_cache` and stops if a cache file is missing rather than calling the API. Results go to `Exports/training/random_minute_control/` (`comparison.json` and `random_entry_targets.csv`). Label batches are checkpointed there, so a repeated run is fast. Without openpyxl installed, the control stubs the Excel-only import.
 
+Passing `--stop-timeframe 1m|5m` also relabels the anchor entries with the current exit code (`--anchor-samples N` to sample them) and writes `anchor_entry_targets.csv`. Use it whenever the rules differ from the export's: the 18 Nov 2026 export predates the current ADX / wave-6 rules, so its labels do not match what the code produces today.
+
+```powershell
+python Pipelines/Bitfinex/random_minute_control.py --samples 12000 --anchor-samples 12000 --stop-timeframe 5m --output Exports/training/random_minute_control_5m
+```
+
+## Stop timeframe
+
+`--stop-timeframe` (`ExitSettings.stop_timeframe`, default `1m`) chooses the candles that **set and move** the trailing exit stop. With `5m`, the M1 rules are applied unchanged to M5 candles built from actual M1 candles (a leading partial bucket is dropped):
+
+- A closed red M5 candle joins the trade's red history. Up to 20 red M5 candles closed at or before the trade entry seed it, from one day of pre-entry M1 history.
+- A closed green M5 candle searches left for the nearest red M5 candle whose High is at least its High. The candidate stop is that High plus `stop_x` ($0.30). It sets the first stop or lowers the current one; it never raises it.
+- The stop is acted on at the M5 close and is **triggered by every M1 High** at or above it, as a resting order would be.
+
+Entries, re-entries, support searches, ADX and wave-6 exits are unchanged. Stop events carry `candle_timeframe = 5m`. The verified v9 source is not edited; the change is applied through the same named adapter as the initial-fill timing.
+
 ## Anchor membership
 
 The confirmed workbook is **Основные и допополнительные якоря 15.10.2026.xlsx**.

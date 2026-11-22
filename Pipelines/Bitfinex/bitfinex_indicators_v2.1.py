@@ -2619,6 +2619,7 @@ def make_summary_row(
 # Appended integration: existing indicator formulas above are unchanged.
 
 import argparse as _argparse
+import functools as _functools
 import hashlib as _hashlib
 import json as _json
 import sys as _sys
@@ -2629,6 +2630,8 @@ from concurrent.futures import ProcessPoolExecutor as _ProcessPoolExecutor
 # Execution-clock constants outside the isolated embedded original modules.
 TF_MS_1M = 60_000
 TF_MS_5M = 300_000
+STOP_TIMEFRAMES = ("1m", "5m")
+M5_STOP_CONTEXT_MS = 86_400_000  # Pre-entry M1 history aggregated for up to 20 red M5 candles.
 
 TRAINING_CASES = 2000
 ML_WINDOW_MINUTES = 47 * 30
@@ -2656,8 +2659,13 @@ class ExitSettings:
     initial_entry_offset_down: float = 0.1  # Provisional absolute USD offset below previous M1 Low.
     entry_commission_pct: float = ENTRY_COMMISSION_PCT
     exit_commission_pct: float = EXIT_COMMISSION_PCT
+    # Candles that MOVE the trailing exit stop. The resting stop is still
+    # checked against every M1 High; "5m" only changes when it is set/moved.
+    stop_timeframe: str = "1m"
 
     def namespace(self):
+        if self.stop_timeframe not in STOP_TIMEFRAMES:
+            raise ValueError(f"stop_timeframe must be one of {STOP_TIMEFRAMES}")
         for fee in (self.entry_commission_pct, self.exit_commission_pct):
             if not np.isfinite(fee) or fee < 0:
                 raise ValueError("Order commission must be finite and nonnegative")
@@ -3156,7 +3164,12 @@ class LegacyExitInputBuilder:
                                  "wave_no": wave_no, "adx_14_4": round(float(value), 6),
                                  "plus_di_14": round(float(row.plus_di_14), 6), "minus_di_14": round(float(row.minus_di_14), 6)})
         wave_rows, markers = wave.build_macd_1m_wave_markers_for_entry(entry, work, context_start, end, args)
-        exported = self.minute_range(context_start, end + TF_MS_5M).copy()
+        export_start = context_start
+        if self.settings.stop_timeframe == "5m":
+            # Extra pre-entry rows only seed M5 red history; they carry no
+            # M1 MACD wave markers, so support searches are unaffected.
+            export_start = min(context_start, (entry_ms - M5_STOP_CONTEXT_MS) // TF_MS_5M * TF_MS_5M)
+        exported = self.minute_range(export_start, end + TF_MS_5M).copy()
         exported.insert(0, "entry_id", int(entry.entry_id))
         exported = exported.rename(columns={"mts": "minute_mts_utc"})
         exported["macd_1m_wave_no"] = exported.minute_mts_utc.map(lambda t: markers.get(int(t), {}).get("macd_1m_wave_no", np.nan))
@@ -3205,13 +3218,118 @@ def filled_initial_order_engine():
             '            close_or_snapshot_trade(active_trade, f"study_ended_{final_reason}", int(range_end_ms), None)\n'
             '            last_state = "position_open_at_study_end"',
     })
+    substitutions.update({
+        # M5 stop movement: same red/green rules, applied to closed M5 candles.
+        "    for idx, mrow in minutes.iterrows():":
+            "    m5_state = {}\n    for idx, mrow in minutes.iterrows():",
+        "        assert active_trade is not None\n":
+            "        assert active_trade is not None\n"
+            '        if args.stop_timeframe == "5m":\n'
+            "            advance_m5_stop(active_trade, m5_state, minutes_all_for_entry, m_start, entry, args, stop_events_rows)\n",
+        "        color = candle_color(mrow)\n        if color == \"red\":":
+            '        if args.stop_timeframe == "5m":\n'
+            "            continue  # M1 candles only trigger the resting stop.\n"
+            "        color = candle_color(mrow)\n        if color == \"red\":",
+    })
     for before, after in substitutions.items():
         if source.count(before) != 1:
             raise RuntimeError("Initial-fill adapter no longer matches verified v9 source")
         source = source.replace(before, after, 1)
+    engine.advance_m5_stop = _functools.partial(_advance_m5_stop, engine)
     exec(compile("from __future__ import annotations\n" + source,
                  str(Path(__file__).resolve()) + "::initial_order_adapter", "exec"), engine.__dict__)
     return engine
+
+
+def _m5_candles(minutes):
+    """Aggregate actual M1 candles into M5 candles; drop a leading partial bucket."""
+    frame = minutes[["minute_mts_utc", "open", "high", "low", "close"]].copy()
+    for column in frame.columns:
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+    frame = frame.dropna().sort_values("minute_mts_utc")
+    if frame.empty:
+        return pd.DataFrame(columns=["minute_mts_utc", "open", "high", "low", "close", "close_ms"])
+    frame["bucket"] = frame.minute_mts_utc.astype("int64") // TF_MS_5M * TF_MS_5M
+    candles = frame.groupby("bucket", sort=True).agg(
+        open=("open", "first"), high=("high", "max"), low=("low", "min"), close=("close", "last"),
+        first_minute=("minute_mts_utc", "min"))
+    candles = candles.iloc[1:] if candles.first_minute.iloc[0] > candles.index[0] else candles
+    candles = candles.drop(columns="first_minute").reset_index().rename(columns={"bucket": "minute_mts_utc"})
+    candles["close_ms"] = candles.minute_mts_utc + TF_MS_5M
+    return candles
+
+
+def _advance_m5_stop(engine, trade, state, minutes, upto_ms, entry, args, stop_events_rows):
+    """Apply the v9 M1 stop rules to every M5 candle closed by upto_ms.
+
+    Red M5 candles join the trade's red history; a green M5 candle searches
+    left for the nearest red M5 High >= its High and proposes High + stop_x,
+    which can only set or lower the stop. M5 candles closed at or before the
+    trade entry seed history (up to 20 reds); later ones are live.
+    """
+    if "candles" not in state:
+        state["candles"] = _m5_candles(minutes)
+    candles = state["candles"]
+    if state.get("trade_no") != trade.trade_no:
+        entry_ms = int(trade.entry_time_ms)
+        before = candles.loc[candles.close_ms.le(entry_ms)]
+        reds = [engine.make_red_history_row(row, "pre_entry_context_m5")
+                for _, row in before.iterrows() if engine.candle_color(row) == "red"]
+        trade.red_history = reds[-engine.PRE_ENTRY_RED_HISTORY_LIMIT:]
+        trade.initial_red_history_count = len(trade.red_history)
+        trade.initial_red_history_start_time_ms = (int(trade.red_history[0]["minute_mts_utc"])
+                                                   if trade.red_history else None)
+        trade.initial_red_history_end_time_ms = (int(trade.red_history[-1]["minute_mts_utc"])
+                                                 if trade.red_history else None)
+        state.update(trade_no=trade.trade_no, done_ms=entry_ms)
+    live = candles.loc[candles.close_ms.gt(state["done_ms"]) & candles.close_ms.le(int(upto_ms))]
+    for _, row in live.iterrows():
+        state["done_ms"] = close_ms = int(row.close_ms)
+        color = engine.candle_color(row)
+        if color == "red":
+            trade.red_history.append(engine.make_red_history_row(row, "after_entry_m5"))
+            continue
+        if color != "green":
+            continue
+        start_ms = int(row.minute_mts_utc)
+        basis = engine.find_basis_red_candle(trade.red_history, float(row.high))
+        old_stop = trade.current_stop_level
+        trade.stop_candidates_count += 1
+        candidate = np.nan
+        if basis is None:
+            trade.stop_ignored_count += 1
+            event_type, reason, new_stop = "candidate_not_found", "no_previous_red_m5_high_gte_green_high", old_stop
+        else:
+            candidate = float(basis["high"]) + float(args.stop_x)
+            if old_stop is None:
+                event_type, reason, new_stop = "exit_stop_set", "first_stop_for_trade", candidate
+                trade.first_stop_set_time_ms, trade.first_stop_level = close_ms, candidate
+            elif candidate < float(old_stop):
+                event_type, reason, new_stop = "exit_stop_moved_down", "candidate_below_current_stop", candidate
+                trade.stop_moves_count += 1
+            else:
+                event_type, reason, new_stop = "candidate_ignored_not_lower", "candidate_not_below_current_stop", old_stop
+                trade.stop_ignored_count += 1
+            if new_stop is not old_stop:
+                trade.current_stop_level, trade.current_stop_set_time_ms = new_stop, close_ms
+        local = lambda ms: engine.ms_to_local(ms, args.tz_name, args.tz_offset)
+        event = engine.base_entry_fields(entry, args)
+        event.update({
+            "stop_event_no": len(stop_events_rows) + 1, "trade_no": trade.trade_no,
+            "event_type": event_type, "event_time": local(close_ms), "event_ms_utc": close_ms,
+            "minute_start_time": local(start_ms), "minute_mts_utc": start_ms, "candle_timeframe": "5m",
+            "candle_color": color, "candle_open": float(row.open), "candle_high": float(row.high),
+            "candle_low": float(row.low), "candle_close": float(row.close),
+            "old_stop_level": old_stop if old_stop is not None else np.nan,
+            "new_stop_level": new_stop if new_stop is not None else np.nan,
+            "candidate_stop_level": candidate,
+            "basis_red_time": local(int(basis["minute_mts_utc"])) if basis is not None else "",
+            "basis_red_mts_utc": int(basis["minute_mts_utc"]) if basis is not None else np.nan,
+            "basis_red_high": float(basis["high"]) if basis is not None else np.nan,
+            "basis_red_origin": str(basis.get("red_history_origin", "")) if basis is not None else "",
+            "basis_green_time": local(start_ms), "basis_green_mts_utc": start_ms,
+            "basis_green_high": float(row.high), "reason": reason})
+        stop_events_rows.append(event)
 
 
 def resolve_initial_order(entry, builder, summary, adx_hits):
@@ -3733,6 +3851,8 @@ def main():
     parser.add_argument("--workers", type=int, default=1, help="Independent CPU processes for exit simulation")
     parser.add_argument("--history-cache", type=Path, default=Path(__file__).resolve().parents[2] / "Exports/candle_cache")
     parser.add_argument("--stop-x", type=float, default=0.3)
+    parser.add_argument("--stop-timeframe", choices=STOP_TIMEFRAMES, default="1m",
+                        help="Candles that set/move the trailing exit stop; M1 Highs always trigger it")
     parser.add_argument("--support-threshold", type=float, default=0.0003)
     parser.add_argument("--reentry-offset-down", type=float, default=0.0)
     parser.add_argument("--initial-entry-offset-down", type=float, default=0.1,
@@ -3753,7 +3873,8 @@ def main():
     settings = ExitSettings(args.stop_x, args.support_threshold, args.reentry_offset_down,
                             initial_entry_offset_down=args.initial_entry_offset_down,
                             entry_commission_pct=args.entry_commission_pct,
-                            exit_commission_pct=args.exit_commission_pct)
+                            exit_commission_pct=args.exit_commission_pct,
+                            stop_timeframe=args.stop_timeframe)
     settings.namespace()
     if args.cache_dir:
         native, cutoff = load_training_candles(args.cache_dir, args.cutoff)
