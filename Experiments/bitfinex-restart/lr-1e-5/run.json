@@ -1,0 +1,90 @@
+{
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "cuda_runtime": null,
+  "parameter_count": 2437074,
+  "selection": "average_precision",
+  "selection_tie_break": "lower_validation_loss_then_earlier_epoch",
+  "macd_normalization": "x / sqrt(1 + x^2)",
+  "timeline_cached_on_gpu": true,
+  "config": {
+    "command": "train",
+    "config": "../../outputs/bitfinex-restart/lr-control.json",
+    "output_dir": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/outputs/bitfinex-restart/lr-1e-5",
+    "bitfinex_dir": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd",
+    "current": null,
+    "current_ids": null,
+    "current_times": null,
+    "history": null,
+    "history_ids": null,
+    "history_times": null,
+    "schema": null,
+    "dataset": "bitfinex",
+    "data_period": "all",
+    "gross": null,
+    "commission": null,
+    "outcome_ids": null,
+    "close_times": null,
+    "gross_unit": null,
+    "gross_currency": null,
+    "commission_unit": null,
+    "commission_currency": null,
+    "max_holding_minutes": null,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15,
+    "model": "dense",
+    "feature_input": "exported",
+    "hidden1": 32,
+    "hidden2": 16,
+    "hidden3": 0,
+    "activation": "relu",
+    "dropout": 0.4,
+    "epochs": 48,
+    "lookback_minutes": 1410,
+    "learning_rate": 1e-05,
+    "optimizer": "adam",
+    "selection": "average_precision",
+    "min_entry_calls": 500,
+    "feature_scaling": "standardize",
+    "timeline_cache": "auto",
+    "batch_size": 2048,
+    "device": "cuda:0",
+    "seed": 42,
+    "num_workers": 0,
+    "torch_threads": 0
+  },
+  "paths": {
+    "timeline": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd/feature_timeline.npy",
+    "entries": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd/entry_targets.csv",
+    "manifest": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd/manifest.json"
+  },
+  "memory_at_start": {
+    "device": "cuda:0",
+    "name": "AMD Radeon RX 9070",
+    "allocated_mib": 335.310546875,
+    "reserved_mib": 348.0,
+    "peak_allocated_mib": 335.31103515625,
+    "free_mib": 13701.71875,
+    "total_mib": 16191.21875
+  },
+  "files": {
+    "timeline": {
+      "bytes": 341195888,
+      "mtime_ns": 1795036562767862900
+    },
+    "entries": {
+      "bytes": 27433301,
+      "mtime_ns": 1795036562777861900
+    },
+    "manifest": {
+      "bytes": 2977,
+      "mtime_ns": 1795036562777861900
+    }
+  },
+  "timing": {
+    "epochs_completed": 48,
+    "total_epoch_seconds": 66.78579761101719,
+    "average_epoch_seconds": 1.3913707835628581
+  }
+}

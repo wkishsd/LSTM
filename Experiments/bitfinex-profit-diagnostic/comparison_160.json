@@ -1,0 +1,221 @@
+{
+  "source_run": "rx9070-20261120-021347-60da",
+  "weighted_epochs": 160,
+  "class_weights": [
+    0.33776765614365745,
+    0.5644531933508311,
+    4.982007722007722,
+    24.028677839851024,
+    39.33963414634147
+  ],
+  "validation_loss_pooled_training_prior": 0.8567156700715325,
+  "validation_support": [
+    8285,
+    4790,
+    500,
+    120,
+    54
+  ],
+  "original_snapshots": [
+    {
+      "epoch": 17,
+      "train_acc": 0.568532324813615,
+      "val_loss": 0.8485554284343322,
+      "val_acc": 0.6025892792203069,
+      "loss_corrected_for_class_weight": null,
+      "macro_recall": 0.2,
+      "macro_ap": 0.2253869789279571,
+      "validation_calls": [
+        13749,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "epoch": 46,
+      "train_acc": 0.5923865027822124,
+      "val_loss": 0.8938927934840685,
+      "val_acc": 0.6022983489708342,
+      "loss_corrected_for_class_weight": null,
+      "macro_recall": 0.20016764457234001,
+      "macro_ap": 0.24583898208757282,
+      "validation_calls": [
+        13712,
+        37,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "epoch": 160,
+      "train_acc": 0.8949889176496117,
+      "val_loss": 2.2021831181866274,
+      "val_acc": 0.5622954396683395,
+      "loss_corrected_for_class_weight": null,
+      "macro_recall": 0.20172163088712022,
+      "macro_ap": 0.21315047303151577,
+      "validation_calls": [
+        11498,
+        2230,
+        21,
+        0,
+        0
+      ]
+    }
+  ],
+  "weighted_snapshots": [
+    {
+      "epoch": 13,
+      "train_acc": 0.29939395818156456,
+      "val_loss": 1.5019348477162364,
+      "val_acc": 0.2894755982253255,
+      "loss_corrected_for_class_weight": 0.8451889008121045,
+      "macro_recall": 0.2792217222684425,
+      "macro_ap": 0.2158563440485124,
+      "validation_calls": [
+        4445,
+        2525,
+        3439,
+        1605,
+        1735
+      ]
+    },
+    {
+      "epoch": 71,
+      "train_acc": 0.2976114822449897,
+      "val_loss": 1.1238474442626063,
+      "val_acc": 0.25550949159938907,
+      "loss_corrected_for_class_weight": 0.9007051720238745,
+      "macro_recall": 0.261080097420525,
+      "macro_ap": 0.22199822800295932,
+      "validation_calls": [
+        58,
+        9165,
+        4276,
+        172,
+        78
+      ]
+    },
+    {
+      "epoch": 159,
+      "train_acc": 0.3343304865384317,
+      "val_loss": 1.0513371331309032,
+      "val_acc": 0.30947705287657284,
+      "loss_corrected_for_class_weight": 0.9623431242442633,
+      "macro_recall": 0.24473875502736092,
+      "macro_ap": 0.21791457052126445,
+      "validation_calls": [
+        740,
+        10480,
+        2399,
+        97,
+        33
+      ]
+    },
+    {
+      "epoch": 160,
+      "train_acc": 0.3377249407133004,
+      "val_loss": 1.0606379817031377,
+      "val_acc": 0.30256745945159647,
+      "loss_corrected_for_class_weight": 0.9703588528029311,
+      "macro_recall": 0.23848160819181316,
+      "macro_ap": 0.21690923345697205,
+      "validation_calls": [
+        153,
+        11072,
+        2446,
+        46,
+        32
+      ]
+    }
+  ],
+  "weighted_test": {
+    "loss": 0.9963078317223347,
+    "accuracy": 0.2911941053239905,
+    "majority_accuracy": 0.6485588384020805,
+    "balanced_accuracy": 0.23149036134472906,
+    "confusion_matrix": [
+      [
+        31,
+        7703,
+        1218,
+        23,
+        3
+      ],
+      [
+        24,
+        3928,
+        585,
+        11,
+        0
+      ],
+      [
+        7,
+        169,
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        18,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        15,
+        16,
+        0,
+        0
+      ]
+    ],
+    "count": 13843,
+    "class_counts": {
+      "0": 8978,
+      "1": 4548,
+      "2": 248,
+      "3": 38,
+      "4": 31
+    },
+    "per_class": [
+      {
+        "support": 8978,
+        "calls": 62,
+        "recall": 0.003452884829583426,
+        "precision": 0.5
+      },
+      {
+        "support": 4548,
+        "calls": 11833,
+        "recall": 0.8636763412489006,
+        "precision": 0.3319530127609228
+      },
+      {
+        "support": 248,
+        "calls": 1911,
+        "recall": 0.2903225806451613,
+        "precision": 0.03767660910518053
+      },
+      {
+        "support": 38,
+        "calls": 34,
+        "recall": 0.0,
+        "precision": 0.0
+      },
+      {
+        "support": 31,
+        "calls": 3,
+        "recall": 0.0,
+        "precision": 0.0
+      }
+    ],
+    "average_precision": 0.2084218084835224,
+    "average_precision_baseline": 0.2,
+    "loss_corrected_for_class_weight": 0.7817024617304323
+  }
+}

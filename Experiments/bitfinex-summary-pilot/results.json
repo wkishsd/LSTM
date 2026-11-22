@@ -1,0 +1,159 @@
+{
+  "quota_fraction_per_week": 0.06358087487283826,
+  "folds": [
+    {
+      "start": "2025-01-26",
+      "end": "2025-07-12",
+      "training_entries": 42127,
+      "evaluation_entries": 15831,
+      "positive_rate": 0.32436359042385193,
+      "models": {
+        "atr": {
+          "average_precision": 0.34866460590295,
+          "winners": 334,
+          "calls": 1004
+        },
+        "snapshot": {
+          "average_precision": 0.35463183597581033,
+          "winners": 381,
+          "calls": 1004
+        },
+        "window": {
+          "average_precision": 0.3621538368561873,
+          "winners": 378,
+          "calls": 1004
+        },
+        "weekly_ranker": {
+          "average_precision": 0.35789260293085806,
+          "winners": 363,
+          "calls": 1004
+        }
+      }
+    },
+    {
+      "start": "2025-07-12",
+      "end": "2025-12-23",
+      "training_entries": 57940,
+      "evaluation_entries": 15832,
+      "positive_rate": 0.30709954522486105,
+      "models": {
+        "atr": {
+          "average_precision": 0.3453431694352958,
+          "winners": 338,
+          "calls": 1008
+        },
+        "snapshot": {
+          "average_precision": 0.3434996139919534,
+          "winners": 333,
+          "calls": 1008
+        },
+        "window": {
+          "average_precision": 0.34270194418190025,
+          "winners": 335,
+          "calls": 1008
+        },
+        "weekly_ranker": {
+          "average_precision": 0.3243711646903349,
+          "winners": 340,
+          "calls": 1008
+        }
+      }
+    },
+    {
+      "start": "2025-12-23",
+      "end": "2026-06-03",
+      "training_entries": 73790,
+      "evaluation_entries": 15832,
+      "positive_rate": 0.19807983830217282,
+      "models": {
+        "atr": {
+          "average_precision": 0.2516784458444557,
+          "winners": 231,
+          "calls": 1006
+        },
+        "snapshot": {
+          "average_precision": 0.22519622504550987,
+          "winners": 202,
+          "calls": 1006
+        },
+        "window": {
+          "average_precision": 0.23776390121614405,
+          "winners": 221,
+          "calls": 1006
+        },
+        "weekly_ranker": {
+          "average_precision": 0.22435993601657117,
+          "winners": 242,
+          "calls": 1006
+        }
+      }
+    },
+    {
+      "start": "2026-06-03",
+      "end": "2026-11-12",
+      "training_entries": 89609,
+      "evaluation_entries": 15832,
+      "positive_rate": 0.15670793329964627,
+      "models": {
+        "atr": {
+          "average_precision": 0.19866815306631108,
+          "winners": 242,
+          "calls": 1009
+        },
+        "snapshot": {
+          "average_precision": 0.20488453774945845,
+          "winners": 220,
+          "calls": 1009
+        },
+        "window": {
+          "average_precision": 0.2044171097869654,
+          "winners": 209,
+          "calls": 1009
+        },
+        "weekly_ranker": {
+          "average_precision": 0.19284781562400233,
+          "winners": 205,
+          "calls": 1009
+        }
+      }
+    }
+  ],
+  "total": {
+    "atr": {
+      "winners": 1145,
+      "calls": 4027,
+      "extra_winners_vs_atr": 0,
+      "four_week_block_bootstrap_interval_extra_winners": [
+        0.0,
+        0.0
+      ]
+    },
+    "snapshot": {
+      "winners": 1136,
+      "calls": 4027,
+      "extra_winners_vs_atr": -9,
+      "four_week_block_bootstrap_interval_extra_winners": [
+        -103.02499999999999,
+        93.0
+      ]
+    },
+    "window": {
+      "winners": 1143,
+      "calls": 4027,
+      "extra_winners_vs_atr": -2,
+      "four_week_block_bootstrap_interval_extra_winners": [
+        -99.0,
+        95.02500000000009
+      ]
+    },
+    "weekly_ranker": {
+      "winners": 1150,
+      "calls": 4027,
+      "extra_winners_vs_atr": 5,
+      "four_week_block_bootstrap_interval_extra_winners": [
+        -106.0,
+        113.0
+      ]
+    }
+  }
+}

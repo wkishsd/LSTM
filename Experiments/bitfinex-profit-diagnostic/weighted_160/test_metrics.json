@@ -1,0 +1,105 @@
+{
+  "best_epoch": 71,
+  "timing": {
+    "epochs_completed": 160,
+    "total_epoch_seconds": 162.26763132899214,
+    "average_epoch_seconds": 1.014172695806201
+  },
+  "checkpoint_epoch": 71,
+  "checkpoint_file": "best.pt",
+  "test": {
+    "loss": 0.9963078317223347,
+    "accuracy": 0.2911941053239905,
+    "majority_accuracy": 0.6485588384020805,
+    "balanced_accuracy": 0.23149036134472906,
+    "confusion_matrix": [
+      [
+        31,
+        7703,
+        1218,
+        23,
+        3
+      ],
+      [
+        24,
+        3928,
+        585,
+        11,
+        0
+      ],
+      [
+        7,
+        169,
+        72,
+        0,
+        0
+      ],
+      [
+        0,
+        18,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        15,
+        16,
+        0,
+        0
+      ]
+    ],
+    "count": 13843,
+    "class_counts": {
+      "0": 8978,
+      "1": 4548,
+      "2": 248,
+      "3": 38,
+      "4": 31
+    },
+    "per_class": [
+      {
+        "support": 8978,
+        "calls": 62,
+        "recall": 0.003452884829583426,
+        "precision": 0.5
+      },
+      {
+        "support": 4548,
+        "calls": 11833,
+        "recall": 0.8636763412489006,
+        "precision": 0.3319530127609228
+      },
+      {
+        "support": 248,
+        "calls": 1911,
+        "recall": 0.2903225806451613,
+        "precision": 0.03767660910518053
+      },
+      {
+        "support": 38,
+        "calls": 34,
+        "recall": 0.0,
+        "precision": 0.0
+      },
+      {
+        "support": 31,
+        "calls": 3,
+        "recall": 0.0,
+        "precision": 0.0
+      }
+    ],
+    "average_precision": 0.2084218084835224,
+    "average_precision_baseline": 0.2,
+    "loss_corrected_for_class_weight": 0.7817024617304323
+  },
+  "memory": {
+    "device": "cuda:0",
+    "name": "AMD Radeon RX 9070",
+    "allocated_mib": 525.67578125,
+    "reserved_mib": 1134.0,
+    "peak_allocated_mib": 987.39599609375,
+    "free_mib": 7046.81640625,
+    "total_mib": 16191.21875
+  }
+}

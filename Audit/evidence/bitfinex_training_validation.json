@@ -1,0 +1,131 @@
+{
+  "entries": 2000,
+  "features_unchanged": true,
+  "original_exit_rules_unchanged": true,
+  "corrected_input_policy": "chart_aligned: empty slots advance MACD; M5 ADX shares decimal-safe DMI with model features",
+  "entries_with_changed_traces": 421,
+  "entries_with_changed_targets": 22,
+  "available_targets": 1985,
+  "unavailable_targets": 15,
+  "trades": 4305,
+  "reentries": 2305,
+  "baseline_cleanup_exact_parity": {
+    "retained_original_functions_and_classes": {
+      "EXIT": 26,
+      "WAVE": 14
+    },
+    "entries_compared": 2000,
+    "exact_unchanged_output_rows": {
+      "trades": 4305,
+      "stop_events": 16863,
+      "support_searches": 4481,
+      "entry_orders": 3772,
+      "entry_summary": 2000
+    },
+    "wave_and_adx_input_parity_cases": [
+      1,
+      500,
+      1000,
+      1500,
+      2000
+    ],
+    "macd_wave_helpers_retained": true,
+    "adx_gt_25_helper_retained": true,
+    "result": "PASS"
+  },
+  "target_status_counts": {
+    "complete": 1660,
+    "complete_pending_order_unfilled": 325,
+    "open_position_at_wave_cutoff": 15
+  },
+  "chart_and_independent_exit_audit": {
+    "cases": 40,
+    "chart_candles_checked": 1231,
+    "chart_candles_by_timeframe": {
+      "1m": 840,
+      "5m": 391
+    },
+    "native_ohlc_matches": 1230,
+    "empty_chart_candle_matches": 1,
+    "chart_indicator_value_comparisons": 7386,
+    "chart_macd_wave_boundary_checks": 240,
+    "chart_adx_termination_checks": 32,
+    "indicator_display_rounding_tolerance": {
+      "MACD": 5.1e-07,
+      "DMI_ADX": 5.1e-05
+    },
+    "max_indicator_differences": {
+      "1m_hist": 4.993880677317541e-07,
+      "1m_macd": 4.999732654553668e-07,
+      "1m_signal": 4.992607913756331e-07,
+      "1m_di_plus": 4.9858903995669834e-05,
+      "1m_di_minus": 4.995649273809022e-05,
+      "1m_adx": 4.998872141115385e-05,
+      "5m_hist": 4.977482058257654e-07,
+      "5m_macd": 4.975494860559593e-07,
+      "5m_signal": 4.998772182851496e-07,
+      "5m_di_plus": 4.98340573287237e-05,
+      "5m_di_minus": 4.988532156247061e-05,
+      "5m_adx": 4.9922611577102316e-05
+    },
+    "independent_rule_checks": 2984,
+    "workbook_export_field_checks": 287080,
+    "model_features": 54,
+    "market_features": 36,
+    "main_anchor_flags": 18,
+    "result": "PASS"
+  },
+  "static_review_followup": {
+    "source_code_sha256": "fb24e14f09b509bf50d367a679b44a93111131971fdd183b4129726979a34add",
+    "robustness_fixes_validation": {
+      "result": "PASS",
+      "checks": [
+        "embedded hashes verified",
+        "source tampering rejected",
+        "ambiguous numeric 10.30 rejected",
+        "duplicate anchor ID rejected",
+        "invalid anchor ID rejected",
+        "actual workbook membership validates",
+        "cached warm-up sufficient",
+        "insufficient M30 warm-up rejected",
+        "all 2000 model-feature rows exactly unchanged",
+        "all four exit inputs exactly unchanged for 40 audited cases",
+        "empty wave frame normalizes and processes without missing-column error"
+      ]
+    },
+    "target_regression": {
+      "result": "PASS",
+      "entries": 2000,
+      "targets_exactly_unchanged": true,
+      "core_outputs_exactly_unchanged": {
+        "trades": 4305,
+        "stop_events": 16868,
+        "support_searches": 4488,
+        "entry_orders": 3775,
+        "entry_summary": 2000
+      }
+    },
+    "decision_time_invariance": {
+      "result": "PASS",
+      "first_100_entries": 100,
+      "missing_prior_minute_edge_entries": [
+        1278,
+        1584,
+        1608,
+        1636,
+        1643,
+        1658,
+        1666
+      ],
+      "entries_compared": 107,
+      "maximum_difference": 0.0
+    },
+    "wave1_definition_scenario": {
+      "production_changed": false,
+      "entries_with_changed_wave1": 151,
+      "counterfactual_targets_changed": 87,
+      "counterfactual_availability_changes": 3
+    },
+    "existing_saved_features_exactly_unchanged": true
+  }
+}

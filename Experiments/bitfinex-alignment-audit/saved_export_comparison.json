@@ -1,0 +1,14 @@
+{
+  "outcomes_checked_by_entry_id": 105545,
+  "source_checkpoint_batches": 352,
+  "saved_binary_labels_checked": 105533,
+  "saved_windows_checked": 128,
+  "wave6_availability_updates": 15285,
+  "wave6_update_seconds": {
+    "300": 14858,
+    "240": 192,
+    "180": 116,
+    "120": 78,
+    "60": 41
+  }
+}

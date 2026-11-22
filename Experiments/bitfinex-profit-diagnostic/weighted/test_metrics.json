@@ -1,0 +1,104 @@
+{
+  "best_epoch": 52,
+  "timing": {
+    "epochs_completed": 60,
+    "total_epoch_seconds": 63.33829791496828,
+    "average_epoch_seconds": 1.0556382985828046
+  },
+  "checkpoint_epoch": 52,
+  "checkpoint_file": "best.pt",
+  "test": {
+    "loss": 1.0310763735255521,
+    "accuracy": 0.27544607382792746,
+    "majority_accuracy": 0.6485588384020805,
+    "balanced_accuracy": 0.2403580723069932,
+    "confusion_matrix": [
+      [
+        59,
+        7283,
+        1604,
+        28,
+        4
+      ],
+      [
+        44,
+        3657,
+        827,
+        18,
+        2
+      ],
+      [
+        6,
+        144,
+        97,
+        1,
+        0
+      ],
+      [
+        0,
+        18,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        14,
+        17,
+        0,
+        0
+      ]
+    ],
+    "count": 13843,
+    "class_counts": {
+      "0": 8978,
+      "1": 4548,
+      "2": 248,
+      "3": 38,
+      "4": 31
+    },
+    "per_class": [
+      {
+        "support": 8978,
+        "calls": 109,
+        "recall": 0.006571619514368457,
+        "precision": 0.5412844036697247
+      },
+      {
+        "support": 4548,
+        "calls": 11116,
+        "recall": 0.804089709762533,
+        "precision": 0.3289852464915437
+      },
+      {
+        "support": 248,
+        "calls": 2565,
+        "recall": 0.3911290322580645,
+        "precision": 0.03781676413255361
+      },
+      {
+        "support": 38,
+        "calls": 47,
+        "recall": 0.0,
+        "precision": 0.0
+      },
+      {
+        "support": 31,
+        "calls": 6,
+        "recall": 0.0,
+        "precision": 0.0
+      }
+    ],
+    "average_precision": 0.20830124253820417,
+    "average_precision_baseline": 0.2
+  },
+  "memory": {
+    "device": "cuda:0",
+    "name": "AMD Radeon RX 9070",
+    "allocated_mib": 525.67578125,
+    "reserved_mib": 1134.0,
+    "peak_allocated_mib": 987.39501953125,
+    "free_mib": 7050.21484375,
+    "total_mib": 16191.21875
+  }
+}

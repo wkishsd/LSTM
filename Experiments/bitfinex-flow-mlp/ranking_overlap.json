@@ -1,0 +1,30 @@
+{
+  "walk_forward": {
+    "calls": 1009,
+    "overlap_with_atr": 299,
+    "overlap_with_pair_mlp": 1009,
+    "winners_added": 144,
+    "winners_removed": 164
+  },
+  "futures_walk_forward": {
+    "calls": 1009,
+    "overlap_with_atr": 335,
+    "overlap_with_pair_mlp": 511,
+    "winners_added": 114,
+    "winners_removed": 174
+  },
+  "adaptive_walk_forward": {
+    "calls": 1009,
+    "overlap_with_atr": 500,
+    "overlap_with_pair_mlp": 463,
+    "winners_added": 83,
+    "winners_removed": 130
+  },
+  "geometry_walk_forward": {
+    "calls": 1009,
+    "overlap_with_atr": 251,
+    "overlap_with_pair_mlp": 722,
+    "winners_added": 134,
+    "winners_removed": 174
+  }
+}

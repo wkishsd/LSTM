@@ -1,0 +1,36 @@
+# Environments and tool caches
+node_modules/
+.venv*/
+.python-deps/
+__pycache__/
+*.pyc
+
+# Hidden audit workspaces (generated)
+.independent-functional-audit/
+.indicator-audit/
+
+# Generated data, run outputs and snapshots
+Exports/
+Archive/
+Handoff/
+Training/rocm-9070/runs/
+Training/rocm-9070/datasets/
+Training/rocm-9070/panel-reload.json
+Experiments/**/runs/
+*candle_cache/
+Experiments/**/*_export/
+
+# Binary and bulk data files anywhere
+*.pt
+*.npy
+*.npz
+*.pkl
+*.zip
+*.ndjson
+*.xlsx
+*.dat
+*.tmp
+*.log
+*.wasm
+*.node
+*.dll

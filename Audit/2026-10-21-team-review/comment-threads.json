@@ -1,0 +1,154 @@
+{
+  "plan": {
+    "fileId": "13-9HR0mEcAhQ7WrKXFY0Cw4QPH3R1xc8wR0N-xpn8Pg",
+    "comments": [
+      {
+        "id": "AAACJFH8dcw",
+        "kind": "drive#comment",
+        "content": "трудно проверить в ручную",
+        "htmlContent": "трудно проверить в ручную",
+        "createdTime": "2026-10-21T14:14:41.582Z",
+        "modifiedTime": "2026-10-21T14:14:41.582Z",
+        "resolved": false,
+        "anchor": "kix.iyzkzyf7y24",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "25. ATR пересекает вверх 75-й процентиль своих предыдущих 80 значений; DI− &gt; DI+."
+        },
+        "author": {
+          "displayName": "михаил колесниченко",
+          "emailAddress": null,
+          "me": true,
+          "photoLink": "//lh3.googleusercontent.com/a/ACg8ocJOUc2zqnQYr6ynzoFR2x4Ii3zu1xhB6KLqzWIgcQrt81tYjcLVbg=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "AAACJFH8dcs",
+        "kind": "drive#comment",
+        "content": "трудно проверить в ручную",
+        "htmlContent": "трудно проверить в ручную",
+        "createdTime": "2026-10-21T14:14:25.410Z",
+        "modifiedTime": "2026-10-21T14:14:25.410Z",
+        "resolved": false,
+        "anchor": "kix.7s5tudcvn0nx",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "26. Объем впервые &gt;2 &#215; средний объем предыдущих 20 периодов; DI− &gt; DI+."
+        },
+        "author": {
+          "displayName": "михаил колесниченко",
+          "emailAddress": null,
+          "me": true,
+          "photoLink": "//lh3.googleusercontent.com/a/ACg8ocJOUc2zqnQYr6ynzoFR2x4Ii3zu1xhB6KLqzWIgcQrt81tYjcLVbg=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "AAACJHBWstI",
+        "kind": "drive#comment",
+        "content": "Не ясно, что считается периодом ?",
+        "htmlContent": "Не ясно, что считается периодом ?",
+        "createdTime": "2026-10-21T13:54:10.374Z",
+        "modifiedTime": "2026-10-21T13:54:10.374Z",
+        "resolved": false,
+        "anchor": "kix.9gvar59843dc",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "DI"
+        },
+        "author": {
+          "displayName": "скайклауд Skycloud",
+          "emailAddress": null,
+          "me": false,
+          "photoLink": "//lh3.googleusercontent.com/a-/ALV-UjU6qbtDNoqtIhseJ0aXpBQBcvaZe_qJ_iVtdCMMm-if37DXg_k=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "AAACJG8sxjs",
+        "kind": "drive#comment",
+        "content": "Криво написано ? Вариант: (DI-) - (DI+) > 10",
+        "htmlContent": "Криво написано ? Вариант: (DI-) - (DI+) &gt; 10",
+        "createdTime": "2026-10-21T10:53:03.619Z",
+        "modifiedTime": "2026-10-21T10:53:03.619Z",
+        "resolved": false,
+        "anchor": "kix.mf6uujkl79vg",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "вверх"
+        },
+        "author": {
+          "displayName": "скайклауд Skycloud",
+          "emailAddress": null,
+          "me": false,
+          "photoLink": "//lh3.googleusercontent.com/a-/ALV-UjU6qbtDNoqtIhseJ0aXpBQBcvaZe_qJ_iVtdCMMm-if37DXg_k=s50-c-k-no"
+        },
+        "replies": []
+      }
+    ],
+    "nextPageToken": null,
+    "file_url": "https://drive.google.com/file/d/13-9HR0mEcAhQ7WrKXFY0Cw4QPH3R1xc8wR0N-xpn8Pg"
+  },
+  "sheet": {
+    "fileId": "1i-bLeuvJ64ULv-L2131ZXkmWjRr1AsPjpHlWrLqGrjQ",
+    "comments": [
+      {
+        "id": "doco.pgOs7eBmvVji6c7F5IaUqQ",
+        "kind": "drive#comment",
+        "content": "candles are fine, indicators seem fine but check comments in the global task doc\n\nthe support search at 16:42 returned a type 2, but no upper cluster can be found on the chart. the difference between 16:35 and 16:37 is below the required threshold, thus they need a third candle in the threshold for type 2 to appear.",
+        "htmlContent": "candles are fine, indicators seem fine but check comments in the global task doc<br><br>the support search at 16:42 returned a type 2, but no upper cluster can be found on the chart. the difference between 16:35 and 16:37 is below the required threshold, thus they need a third candle in the threshold for type 2 to appear.",
+        "createdTime": "2026-10-21T14:28:03.466Z",
+        "modifiedTime": "2026-10-21T14:43:08.051Z",
+        "resolved": false,
+        "anchor": "{\"type\":\"workbook-range\",\"uid\":0,\"range\":\"726496766\"}",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "1. Anchors\nPossible mistake: Simultaneous anchors may be dropped or counted as separate rows.\nExample: Anchors 1, 7, 8, 13, 14, 16, 22, 24, 25, 26, 28, 33 fire on M5 04 Sep 15:30.\nCheck: Keep all flags on one row at 04 Sep 15:35.\n\n2. Anchors\nPossible mistake: The current ATR may be included in its own 80-candle limit.\nExample: Signal M5 04 Sep 15:30. #25: ATR: 4.833051; previous ATR limit 5.769979\nCheck: Check rule #25 on this M5 and its earlier candles; assign it to 04 Sep 15:35.\n\n3. Re-entrie…"
+        },
+        "author": {
+          "displayName": "михаил колесниченко",
+          "emailAddress": null,
+          "me": true,
+          "photoLink": "//lh3.googleusercontent.com/a/ACg8ocJOUc2zqnQYr6ynzoFR2x4Ii3zu1xhB6KLqzWIgcQrt81tYjcLVbg=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "doco.x-41vry3dURDClRCatgZ3w",
+        "kind": "drive#comment",
+        "content": "Anchor 28 - RSI was not below 50 on the previous 10 values, ambiguous definition\n\nAnchor 33 - what is considered a period",
+        "htmlContent": "Anchor 28 - RSI was not below 50 on the previous 10 values, ambiguous definition<br><br>Anchor 33 - what is considered a period",
+        "createdTime": "2026-10-21T14:18:18.057Z",
+        "modifiedTime": "2026-10-21T14:18:18.057Z",
+        "resolved": false,
+        "anchor": "{\"type\":\"workbook-range\",\"uid\":0,\"range\":\"1287644382\"}",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "1;7;8;13;14;16;22;24;25;26;28;33"
+        },
+        "author": {
+          "displayName": "михаил колесниченко",
+          "emailAddress": null,
+          "me": true,
+          "photoLink": "//lh3.googleusercontent.com/a/ACg8ocJOUc2zqnQYr6ynzoFR2x4Ii3zu1xhB6KLqzWIgcQrt81tYjcLVbg=s50-c-k-no"
+        },
+        "replies": []
+      }
+    ],
+    "nextPageToken": null,
+    "file_url": "https://drive.google.com/file/d/1i-bLeuvJ64ULv-L2131ZXkmWjRr1AsPjpHlWrLqGrjQ"
+  },
+  "dictionary": {
+    "fileId": "1xZwk3zuMrqQmRnvO99fUtOoO2JuXi8l2s-WaJVNl1Yk",
+    "comments": [],
+    "nextPageToken": null,
+    "file_url": "https://drive.google.com/file/d/1xZwk3zuMrqQmRnvO99fUtOoO2JuXi8l2s-WaJVNl1Yk"
+  }
+}

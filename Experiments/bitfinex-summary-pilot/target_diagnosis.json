@@ -1,0 +1,123 @@
+{
+  "rates": {
+    "train": {
+      "entries": 73790,
+      "fill_rate": 0.8625287979401003,
+      "gross_positive_rate": 0.48457785607805937,
+      "positive_at_fixed_0_10_percent_fee": 0.372191353841984,
+      "observed_net_positive_rate": 0.3109093373085784
+    },
+    "validation": {
+      "entries": 15728,
+      "fill_rate": 0.9003051881993896,
+      "gross_positive_rate": 0.42980671414038657,
+      "positive_at_fixed_0_10_percent_fee": 0.27765768056968465,
+      "observed_net_positive_rate": 0.1964649033570702
+    },
+    "test": {
+      "entries": 15832,
+      "fill_rate": 0.903233956543709,
+      "gross_positive_rate": 0.3803688731682668,
+      "positive_at_fixed_0_10_percent_fee": 0.22757705912076806,
+      "observed_net_positive_rate": 0.15670793329964627
+    }
+  },
+  "folds": [
+    {
+      "start": "2025-01-26",
+      "n": 15831,
+      "targets": {
+        "30_minute_price_fall": {
+          "target_rate": 0.471101004358537,
+          "target_auc": 0.525213211180749,
+          "target_average_precision": 0.48799514723307597,
+          "strategy_auc_using_these_scores": 0.49343258388506583,
+          "strategy_model_winners": 316,
+          "strategy_calls": 1004,
+          "strategy_atr_winners": 334
+        },
+        "fixed_fee_win": {
+          "target_rate": 0.3746446844798181,
+          "target_auc": 0.5516839870633498,
+          "target_average_precision": 0.41745012286426225,
+          "strategy_auc_using_these_scores": 0.5421558095956664,
+          "strategy_model_winners": 403,
+          "strategy_calls": 1004,
+          "strategy_atr_winners": 334
+        }
+      }
+    },
+    {
+      "start": "2025-07-12",
+      "n": 15832,
+      "targets": {
+        "30_minute_price_fall": {
+          "target_rate": 0.47884032339565435,
+          "target_auc": 0.5357151530089185,
+          "target_average_precision": 0.5084189360679991,
+          "strategy_auc_using_these_scores": 0.4980878537516963,
+          "strategy_model_winners": 312,
+          "strategy_calls": 1008,
+          "strategy_atr_winners": 338
+        },
+        "fixed_fee_win": {
+          "target_rate": 0.4046867104598282,
+          "target_auc": 0.5536652840332543,
+          "target_average_precision": 0.43871096566585654,
+          "strategy_auc_using_these_scores": 0.5437481790020801,
+          "strategy_model_winners": 348,
+          "strategy_calls": 1008,
+          "strategy_atr_winners": 338
+        }
+      }
+    },
+    {
+      "start": "2025-12-23",
+      "n": 15832,
+      "targets": {
+        "30_minute_price_fall": {
+          "target_rate": 0.4793456291056089,
+          "target_auc": 0.5422805986694157,
+          "target_average_precision": 0.5184729147453405,
+          "strategy_auc_using_these_scores": 0.45591178786022923,
+          "strategy_model_winners": 196,
+          "strategy_calls": 1006,
+          "strategy_atr_winners": 231
+        },
+        "fixed_fee_win": {
+          "target_rate": 0.27937089439110663,
+          "target_auc": 0.5545578874815661,
+          "target_average_precision": 0.31273238038833023,
+          "strategy_auc_using_these_scores": 0.5324560006244937,
+          "strategy_model_winners": 217,
+          "strategy_calls": 1006,
+          "strategy_atr_winners": 231
+        }
+      }
+    },
+    {
+      "start": "2026-06-03",
+      "n": 15829,
+      "targets": {
+        "30_minute_price_fall": {
+          "target_rate": 0.4846800176890517,
+          "target_auc": 0.536312595053565,
+          "target_average_precision": 0.5176039016052192,
+          "strategy_auc_using_these_scores": 0.47889857432519517,
+          "strategy_model_winners": 175,
+          "strategy_calls": 1009,
+          "strategy_atr_winners": 242
+        },
+        "fixed_fee_win": {
+          "target_rate": 0.22762019078905807,
+          "target_auc": 0.5795200543342769,
+          "target_average_precision": 0.2694566450172765,
+          "strategy_auc_using_these_scores": 0.5805044167256406,
+          "strategy_model_winners": 189,
+          "strategy_calls": 1009,
+          "strategy_atr_winners": 242
+        }
+      }
+    }
+  ]
+}

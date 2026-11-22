@@ -1,0 +1,53 @@
+{
+  "sampled_initial_fills": {
+    "train": 40,
+    "fills_just_after_gap": 8,
+    "intraminute_fills": 79,
+    "open_fills": 41,
+    "validation": 40,
+    "test": 40
+  },
+  "wave6_counterfactual": {
+    "recorded_wave6_market_exits": 913,
+    "market_exits_before_wave6_confirmation": 862,
+    "single_trade_exits_repriced": 132,
+    "positive_to_negative": 5,
+    "negative_to_positive": 3,
+    "confirmation_delay_minutes_median": 5.0,
+    "median_gross_difference_percentage_points": 0.0,
+    "example": {
+      "6663": {
+        "entry_at": "2024-01-21 03:40:00+00:00",
+        "fill_price": 2479.8,
+        "historical_exit_price": 2476.5,
+        "confirmation_exit_price": 2477.5,
+        "original_gross_percent": 0.133075,
+        "causal_gross_percent": 0.092749,
+        "commission_percent": 0.1,
+        "historical_exit_ms": 1705822680000,
+        "confirmation_exit_ms": 1705822800000
+      },
+      "18910": {
+        "entry_at": "2024-05-27 22:40:00+00:00",
+        "fill_price": 3893.1,
+        "historical_exit_price": 3886.5,
+        "confirmation_exit_price": 3889.7,
+        "original_gross_percent": 0.169531,
+        "causal_gross_percent": 0.087334,
+        "commission_percent": 0.1,
+        "historical_exit_ms": 1716855600000,
+        "confirmation_exit_ms": 1716856140000
+      }
+    },
+    "flip_counts_by_split": {
+      "train": 8,
+      "validation": 0,
+      "test": 0
+    },
+    "early_market_exits_by_split": {
+      "train": 774,
+      "validation": 31,
+      "test": 57
+    }
+  }
+}

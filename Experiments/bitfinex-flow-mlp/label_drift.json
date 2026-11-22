@@ -1,0 +1,105 @@
+{
+  "atr5_over_price_cutpoints": [
+    0.0010374925914220512,
+    0.0015227458206936717,
+    0.002284602611325681
+  ],
+  "periods": [
+    {
+      "from_utc": "2025-01-26",
+      "to_utc": "2025-07-12",
+      "entries": 15831,
+      "winner_rate": 0.32436359042385193,
+      "atr_bands": [
+        {
+          "entries": 2467,
+          "winner_rate": 0.2728009728415079
+        },
+        {
+          "entries": 3282,
+          "winner_rate": 0.29890310786106034
+        },
+        {
+          "entries": 4129,
+          "winner_rate": 0.3395495277306854
+        },
+        {
+          "entries": 5953,
+          "winner_rate": 0.3492356794893331
+        }
+      ]
+    },
+    {
+      "from_utc": "2025-07-12",
+      "to_utc": "2025-12-23",
+      "entries": 15832,
+      "winner_rate": 0.30709954522486105,
+      "atr_bands": [
+        {
+          "entries": 2520,
+          "winner_rate": 0.24246031746031746
+        },
+        {
+          "entries": 3294,
+          "winner_rate": 0.28445658773527627
+        },
+        {
+          "entries": 4587,
+          "winner_rate": 0.30739045127534337
+        },
+        {
+          "entries": 5431,
+          "winner_rate": 0.3505800036825631
+        }
+      ]
+    },
+    {
+      "from_utc": "2025-12-23",
+      "to_utc": "2026-06-03",
+      "entries": 15832,
+      "winner_rate": 0.19807983830217282,
+      "atr_bands": [
+        {
+          "entries": 2271,
+          "winner_rate": 0.09951563188022898
+        },
+        {
+          "entries": 3621,
+          "winner_rate": 0.1703949185307926
+        },
+        {
+          "entries": 4582,
+          "winner_rate": 0.2003491924923614
+        },
+        {
+          "entries": 5358,
+          "winner_rate": 0.2566256065696155
+        }
+      ]
+    },
+    {
+      "from_utc": "2026-06-03",
+      "to_utc": "2026-11-12",
+      "entries": 15832,
+      "winner_rate": 0.15670793329964627,
+      "atr_bands": [
+        {
+          "entries": 2840,
+          "winner_rate": 0.06338028169014084
+        },
+        {
+          "entries": 3885,
+          "winner_rate": 0.16731016731016732
+        },
+        {
+          "entries": 5067,
+          "winner_rate": 0.1640023682652457
+        },
+        {
+          "entries": 4040,
+          "winner_rate": 0.20297029702970298
+        }
+      ]
+    }
+  ]
+}

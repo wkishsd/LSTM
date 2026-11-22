@@ -1,0 +1,59 @@
+{
+  "historical": {
+    "20": {
+      "mae": 0.29467179480784483,
+      "atr_mae": 0.30931163774194,
+      "better_weeks": 24,
+      "weeks": 24,
+      "paired_four_week_mae_difference_interval": [
+        -0.016693506205153832,
+        -0.012689323138948043
+      ]
+    },
+    "120": {
+      "mae": 0.2603432899486359,
+      "atr_mae": 0.30931163774194,
+      "better_weeks": 24,
+      "weeks": 24,
+      "paired_four_week_mae_difference_interval": [
+        -0.06018166308177365,
+        -0.03961278924705073
+      ]
+    },
+    "240": {
+      "mae": 0.2577390598086278,
+      "atr_mae": 0.30931163774194,
+      "better_weeks": 24,
+      "weeks": 24,
+      "paired_four_week_mae_difference_interval": [
+        -0.0617597962434165,
+        -0.042932745478398364
+      ]
+    },
+    "count": 15832
+  },
+  "fresh": {
+    "20": {
+      "mae": 0.2545967383316953,
+      "atr_mae": 0.26977688467758626,
+      "better_weeks": 2,
+      "weeks": 2,
+      "paired_four_week_mae_difference_interval": null
+    },
+    "120": {
+      "mae": 0.24486752827322023,
+      "atr_mae": 0.26977688467758626,
+      "better_weeks": 2,
+      "weeks": 2,
+      "paired_four_week_mae_difference_interval": null
+    },
+    "240": {
+      "mae": 0.24170581359712648,
+      "atr_mae": 0.26977688467758626,
+      "better_weeks": 2,
+      "weeks": 2,
+      "paired_four_week_mae_difference_interval": null
+    },
+    "count": 586
+  }
+}

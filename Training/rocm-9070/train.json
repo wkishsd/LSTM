@@ -1,0 +1,21 @@
+{
+  "bitfinex_dir": "../../Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd",
+  "output_dir": "runs/first-rx9070-run",
+  "device": "cuda:0",
+  "train_fraction": 0.7,
+  "validation_fraction": 0.15,
+  "hidden1": 128,
+  "hidden2": 64,
+  "lookback_minutes": 360,
+  "activation": "leaky_relu",
+  "dropout": 0.2,
+  "batch_size": 32,
+  "epochs": 20,
+  "learning_rate": 0.0001,
+  "feature_scaling": "standardize",
+  "timeline_cache": "auto",
+  "optimizer": "adam",
+  "selection": "average_precision",
+  "seed": 42,
+  "num_workers": 0
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-26",
+  "documents": {
+    "EN": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+    "RU": "1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g"
+  },
+  "pages_per_document": 6,
+  "native_inline_images_per_document": 3,
+  "new_architecture_pages": [5, 6],
+  "selection_status": "Both alternatives explicitly under discussion; neither selected",
+  "option_A": "Shared 64-unit LSTM; distinct input weights; hidden and cell feedback; 64 hidden outputs + 3240 recent values = 3304 MLP inputs",
+  "option_B": "54 independently weighted feature LSTMs, 4 units each; per-feature hidden and cell feedback; 216 hidden outputs + 3240 recent values = 3456 MLP inputs",
+  "notes": [
+    "Both architectures use the same continuous decision-time timeline and recent window",
+    "Only older hidden outputs are supplied to the final MLP",
+    "Both state types persist without a fixed history cutoff",
+    "No duplicate current anchor block",
+    "Example capacities are not matched; dimensions are illustrative",
+    "Read-back text exactly matched the planned changes",
+    "All 12 exported PDF pages visually inspected; no overflow or clipping observed",
+    "Production model and trading code unchanged"
+  ]
+}

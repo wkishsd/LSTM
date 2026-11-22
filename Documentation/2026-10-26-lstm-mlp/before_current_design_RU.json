@@ -1,0 +1,3823 @@
+{
+  "documentId": "1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g",
+  "title": "Прямой проход через LSTM окно истории и MLP Русский",
+  "revisionId": "AHj4eMTjhv_hC6WxrwT2XLaNnTHNQ6HsBxTc3wMKqPjvqRrlLXZzJXq9beMv2Iqj31SOfefqgOaHsA7-9veoDOb4uR3UcOjcHiDy7yslDQ",
+  "suggestionsViewMode": "SUGGESTIONS_INLINE",
+  "url": null,
+  "body": null,
+  "tabs": [
+    {
+      "tabId": "t.0",
+      "title": "Tab 1",
+      "parentTabId": null,
+      "index": 0,
+      "nestingLevel": null,
+      "iconEmoji": null,
+      "body": {
+        "content": [
+          {
+            "endIndex": 1,
+            "sectionBreak": {
+              "sectionStyle": {
+                "columnSeparatorStyle": "NONE",
+                "contentDirection": "LEFT_TO_RIGHT",
+                "sectionType": "CONTINUOUS"
+              }
+            }
+          },
+          {
+            "startIndex": 1,
+            "endIndex": 29,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1,
+                  "endIndex": 29,
+                  "textRun": {
+                    "content": "LSTM + последнее окно + MLP\n",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 20,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.d0b2dsxqs5qh",
+                "namedStyleType": "TITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 29,
+            "endIndex": 81,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 29,
+                  "endIndex": 81,
+                  "textRun": {
+                    "content": "Простое описание предлагаемой схемы прогнозирования\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.34901962,
+                            "green": 0.41960785,
+                            "blue": 0.4509804
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.wnstc98tcj5j",
+                "namedStyleType": "SUBTITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 81,
+            "endIndex": 435,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 81,
+                  "endIndex": 435,
+                  "textRun": {
+                    "content": "MLP получает два представления истории: отдельные значения за последнее окно и сводку более ранних данных от LSTM. Дополнительно передаются якоря, сработавшие сейчас. Последнее окно берётся напрямую из ряда признаков; LSTM его не восстанавливает. LSTM — модель последовательности с памятью; MLP — сеть прямого распространения, выдающая итоговый прогноз.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 435,
+            "endIndex": 437,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 435,
+                  "endIndex": 436,
+                  "inlineObjectElement": {
+                    "inlineObjectId": "kix.wvo6jy3men1e",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 436,
+                  "endIndex": 437,
+                  "textRun": {
+                    "content": "\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "alignment": "CENTER",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 6,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 6,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 437,
+            "endIndex": 459,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 437,
+                  "endIndex": 459,
+                  "textRun": {
+                    "content": "Что поступает на вход\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 13,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.5cptbq9cwxjp",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 8,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 459,
+            "endIndex": 738,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 459,
+                  "endIndex": 738,
+                  "textRun": {
+                    "content": "Используется непрерывный ряд закрытых свечей M1, включая минуты без якорей. Для каждой минуты берутся 36 нормализованных рыночных признаков: по девять для M1, M5, M15 и M30 (свечи по 1, 5, 15 и 30 минут). Значения старших таймфреймов обновляются только после закрытия их свечей.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 738,
+            "endIndex": 1029,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 738,
+                  "endIndex": 1029,
+                  "textRun": {
+                    "content": "Девять признаков: логарифм цены, логарифм объёма свечи, RSI, относительный ATR, MACD/ATR, сигнальная линия MACD/ATR, ADX, DI+ и DI−. Отдельный блок — 18 флагов основных якорей. Флаг равен 1, если якорь сработал в момент этого решения, иначе 0. Одновременно могут сработать несколько якорей.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1029,
+            "endIndex": 1343,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1029,
+                  "endIndex": 1343,
+                  "textRun": {
+                    "content": "Исходные OHLCV (открытие, максимум, минимум, закрытие и объём), идентификаторы и время из проверочной таблицы не становятся входами модели автоматически. Будущие исполнения, выходы и результаты запрещено включать в признаки. Здесь описана предлагаемая архитектура; она ещё не является обученной моделью в скрипте.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1343,
+            "endIndex": 1371,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1343,
+                  "endIndex": 1371,
+                  "textRun": {
+                    "content": "Как получается один прогноз\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.pmbono684z2j",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 1371,
+            "endIndex": 1509,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1371,
+                  "endIndex": 1509,
+                  "textRun": {
+                    "content": "Пример: решение в 13:05 UTC+3; окно 60 минут и сводка LSTM из 64 значений. Размеры приведены для объяснения и ещё не подобраны обучением.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.34901962,
+                            "green": 0.41960785,
+                            "blue": 0.4509804
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.mkj47ecznwzd",
+                "namedStyleType": "SUBTITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1509,
+            "endIndex": 1543,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1509,
+                  "endIndex": 1543,
+                  "textRun": {
+                    "content": "1. Зафиксировать доступные данные\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.zg4x0s2kdpyg",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1543,
+            "endIndex": 1771,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1543,
+                  "endIndex": 1771,
+                  "textRun": {
+                    "content": "В 13:05 последняя закрытая свеча M1 открылась в 13:04. Последние закрытые свечи M5, M15 и M30 открылись в 13:00, 12:45 и 12:30 соответственно. Момент решения — время выставления начального ордера, даже если он исполнится позже.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1771,
+            "endIndex": 1808,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1771,
+                  "endIndex": 1808,
+                  "textRun": {
+                    "content": "2. Подготовить сводку ранней истории\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.agkde060nyza",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1808,
+            "endIndex": 2122,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1808,
+                  "endIndex": 2122,
+                  "textRun": {
+                    "content": "LSTM последовательно получает строки признаков до свечи 12:04 включительно, в том числе минуты без якорей. Между минутами сохраняются hidden_state и cell_state. Видимое состояние hidden_state становится older_summary: 64 обучаемых значения, описывающих раннюю историю. cell_state остаётся внутренней памятью LSTM.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2122,
+            "endIndex": 2169,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2122,
+                  "endIndex": 2169,
+                  "textRun": {
+                    "content": "3. Сохранить последние значения по отдельности\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.uyejmq4bw8xn",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2169,
+            "endIndex": 2433,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2169,
+                  "endIndex": 2433,
+                  "textRun": {
+                    "content": "Берутся 60 строк M1 с 12:05 до 13:04. Матрица recent_window содержит 60 строк и 36 столбцов. Строки соединяются от старой к новой в список из 2 160 значений; порядок признаков в каждой строке одинаков. Такое разворачивание не усредняет и не сжимает значения окна.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2433,
+            "endIndex": 2475,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2433,
+                  "endIndex": 2475,
+                  "textRun": {
+                    "content": "4. Соединить входы и получить прогноз MLP\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.80ffzrxvmoln",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2475,
+            "endIndex": 2752,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2475,
+                  "endIndex": 2752,
+                  "textRun": {
+                    "content": "Соединяются 2 160 значений окна, 64 значения сводки и 18 текущих флагов якорей. Получается mlp_input из 2 242 значений. MLP использует все три блока вместе и выдаёт profit_probability: оценку вероятности того, что чистая доходность всей торговой серии превысит заданный порог.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2752,
+            "endIndex": 2781,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2752,
+                  "endIndex": 2781,
+                  "textRun": {
+                    "content": "5. Применить решение о входе\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.v7ofylbi4mj4",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2781,
+            "endIndex": 3064,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2781,
+                  "endIndex": 3064,
+                  "textRun": {
+                    "content": "Вероятность сравнивается с probability_cutoff. Серия начинается, только если прогноз проходит порог и правила исполнения разрешают новую серию. Прогноз не меняет фиксированные правила стопа, выхода и повторного входа. Принятый начальный ордер всё равно может остаться неисполненным.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3064,
+            "endIndex": 3094,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3064,
+                  "endIndex": 3094,
+                  "textRun": {
+                    "content": "6. Перейти к следующей минуте\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.newvd8p66j4",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3094,
+            "endIndex": 3421,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3094,
+                  "endIndex": 3421,
+                  "textRun": {
+                    "content": "Для решения в 13:06 окно сдвигается на 12:06–13:05, а ранняя сводка обновляется до 12:05 включительно. Свеча, вышедшая из окна, попадает в раннюю память. Нужна сводка именно на этой границе, а не более позднее состояние, уже включающее окно. LSTM обновляется каждую минуту; торговый прогноз запрашивается при подходящем якоре.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3421,
+            "endIndex": 3440,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3421,
+                  "endIndex": 3440,
+                  "textRun": {
+                    "content": "Словарь переменных\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.f60t9q8un7v7",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 3440,
+            "endIndex": 3619,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3440,
+                  "endIndex": 3619,
+                  "textRun": {
+                    "content": "Названия описывают предлагаемую схему и не означают, что она уже реализована в текущем скрипте. В примере везде используется фиксированное UTC+3. Время свечи — время её открытия.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3619,
+            "endIndex": 3712,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3619,
+                  "endIndex": 3632,
+                  "textRun": {
+                    "content": "decision_time",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3632,
+                  "endIndex": 3712,
+                  "textRun": {
+                    "content": " — Момент прогноза и возможного выставления начального ордера; в примере 13:05.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3712,
+            "endIndex": 3802,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3712,
+                  "endIndex": 3730,
+                  "textRun": {
+                    "content": "last_closed_minute",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3730,
+                  "endIndex": 3802,
+                  "textRun": {
+                    "content": " — Последняя закрытая свеча M1, доступная в decision_time; свеча 13:04.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3802,
+            "endIndex": 3892,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3802,
+                  "endIndex": 3817,
+                  "textRun": {
+                    "content": "market_features",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3817,
+                  "endIndex": 3892,
+                  "textRun": {
+                    "content": " — 36 нормализованных рыночных значений одной минуты в постоянном порядке.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3892,
+            "endIndex": 3977,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3892,
+                  "endIndex": 3905,
+                  "textRun": {
+                    "content": "window_length",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3905,
+                  "endIndex": 3977,
+                  "textRun": {
+                    "content": " — Число последних строк M1, передаваемых по отдельности; в примере 60.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3977,
+            "endIndex": 4038,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3977,
+                  "endIndex": 3990,
+                  "textRun": {
+                    "content": "recent_window",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3990,
+                  "endIndex": 4038,
+                  "textRun": {
+                    "content": " — Матрица этих строк: 60 строк × 36 признаков.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4038,
+            "endIndex": 4110,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4038,
+                  "endIndex": 4050,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4050,
+                  "endIndex": 4110,
+                  "textRun": {
+                    "content": " — Видимая текущая сводка LSTM по уже обработанной истории.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4110,
+            "endIndex": 4209,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4110,
+                  "endIndex": 4120,
+                  "textRun": {
+                    "content": "cell_state",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4120,
+                  "endIndex": 4209,
+                  "textRun": {
+                    "content": " — Внутренняя память LSTM. Сохраняется вместе с hidden_state; здесь не передаётся в MLP.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4209,
+            "endIndex": 4299,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4209,
+                  "endIndex": 4222,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4222,
+                  "endIndex": 4299,
+                  "textRun": {
+                    "content": " — Копия hidden_state на границе перед recent_window; в примере 64 значения.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4299,
+            "endIndex": 4427,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4299,
+                  "endIndex": 4311,
+                  "textRun": {
+                    "content": "anchor_flags",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4311,
+                  "endIndex": 4427,
+                  "textRun": {
+                    "content": " — 18 текущих флагов основных якорей: 0 или 1. Исторические флаги якорей в этой версии не входят в market_features.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4427,
+            "endIndex": 4522,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4427,
+                  "endIndex": 4436,
+                  "textRun": {
+                    "content": "mlp_input",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4436,
+                  "endIndex": 4522,
+                  "textRun": {
+                    "content": " — Соединённые значения окна, older_summary и anchor_flags; в примере 2 242 значения.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4522,
+            "endIndex": 4619,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4522,
+                  "endIndex": 4540,
+                  "textRun": {
+                    "content": "profit_probability",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4540,
+                  "endIndex": 4619,
+                  "textRun": {
+                    "content": " — Выход MLP от 0 до 1. Это оценка; её точность и калибровка не гарантированы.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4619,
+            "endIndex": 4813,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4619,
+                  "endIndex": 4629,
+                  "textRun": {
+                    "content": "net_return",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4629,
+                  "endIndex": 4813,
+                  "textRun": {
+                    "content": " — Результат всей серии с повторными входами, после согласованных комиссий и проскальзывания. Существующий target_gross_return_pct содержит валовой результат и требует учёта расходов.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4813,
+            "endIndex": 4918,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4813,
+                  "endIndex": 4829,
+                  "textRun": {
+                    "content": "profit_threshold",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4829,
+                  "endIndex": 4918,
+                  "textRun": {
+                    "content": " — Минимальная чистая доходность для положительной цели. Единицы совпадают с net_return.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4918,
+            "endIndex": 5099,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4918,
+                  "endIndex": 4924,
+                  "textRun": {
+                    "content": "target",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4924,
+                  "endIndex": 5099,
+                  "textRun": {
+                    "content": " — Исторический ответ для обучения: 1, если net_return выше profit_threshold, иначе 0. Неисполненный ордер или незавершённый результат недоступен, а не автоматически равен 0.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5099,
+            "endIndex": 5234,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5099,
+                  "endIndex": 5117,
+                  "textRun": {
+                    "content": "probability_cutoff",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5117,
+                  "endIndex": 5234,
+                  "textRun": {
+                    "content": " — Порог вероятности для принятия прогноза; это не profit_threshold. Например, 0,60 означает оценку вероятности 60%.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5234,
+            "endIndex": 5266,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5234,
+                  "endIndex": 5266,
+                  "textRun": {
+                    "content": "Что сохраняется и что обучается\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 13,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.tqylofmg30km",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 8,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5266,
+            "endIndex": 5653,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5266,
+                  "endIndex": 5653,
+                  "textRun": {
+                    "content": "Одноминутный выброс внутри recent_window поступает в MLP отдельными значениями выбранных признаков. Более ранние события не имеют отдельного прямого входа; их влияние может сохраниться в older_summary и недавних индикаторах. LSTM может забывать информацию и не гарантирует неограниченную полезную память. Ценовой выброс не сохраняется полностью, если выбранные признаки его не отражают.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5653,
+            "endIndex": 6119,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5653,
+                  "endIndex": 6119,
+                  "textRun": {
+                    "content": "При прогнозе веса моделей фиксированы; меняются входные значения и память LSTM. При обучении прогноз сравнивается с историческим target, затем обе модели настраиваются совместно. У MLP нет постоянной рекуррентной памяти. Для обучения используются все подходящие якорные события; отдельная хронологическая симуляция запрещает новые серии, пока активна предыдущая. Цели хранятся отдельно от входов; состояние LSTM не должно переносить поздние данные в ранний прогноз.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6119,
+            "endIndex": 6120,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6119,
+                  "endIndex": 6120,
+                  "textRun": {
+                    "content": "\n",
+                    "textStyle": {}
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "direction": "LEFT_TO_RIGHT"
+              }
+            }
+          }
+        ]
+      },
+      "headers": null,
+      "footers": {
+        "kix.hf0": {
+          "footerId": "kix.hf0",
+          "content": [
+            {
+              "endIndex": 2,
+              "paragraph": {
+                "elements": [
+                  {
+                    "endIndex": 1,
+                    "autoText": {
+                      "type": "PAGE_NUMBER",
+                      "textStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "strikethrough": false,
+                        "smallCaps": false,
+                        "backgroundColor": {},
+                        "foregroundColor": {
+                          "color": {
+                            "rgbColor": {}
+                          }
+                        },
+                        "fontSize": {
+                          "magnitude": 11,
+                          "unit": "PT"
+                        },
+                        "weightedFontFamily": {
+                          "fontFamily": "Arial",
+                          "weight": 400
+                        },
+                        "baselineOffset": "NONE"
+                      }
+                    }
+                  },
+                  {
+                    "startIndex": 1,
+                    "endIndex": 2,
+                    "textRun": {
+                      "content": "\n",
+                      "textStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "strikethrough": false,
+                        "smallCaps": false,
+                        "backgroundColor": {},
+                        "foregroundColor": {
+                          "color": {
+                            "rgbColor": {}
+                          }
+                        },
+                        "fontSize": {
+                          "magnitude": 11,
+                          "unit": "PT"
+                        },
+                        "weightedFontFamily": {
+                          "fontFamily": "Arial",
+                          "weight": 400
+                        },
+                        "baselineOffset": "NONE"
+                      }
+                    }
+                  }
+                ],
+                "paragraphStyle": {
+                  "namedStyleType": "NORMAL_TEXT",
+                  "alignment": "END",
+                  "lineSpacing": 100,
+                  "direction": "LEFT_TO_RIGHT",
+                  "spacingMode": "NEVER_COLLAPSE",
+                  "spaceAbove": {
+                    "unit": "PT"
+                  },
+                  "spaceBelow": {
+                    "unit": "PT"
+                  },
+                  "borderBetween": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderTop": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderBottom": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderLeft": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderRight": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "indentFirstLine": {
+                    "unit": "PT"
+                  },
+                  "indentStart": {
+                    "unit": "PT"
+                  },
+                  "indentEnd": {
+                    "unit": "PT"
+                  },
+                  "tabStops": [
+                    {
+                      "offset": {
+                        "magnitude": 234,
+                        "unit": "PT"
+                      },
+                      "alignment": "CENTER"
+                    },
+                    {
+                      "offset": {
+                        "magnitude": 468,
+                        "unit": "PT"
+                      },
+                      "alignment": "END"
+                    }
+                  ],
+                  "keepLinesTogether": false,
+                  "keepWithNext": false,
+                  "avoidWidowAndOrphan": true,
+                  "shading": {
+                    "backgroundColor": {}
+                  },
+                  "pageBreakBefore": false
+                }
+              }
+            }
+          ]
+        }
+      },
+      "footnotes": null,
+      "documentStyle": {
+        "background": {
+          "color": {}
+        },
+        "defaultFooterId": "kix.hf0",
+        "pageNumberStart": 1,
+        "marginTop": {
+          "magnitude": 46.75,
+          "unit": "PT"
+        },
+        "marginBottom": {
+          "magnitude": 46.75,
+          "unit": "PT"
+        },
+        "marginRight": {
+          "magnitude": 51,
+          "unit": "PT"
+        },
+        "marginLeft": {
+          "magnitude": 51,
+          "unit": "PT"
+        },
+        "pageSize": {
+          "height": {
+            "magnitude": 841.8897637795277,
+            "unit": "PT"
+          },
+          "width": {
+            "magnitude": 595.2755905511812,
+            "unit": "PT"
+          }
+        },
+        "marginHeader": {
+          "magnitude": 36,
+          "unit": "PT"
+        },
+        "marginFooter": {
+          "magnitude": 19.85,
+          "unit": "PT"
+        },
+        "useCustomHeaderFooterMargins": true,
+        "documentFormat": {
+          "documentMode": "PAGES"
+        }
+      },
+      "suggestedDocumentStyleChanges": null,
+      "namedStyles": {
+        "styles": [
+          {
+            "namedStyleType": "NORMAL_TEXT",
+            "textStyle": {
+              "bold": false,
+              "italic": false,
+              "underline": false,
+              "strikethrough": false,
+              "smallCaps": false,
+              "backgroundColor": {},
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 11,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              },
+              "baselineOffset": "NONE"
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "alignment": "START",
+              "lineSpacing": 112.08333,
+              "direction": "LEFT_TO_RIGHT",
+              "spacingMode": "NEVER_COLLAPSE",
+              "spaceAbove": {
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "borderBetween": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderTop": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderBottom": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderLeft": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderRight": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "indentFirstLine": {
+                "unit": "PT"
+              },
+              "indentStart": {
+                "unit": "PT"
+              },
+              "indentEnd": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": false,
+              "keepWithNext": false,
+              "avoidWidowAndOrphan": true,
+              "shading": {
+                "backgroundColor": {}
+              },
+              "pageBreakBefore": false
+            }
+          },
+          {
+            "namedStyleType": "HEADING_1",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 17,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_2",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 12,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_3",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.30980393,
+                    "green": 0.5058824,
+                    "blue": 0.7411765
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_4",
+            "textStyle": {
+              "bold": true,
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.30980393,
+                    "green": 0.5058824,
+                    "blue": 0.7411765
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_5",
+            "textStyle": {
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.14117648,
+                    "green": 0.24705882,
+                    "blue": 0.38039216
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_6",
+            "textStyle": {
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.14117648,
+                    "green": 0.24705882,
+                    "blue": 0.38039216
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "TITLE",
+            "textStyle": {
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 24,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "lineSpacing": 100,
+              "direction": "LEFT_TO_RIGHT",
+              "spacingMode": "NEVER_COLLAPSE",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              }
+            }
+          },
+          {
+            "namedStyleType": "SUBTITLE",
+            "textStyle": {
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 11,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              }
+            }
+          }
+        ]
+      },
+      "suggestedNamedStylesChanges": null,
+      "lists": {
+        "kix.list.1": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.2": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.3": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.4": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.5": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.6": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.7": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.8": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.9": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 90,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        }
+      },
+      "dropdownDefinitions": null,
+      "namedRanges": null,
+      "inlineObjects": {
+        "kix.wvo6jy3men1e": {
+          "objectId": "kix.wvo6jy3men1e",
+          "inlineObjectProperties": {
+            "embeddedObject": {
+              "imageProperties": {
+                "contentUri": "https://docs.google.com/docs-images-rt/ALKuztaJxDt9JxwDtVIYsBNVFJnXVH58Kei_B_oEkoqQ6JgNwra48nOAiTZ_SiVGLeQj5PB-334Trqj8Soac1OKDeakFPSoU8Qiu9hi2Z_8Obl8YNvPNG_gu4gFJhhrKKph9s_HgRjw3FK26s1bSctv4SsiGskTTs8J1v3oVwVGIKzjb9RCt=s2048?key=QzQr16HUAihmr-1b5MviVg",
+                "sourceUri": "https://sdmntprnortheu.oaiusercontent.com/files/00000000-31a4-81f4-ad03-e7f41d26b607/raw?se=2026-10-26T12%3A41%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=72f5c7ea-b7cc-4614-9ec5-04436462596c&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-26T04%3A25%3A47Z&ske=2026-10-27T04%3A25%3A47Z&sks=b&skv=2026-02-06&sig=efi5shLNpa5jthxuUVTPJxGklFaryP2YIUsAE4DeCmQ%3D",
+                "cropProperties": {}
+              },
+              "embeddedObjectBorder": {
+                "color": {
+                  "color": {
+                    "rgbColor": {}
+                  }
+                },
+                "width": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID",
+                "propertyState": "NOT_RENDERED"
+              },
+              "size": {
+                "height": {
+                  "magnitude": 265.2,
+                  "unit": "PT"
+                },
+                "width": {
+                  "magnitude": 468,
+                  "unit": "PT"
+                }
+              },
+              "marginTop": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginBottom": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginRight": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginLeft": {
+                "magnitude": 9,
+                "unit": "PT"
+              }
+            }
+          }
+        }
+      },
+      "positionedObjects": null,
+      "documentId": "1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g",
+      "document_url": "https://docs.google.com/document/d/1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g"
+    }
+  ],
+  "document_url": "https://docs.google.com/document/d/1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g"
+}

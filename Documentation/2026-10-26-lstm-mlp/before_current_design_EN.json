@@ -1,0 +1,3823 @@
+{
+  "documentId": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+  "title": "LSTM lookback window and MLP forward pass English",
+  "revisionId": "AHj4eMStEXHU5FzfVmvPP4yxrVbn_eG3nXSUJxwQjapOlNZPs--283sUAXUfc_4K_36oS88J6tTSkDqU2E_qO4pYVsDxB4XTn_1kiwZe3Q",
+  "suggestionsViewMode": "SUGGESTIONS_INLINE",
+  "url": null,
+  "body": null,
+  "tabs": [
+    {
+      "tabId": "t.0",
+      "title": "Tab 1",
+      "parentTabId": null,
+      "index": 0,
+      "nestingLevel": null,
+      "iconEmoji": null,
+      "body": {
+        "content": [
+          {
+            "endIndex": 1,
+            "sectionBreak": {
+              "sectionStyle": {
+                "columnSeparatorStyle": "NONE",
+                "contentDirection": "LEFT_TO_RIGHT",
+                "sectionType": "CONTINUOUS"
+              }
+            }
+          },
+          {
+            "startIndex": 1,
+            "endIndex": 28,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1,
+                  "endIndex": 28,
+                  "textRun": {
+                    "content": "LSTM + recent window + MLP\n",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 20,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.qfrfuevrs8s7",
+                "namedStyleType": "TITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 28,
+            "endIndex": 86,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 28,
+                  "endIndex": 86,
+                  "textRun": {
+                    "content": "A plain-English guide to the proposed prediction pipeline\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.34901962,
+                            "green": 0.41960785,
+                            "blue": 0.4509804
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.s5irsfwcu6wu",
+                "namedStyleType": "SUBTITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 86,
+            "endIndex": 438,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 86,
+                  "endIndex": 438,
+                  "textRun": {
+                    "content": "The MLP receives two views of history: the individual values in a recent window and an LSTM summary of older data. It also receives the main anchors active now. The recent window comes directly from the feature timeline; the LSTM does not recreate it. LSTM is a sequence model with memory; MLP is a feedforward network that makes the final prediction.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 438,
+            "endIndex": 440,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 438,
+                  "endIndex": 439,
+                  "inlineObjectElement": {
+                    "inlineObjectId": "kix.edk4f91n9o9d",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 439,
+                  "endIndex": 440,
+                  "textRun": {
+                    "content": "\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "alignment": "CENTER",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 6,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 6,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 440,
+            "endIndex": 453,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 440,
+                  "endIndex": 453,
+                  "textRun": {
+                    "content": "What goes in\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 13,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.u4ujfkbdevw6",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 8,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 453,
+            "endIndex": 737,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 453,
+                  "endIndex": 737,
+                  "textRun": {
+                    "content": "Use a continuous timeline of completed M1 candles, including minutes without anchors. Each minute has 36 normalized market features: nine features for each of M1, M5, M15 and M30 (1-, 5-, 15- and 30-minute candles). Higher-timeframe values update only when their candles have closed.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 737,
+            "endIndex": 1037,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 737,
+                  "endIndex": 1037,
+                  "textRun": {
+                    "content": "The nine features are log price, log candle volume, RSI, relative ATR, MACD divided by ATR, MACD signal divided by ATR, ADX, DI+ and DI−. The 18 current main-anchor flags are a separate block. A flag is 1 when that anchor triggers at this decision time, otherwise 0; several flags can be 1 together.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1037,
+            "endIndex": 1326,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1037,
+                  "endIndex": 1326,
+                  "textRun": {
+                    "content": "Raw OHLCV (open, high, low, close and volume), identifiers and timestamps in the review table are not automatically model inputs. Future fills, exits and outcomes must never enter the feature blocks. These pages describe a proposed architecture, not a model already trained in the script.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1326,
+            "endIndex": 1357,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1326,
+                  "endIndex": 1357,
+                  "textRun": {
+                    "content": "How one prediction is produced\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.1xgyt342kw8s",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 1357,
+            "endIndex": 1487,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1357,
+                  "endIndex": 1487,
+                  "textRun": {
+                    "content": "Example: a decision at 13:05 UTC+3; a 60-minute window and a 64-value LSTM summary. These sizes are examples, not tuned settings.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.34901962,
+                            "green": 0.41960785,
+                            "blue": 0.4509804
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.j659701sqlhs",
+                "namedStyleType": "SUBTITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1487,
+            "endIndex": 1524,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1487,
+                  "endIndex": 1524,
+                  "textRun": {
+                    "content": "1. Fix the information available now\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.p3b60p67ph46",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1524,
+            "endIndex": 1757,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1524,
+                  "endIndex": 1757,
+                  "textRun": {
+                    "content": "At 13:05, the latest completed M1 candle opens at 13:04. The latest completed M5, M15 and M30 candles open at 13:00, 12:45 and 12:30 respectively. The initial-order placement time is the decision time, even if the order fills later.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1757,
+            "endIndex": 1784,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1757,
+                  "endIndex": 1784,
+                  "textRun": {
+                    "content": "2. Build the older summary\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.4055yly26l3t",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1784,
+            "endIndex": 2061,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1784,
+                  "endIndex": 2061,
+                  "textRun": {
+                    "content": "Feed the LSTM chronological feature rows through 12:04, including non-anchor minutes. Carry its hidden state and cell state from minute to minute. Its visible hidden state becomes older_summary: 64 learned values describing older history. Its cell state stays inside the LSTM.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2061,
+            "endIndex": 2100,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2061,
+                  "endIndex": 2100,
+                  "textRun": {
+                    "content": "3. Keep the recent values individually\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.mlanj29l6znt",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2100,
+            "endIndex": 2392,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2100,
+                  "endIndex": 2392,
+                  "textRun": {
+                    "content": "Take the 60 M1 rows from 12:05 through 13:04. recent_window has 60 rows and 36 columns. Join the rows from oldest to newest into one list of 2,160 values, keeping the same feature order in every row. This flattening preserves each selected value; it does not average or summarize the window.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2392,
+            "endIndex": 2427,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2392,
+                  "endIndex": 2427,
+                  "textRun": {
+                    "content": "4. Join the inputs and run the MLP\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.8tjro5p1bveo",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2427,
+            "endIndex": 2706,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2427,
+                  "endIndex": 2706,
+                  "textRun": {
+                    "content": "Join the 2,160 recent values, 64 older-summary values and 18 current anchor flags. mlp_input contains 2,242 values. The MLP uses all three blocks together and returns profit_probability: its estimated chance that the whole trading series exceeds the chosen net-return threshold.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2706,
+            "endIndex": 2734,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2706,
+                  "endIndex": 2734,
+                  "textRun": {
+                    "content": "5. Apply the entry decision\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.dsryhl5p0qck",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2734,
+            "endIndex": 2998,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2734,
+                  "endIndex": 2998,
+                  "textRun": {
+                    "content": "Compare that probability with probability_cutoff. Start a series only if the prediction passes and the execution rules permit a new series. The prediction does not change the fixed stop, exit or re-entry rules. An accepted initial order can still remain unfilled.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2998,
+            "endIndex": 3020,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2998,
+                  "endIndex": 3020,
+                  "textRun": {
+                    "content": "6. Advance one minute\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.356v9yevpyx9",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3020,
+            "endIndex": 3368,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3020,
+                  "endIndex": 3368,
+                  "textRun": {
+                    "content": "For a 13:06 decision, move the recent window to 12:06–13:05 and advance the older summary through 12:05. The candle leaving the window enters older memory. Keep the summary at this boundary; do not substitute a later state that already includes the recent window. The LSTM advances every minute; request a trading prediction at an eligible anchor.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3368,
+            "endIndex": 3388,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3368,
+                  "endIndex": 3388,
+                  "textRun": {
+                    "content": "Variable dictionary\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.ujhct75p2iun",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 3388,
+            "endIndex": 3581,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3388,
+                  "endIndex": 3581,
+                  "textRun": {
+                    "content": "These are descriptive names for this proposal, not a claim that the current script already implements them. All times in the example use fixed UTC+3. Candle times refer to their opening times.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3581,
+            "endIndex": 3683,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3581,
+                  "endIndex": 3594,
+                  "textRun": {
+                    "content": "decision_time",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3594,
+                  "endIndex": 3683,
+                  "textRun": {
+                    "content": " — When the prediction is made and an initial order may be placed; 13:05 in the example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3683,
+            "endIndex": 3781,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3683,
+                  "endIndex": 3701,
+                  "textRun": {
+                    "content": "last_closed_minute",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3701,
+                  "endIndex": 3781,
+                  "textRun": {
+                    "content": " — The latest completed M1 candle available at decision_time; the 13:04 candle.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3781,
+            "endIndex": 3859,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3781,
+                  "endIndex": 3796,
+                  "textRun": {
+                    "content": "market_features",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3796,
+                  "endIndex": 3859,
+                  "textRun": {
+                    "content": " — One minute’s 36 normalized market values, in a fixed order.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3859,
+            "endIndex": 3939,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3859,
+                  "endIndex": 3872,
+                  "textRun": {
+                    "content": "window_length",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3872,
+                  "endIndex": 3939,
+                  "textRun": {
+                    "content": " — Number of recent M1 rows shown individually; 60 in the example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3939,
+            "endIndex": 4002,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3939,
+                  "endIndex": 3952,
+                  "textRun": {
+                    "content": "recent_window",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3952,
+                  "endIndex": 4002,
+                  "textRun": {
+                    "content": " — Those rows as a matrix: 60 rows × 36 features.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4002,
+            "endIndex": 4085,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4002,
+                  "endIndex": 4014,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4014,
+                  "endIndex": 4085,
+                  "textRun": {
+                    "content": " — The LSTM’s visible running summary of the history processed so far.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4085,
+            "endIndex": 4197,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4085,
+                  "endIndex": 4095,
+                  "textRun": {
+                    "content": "cell_state",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4095,
+                  "endIndex": 4197,
+                  "textRun": {
+                    "content": " — The LSTM’s internal running memory. Carried forward with hidden_state; not passed to the MLP here.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4197,
+            "endIndex": 4300,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4197,
+                  "endIndex": 4210,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4210,
+                  "endIndex": 4300,
+                  "textRun": {
+                    "content": " — A copy of hidden_state at the boundary before recent_window; 64 values in the example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4300,
+            "endIndex": 4436,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4300,
+                  "endIndex": 4312,
+                  "textRun": {
+                    "content": "anchor_flags",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4312,
+                  "endIndex": 4436,
+                  "textRun": {
+                    "content": " — The 18 current main-anchor values, each 0 or 1. Historical anchor flags are not part of market_features in this version.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4436,
+            "endIndex": 4535,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4436,
+                  "endIndex": 4445,
+                  "textRun": {
+                    "content": "mlp_input",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4445,
+                  "endIndex": 4535,
+                  "textRun": {
+                    "content": " — The joined recent values, older_summary and anchor_flags: 2,242 values in the example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4535,
+            "endIndex": 4668,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4535,
+                  "endIndex": 4553,
+                  "textRun": {
+                    "content": "profit_probability",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4553,
+                  "endIndex": 4668,
+                  "textRun": {
+                    "content": " — The MLP’s output, between 0 and 1. It is an estimate, not a guaranteed or automatically calibrated probability.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4668,
+            "endIndex": 4853,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4668,
+                  "endIndex": 4678,
+                  "textRun": {
+                    "content": "net_return",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4678,
+                  "endIndex": 4853,
+                  "textRun": {
+                    "content": " — The result of the whole series, including re-entries, after the agreed fees and slippage. The existing target_gross_return_pct is a gross result and needs cost adjustment.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4853,
+            "endIndex": 4968,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4853,
+                  "endIndex": 4869,
+                  "textRun": {
+                    "content": "profit_threshold",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4869,
+                  "endIndex": 4968,
+                  "textRun": {
+                    "content": " — The minimum net return required for a positive target. Use the same return units as net_return.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4968,
+            "endIndex": 5142,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4968,
+                  "endIndex": 4974,
+                  "textRun": {
+                    "content": "target",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 4974,
+                  "endIndex": 5142,
+                  "textRun": {
+                    "content": " — The historical training answer: 1 if net_return is above profit_threshold, otherwise 0. An unfilled order or unfinished outcome is unavailable, not automatically 0.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5142,
+            "endIndex": 5292,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5142,
+                  "endIndex": 5160,
+                  "textRun": {
+                    "content": "probability_cutoff",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5160,
+                  "endIndex": 5292,
+                  "textRun": {
+                    "content": " — The probability required to accept a prediction; separate from profit_threshold. For example, 0.60 means a 60% estimated chance.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5292,
+            "endIndex": 5330,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5292,
+                  "endIndex": 5330,
+                  "textRun": {
+                    "content": "What is retained, and what is learned\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 13,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.csnil41kke8k",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 8,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5330,
+            "endIndex": 5695,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5330,
+                  "endIndex": 5695,
+                  "textRun": {
+                    "content": "A one-minute outlier inside recent_window reaches the MLP as its individual selected feature values. Older events have no separate direct input; they may affect older_summary and recent indicators. The LSTM can forget information and has no guarantee of unlimited useful memory. Raw price spikes are not fully preserved unless the selected features represent them.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5695,
+            "endIndex": 6162,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5695,
+                  "endIndex": 6162,
+                  "textRun": {
+                    "content": "During prediction, model weights stay fixed; the input values and LSTM memory change. During training, compare predictions with historical targets and adjust both models together. The MLP has no persistent recurrent memory. Training uses all eligible anchor opportunities; a chronological simulation separately blocks new series while an earlier series is active. Labels stay separate from inputs, and LSTM state must not carry later data into an earlier prediction.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6162,
+            "endIndex": 6163,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6162,
+                  "endIndex": 6163,
+                  "textRun": {
+                    "content": "\n",
+                    "textStyle": {}
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "direction": "LEFT_TO_RIGHT"
+              }
+            }
+          }
+        ]
+      },
+      "headers": null,
+      "footers": {
+        "kix.hf0": {
+          "footerId": "kix.hf0",
+          "content": [
+            {
+              "endIndex": 2,
+              "paragraph": {
+                "elements": [
+                  {
+                    "endIndex": 1,
+                    "autoText": {
+                      "type": "PAGE_NUMBER",
+                      "textStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "strikethrough": false,
+                        "smallCaps": false,
+                        "backgroundColor": {},
+                        "foregroundColor": {
+                          "color": {
+                            "rgbColor": {}
+                          }
+                        },
+                        "fontSize": {
+                          "magnitude": 11,
+                          "unit": "PT"
+                        },
+                        "weightedFontFamily": {
+                          "fontFamily": "Arial",
+                          "weight": 400
+                        },
+                        "baselineOffset": "NONE"
+                      }
+                    }
+                  },
+                  {
+                    "startIndex": 1,
+                    "endIndex": 2,
+                    "textRun": {
+                      "content": "\n",
+                      "textStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "strikethrough": false,
+                        "smallCaps": false,
+                        "backgroundColor": {},
+                        "foregroundColor": {
+                          "color": {
+                            "rgbColor": {}
+                          }
+                        },
+                        "fontSize": {
+                          "magnitude": 11,
+                          "unit": "PT"
+                        },
+                        "weightedFontFamily": {
+                          "fontFamily": "Arial",
+                          "weight": 400
+                        },
+                        "baselineOffset": "NONE"
+                      }
+                    }
+                  }
+                ],
+                "paragraphStyle": {
+                  "namedStyleType": "NORMAL_TEXT",
+                  "alignment": "END",
+                  "lineSpacing": 100,
+                  "direction": "LEFT_TO_RIGHT",
+                  "spacingMode": "NEVER_COLLAPSE",
+                  "spaceAbove": {
+                    "unit": "PT"
+                  },
+                  "spaceBelow": {
+                    "unit": "PT"
+                  },
+                  "borderBetween": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderTop": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderBottom": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderLeft": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderRight": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "indentFirstLine": {
+                    "unit": "PT"
+                  },
+                  "indentStart": {
+                    "unit": "PT"
+                  },
+                  "indentEnd": {
+                    "unit": "PT"
+                  },
+                  "tabStops": [
+                    {
+                      "offset": {
+                        "magnitude": 234,
+                        "unit": "PT"
+                      },
+                      "alignment": "CENTER"
+                    },
+                    {
+                      "offset": {
+                        "magnitude": 468,
+                        "unit": "PT"
+                      },
+                      "alignment": "END"
+                    }
+                  ],
+                  "keepLinesTogether": false,
+                  "keepWithNext": false,
+                  "avoidWidowAndOrphan": true,
+                  "shading": {
+                    "backgroundColor": {}
+                  },
+                  "pageBreakBefore": false
+                }
+              }
+            }
+          ]
+        }
+      },
+      "footnotes": null,
+      "documentStyle": {
+        "background": {
+          "color": {}
+        },
+        "defaultFooterId": "kix.hf0",
+        "pageNumberStart": 1,
+        "marginTop": {
+          "magnitude": 46.75,
+          "unit": "PT"
+        },
+        "marginBottom": {
+          "magnitude": 46.75,
+          "unit": "PT"
+        },
+        "marginRight": {
+          "magnitude": 51,
+          "unit": "PT"
+        },
+        "marginLeft": {
+          "magnitude": 51,
+          "unit": "PT"
+        },
+        "pageSize": {
+          "height": {
+            "magnitude": 841.8897637795277,
+            "unit": "PT"
+          },
+          "width": {
+            "magnitude": 595.2755905511812,
+            "unit": "PT"
+          }
+        },
+        "marginHeader": {
+          "magnitude": 36,
+          "unit": "PT"
+        },
+        "marginFooter": {
+          "magnitude": 19.85,
+          "unit": "PT"
+        },
+        "useCustomHeaderFooterMargins": true,
+        "documentFormat": {
+          "documentMode": "PAGES"
+        }
+      },
+      "suggestedDocumentStyleChanges": null,
+      "namedStyles": {
+        "styles": [
+          {
+            "namedStyleType": "NORMAL_TEXT",
+            "textStyle": {
+              "bold": false,
+              "italic": false,
+              "underline": false,
+              "strikethrough": false,
+              "smallCaps": false,
+              "backgroundColor": {},
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 11,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              },
+              "baselineOffset": "NONE"
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "alignment": "START",
+              "lineSpacing": 112.08333,
+              "direction": "LEFT_TO_RIGHT",
+              "spacingMode": "NEVER_COLLAPSE",
+              "spaceAbove": {
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "borderBetween": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderTop": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderBottom": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderLeft": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderRight": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "indentFirstLine": {
+                "unit": "PT"
+              },
+              "indentStart": {
+                "unit": "PT"
+              },
+              "indentEnd": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": false,
+              "keepWithNext": false,
+              "avoidWidowAndOrphan": true,
+              "shading": {
+                "backgroundColor": {}
+              },
+              "pageBreakBefore": false
+            }
+          },
+          {
+            "namedStyleType": "HEADING_1",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 17,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_2",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 12,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_3",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.30980393,
+                    "green": 0.5058824,
+                    "blue": 0.7411765
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_4",
+            "textStyle": {
+              "bold": true,
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.30980393,
+                    "green": 0.5058824,
+                    "blue": 0.7411765
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_5",
+            "textStyle": {
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.14117648,
+                    "green": 0.24705882,
+                    "blue": 0.38039216
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_6",
+            "textStyle": {
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.14117648,
+                    "green": 0.24705882,
+                    "blue": 0.38039216
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "TITLE",
+            "textStyle": {
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 24,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "lineSpacing": 100,
+              "direction": "LEFT_TO_RIGHT",
+              "spacingMode": "NEVER_COLLAPSE",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              }
+            }
+          },
+          {
+            "namedStyleType": "SUBTITLE",
+            "textStyle": {
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 11,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              }
+            }
+          }
+        ]
+      },
+      "suggestedNamedStylesChanges": null,
+      "lists": {
+        "kix.list.1": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.2": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.3": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.4": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.5": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.6": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.7": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.8": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.9": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 90,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        }
+      },
+      "dropdownDefinitions": null,
+      "namedRanges": null,
+      "inlineObjects": {
+        "kix.edk4f91n9o9d": {
+          "objectId": "kix.edk4f91n9o9d",
+          "inlineObjectProperties": {
+            "embeddedObject": {
+              "imageProperties": {
+                "contentUri": "https://docs.google.com/docs-images-rt/ALKuztb-ySLBmqEBr0JDrP1R1CBt5_cxqcRhbQOGTLo96EIbeQBu571KgS4J6EFTVDhXTZVcE2ug6agF2kcIn0a-6q8oeEnU3WwwQcSSkyaKTGfkhRwxaUEqUyRVQstiZWX0XSlyBNZjw_95-SyCFKufK07aG3K09ILXvB0eggb8XGx5cZBr=s2048?key=4i6Xp0ECLkrPKdYK20tFbQ",
+                "sourceUri": "https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-1c34-8211-b793-4ea415289198/raw?se=2026-10-26T12%3A41%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=59fafa3e-5be7-4eb7-b976-2c4c64478b9a&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-26T05%3A25%3A49Z&ske=2026-10-27T05%3A25%3A49Z&sks=b&skv=2026-02-06&sig=i2xtyPWqZ5Y6%2BKn033thEBnxGSR/D7GbvuTOYfeBdwU%3D",
+                "cropProperties": {}
+              },
+              "embeddedObjectBorder": {
+                "color": {
+                  "color": {
+                    "rgbColor": {}
+                  }
+                },
+                "width": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID",
+                "propertyState": "NOT_RENDERED"
+              },
+              "size": {
+                "height": {
+                  "magnitude": 265.2,
+                  "unit": "PT"
+                },
+                "width": {
+                  "magnitude": 468,
+                  "unit": "PT"
+                }
+              },
+              "marginTop": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginBottom": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginRight": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginLeft": {
+                "magnitude": 9,
+                "unit": "PT"
+              }
+            }
+          }
+        }
+      },
+      "positionedObjects": null,
+      "documentId": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+      "document_url": "https://docs.google.com/document/d/1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og"
+    }
+  ],
+  "document_url": "https://docs.google.com/document/d/1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og"
+}

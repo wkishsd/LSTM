@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-26",
+  "documents": [
+    {
+      "language": "EN",
+      "url": "https://docs.google.com/document/d/1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+      "pages": 11,
+      "native_equations": 28,
+      "rendered_equations": 1,
+      "forward_diagrams": 1,
+      "tables": 7,
+      "sections": 10,
+      "rendered_pages_inspected": 11
+    },
+    {
+      "language": "RU",
+      "url": "https://docs.google.com/document/d/1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g",
+      "pages": 11,
+      "native_equations": 28,
+      "rendered_equations": 1,
+      "forward_diagrams": 1,
+      "tables": 7,
+      "sections": 10,
+      "rendered_pages_inspected": 11
+    }
+  ],
+  "example": {
+    "market_features": 36,
+    "anchor_flags": 18,
+    "recent_minutes": 60,
+    "lstm_width": 64,
+    "mlp_input": 2242,
+    "mlp_hidden": [
+      128,
+      64
+    ],
+    "output": 1
+  },
+  "rendering": "Google Docs native PDF export inspected as page PNGs. The packaged local DOCX renderer could not locate LibreOffice.",
+  "artifact_scope": "Architecture documentation. No model implementation, training, or strategy changes."
+}

@@ -1,0 +1,931 @@
+{
+  "run": "rx9070-20261120-023615-8a20",
+  "csv_audit": {
+    "rows": 105545,
+    "csv_binary_disagreements": 0,
+    "exact_break_even": 13261
+  },
+  "batch_audit": {
+    "shuffled_examples": 384,
+    "shuffled_batches": 12,
+    "lookback": 360
+  },
+  "raw_candle_audit": {
+    "1m": {
+      "checked": 288,
+      "missing_candle_slots": 25
+    },
+    "5m": {
+      "checked": 288,
+      "missing_candle_slots": 1
+    },
+    "15m": {
+      "checked": 288,
+      "missing_candle_slots": 0
+    },
+    "30m": {
+      "checked": 288,
+      "missing_candle_slots": 0
+    }
+  },
+  "best.pt": {
+    "epoch": 310,
+    "validation": {
+      "unshifted": {
+        "sample": 15728,
+        "calls": 2566,
+        "true_positives": 605,
+        "positives": 3090,
+        "expected_at_base_rate": 504.1289420142421,
+        "average_precision": 0.2179145358995678
+      },
+      "signal_offsets": {
+        "-24": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 596,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.22070551415000367
+        },
+        "-12": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 627,
+          "positives": 3084,
+          "expected_at_base_rate": 503.9035714285714,
+          "average_precision": 0.22961160400530348
+        },
+        "-6": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 655,
+          "positives": 3084,
+          "expected_at_base_rate": 503.9035714285714,
+          "average_precision": 0.23096484753324062
+        },
+        "-3": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 594,
+          "positives": 3084,
+          "expected_at_base_rate": 503.9035714285714,
+          "average_precision": 0.21772931994721134
+        },
+        "-2": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 556,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.2101969926338728
+        },
+        "-1": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 563,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.2081354171641565
+        },
+        "0": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 605,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.21837489423748765
+        },
+        "1": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 585,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.2163004374378589
+        },
+        "2": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 577,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.21447635189805556
+        },
+        "3": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 578,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.2125806193327534
+        },
+        "6": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 569,
+          "positives": 3085,
+          "expected_at_base_rate": 504.0669642857143,
+          "average_precision": 0.21378543509722842
+        },
+        "12": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 585,
+          "positives": 3087,
+          "expected_at_base_rate": 504.39375,
+          "average_precision": 0.21996071038125165
+        },
+        "24": {
+          "sample": 15680,
+          "calls": 2562,
+          "true_positives": 579,
+          "positives": 3087,
+          "expected_at_base_rate": 504.39375,
+          "average_precision": 0.21505218611294047
+        }
+      },
+      "minute_offsets": {
+        "-60": {
+          "shifted": {
+            "sample": 5308,
+            "calls": 889,
+            "true_positives": 209,
+            "positives": 946,
+            "expected_at_base_rate": 158.43896006028635,
+            "average_precision": 0.2145805276961395
+          },
+          "unshifted_same_scores": {
+            "sample": 5308,
+            "calls": 889,
+            "true_positives": 207,
+            "positives": 1054,
+            "expected_at_base_rate": 176.52712886209494,
+            "average_precision": 0.21735448599887128
+          }
+        },
+        "-30": {
+          "shifted": {
+            "sample": 5402,
+            "calls": 886,
+            "true_positives": 189,
+            "positives": 1042,
+            "expected_at_base_rate": 170.90188818955943,
+            "average_precision": 0.20307594933340328
+          },
+          "unshifted_same_scores": {
+            "sample": 5402,
+            "calls": 886,
+            "true_positives": 188,
+            "positives": 1025,
+            "expected_at_base_rate": 168.1136616068123,
+            "average_precision": 0.20427956199314742
+          }
+        },
+        "-15": {
+          "shifted": {
+            "sample": 5638,
+            "calls": 835,
+            "true_positives": 220,
+            "positives": 1417,
+            "expected_at_base_rate": 209.8607662291593,
+            "average_precision": 0.2591480073885278
+          },
+          "unshifted_same_scores": {
+            "sample": 5638,
+            "calls": 835,
+            "true_positives": 204,
+            "positives": 1176,
+            "expected_at_base_rate": 174.1681447321745,
+            "average_precision": 0.22676574480562314
+          }
+        },
+        "-10": {
+          "shifted": {
+            "sample": 6108,
+            "calls": 914,
+            "true_positives": 274,
+            "positives": 1615,
+            "expected_at_base_rate": 241.66830386378518,
+            "average_precision": 0.2799298021197232
+          },
+          "unshifted_same_scores": {
+            "sample": 6108,
+            "calls": 914,
+            "true_positives": 207,
+            "positives": 1182,
+            "expected_at_base_rate": 176.87426326129665,
+            "average_precision": 0.213472968952368
+          }
+        },
+        "-5": {
+          "shifted": {
+            "sample": 5925,
+            "calls": 853,
+            "true_positives": 272,
+            "positives": 1626,
+            "expected_at_base_rate": 234.08911392405062,
+            "average_precision": 0.29958382228804714
+          },
+          "unshifted_same_scores": {
+            "sample": 5925,
+            "calls": 853,
+            "true_positives": 215,
+            "positives": 1184,
+            "expected_at_base_rate": 170.45603375527426,
+            "average_precision": 0.22285119757894864
+          }
+        },
+        "5": {
+          "shifted": {
+            "sample": 5925,
+            "calls": 937,
+            "true_positives": 219,
+            "positives": 1184,
+            "expected_at_base_rate": 187.2418565400844,
+            "average_precision": 0.2207689967368922
+          },
+          "unshifted_same_scores": {
+            "sample": 5925,
+            "calls": 937,
+            "true_positives": 309,
+            "positives": 1626,
+            "expected_at_base_rate": 257.1412658227848,
+            "average_precision": 0.30288146025780815
+          }
+        },
+        "10": {
+          "shifted": {
+            "sample": 6108,
+            "calls": 1015,
+            "true_positives": 225,
+            "positives": 1182,
+            "expected_at_base_rate": 196.41944990176816,
+            "average_precision": 0.21567238595072047
+          },
+          "unshifted_same_scores": {
+            "sample": 6108,
+            "calls": 1015,
+            "true_positives": 307,
+            "positives": 1615,
+            "expected_at_base_rate": 268.37344466273737,
+            "average_precision": 0.29015622318339956
+          }
+        },
+        "15": {
+          "shifted": {
+            "sample": 5638,
+            "calls": 939,
+            "true_positives": 237,
+            "positives": 1176,
+            "expected_at_base_rate": 195.86094359702022,
+            "average_precision": 0.2307748454604445
+          },
+          "unshifted_same_scores": {
+            "sample": 5638,
+            "calls": 939,
+            "true_positives": 267,
+            "positives": 1417,
+            "expected_at_base_rate": 235.99911316069532,
+            "average_precision": 0.2748877467600439
+          }
+        },
+        "30": {
+          "shifted": {
+            "sample": 5402,
+            "calls": 908,
+            "true_positives": 214,
+            "positives": 1025,
+            "expected_at_base_rate": 172.28804146612367,
+            "average_precision": 0.21249615468616745
+          },
+          "unshifted_same_scores": {
+            "sample": 5402,
+            "calls": 908,
+            "true_positives": 214,
+            "positives": 1042,
+            "expected_at_base_rate": 175.14550166604963,
+            "average_precision": 0.21651829777635004
+          }
+        },
+        "60": {
+          "shifted": {
+            "sample": 5308,
+            "calls": 833,
+            "true_positives": 171,
+            "positives": 1054,
+            "expected_at_base_rate": 165.40730972117558,
+            "average_precision": 0.206461254887547
+          },
+          "unshifted_same_scores": {
+            "sample": 5308,
+            "calls": 833,
+            "true_positives": 189,
+            "positives": 946,
+            "expected_at_base_rate": 148.45855312735495,
+            "average_precision": 0.20413888053654913
+          }
+        }
+      }
+    },
+    "test": {
+      "unshifted": {
+        "sample": 15832,
+        "calls": 1518,
+        "true_positives": 327,
+        "positives": 2481,
+        "expected_at_base_rate": 237.88264274886305,
+        "average_precision": 0.18754604472362527
+      },
+      "signal_offsets": {
+        "-24": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 290,
+          "positives": 2471,
+          "expected_at_base_rate": 235.92226305119107,
+          "average_precision": 0.1809269157548513
+        },
+        "-12": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 333,
+          "positives": 2475,
+          "expected_at_base_rate": 236.30416877850988,
+          "average_precision": 0.19803937994223214
+        },
+        "-6": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 336,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.19710401362605776
+        },
+        "-3": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 300,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.18338419086120467
+        },
+        "-2": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 307,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.1786657687164163
+        },
+        "-1": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 300,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.17962692542888783
+        },
+        "0": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 326,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.1878346988944482
+        },
+        "1": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 345,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.18784957549218936
+        },
+        "2": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 347,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.18887432619065658
+        },
+        "3": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 322,
+          "positives": 2472,
+          "expected_at_base_rate": 236.01773948302076,
+          "average_precision": 0.18418650780157098
+        },
+        "6": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 318,
+          "positives": 2470,
+          "expected_at_base_rate": 235.82678661936137,
+          "average_precision": 0.1829412126690373
+        },
+        "12": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 314,
+          "positives": 2469,
+          "expected_at_base_rate": 235.73131018753168,
+          "average_precision": 0.1795947179988677
+        },
+        "24": {
+          "sample": 15784,
+          "calls": 1507,
+          "true_positives": 285,
+          "positives": 2468,
+          "expected_at_base_rate": 235.63583375570198,
+          "average_precision": 0.17094684463770118
+        }
+      },
+      "minute_offsets": {
+        "-60": {
+          "shifted": {
+            "sample": 5263,
+            "calls": 474,
+            "true_positives": 89,
+            "positives": 707,
+            "expected_at_base_rate": 63.6743302299069,
+            "average_precision": 0.1695674870755442
+          },
+          "unshifted_same_scores": {
+            "sample": 5263,
+            "calls": 474,
+            "true_positives": 102,
+            "positives": 826,
+            "expected_at_base_rate": 74.39179175375261,
+            "average_precision": 0.1917665191955993
+          }
+        },
+        "-30": {
+          "shifted": {
+            "sample": 5373,
+            "calls": 509,
+            "true_positives": 96,
+            "positives": 818,
+            "expected_at_base_rate": 77.49153173273777,
+            "average_precision": 0.17132044051612502
+          },
+          "unshifted_same_scores": {
+            "sample": 5373,
+            "calls": 509,
+            "true_positives": 110,
+            "positives": 858,
+            "expected_at_base_rate": 81.28084868788386,
+            "average_precision": 0.18706785488473845
+          }
+        },
+        "-15": {
+          "shifted": {
+            "sample": 5702,
+            "calls": 466,
+            "true_positives": 129,
+            "positives": 1205,
+            "expected_at_base_rate": 98.47948088390038,
+            "average_precision": 0.24001312668864538
+          },
+          "unshifted_same_scores": {
+            "sample": 5702,
+            "calls": 466,
+            "true_positives": 116,
+            "positives": 901,
+            "expected_at_base_rate": 73.63486495966328,
+            "average_precision": 0.19676344554302883
+          }
+        },
+        "-10": {
+          "shifted": {
+            "sample": 6211,
+            "calls": 503,
+            "true_positives": 135,
+            "positives": 1350,
+            "expected_at_base_rate": 109.33022057639671,
+            "average_precision": 0.24222555240089183
+          },
+          "unshifted_same_scores": {
+            "sample": 6211,
+            "calls": 503,
+            "true_positives": 122,
+            "positives": 970,
+            "expected_at_base_rate": 78.55578811785541,
+            "average_precision": 0.1908230183563468
+          }
+        },
+        "-5": {
+          "shifted": {
+            "sample": 5994,
+            "calls": 493,
+            "true_positives": 150,
+            "positives": 1345,
+            "expected_at_base_rate": 110.62479145812479,
+            "average_precision": 0.2721912147928889
+          },
+          "unshifted_same_scores": {
+            "sample": 5994,
+            "calls": 493,
+            "true_positives": 111,
+            "positives": 1002,
+            "expected_at_base_rate": 82.41341341341342,
+            "average_precision": 0.2033370148361203
+          }
+        },
+        "5": {
+          "shifted": {
+            "sample": 5994,
+            "calls": 568,
+            "true_positives": 134,
+            "positives": 1002,
+            "expected_at_base_rate": 94.95095095095095,
+            "average_precision": 0.2029910964217775
+          },
+          "unshifted_same_scores": {
+            "sample": 5994,
+            "calls": 568,
+            "true_positives": 172,
+            "positives": 1345,
+            "expected_at_base_rate": 127.45412078745412,
+            "average_precision": 0.27178363855303295
+          }
+        },
+        "10": {
+          "shifted": {
+            "sample": 6211,
+            "calls": 594,
+            "true_positives": 145,
+            "positives": 970,
+            "expected_at_base_rate": 92.7676702624376,
+            "average_precision": 0.1899685713567114
+          },
+          "unshifted_same_scores": {
+            "sample": 6211,
+            "calls": 594,
+            "true_positives": 159,
+            "positives": 1350,
+            "expected_at_base_rate": 129.1096441796812,
+            "average_precision": 0.24563555251972005
+          }
+        },
+        "15": {
+          "shifted": {
+            "sample": 5702,
+            "calls": 571,
+            "true_positives": 131,
+            "positives": 901,
+            "expected_at_base_rate": 90.22641178533847,
+            "average_precision": 0.19525468944077484
+          },
+          "unshifted_same_scores": {
+            "sample": 5702,
+            "calls": 571,
+            "true_positives": 158,
+            "positives": 1205,
+            "expected_at_base_rate": 120.66906348649596,
+            "average_precision": 0.24735486160101483
+          }
+        },
+        "30": {
+          "shifted": {
+            "sample": 5373,
+            "calls": 536,
+            "true_positives": 123,
+            "positives": 858,
+            "expected_at_base_rate": 85.59240647682859,
+            "average_precision": 0.19047171149534184
+          },
+          "unshifted_same_scores": {
+            "sample": 5373,
+            "calls": 536,
+            "true_positives": 109,
+            "positives": 818,
+            "expected_at_base_rate": 81.60208449655686,
+            "average_precision": 0.1764361207381474
+          }
+        },
+        "60": {
+          "shifted": {
+            "sample": 5263,
+            "calls": 492,
+            "true_positives": 113,
+            "positives": 826,
+            "expected_at_base_rate": 77.21679650389511,
+            "average_precision": 0.18862991536393311
+          },
+          "unshifted_same_scores": {
+            "sample": 5263,
+            "calls": 492,
+            "true_positives": 96,
+            "positives": 707,
+            "expected_at_base_rate": 66.09234277028311,
+            "average_precision": 0.1599629104536555
+          }
+        }
+      }
+    }
+  },
+  "last.pt": {
+    "epoch": 320,
+    "validation": {
+      "unshifted": {
+        "sample": 15728,
+        "calls": 2457,
+        "true_positives": 533,
+        "positives": 3090,
+        "expected_at_base_rate": 482.7142675483215,
+        "average_precision": 0.21080736616820497
+      },
+      "signal_offsets": {
+        "-24": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 499,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.20828043848091593
+        },
+        "-12": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 550,
+          "positives": 3084,
+          "expected_at_base_rate": 482.6617346938776,
+          "average_precision": 0.2188092598019848
+        },
+        "-6": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 553,
+          "positives": 3084,
+          "expected_at_base_rate": 482.6617346938776,
+          "average_precision": 0.22071983965995848
+        },
+        "-3": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 523,
+          "positives": 3084,
+          "expected_at_base_rate": 482.6617346938776,
+          "average_precision": 0.20906917790894114
+        },
+        "-2": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 508,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.20375503400363676
+        },
+        "-1": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 506,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.2040598976194386
+        },
+        "0": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 533,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.21118744162704142
+        },
+        "1": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 507,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.20878551583977503
+        },
+        "2": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 521,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.2084109707626449
+        },
+        "3": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 507,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.20586801197630092
+        },
+        "6": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 529,
+          "positives": 3085,
+          "expected_at_base_rate": 482.8182397959184,
+          "average_precision": 0.20888446552844234
+        },
+        "12": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 552,
+          "positives": 3087,
+          "expected_at_base_rate": 483.13124999999997,
+          "average_precision": 0.21447696116485698
+        },
+        "24": {
+          "sample": 15680,
+          "calls": 2454,
+          "true_positives": 520,
+          "positives": 3087,
+          "expected_at_base_rate": 483.13124999999997,
+          "average_precision": 0.20886382579901064
+        }
+      },
+      "minute_offsets": {
+        "-60": {
+          "shifted": {
+            "sample": 5308,
+            "calls": 860,
+            "true_positives": 181,
+            "positives": 946,
+            "expected_at_base_rate": 153.27053504144686,
+            "average_precision": 0.2032137490085142
+          },
+          "unshifted_same_scores": {
+            "sample": 5308,
+            "calls": 860,
+            "true_positives": 184,
+            "positives": 1054,
+            "expected_at_base_rate": 170.76865109269028,
+            "average_precision": 0.20996827321154
+          }
+        },
+        "-30": {
+          "shifted": {
+            "sample": 5402,
+            "calls": 882,
+            "true_positives": 173,
+            "positives": 1042,
+            "expected_at_base_rate": 170.13032210292485,
+            "average_precision": 0.19745503063639275
+          },
+          "unshifted_same_scores": {
+            "sample": 5402,
+            "calls": 882,
+            "true_positives": 176,
+            "positives": 1025,
+            "expected_at_base_rate": 167.35468345057387,
+            "average_precision": 0.1992708240536477
+          }
+        },
+        "-15": {
+          "shifted": {
+            "sample": 5638,
+            "calls": 802,
+            "true_positives": 202,
+            "positives": 1417,
+            "expected_at_base_rate": 201.56686768357577,
+            "average_precision": 0.2537583684961479
+          },
+          "unshifted_same_scores": {
+            "sample": 5638,
+            "calls": 802,
+            "true_positives": 171,
+            "positives": 1176,
+            "expected_at_base_rate": 167.28485278467542,
+            "average_precision": 0.2184366862410893
+          }
+        },
+        "-10": {
+          "shifted": {
+            "sample": 6108,
+            "calls": 893,
+            "true_positives": 251,
+            "positives": 1615,
+            "expected_at_base_rate": 236.1157498362803,
+            "average_precision": 0.27410103758735443
+          },
+          "unshifted_same_scores": {
+            "sample": 6108,
+            "calls": 893,
+            "true_positives": 196,
+            "positives": 1182,
+            "expected_at_base_rate": 172.81041257367386,
+            "average_precision": 0.20665572171088045
+          }
+        },
+        "-5": {
+          "shifted": {
+            "sample": 5925,
+            "calls": 819,
+            "true_positives": 251,
+            "positives": 1626,
+            "expected_at_base_rate": 224.75848101265822,
+            "average_precision": 0.2949533279444492
+          },
+          "unshifted_same_scores": {
+            "sample": 5925,
+            "calls": 819,
+            "true_positives": 188,
+            "positives": 1184,
+            "expected_at_base_rate": 163.66177215189873,
+            "average_precision": 0.21653143180178905
+          }
+        },
+        "5": {
+          "shifted": {
+            "sample": 5925,
+            "calls": 903,
+            "true_positives": 192,
+            "positives": 1184,
+            "expected_at_base_rate": 180.44759493670887,
+            "average_precision": 0.2166725758865568
+          },
+          "unshifted_same_scores": {
+            "sample": 5925,
+            "calls": 903,
+            "true_positives": 275,
+            "positives": 1626,
+            "expected_at_base_rate": 247.8106329113924,
+            "average_precision": 0.2953326046485914
+          }
+        },
+        "10": {
+          "shifted": {
+            "sample": 6108,
+            "calls": 952,
+            "true_positives": 195,
+            "positives": 1182,
+            "expected_at_base_rate": 184.2278978388998,
+            "average_precision": 0.2060021028425301
+          },
+          "unshifted_same_scores": {
+            "sample": 6108,
+            "calls": 952,
+            "true_positives": 270,
+            "positives": 1615,
+            "expected_at_base_rate": 251.71578258022265,
+            "average_precision": 0.28181871448322054
+          }
+        },
+        "15": {
+          "shifted": {
+            "sample": 5638,
+            "calls": 892,
+            "true_positives": 209,
+            "positives": 1176,
+            "expected_at_base_rate": 186.05746718694573,
+            "average_precision": 0.2227404427729268
+          },
+          "unshifted_same_scores": {
+            "sample": 5638,
+            "calls": 892,
+            "true_positives": 238,
+            "positives": 1417,
+            "expected_at_base_rate": 224.1865909897127,
+            "average_precision": 0.26460003349775185
+          }
+        },
+        "30": {
+          "shifted": {
+            "sample": 5402,
+            "calls": 852,
+            "true_positives": 186,
+            "positives": 1025,
+            "expected_at_base_rate": 161.66234727878563,
+            "average_precision": 0.20674047205352722
+          },
+          "unshifted_same_scores": {
+            "sample": 5402,
+            "calls": 852,
+            "true_positives": 182,
+            "positives": 1042,
+            "expected_at_base_rate": 164.3435764531655,
+            "average_precision": 0.2070637658008126
+          }
+        },
+        "60": {
+          "shifted": {
+            "sample": 5308,
+            "calls": 808,
+            "true_positives": 156,
+            "positives": 1054,
+            "expected_at_base_rate": 160.44310474755088,
+            "average_precision": 0.20019634014296397
+          },
+          "unshifted_same_scores": {
+            "sample": 5308,
+            "calls": 808,
+            "true_positives": 169,
+            "positives": 946,
+            "expected_at_base_rate": 144.00301431801054,
+            "average_precision": 0.19497021985910248
+          }
+        }
+      }
+    }
+  }
+}

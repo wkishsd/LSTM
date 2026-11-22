@@ -1,0 +1,5600 @@
+{
+  "documentId": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+  "title": "LSTM lookback window and MLP forward pass English",
+  "revisionId": "AHj4eMRwFdhsm87vq4wfimgCrQIP5Ib4mUlyjm4U_tDe5yqVR7WIIv1D_w6pEWKtiLkjSbz4iHoyv2VJBLuWJl5By5KGfHhS-2uMFCjC4A",
+  "suggestionsViewMode": "SUGGESTIONS_INLINE",
+  "url": null,
+  "body": null,
+  "tabs": [
+    {
+      "tabId": "t.0",
+      "title": "Tab 1",
+      "parentTabId": null,
+      "index": 0,
+      "nestingLevel": null,
+      "iconEmoji": null,
+      "body": {
+        "content": [
+          {
+            "endIndex": 1,
+            "sectionBreak": {
+              "sectionStyle": {
+                "columnSeparatorStyle": "NONE",
+                "contentDirection": "LEFT_TO_RIGHT",
+                "sectionType": "CONTINUOUS"
+              }
+            }
+          },
+          {
+            "startIndex": 1,
+            "endIndex": 28,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1,
+                  "endIndex": 28,
+                  "textRun": {
+                    "content": "LSTM + recent window + MLP\n",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 20,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.qfrfuevrs8s7",
+                "namedStyleType": "TITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 28,
+            "endIndex": 86,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 28,
+                  "endIndex": 86,
+                  "textRun": {
+                    "content": "A plain-English guide to the proposed prediction pipeline\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.34901962,
+                            "green": 0.41960785,
+                            "blue": 0.4509804
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.s5irsfwcu6wu",
+                "namedStyleType": "SUBTITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 86,
+            "endIndex": 368,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 86,
+                  "endIndex": 368,
+                  "textRun": {
+                    "content": "The MLP receives individual recent feature values and an LSTM summary of older history. Anchor flags are included in every feature row. LSTM is a sequence model with memory; MLP is a feedforward network that makes the final prediction. The LSTM does not recreate the recent window.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 368,
+            "endIndex": 370,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 368,
+                  "endIndex": 369,
+                  "inlineObjectElement": {
+                    "inlineObjectId": "kix.hdxgc9ix6erp",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 369,
+                  "endIndex": 370,
+                  "textRun": {
+                    "content": "\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "alignment": "CENTER",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 6,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 6,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 370,
+            "endIndex": 383,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 370,
+                  "endIndex": 383,
+                  "textRun": {
+                    "content": "What goes in\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 13,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.u4ujfkbdevw6",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 8,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 383,
+            "endIndex": 650,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 383,
+                  "endIndex": 650,
+                  "textRun": {
+                    "content": "Use a continuous timeline with one row per minute, including minutes without anchors. Each row has 54 features: 36 normalized market values and 18 main-anchor flags. M1, M5, M15 and M30 mean 1-, 5-, 15- and 30-minute candles. Only closed, available candles are used.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 650,
+            "endIndex": 950,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 650,
+                  "endIndex": 950,
+                  "textRun": {
+                    "content": "The 36 market values are nine features for each timeframe: log price, log candle volume, RSI, relative ATR, MACD/ATR, MACD signal/ATR, ADX, DI+ and DI−. Each anchor flag is 1 when that event becomes confirmed, otherwise 0. Several flags can be 1 together. Flags are not kept at 1 throughout a trade.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 950,
+            "endIndex": 1324,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 950,
+                  "endIndex": 1324,
+                  "textRun": {
+                    "content": "Rows are timestamped by availability: the 13:05 row uses M1 candle 13:04 and the anchor confirmed by M5 candle 13:00 closing at 13:05. The current flags are already in that row; do not append them again. Raw OHLCV (open, high, low, close, volume), identifiers and future outcomes are excluded from model inputs. This architecture is proposed, not yet trained in the script.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1324,
+            "endIndex": 1355,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1324,
+                  "endIndex": 1355,
+                  "textRun": {
+                    "content": "How one prediction is produced\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.1xgyt342kw8s",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 1355,
+            "endIndex": 1502,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1355,
+                  "endIndex": 1502,
+                  "textRun": {
+                    "content": "Example: a decision at 13:05 UTC+3; a 60-row recent window and a 64-value LSTM summary. Both sizes are illustrative settings, not trained results.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.34901962,
+                            "green": 0.41960785,
+                            "blue": 0.4509804
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.j659701sqlhs",
+                "namedStyleType": "SUBTITLE",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1502,
+            "endIndex": 1539,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1502,
+                  "endIndex": 1539,
+                  "textRun": {
+                    "content": "1. Fix the information available now\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.p3b60p67ph46",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1539,
+            "endIndex": 1822,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1539,
+                  "endIndex": 1822,
+                  "textRun": {
+                    "content": "At 13:05, the latest completed M1 candle opened at 13:04. The latest completed M5, M15 and M30 candles opened at 13:00, 12:45 and 12:30. Include the newly confirmed anchor flags in the 13:05 feature row. The decision time is the initial-order placement time, even if it fills later.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1822,
+            "endIndex": 1849,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1822,
+                  "endIndex": 1849,
+                  "textRun": {
+                    "content": "2. Build the older summary\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.4055yly26l3t",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 1849,
+            "endIndex": 2177,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 1849,
+                  "endIndex": 2056,
+                  "textRun": {
+                    "content": "Feed the LSTM the 54-feature rows chronologically, including non-anchor minutes. For this decision, use its state after the 12:05 row, whose M1 candle opened at 12:04. There is no fixed LSTM lookback: carry ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2056,
+                  "endIndex": 2068,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2068,
+                  "endIndex": 2073,
+                  "textRun": {
+                    "content": " and ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2073,
+                  "endIndex": 2083,
+                  "textRun": {
+                    "content": "cell_state",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2083,
+                  "endIndex": 2135,
+                  "textRun": {
+                    "content": " from the start of the processed history. Send only ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2135,
+                  "endIndex": 2147,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2147,
+                  "endIndex": 2162,
+                  "textRun": {
+                    "content": " to the MLP as ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2162,
+                  "endIndex": 2175,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2175,
+                  "endIndex": 2177,
+                  "textRun": {
+                    "content": ".\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2177,
+            "endIndex": 2216,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2177,
+                  "endIndex": 2216,
+                  "textRun": {
+                    "content": "3. Keep the recent values individually\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.mlanj29l6znt",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2216,
+            "endIndex": 2575,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2216,
+                  "endIndex": 2288,
+                  "textRun": {
+                    "content": "Take decision rows 12:06–13:05, whose M1 candles opened at 12:05–13:04. ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2288,
+                  "endIndex": 2301,
+                  "textRun": {
+                    "content": "recent_window",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2301,
+                  "endIndex": 2575,
+                  "textRun": {
+                    "content": " has 60 rows and 54 columns, including historical and current anchor flags. Flatten the rows oldest to newest into 3,240 values. Their positions preserve the lag and feature identity; nothing is averaged or compressed. Separate networks per lag are not part of this design.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2575,
+            "endIndex": 2610,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2575,
+                  "endIndex": 2610,
+                  "textRun": {
+                    "content": "4. Join the inputs and run the MLP\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.8tjro5p1bveo",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2610,
+            "endIndex": 2984,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2610,
+                  "endIndex": 2673,
+                  "textRun": {
+                    "content": "Join the 3,240 recent values and 64 older hidden-state values. ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2673,
+                  "endIndex": 2682,
+                  "textRun": {
+                    "content": "mlp_input",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2682,
+                  "endIndex": 2811,
+                  "textRun": {
+                    "content": " contains 3,304 values; there is no extra anchor block. One MLP learns relationships across lags and older context, then returns ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2811,
+                  "endIndex": 2829,
+                  "textRun": {
+                    "content": "profit_probability",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 2829,
+                  "endIndex": 2984,
+                  "textRun": {
+                    "content": ": the estimated chance that the whole series exceeds the net-return threshold. Its first hidden-layer width is a separate choice, not automatically 3,304.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 2984,
+            "endIndex": 3012,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 2984,
+                  "endIndex": 3012,
+                  "textRun": {
+                    "content": "5. Apply the entry decision\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.dsryhl5p0qck",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3012,
+            "endIndex": 3276,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3012,
+                  "endIndex": 3042,
+                  "textRun": {
+                    "content": "Compare that probability with ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3042,
+                  "endIndex": 3060,
+                  "textRun": {
+                    "content": "probability_cutoff",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3060,
+                  "endIndex": 3276,
+                  "textRun": {
+                    "content": ". Start a series only if the prediction passes and the execution rules permit a new series. The prediction does not change the fixed stop, exit or re-entry rules. An accepted initial order can still remain unfilled.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3276,
+            "endIndex": 3298,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3276,
+                  "endIndex": 3298,
+                  "textRun": {
+                    "content": "6. Advance one minute\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 11.5,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.356v9yevpyx9",
+                "namedStyleType": "HEADING_2",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 7,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3298,
+            "endIndex": 3653,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3298,
+                  "endIndex": 3372,
+                  "textRun": {
+                    "content": "At 13:06, use decision rows 12:07–13:06 for the recent window and advance ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3372,
+                  "endIndex": 3385,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3385,
+                  "endIndex": 3653,
+                  "textRun": {
+                    "content": " through row 12:06. The row leaving the window enters older memory. Keep the summary at that boundary; do not use a later state that already includes the window. Advance the LSTM every minute, retain both states and request a trading prediction at an eligible anchor.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3653,
+            "endIndex": 3685,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3653,
+                  "endIndex": 3685,
+                  "textRun": {
+                    "content": "What the LSTM memory size means\n",
+                    "textStyle": {
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.lfgln0t4uwl6",
+                "namedStyleType": "HEADING_1",
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 3685,
+            "endIndex": 3910,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3685,
+                  "endIndex": 3696,
+                  "textRun": {
+                    "content": "memory_size",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3696,
+                  "endIndex": 3910,
+                  "textRun": {
+                    "content": " is the number of learned memory units chosen when building the LSTM. In this example it is 64. It is not 64 minutes, 64 candles or one memory unit per input feature. A 54-feature input does not dictate this size.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 3910,
+            "endIndex": 4199,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 3910,
+                  "endIndex": 3944,
+                  "textRun": {
+                    "content": "A standard single-layer LSTM with ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3944,
+                  "endIndex": 3955,
+                  "textRun": {
+                    "content": "memory_size",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 3955,
+                  "endIndex": 4199,
+                  "textRun": {
+                    "content": " 64 carries two lists: 64 cell-state values and 64 hidden-state values. These are 128 internal state values in total, but only the 64 hidden values go to the MLP. A 32-unit LSTM would have 32 values in each state, not a 64-value hidden output.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4199,
+            "endIndex": 4503,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4199,
+                  "endIndex": 4503,
+                  "textRun": {
+                    "content": "At every minute, the LSTM uses the new feature row and its previous states to update these lists. During training it learns what information to retain, update and expose. The units do not have predefined meanings such as “RSI memory” or “anchor 5 memory”; they can represent combinations of many inputs.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4503,
+            "endIndex": 4780,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4503,
+                  "endIndex": 4780,
+                  "textRun": {
+                    "content": "The lists stay the same length as history grows. The LSTM therefore compresses history and may forget details. Its hidden state is a learned view of memory, not necessarily “short-term memory”; here it supplies older context. We do not send the cell state directly to the MLP.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 4780,
+            "endIndex": 5137,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 4780,
+                  "endIndex": 5062,
+                  "textRun": {
+                    "content": "There is no fixed lookback cutoff in this LSTM branch. Preserve both states across consecutive processing chunks; restarting them at every window would break the design. Training may limit how far gradients travel while still carrying the state forward. That limit is separate from ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5062,
+                  "endIndex": 5075,
+                  "textRun": {
+                    "content": "window_length",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5075,
+                  "endIndex": 5137,
+                  "textRun": {
+                    "content": ". Useful memory is still finite and starts at initialization.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5137,
+            "endIndex": 5330,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5137,
+                  "endIndex": 5330,
+                  "textRun": {
+                    "content": "64 is an illustrative setting. Larger memory allows more capacity but adds parameters and computation; it does not guarantee better predictions. Choose the size using chronological validation.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5330,
+            "endIndex": 5368,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5330,
+                  "endIndex": 5368,
+                  "textRun": {
+                    "content": "What is retained, and what is learned\n",
+                    "textStyle": {
+                      "fontSize": {
+                        "magnitude": 13,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.sph2bns8o9cn",
+                "namedStyleType": "HEADING_1",
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "magnitude": 8,
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5368,
+            "endIndex": 5652,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5368,
+                  "endIndex": 5515,
+                  "textRun": {
+                    "content": "Flattening keeps every selected recent value in a fixed lag position. A one-minute outlier can reach the MLP directly. Older events may survive in ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5515,
+                  "endIndex": 5528,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5528,
+                  "endIndex": 5652,
+                  "textRun": {
+                    "content": " and recent indicators, but not as separate original rows. The selected features do not preserve every detail of raw OHLCV.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 5652,
+            "endIndex": 6021,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 5652,
+                  "endIndex": 5759,
+                  "textRun": {
+                    "content": "During prediction, weights stay fixed while inputs and LSTM states change. During training, the historical ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5759,
+                  "endIndex": 5765,
+                  "textRun": {
+                    "content": "target",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 5765,
+                  "endIndex": 6021,
+                  "textRun": {
+                    "content": " adjusts both models together. The MLP has no persistent recurrent memory. Train on all eligible anchor opportunities; separately simulate chronological series blocking. Keep targets out of inputs and never carry later LSTM state into earlier predictions.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6021,
+            "endIndex": 6041,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6021,
+                  "endIndex": 6041,
+                  "textRun": {
+                    "content": "Variable dictionary\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.07058824,
+                            "green": 0.23137255,
+                            "blue": 0.3019608
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 16,
+                        "unit": "PT"
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "headingId": "h.ujhct75p2iun",
+                "namedStyleType": "HEADING_1",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": true,
+                "pageBreakBefore": true
+              }
+            }
+          },
+          {
+            "startIndex": 6041,
+            "endIndex": 6224,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6041,
+                  "endIndex": 6224,
+                  "textRun": {
+                    "content": "These names describe the proposal, not existing implemented model variables. All example times use fixed UTC+3. Feature rows use availability times; source candles use opening times.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6224,
+            "endIndex": 6326,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6224,
+                  "endIndex": 6237,
+                  "textRun": {
+                    "content": "decision_time",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6237,
+                  "endIndex": 6326,
+                  "textRun": {
+                    "content": " — When the prediction is made and an initial order may be placed; 13:05 in the example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6326,
+            "endIndex": 6424,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6326,
+                  "endIndex": 6344,
+                  "textRun": {
+                    "content": "last_closed_minute",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6344,
+                  "endIndex": 6391,
+                  "textRun": {
+                    "content": " — The latest completed M1 candle available at ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6391,
+                  "endIndex": 6404,
+                  "textRun": {
+                    "content": "decision_time",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6404,
+                  "endIndex": 6424,
+                  "textRun": {
+                    "content": "; the 13:04 candle.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6424,
+            "endIndex": 6543,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6424,
+                  "endIndex": 6439,
+                  "textRun": {
+                    "content": "market_features",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6439,
+                  "endIndex": 6498,
+                  "textRun": {
+                    "content": " — One row’s 36 normalized market values in a fixed order; ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6498,
+                  "endIndex": 6510,
+                  "textRun": {
+                    "content": "anchor_flags",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6510,
+                  "endIndex": 6543,
+                  "textRun": {
+                    "content": " supplies its other 18 features.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6543,
+            "endIndex": 6660,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6543,
+                  "endIndex": 6554,
+                  "textRun": {
+                    "content": "feature_row",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6554,
+                  "endIndex": 6591,
+                  "textRun": {
+                    "content": " — One decision minute’s full input: ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6591,
+                  "endIndex": 6606,
+                  "textRun": {
+                    "content": "market_features",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6606,
+                  "endIndex": 6612,
+                  "textRun": {
+                    "content": " plus ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6612,
+                  "endIndex": 6624,
+                  "textRun": {
+                    "content": "anchor_flags",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6624,
+                  "endIndex": 6660,
+                  "textRun": {
+                    "content": "; 54 values available at that time.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6660,
+            "endIndex": 6794,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6660,
+                  "endIndex": 6673,
+                  "textRun": {
+                    "content": "window_length",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6673,
+                  "endIndex": 6794,
+                  "textRun": {
+                    "content": " — Number of recent feature rows passed individually to the MLP; 60 in this example. It does not limit the LSTM history.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6794,
+            "endIndex": 6920,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6794,
+                  "endIndex": 6805,
+                  "textRun": {
+                    "content": "memory_size",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6805,
+                  "endIndex": 6920,
+                  "textRun": {
+                    "content": " — Number of LSTM memory units; 64 in this example. It controls state width, not the number of historical minutes.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 6920,
+            "endIndex": 7017,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 6920,
+                  "endIndex": 6933,
+                  "textRun": {
+                    "content": "recent_window",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 6933,
+                  "endIndex": 7017,
+                  "textRun": {
+                    "content": " — The latest feature rows, including flags: 60 rows × 54 features in this example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7017,
+            "endIndex": 7125,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7017,
+                  "endIndex": 7029,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7029,
+                  "endIndex": 7125,
+                  "textRun": {
+                    "content": " — The LSTM’s exposed running summary. It has 64 values here and can reflect much older inputs.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7125,
+            "endIndex": 7241,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7125,
+                  "endIndex": 7135,
+                  "textRun": {
+                    "content": "cell_state",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7135,
+                  "endIndex": 7197,
+                  "textRun": {
+                    "content": " — Internal LSTM memory: 64 values here. Carried forward with ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7197,
+                  "endIndex": 7209,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7209,
+                  "endIndex": 7241,
+                  "textRun": {
+                    "content": ", not sent directly to the MLP.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7241,
+            "endIndex": 7356,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7241,
+                  "endIndex": 7254,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7254,
+                  "endIndex": 7257,
+                  "textRun": {
+                    "content": " — ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7257,
+                  "endIndex": 7269,
+                  "textRun": {
+                    "content": "hidden_state",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7269,
+                  "endIndex": 7288,
+                  "textRun": {
+                    "content": " taken just before ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7288,
+                  "endIndex": 7301,
+                  "textRun": {
+                    "content": "recent_window",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7301,
+                  "endIndex": 7356,
+                  "textRun": {
+                    "content": ": after decision row 12:05 in this example; 64 values.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7356,
+            "endIndex": 7481,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7356,
+                  "endIndex": 7368,
+                  "textRun": {
+                    "content": "anchor_flags",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7368,
+                  "endIndex": 7481,
+                  "textRun": {
+                    "content": " — The 18 main-anchor event flags in each feature row, including the latest row; no duplicate block is appended.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7481,
+            "endIndex": 7580,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7481,
+                  "endIndex": 7490,
+                  "textRun": {
+                    "content": "mlp_input",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7490,
+                  "endIndex": 7503,
+                  "textRun": {
+                    "content": " — Flattened ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7503,
+                  "endIndex": 7516,
+                  "textRun": {
+                    "content": "recent_window",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7516,
+                  "endIndex": 7522,
+                  "textRun": {
+                    "content": " plus ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7522,
+                  "endIndex": 7535,
+                  "textRun": {
+                    "content": "older_summary",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7535,
+                  "endIndex": 7580,
+                  "textRun": {
+                    "content": ": 3,240 + 64 = 3,304 values in this example.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7580,
+            "endIndex": 7713,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7580,
+                  "endIndex": 7598,
+                  "textRun": {
+                    "content": "profit_probability",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7598,
+                  "endIndex": 7713,
+                  "textRun": {
+                    "content": " — The MLP’s output, between 0 and 1. It is an estimate, not a guaranteed or automatically calibrated probability.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7713,
+            "endIndex": 7898,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7713,
+                  "endIndex": 7723,
+                  "textRun": {
+                    "content": "net_return",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7723,
+                  "endIndex": 7829,
+                  "textRun": {
+                    "content": " — The result of the whole series, including re-entries, after the agreed fees and slippage. The existing ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7829,
+                  "endIndex": 7852,
+                  "textRun": {
+                    "content": "target_gross_return_pct",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7852,
+                  "endIndex": 7898,
+                  "textRun": {
+                    "content": " is a gross result and needs cost adjustment.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 7898,
+            "endIndex": 8013,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 7898,
+                  "endIndex": 7914,
+                  "textRun": {
+                    "content": "profit_threshold",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7914,
+                  "endIndex": 7964,
+                  "textRun": {
+                    "content": " — The minimum net return required for a positive ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7964,
+                  "endIndex": 7970,
+                  "textRun": {
+                    "content": "target",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 7970,
+                  "endIndex": 8001,
+                  "textRun": {
+                    "content": ". Use the same return units as ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8001,
+                  "endIndex": 8011,
+                  "textRun": {
+                    "content": "net_return",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8011,
+                  "endIndex": 8013,
+                  "textRun": {
+                    "content": ".\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 8013,
+            "endIndex": 8187,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 8013,
+                  "endIndex": 8019,
+                  "textRun": {
+                    "content": "target",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8019,
+                  "endIndex": 8059,
+                  "textRun": {
+                    "content": " — The historical training answer: 1 if ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8059,
+                  "endIndex": 8069,
+                  "textRun": {
+                    "content": "net_return",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8069,
+                  "endIndex": 8079,
+                  "textRun": {
+                    "content": " is above ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8079,
+                  "endIndex": 8095,
+                  "textRun": {
+                    "content": "profit_threshold",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8095,
+                  "endIndex": 8187,
+                  "textRun": {
+                    "content": ", otherwise 0. An unfilled order or unfinished outcome is unavailable, not automatically 0.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 8187,
+            "endIndex": 8337,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 8187,
+                  "endIndex": 8205,
+                  "textRun": {
+                    "content": "probability_cutoff",
+                    "textStyle": {
+                      "bold": true,
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8205,
+                  "endIndex": 8271,
+                  "textRun": {
+                    "content": " — The probability required to accept a prediction; separate from ",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8271,
+                  "endIndex": 8287,
+                  "textRun": {
+                    "content": "profit_threshold",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      },
+                      "fontSize": {
+                        "magnitude": 10.5,
+                        "unit": "PT"
+                      },
+                      "weightedFontFamily": {
+                        "fontFamily": "Consolas",
+                        "weight": 400
+                      }
+                    }
+                  }
+                },
+                {
+                  "startIndex": 8287,
+                  "endIndex": 8337,
+                  "textRun": {
+                    "content": ". For example, 0.60 means a 60% estimated chance.\n",
+                    "textStyle": {
+                      "foregroundColor": {
+                        "color": {
+                          "rgbColor": {
+                            "red": 0.12156863,
+                            "green": 0.18039216,
+                            "blue": 0.21960784
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "lineSpacing": 110,
+                "direction": "LEFT_TO_RIGHT",
+                "spaceAbove": {
+                  "unit": "PT"
+                },
+                "spaceBelow": {
+                  "magnitude": 5,
+                  "unit": "PT"
+                },
+                "keepWithNext": false,
+                "pageBreakBefore": false
+              }
+            }
+          },
+          {
+            "startIndex": 8337,
+            "endIndex": 8338,
+            "paragraph": {
+              "elements": [
+                {
+                  "startIndex": 8337,
+                  "endIndex": 8338,
+                  "textRun": {
+                    "content": "\n",
+                    "textStyle": {}
+                  }
+                }
+              ],
+              "paragraphStyle": {
+                "namedStyleType": "NORMAL_TEXT",
+                "direction": "LEFT_TO_RIGHT"
+              }
+            }
+          }
+        ]
+      },
+      "headers": null,
+      "footers": {
+        "kix.hf0": {
+          "footerId": "kix.hf0",
+          "content": [
+            {
+              "endIndex": 2,
+              "paragraph": {
+                "elements": [
+                  {
+                    "endIndex": 1,
+                    "autoText": {
+                      "type": "PAGE_NUMBER",
+                      "textStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "strikethrough": false,
+                        "smallCaps": false,
+                        "backgroundColor": {},
+                        "foregroundColor": {
+                          "color": {
+                            "rgbColor": {}
+                          }
+                        },
+                        "fontSize": {
+                          "magnitude": 11,
+                          "unit": "PT"
+                        },
+                        "weightedFontFamily": {
+                          "fontFamily": "Arial",
+                          "weight": 400
+                        },
+                        "baselineOffset": "NONE"
+                      }
+                    }
+                  },
+                  {
+                    "startIndex": 1,
+                    "endIndex": 2,
+                    "textRun": {
+                      "content": "\n",
+                      "textStyle": {
+                        "bold": false,
+                        "italic": false,
+                        "underline": false,
+                        "strikethrough": false,
+                        "smallCaps": false,
+                        "backgroundColor": {},
+                        "foregroundColor": {
+                          "color": {
+                            "rgbColor": {}
+                          }
+                        },
+                        "fontSize": {
+                          "magnitude": 11,
+                          "unit": "PT"
+                        },
+                        "weightedFontFamily": {
+                          "fontFamily": "Arial",
+                          "weight": 400
+                        },
+                        "baselineOffset": "NONE"
+                      }
+                    }
+                  }
+                ],
+                "paragraphStyle": {
+                  "namedStyleType": "NORMAL_TEXT",
+                  "alignment": "END",
+                  "lineSpacing": 100,
+                  "direction": "LEFT_TO_RIGHT",
+                  "spacingMode": "NEVER_COLLAPSE",
+                  "spaceAbove": {
+                    "unit": "PT"
+                  },
+                  "spaceBelow": {
+                    "unit": "PT"
+                  },
+                  "borderBetween": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderTop": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderBottom": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderLeft": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "borderRight": {
+                    "color": {},
+                    "width": {
+                      "unit": "PT"
+                    },
+                    "padding": {
+                      "unit": "PT"
+                    },
+                    "dashStyle": "SOLID"
+                  },
+                  "indentFirstLine": {
+                    "unit": "PT"
+                  },
+                  "indentStart": {
+                    "unit": "PT"
+                  },
+                  "indentEnd": {
+                    "unit": "PT"
+                  },
+                  "tabStops": [
+                    {
+                      "offset": {
+                        "magnitude": 234,
+                        "unit": "PT"
+                      },
+                      "alignment": "CENTER"
+                    },
+                    {
+                      "offset": {
+                        "magnitude": 468,
+                        "unit": "PT"
+                      },
+                      "alignment": "END"
+                    }
+                  ],
+                  "keepLinesTogether": false,
+                  "keepWithNext": false,
+                  "avoidWidowAndOrphan": true,
+                  "shading": {
+                    "backgroundColor": {}
+                  },
+                  "pageBreakBefore": false
+                }
+              }
+            }
+          ]
+        }
+      },
+      "footnotes": null,
+      "documentStyle": {
+        "background": {
+          "color": {}
+        },
+        "defaultFooterId": "kix.hf0",
+        "pageNumberStart": 1,
+        "marginTop": {
+          "magnitude": 46.75,
+          "unit": "PT"
+        },
+        "marginBottom": {
+          "magnitude": 46.75,
+          "unit": "PT"
+        },
+        "marginRight": {
+          "magnitude": 51,
+          "unit": "PT"
+        },
+        "marginLeft": {
+          "magnitude": 51,
+          "unit": "PT"
+        },
+        "pageSize": {
+          "height": {
+            "magnitude": 841.8897637795277,
+            "unit": "PT"
+          },
+          "width": {
+            "magnitude": 595.2755905511812,
+            "unit": "PT"
+          }
+        },
+        "marginHeader": {
+          "magnitude": 36,
+          "unit": "PT"
+        },
+        "marginFooter": {
+          "magnitude": 19.85,
+          "unit": "PT"
+        },
+        "useCustomHeaderFooterMargins": true,
+        "documentFormat": {
+          "documentMode": "PAGES"
+        }
+      },
+      "suggestedDocumentStyleChanges": null,
+      "namedStyles": {
+        "styles": [
+          {
+            "namedStyleType": "NORMAL_TEXT",
+            "textStyle": {
+              "bold": false,
+              "italic": false,
+              "underline": false,
+              "strikethrough": false,
+              "smallCaps": false,
+              "backgroundColor": {},
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 11,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              },
+              "baselineOffset": "NONE"
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "alignment": "START",
+              "lineSpacing": 112.08333,
+              "direction": "LEFT_TO_RIGHT",
+              "spacingMode": "NEVER_COLLAPSE",
+              "spaceAbove": {
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "borderBetween": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderTop": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderBottom": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderLeft": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "borderRight": {
+                "color": {},
+                "width": {
+                  "unit": "PT"
+                },
+                "padding": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID"
+              },
+              "indentFirstLine": {
+                "unit": "PT"
+              },
+              "indentStart": {
+                "unit": "PT"
+              },
+              "indentEnd": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": false,
+              "keepWithNext": false,
+              "avoidWidowAndOrphan": true,
+              "shading": {
+                "backgroundColor": {}
+              },
+              "pageBreakBefore": false
+            }
+          },
+          {
+            "namedStyleType": "HEADING_1",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 17,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_2",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 12,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_3",
+            "textStyle": {
+              "bold": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.30980393,
+                    "green": 0.5058824,
+                    "blue": 0.7411765
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_4",
+            "textStyle": {
+              "bold": true,
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.30980393,
+                    "green": 0.5058824,
+                    "blue": 0.7411765
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_5",
+            "textStyle": {
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.14117648,
+                    "green": 0.24705882,
+                    "blue": 0.38039216
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "HEADING_6",
+            "textStyle": {
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {
+                    "red": 0.14117648,
+                    "green": 0.24705882,
+                    "blue": 0.38039216
+                  }
+                }
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Calibri",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "unit": "PT"
+              },
+              "keepLinesTogether": true,
+              "keepWithNext": true
+            }
+          },
+          {
+            "namedStyleType": "TITLE",
+            "textStyle": {
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 24,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "lineSpacing": 100,
+              "direction": "LEFT_TO_RIGHT",
+              "spacingMode": "NEVER_COLLAPSE",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              }
+            }
+          },
+          {
+            "namedStyleType": "SUBTITLE",
+            "textStyle": {
+              "italic": true,
+              "foregroundColor": {
+                "color": {
+                  "rgbColor": {}
+                }
+              },
+              "fontSize": {
+                "magnitude": 11,
+                "unit": "PT"
+              },
+              "weightedFontFamily": {
+                "fontFamily": "Arial",
+                "weight": 400
+              }
+            },
+            "paragraphStyle": {
+              "namedStyleType": "NORMAL_TEXT",
+              "direction": "LEFT_TO_RIGHT",
+              "spaceAbove": {
+                "magnitude": 10,
+                "unit": "PT"
+              },
+              "spaceBelow": {
+                "magnitude": 7,
+                "unit": "PT"
+              }
+            }
+          }
+        ]
+      },
+      "suggestedNamedStylesChanges": null,
+      "lists": {
+        "kix.list.1": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.2": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.3": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.4": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphSymbol": "●",
+                "glyphFormat": "%0",
+                "indentFirstLine": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "textStyle": {
+                  "weightedFontFamily": {
+                    "fontFamily": "Noto Sans Symbols",
+                    "weight": 400
+                  }
+                },
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.5": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.6": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 18,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.7": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 36,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.8": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 54,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        },
+        "kix.list.9": {
+          "listProperties": {
+            "nestingLevels": [
+              {
+                "bulletAlignment": "START",
+                "glyphType": "DECIMAL",
+                "glyphFormat": "%0.",
+                "indentFirstLine": {
+                  "magnitude": 72,
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "magnitude": 90,
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              },
+              {
+                "bulletAlignment": "START",
+                "glyphType": "NONE",
+                "indentFirstLine": {
+                  "unit": "PT"
+                },
+                "indentStart": {
+                  "unit": "PT"
+                },
+                "textStyle": {},
+                "startNumber": 1
+              }
+            ]
+          }
+        }
+      },
+      "dropdownDefinitions": null,
+      "namedRanges": null,
+      "inlineObjects": {
+        "kix.hdxgc9ix6erp": {
+          "objectId": "kix.hdxgc9ix6erp",
+          "inlineObjectProperties": {
+            "embeddedObject": {
+              "imageProperties": {
+                "contentUri": "https://docs.google.com/docs-images-rt/ALKuztbqZMBOTJDA-sIpjP5T32E8b8Q00V468TfinjlAT_0JQ0NPmlE6ZDVK6CBkg-9Ss97Z-N8dy-NlVHyfGkBB0WTeeC6fp3i2TDFUQZDGxcu_kLkhQJSFKdYKwkcpvUIdZGfYAs8q1bEqfoekJJqfczi8Btl1fixJ359q7R57OnzQpVCAa4A=s2048?key=4i6Xp0ECLkrPKdYK20tFbQ",
+                "sourceUri": "https://sdmntprukwest.oaiusercontent.com/files/00000000-672c-8243-8ce7-ba3f0eee7f5e/raw?se=2026-10-26T14%3A42%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=5f324550-4215-9b5b-a263-77b43a28c8c0&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-26T05%3A26%3A08Z&ske=2026-10-27T05%3A26%3A08Z&sks=b&skv=2026-02-06&sig=TpgYOAv2Hnf34Lzcm7dEsCs2TYjH8B5Ui%2BxgT51Bguk%3D",
+                "cropProperties": {}
+              },
+              "embeddedObjectBorder": {
+                "color": {
+                  "color": {
+                    "rgbColor": {}
+                  }
+                },
+                "width": {
+                  "unit": "PT"
+                },
+                "dashStyle": "SOLID",
+                "propertyState": "NOT_RENDERED"
+              },
+              "size": {
+                "height": {
+                  "magnitude": 265.2,
+                  "unit": "PT"
+                },
+                "width": {
+                  "magnitude": 468,
+                  "unit": "PT"
+                }
+              },
+              "marginTop": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginBottom": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginRight": {
+                "magnitude": 9,
+                "unit": "PT"
+              },
+              "marginLeft": {
+                "magnitude": 9,
+                "unit": "PT"
+              }
+            }
+          }
+        }
+      },
+      "positionedObjects": null,
+      "documentId": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+      "document_url": "https://docs.google.com/document/d/1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og"
+    }
+  ],
+  "document_url": "https://docs.google.com/document/d/1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og"
+}

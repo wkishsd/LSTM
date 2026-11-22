@@ -1,0 +1,26 @@
+{
+  "verification": {
+    "anchors": 35,
+    "uncommentedRestored": 30,
+    "nonCommentMismatches": [],
+    "commentedMismatches": [],
+    "onlyChangedAnchors": [
+      16,
+      25,
+      26,
+      28,
+      33
+    ],
+    "tableFormattingPreserved": true,
+    "main": 18,
+    "additional": 17
+  },
+  "commentedDescriptions": {
+    "16": "Разница DI− − DI+ пересекает 10 пунктов вверх: на предыдущей M5 разница ≤10, на текущей >10.",
+    "25": "ATR пересекает вверх 75-й процентиль своих предыдущих 80 значений M5; DI− > DI+.",
+    "26": "Объем впервые >2 × средний объем предыдущих 20 свечей M5; DI− > DI+.",
+    "28": "RSI опускается ниже минимума своих предыдущих 10 значений; RSI <50 только на текущей M5. Для предыдущих 10 значений ограничения <50 нет.",
+    "33": "Прирост DI− за одну свечу M5 впервые >5 пунктов; DI− > DI+."
+  },
+  "revision": "AHj4eMQliWP3murCmfP9tBIjNvxaCp6kngHHuEa76PD3Ld4yPVAPHMM7AP20VUE7AlHdgzIPjQLCBcR2Wq40"
+}

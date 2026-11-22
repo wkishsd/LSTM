@@ -1,0 +1,3224 @@
+{
+  "source": {
+    "dataset": "Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd",
+    "signals": 105545,
+    "sha256": {
+      "timeline": "99f718f889f6818fc54b1a294418b6c4e43fb184450a489fd8422f3c2df80284",
+      "entries": "ee4b638455685f928f9719ba6e77dc197506b5d25315a65c62a30545098fc833",
+      "manifest": "7d9aefe006b63e585975ccdaa917432dfcc5588c0fc4b3a9f393c0cc1c909f5f"
+    },
+    "purged": 195
+  },
+  "splits": {
+    "train": {
+      "count": 73790,
+      "winner_rate": 0.3109093373085784,
+      "first_signal_utc": "2023-11-12T21:35:00+00:00",
+      "last_signal_utc": "2025-12-22T17:35:00+00:00",
+      "median_price_usd": 2991.84912109375,
+      "m5_atr": {
+        "ap": 0.3394170329086084,
+        "week_quota_calls": 4691,
+        "week_quota_winners": 1549,
+        "week_quota_expected_winners": 1458.2411231325693,
+        "weeks_above_quota_baseline": 54
+      }
+    },
+    "validation": {
+      "count": 15728,
+      "winner_rate": 0.1964649033570702,
+      "first_signal_utc": "2025-12-23T17:40:00+00:00",
+      "last_signal_utc": "2026-06-02T12:20:00+00:00",
+      "median_price_usd": 2218.400390625,
+      "m5_atr": {
+        "ap": 0.24780545654075667,
+        "week_quota_calls": 1000,
+        "week_quota_winners": 221,
+        "week_quota_expected_winners": 196.41777461489386,
+        "weeks_above_quota_baseline": 13
+      },
+      "paired_ap_bootstrap": {
+        "blocks": 13,
+        "resamples": 2000,
+        "difference_intervals": {
+          "original last.pt minus original best.pt": [
+            0.00632429296770937,
+            0.01746357454964767,
+            0.026687203047600243
+          ],
+          "M5 ATR minus original last.pt": [
+            0.00327594386450647,
+            0.025072058297138974,
+            0.04168690488824181
+          ],
+          "lr-1e-5 best.pt minus original last.pt": [
+            -0.003295826952488184,
+            0.01861161414052516,
+            0.043478769424173135
+          ],
+          "lr-1e-5-relative-price best.pt minus original last.pt": [
+            -0.00037535636044227897,
+            0.020752388543306036,
+            0.0362405649707943
+          ],
+          "lr-1e-5-30m best.pt minus original last.pt": [
+            -0.010427082337035664,
+            0.013225170099680328,
+            0.03248950141959712
+          ],
+          "M5 ATR minus lr-1e-5 best.pt": [
+            -0.009358361203393652,
+            0.005895787200720454,
+            0.019885362269204555
+          ],
+          "M5 ATR minus lr-1e-5-relative-price best.pt": [
+            -0.007163268193461889,
+            0.004022909146802714,
+            0.015115065281775017
+          ],
+          "M5 ATR minus lr-1e-5-30m best.pt": [
+            -0.0028599156696608153,
+            0.011272328219892255,
+            0.026308932392839945
+          ]
+        }
+      }
+    },
+    "test": {
+      "count": 15832,
+      "winner_rate": 0.15670793329964627,
+      "first_signal_utc": "2026-06-03T12:20:00+00:00",
+      "last_signal_utc": "2026-11-12T20:55:00+00:00",
+      "median_price_usd": 2124.350830078125,
+      "m5_atr": {
+        "ap": 0.1986681530663115,
+        "week_quota_calls": 1009,
+        "week_quota_winners": 242,
+        "week_quota_expected_winners": 158.09207431489483,
+        "weeks_above_quota_baseline": 15
+      },
+      "paired_ap_bootstrap": {
+        "blocks": 12,
+        "resamples": 2000,
+        "difference_intervals": {
+          "original last.pt minus original best.pt": [
+            -0.004630211471674544,
+            0.008177305888960401,
+            0.022836667203196902
+          ],
+          "M5 ATR minus original last.pt": [
+            0.003945216957042515,
+            0.025409642050294473,
+            0.048126162275154344
+          ],
+          "lr-1e-5 best.pt minus original last.pt": [
+            -0.007337418267709768,
+            0.007184087795827868,
+            0.026927206968063448
+          ],
+          "lr-1e-5-relative-price best.pt minus original last.pt": [
+            -0.006383844131288801,
+            0.008714928944946757,
+            0.029270211727510816
+          ],
+          "lr-1e-5-30m best.pt minus original last.pt": [
+            -0.002097623097385715,
+            0.012189378696263825,
+            0.027484415819808438
+          ],
+          "M5 ATR minus lr-1e-5 best.pt": [
+            0.004437497620768294,
+            0.017301932267339643,
+            0.03163737127082545
+          ],
+          "M5 ATR minus lr-1e-5-relative-price best.pt": [
+            9.680233891740395e-05,
+            0.01626884825600089,
+            0.030667958356658278
+          ],
+          "M5 ATR minus lr-1e-5-30m best.pt": [
+            -0.0024979867831688603,
+            0.013301558581679737,
+            0.029320060981319677
+          ]
+        }
+      }
+    }
+  },
+  "original": {
+    "epochs": 320,
+    "selected_epoch": 47,
+    "highest_ap_epoch": 314,
+    "learning_rate": 1e-07,
+    "config_changes": {},
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.7150730475757096,
+        "ap": 0.18631493941886418,
+        "loss": 0.7418036251684171,
+        "calls": 15614,
+        "excess_winners": -1.603001017293998
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.6962230754409126,
+        "ap": 0.19223992184537178,
+        "loss": 0.7157773342768028,
+        "calls": 13064,
+        "excess_winners": -40.61749745676501
+      },
+      {
+        "epoch": 47,
+        "train_loss": 0.6698922609407285,
+        "ap": 0.20342203059223873,
+        "loss": 0.6601074409509118,
+        "calls": 3808,
+        "excess_winners": 58.8616480162767
+      },
+      {
+        "epoch": 48,
+        "train_loss": 0.6681739049934246,
+        "ap": 0.20373342946791045,
+        "loss": 0.6592343991673489,
+        "calls": 3699,
+        "excess_winners": 58.27632248219736
+      },
+      {
+        "epoch": 100,
+        "train_loss": 0.6600866363985233,
+        "ap": 0.21152142001936833,
+        "loss": 0.6287395231963901,
+        "calls": 1165,
+        "excess_winners": 53.118387589013224
+      },
+      {
+        "epoch": 200,
+        "train_loss": 0.6529592555379267,
+        "ap": 0.21689239564318477,
+        "loss": 0.6108668218551551,
+        "calls": 335,
+        "excess_winners": 9.184257375381485
+      },
+      {
+        "epoch": 314,
+        "train_loss": 0.6492721974518519,
+        "ap": 0.22115967402863207,
+        "loss": 0.6017504018539087,
+        "calls": 141,
+        "excess_winners": 5.298448626653102
+      },
+      {
+        "epoch": 320,
+        "train_loss": 0.6478758840028438,
+        "ap": 0.2211529948968327,
+        "loss": 0.6008219125312075,
+        "calls": 138,
+        "excess_winners": 3.8878433367243135
+      }
+    ],
+    "checkpoints": {
+      "best.pt": {
+        "epoch": 47,
+        "sha256": "cdd207a4e2082107edd9199e1f85f4018994a732c3269b4f8a86317777edec4d",
+        "optimizer_steps": 1739,
+        "validation": {
+          "ap": 0.20342203059223896,
+          "week_quota_calls": 1000,
+          "week_quota_winners": 208,
+          "week_quota_expected_winners": 196.41777461489386,
+          "weeks_above_quota_baseline": 14,
+          "calls_at_50_percent": 3808,
+          "winners_at_50_percent": 807,
+          "log_loss": 0.6601074691290464,
+          "known_wave6_exit_envelope": {
+            "changeable_rows": 31,
+            "best_possible_ap": 0.20648769820011953
+          }
+        },
+        "test": {
+          "ap": 0.1645678256204758,
+          "week_quota_calls": 1009,
+          "week_quota_winners": 183,
+          "week_quota_expected_winners": 158.09207431489483,
+          "weeks_above_quota_baseline": 13,
+          "calls_at_50_percent": 4186,
+          "winners_at_50_percent": 715,
+          "log_loss": 0.6543900657205147,
+          "known_wave6_exit_envelope": {
+            "changeable_rows": 57,
+            "best_possible_ap": 0.16966821573315638
+          }
+        },
+        "train": {
+          "ap": 0.328764269784948,
+          "week_quota_calls": 4691,
+          "week_quota_winners": 1670,
+          "week_quota_expected_winners": 1458.2411231325693,
+          "weeks_above_quota_baseline": 74,
+          "calls_at_50_percent": 5927,
+          "winners_at_50_percent": 2035,
+          "log_loss": 0.6536676806120203
+        }
+      },
+      "last.pt": {
+        "epoch": 320,
+        "sha256": "11d5b5a545458ad752b264aa7bd67a8a2c1439cecd8c580bd9a27dfb2bb0cf8c",
+        "optimizer_steps": 11840,
+        "validation": {
+          "ap": 0.22115299489683332,
+          "week_quota_calls": 1000,
+          "week_quota_winners": 221,
+          "week_quota_expected_winners": 196.41777461489386,
+          "weeks_above_quota_baseline": 13,
+          "calls_at_50_percent": 138,
+          "winners_at_50_percent": 31,
+          "log_loss": 0.6008219245487877,
+          "known_wave6_exit_envelope": {
+            "changeable_rows": 31,
+            "best_possible_ap": 0.22506269970918258
+          }
+        },
+        "test": {
+          "ap": 0.17313268869876786,
+          "week_quota_calls": 1009,
+          "week_quota_winners": 171,
+          "week_quota_expected_winners": 158.09207431489483,
+          "weeks_above_quota_baseline": 12,
+          "calls_at_50_percent": 144,
+          "winners_at_50_percent": 10,
+          "log_loss": 0.570590153383414,
+          "known_wave6_exit_envelope": {
+            "changeable_rows": 57,
+            "best_possible_ap": 0.1788011273947862
+          }
+        },
+        "train": {
+          "ap": 0.3659280565580474,
+          "week_quota_calls": 4691,
+          "week_quota_winners": 1949,
+          "week_quota_expected_winners": 1458.2411231325693,
+          "weeks_above_quota_baseline": 89,
+          "calls_at_50_percent": 839,
+          "winners_at_50_percent": 400,
+          "log_loss": 0.6271228996347922
+        }
+      }
+    }
+  },
+  "controls": {
+    "lr-1e-5": {
+      "epochs": 48,
+      "selected_epoch": 40,
+      "highest_ap_epoch": 40,
+      "learning_rate": 1e-05,
+      "config_changes": {
+        "epochs": [
+          320,
+          48
+        ],
+        "learning_rate": [
+          1e-07,
+          1e-05
+        ],
+        "selection": [
+          "profitable_above_baseline",
+          "average_precision"
+        ]
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6750813259634485,
+          "ap": 0.21554296635569176,
+          "loss": 0.6190949324916363,
+          "calls": 922,
+          "excess_winners": 43.859359104781284
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.6388079955642795,
+          "ap": 0.23165679135500397,
+          "loss": 0.5802645585665503,
+          "calls": 153,
+          "excess_winners": 10.94086978636826
+        },
+        {
+          "epoch": 40,
+          "train_loss": 0.6164990097417598,
+          "ap": 0.24120647594802644,
+          "loss": 0.5571366188970005,
+          "calls": 244,
+          "excess_winners": 27.062563580874873
+        },
+        {
+          "epoch": 47,
+          "train_loss": 0.6123109047709159,
+          "ap": 0.2370032502586668,
+          "loss": 0.5560311551981758,
+          "calls": 155,
+          "excess_winners": 20.54793997965412
+        },
+        {
+          "epoch": 48,
+          "train_loss": 0.6109630083275255,
+          "ap": 0.23671818942212172,
+          "loss": 0.5590405375038255,
+          "calls": 192,
+          "excess_winners": 13.278738555442523
+        }
+      ],
+      "checkpoints": {
+        "best.pt": {
+          "epoch": 40,
+          "sha256": "3c1ac94e2a9b9d85790a44d7da8ba53fbcfdbd0217f79f29810412abd527313f",
+          "optimizer_steps": 1480,
+          "validation": {
+            "ap": 0.24120647594802602,
+            "week_quota_calls": 1000,
+            "week_quota_winners": 222,
+            "week_quota_expected_winners": 196.41777461489386,
+            "weeks_above_quota_baseline": 15,
+            "calls_at_50_percent": 244,
+            "winners_at_50_percent": 75,
+            "log_loss": 0.5571366370551877
+          },
+          "test": {
+            "ap": 0.18101719170392355,
+            "week_quota_calls": 1009,
+            "week_quota_winners": 176,
+            "week_quota_expected_winners": 158.09207431489483,
+            "weeks_above_quota_baseline": 13,
+            "calls_at_50_percent": 17,
+            "winners_at_50_percent": 3,
+            "log_loss": 0.5173464917860935
+          }
+        },
+        "last.pt": {
+          "epoch": 48,
+          "sha256": "3df306d9822d1651fa101143521683a7e95d01c9bc3981892262efe772b2d184",
+          "optimizer_steps": 1776,
+          "validation": {
+            "ap": 0.23671818942212258,
+            "week_quota_calls": 1000,
+            "week_quota_winners": 229,
+            "week_quota_expected_winners": 196.41777461489386,
+            "weeks_above_quota_baseline": 14,
+            "calls_at_50_percent": 192,
+            "winners_at_50_percent": 51,
+            "log_loss": 0.5590405340777316
+          },
+          "test": {
+            "ap": 0.18098883955621556,
+            "week_quota_calls": 1009,
+            "week_quota_winners": 180,
+            "week_quota_expected_winners": 158.09207431489483,
+            "weeks_above_quota_baseline": 13,
+            "calls_at_50_percent": 26,
+            "winners_at_50_percent": 6,
+            "log_loss": 0.5213703758647706
+          }
+        }
+      }
+    },
+    "lr-1e-5-relative-price": {
+      "epochs": 48,
+      "selected_epoch": 6,
+      "highest_ap_epoch": 6,
+      "learning_rate": 1e-05,
+      "config_changes": {
+        "feature_input": [
+          "exported",
+          "relative_price"
+        ],
+        "epochs": [
+          320,
+          48
+        ],
+        "learning_rate": [
+          1e-07,
+          1e-05
+        ],
+        "selection": [
+          "profitable_above_baseline",
+          "average_precision"
+        ]
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6746083300988321,
+          "ap": 0.21311879765663894,
+          "loss": 0.6191010789250309,
+          "calls": 1327,
+          "excess_winners": 60.29107324516785
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.6458457314672469,
+          "ap": 0.24248885269434348,
+          "loss": 0.577072598744991,
+          "calls": 314,
+          "excess_winners": 42.31002034587996
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.6388764179759369,
+          "ap": 0.23588006016376536,
+          "loss": 0.5610801878926228,
+          "calls": 116,
+          "excess_winners": 22.21007121057986
+        },
+        {
+          "epoch": 47,
+          "train_loss": 0.6116638649897712,
+          "ap": 0.23348505338212475,
+          "loss": 0.5482519407844737,
+          "calls": 158,
+          "excess_winners": 8.95854526958291
+        },
+        {
+          "epoch": 48,
+          "train_loss": 0.6101015421219482,
+          "ap": 0.235180811666757,
+          "loss": 0.552543692889558,
+          "calls": 203,
+          "excess_winners": 9.117624618514752
+        }
+      ],
+      "checkpoints": {
+        "best.pt": {
+          "epoch": 6,
+          "sha256": "e76508bdb97d6fb45feb8bc28a488c65db6c8b271fa3aace399c181201790d71",
+          "optimizer_steps": 222,
+          "validation": {
+            "ap": 0.2424888526943436,
+            "week_quota_calls": 1000,
+            "week_quota_winners": 230,
+            "week_quota_expected_winners": 196.41777461489386,
+            "weeks_above_quota_baseline": 15,
+            "calls_at_50_percent": 314,
+            "winners_at_50_percent": 104,
+            "log_loss": 0.5770726063086058
+          },
+          "test": {
+            "ap": 0.1828535722540713,
+            "week_quota_calls": 1009,
+            "week_quota_winners": 182,
+            "week_quota_expected_winners": 158.09207431489483,
+            "weeks_above_quota_baseline": 11,
+            "calls_at_50_percent": 200,
+            "winners_at_50_percent": 44,
+            "log_loss": 0.5507246109624382
+          }
+        },
+        "last.pt": {
+          "epoch": 48,
+          "sha256": "6a0c1351ca54ad4289e0b7690405530143203529250d2443e8911d01abfe7156",
+          "optimizer_steps": 1776,
+          "validation": {
+            "ap": 0.23518081166675756,
+            "week_quota_calls": 1000,
+            "week_quota_winners": 220,
+            "week_quota_expected_winners": 196.41777461489386,
+            "weeks_above_quota_baseline": 15,
+            "calls_at_50_percent": 203,
+            "winners_at_50_percent": 49,
+            "log_loss": 0.5525436929503336
+          },
+          "test": {
+            "ap": 0.19295466429411795,
+            "week_quota_calls": 1009,
+            "week_quota_winners": 190,
+            "week_quota_expected_winners": 158.09207431489483,
+            "weeks_above_quota_baseline": 16,
+            "calls_at_50_percent": 78,
+            "winners_at_50_percent": 29,
+            "log_loss": 0.5136790780303196
+          }
+        }
+      }
+    },
+    "lr-1e-5-30m": {
+      "epochs": 48,
+      "selected_epoch": 48,
+      "highest_ap_epoch": 48,
+      "learning_rate": 1e-05,
+      "config_changes": {
+        "epochs": [
+          320,
+          48
+        ],
+        "lookback_minutes": [
+          1410,
+          30
+        ],
+        "learning_rate": [
+          1e-07,
+          1e-05
+        ],
+        "selection": [
+          "profitable_above_baseline",
+          "average_precision"
+        ]
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6698913406818471,
+          "ap": 0.19622025494657155,
+          "loss": 0.6517875953099007,
+          "calls": 3,
+          "excess_winners": 0.4106052899287894
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.6383790014720347,
+          "ap": 0.22643721530187746,
+          "loss": 0.5913868159631747,
+          "calls": 0,
+          "excess_winners": 0.0
+        },
+        {
+          "epoch": 47,
+          "train_loss": 0.6285127004951557,
+          "ap": 0.2350218091396646,
+          "loss": 0.5575409124123116,
+          "calls": 0,
+          "excess_winners": 0.0
+        },
+        {
+          "epoch": 48,
+          "train_loss": 0.6293375118619818,
+          "ap": 0.23524282767831392,
+          "loss": 0.55682999350411,
+          "calls": 0,
+          "excess_winners": 0.0
+        }
+      ],
+      "checkpoints": {
+        "best.pt": {
+          "epoch": 48,
+          "sha256": "bed6b0ccdca16d2a173e6fac13c81d8b2a25abdccb5d342ae63fb1620f1fc7b2",
+          "optimizer_steps": 1776,
+          "validation": {
+            "ap": 0.23524282767831453,
+            "week_quota_calls": 1000,
+            "week_quota_winners": 211,
+            "week_quota_expected_winners": 196.41777461489386,
+            "weeks_above_quota_baseline": 12,
+            "calls_at_50_percent": 0,
+            "winners_at_50_percent": 0,
+            "log_loss": 0.5568300033158752
+          },
+          "test": {
+            "ap": 0.18553688573475946,
+            "week_quota_calls": 1009,
+            "week_quota_winners": 195,
+            "week_quota_expected_winners": 158.09207431489483,
+            "weeks_above_quota_baseline": 15,
+            "calls_at_50_percent": 0,
+            "winners_at_50_percent": 0,
+            "log_loss": 0.5267173007483458
+          }
+        },
+        "last.pt": {
+          "epoch": 48,
+          "sha256": "9f43a9807432cdd1fac16c77cde47b13a6acd5445c09dd2c6a04fec65acdfffd",
+          "optimizer_steps": 1776,
+          "validation": {
+            "ap": 0.23524282767831453,
+            "week_quota_calls": 1000,
+            "week_quota_winners": 211,
+            "week_quota_expected_winners": 196.41777461489386,
+            "weeks_above_quota_baseline": 12,
+            "calls_at_50_percent": 0,
+            "winners_at_50_percent": 0,
+            "log_loss": 0.5568300033158752
+          },
+          "test": {
+            "ap": 0.18553688573475946,
+            "week_quota_calls": 1009,
+            "week_quota_winners": 195,
+            "week_quota_expected_winners": 158.09207431489483,
+            "weeks_above_quota_baseline": 15,
+            "calls_at_50_percent": 0,
+            "winners_at_50_percent": 0,
+            "log_loss": 0.5267173007483458
+          }
+        }
+      }
+    }
+  },
+  "adam": {
+    "checked_parameters": 2437074,
+    "learning_rate": 1e-07,
+    "checked_batch_rows": 2048,
+    "step": 11841,
+    "max_expected_update_rounding_error": 7.269946145083139e-09,
+    "max_head_gradient_error": 1.4491337841510132e-08,
+    "max_observed_parameter_update": 2.56288331001997e-07
+  },
+  "original_curve": [
+    {
+      "epoch": 1,
+      "train_loss": 0.7150730475757096,
+      "ap": 0.18631493941886418,
+      "loss": 0.7418036251684171,
+      "calls": 15614,
+      "excess_winners": -1.603001017293998
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.7133630982112846,
+      "ap": 0.18663921491848406,
+      "loss": 0.7391982225896383,
+      "calls": 15555,
+      "excess_winners": -2.0115717192268567
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.7109880579860411,
+      "ap": 0.18732221886498776,
+      "loss": 0.7370057843345107,
+      "calls": 15475,
+      "excess_winners": -5.294379450661241
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.7089120358418507,
+      "ap": 0.18804147397774026,
+      "loss": 0.7345864324700675,
+      "calls": 15390,
+      "excess_winners": -6.594862665310274
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.7071041775276415,
+      "ap": 0.1890104744702431,
+      "loss": 0.7320846606610629,
+      "calls": 15217,
+      "excess_winners": -6.606434384537131
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.7054123554227798,
+      "ap": 0.18999657306888537,
+      "loss": 0.7299583478473574,
+      "calls": 15067,
+      "excess_winners": -15.136698880976603
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.7038144557824026,
+      "ap": 0.19024768059869634,
+      "loss": 0.7275918303161768,
+      "calls": 14862,
+      "excess_winners": -27.861393692777213
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.7016930792870957,
+      "ap": 0.19073836043038606,
+      "loss": 0.725255427379938,
+      "calls": 14607,
+      "excess_winners": -30.762843336724313
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.7005032528301357,
+      "ap": 0.1908731515757823,
+      "loss": 0.7228020327743655,
+      "calls": 14282,
+      "excess_winners": -31.911749745676502
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.6987907824146019,
+      "ap": 0.19137616099854965,
+      "loss": 0.7203906089340318,
+      "calls": 13849,
+      "excess_winners": -27.842446592065105
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.6979193380748471,
+      "ap": 0.19192794344790276,
+      "loss": 0.7180355162732114,
+      "calls": 13495,
+      "excess_winners": -34.29387080366226
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.6962230754409126,
+      "ap": 0.19223992184537178,
+      "loss": 0.7157773342768028,
+      "calls": 13064,
+      "excess_winners": -40.61749745676501
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.6942492577389563,
+      "ap": 0.1924348549935011,
+      "loss": 0.7131661454998222,
+      "calls": 12559,
+      "excess_winners": -50.402721261444555
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.6927956182825192,
+      "ap": 0.1927949510044857,
+      "loss": 0.7107324468034452,
+      "calls": 12140,
+      "excess_winners": -33.08392675483215
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.6922129161975978,
+      "ap": 0.19303296458292502,
+      "loss": 0.7083728571753051,
+      "calls": 11711,
+      "excess_winners": -36.800483214649034
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.6904272292748846,
+      "ap": 0.19361991566151457,
+      "loss": 0.7062145338781246,
+      "calls": 11270,
+      "excess_winners": -21.15946083418108
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.6892222961430822,
+      "ap": 0.19406622438728918,
+      "loss": 0.7041076253777482,
+      "calls": 10815,
+      "excess_winners": -23.76792980671414
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.6881296478404733,
+      "ap": 0.19504603744165985,
+      "loss": 0.7020908774218748,
+      "calls": 10438,
+      "excess_winners": -11.700661241098677
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.6874090074410459,
+      "ap": 0.19574244286191536,
+      "loss": 0.6999835735783815,
+      "calls": 10007,
+      "excess_winners": -8.024287894201425
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.6846854579272608,
+      "ap": 0.19614457954805328,
+      "loss": 0.6978113808321443,
+      "calls": 9592,
+      "excess_winners": 9.508646998982705
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.6844311564575125,
+      "ap": 0.1962174910735819,
+      "loss": 0.6957025011946444,
+      "calls": 9178,
+      "excess_winners": 16.845116988809767
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.6839095286583736,
+      "ap": 0.19650220072712093,
+      "loss": 0.693736601761132,
+      "calls": 8857,
+      "excess_winners": 22.9103509664293
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.6835760988150691,
+      "ap": 0.19701129026048322,
+      "loss": 0.6919558401752949,
+      "calls": 8500,
+      "excess_winners": 28.048321464903356
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.6829857339169505,
+      "ap": 0.19750288036308586,
+      "loss": 0.6901208429710062,
+      "calls": 8221,
+      "excess_winners": 29.862029501525942
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.6816667517505537,
+      "ap": 0.1976375145313097,
+      "loss": 0.6884739471718836,
+      "calls": 7950,
+      "excess_winners": 34.104018311291966
+    },
+    {
+      "epoch": 26,
+      "train_loss": 0.6814979601316714,
+      "ap": 0.19757934776259192,
+      "loss": 0.6867574176249888,
+      "calls": 7658,
+      "excess_winners": 28.47177009155646
+    },
+    {
+      "epoch": 27,
+      "train_loss": 0.6798549851309496,
+      "ap": 0.19792932813223818,
+      "loss": 0.6851773024939326,
+      "calls": 7393,
+      "excess_winners": 30.53496948118006
+    },
+    {
+      "epoch": 28,
+      "train_loss": 0.6796174597572159,
+      "ap": 0.19765953672049438,
+      "loss": 0.6832601150927927,
+      "calls": 7056,
+      "excess_winners": 23.743641912512714
+    },
+    {
+      "epoch": 29,
+      "train_loss": 0.6780877558434457,
+      "ap": 0.19787023009855925,
+      "loss": 0.6816096716349147,
+      "calls": 6793,
+      "excess_winners": 36.41391149542218
+    },
+    {
+      "epoch": 30,
+      "train_loss": 0.6768309737466702,
+      "ap": 0.19850480218472485,
+      "loss": 0.6803245588091116,
+      "calls": 6583,
+      "excess_winners": 41.67154120040692
+    },
+    {
+      "epoch": 31,
+      "train_loss": 0.6762402827588826,
+      "ap": 0.19886104466947785,
+      "loss": 0.6789367144372189,
+      "calls": 6366,
+      "excess_winners": 47.30442522889115
+    },
+    {
+      "epoch": 32,
+      "train_loss": 0.6760550994814242,
+      "ap": 0.19909405642883635,
+      "loss": 0.6775664887860008,
+      "calls": 6156,
+      "excess_winners": 39.56205493387589
+    },
+    {
+      "epoch": 33,
+      "train_loss": 0.676135751762951,
+      "ap": 0.19947575005453472,
+      "loss": 0.676210015436155,
+      "calls": 5937,
+      "excess_winners": 45.58786876907426
+    },
+    {
+      "epoch": 34,
+      "train_loss": 0.6756208733824763,
+      "ap": 0.20003530941562217,
+      "loss": 0.6750583021711115,
+      "calls": 5784,
+      "excess_winners": 39.646998982706
+    },
+    {
+      "epoch": 35,
+      "train_loss": 0.6740351048164016,
+      "ap": 0.2002417912737803,
+      "loss": 0.6735980087476248,
+      "calls": 5574,
+      "excess_winners": 41.904628687690746
+    },
+    {
+      "epoch": 36,
+      "train_loss": 0.6746620593976969,
+      "ap": 0.2004119782975012,
+      "loss": 0.6724047831213243,
+      "calls": 5398,
+      "excess_winners": 46.4824516785351
+    },
+    {
+      "epoch": 37,
+      "train_loss": 0.6730909555645586,
+      "ap": 0.20046507016037238,
+      "loss": 0.6713025328586691,
+      "calls": 5251,
+      "excess_winners": 44.36279247202442
+    },
+    {
+      "epoch": 38,
+      "train_loss": 0.6733635511981841,
+      "ap": 0.20082127924965895,
+      "loss": 0.6701157247668487,
+      "calls": 5089,
+      "excess_winners": 45.19010681586979
+    },
+    {
+      "epoch": 39,
+      "train_loss": 0.67239791606238,
+      "ap": 0.20073272644128523,
+      "loss": 0.6687327745244559,
+      "calls": 4892,
+      "excess_winners": 50.893692777212614
+    },
+    {
+      "epoch": 40,
+      "train_loss": 0.671743344785657,
+      "ap": 0.2010116358957729,
+      "loss": 0.6675797167290021,
+      "calls": 4724,
+      "excess_winners": 48.89979654120041
+    },
+    {
+      "epoch": 41,
+      "train_loss": 0.671999506673155,
+      "ap": 0.20141854144193594,
+      "loss": 0.6665148836307584,
+      "calls": 4600,
+      "excess_winners": 57.26144455747711
+    },
+    {
+      "epoch": 42,
+      "train_loss": 0.6713697433714008,
+      "ap": 0.20187637358011543,
+      "loss": 0.6652028282928079,
+      "calls": 4433,
+      "excess_winners": 51.07108341810783
+    },
+    {
+      "epoch": 43,
+      "train_loss": 0.6712876499854286,
+      "ap": 0.20227119980905145,
+      "loss": 0.6641668570005276,
+      "calls": 4305,
+      "excess_winners": 52.218591047812815
+    },
+    {
+      "epoch": 44,
+      "train_loss": 0.6705318095755457,
+      "ap": 0.20272884089884896,
+      "loss": 0.6632868611800464,
+      "calls": 4177,
+      "excess_winners": 53.366098677517805
+    },
+    {
+      "epoch": 45,
+      "train_loss": 0.6703425174645412,
+      "ap": 0.20296170238313216,
+      "loss": 0.662241031109741,
+      "calls": 4034,
+      "excess_winners": 57.46057985757884
+    },
+    {
+      "epoch": 46,
+      "train_loss": 0.6696264921269905,
+      "ap": 0.20322919486256893,
+      "loss": 0.6611676773365249,
+      "calls": 3926,
+      "excess_winners": 57.67878942014242
+    },
+    {
+      "epoch": 47,
+      "train_loss": 0.6698922609407285,
+      "ap": 0.20342203059223873,
+      "loss": 0.6601074409509118,
+      "calls": 3808,
+      "excess_winners": 58.8616480162767
+    },
+    {
+      "epoch": 48,
+      "train_loss": 0.6681739049934246,
+      "ap": 0.20373342946791045,
+      "loss": 0.6592343991673489,
+      "calls": 3699,
+      "excess_winners": 58.27632248219736
+    },
+    {
+      "epoch": 49,
+      "train_loss": 0.6672924808183487,
+      "ap": 0.20423053496164417,
+      "loss": 0.6583746177497739,
+      "calls": 3588,
+      "excess_winners": 57.08392675483215
+    },
+    {
+      "epoch": 50,
+      "train_loss": 0.6678756323945055,
+      "ap": 0.2044818999488522,
+      "loss": 0.6573156148710668,
+      "calls": 3485,
+      "excess_winners": 50.319811800610374
+    },
+    {
+      "epoch": 51,
+      "train_loss": 0.667225760252984,
+      "ap": 0.2047439593551673,
+      "loss": 0.6565155834414346,
+      "calls": 3390,
+      "excess_winners": 49.98397761953205
+    },
+    {
+      "epoch": 52,
+      "train_loss": 0.6669157933826966,
+      "ap": 0.20501111783783701,
+      "loss": 0.6555553401838363,
+      "calls": 3279,
+      "excess_winners": 48.79158189216684
+    },
+    {
+      "epoch": 53,
+      "train_loss": 0.6685216741181272,
+      "ap": 0.205163883414449,
+      "loss": 0.654549908844161,
+      "calls": 3183,
+      "excess_winners": 49.652212614445574
+    },
+    {
+      "epoch": 54,
+      "train_loss": 0.6676736361532293,
+      "ap": 0.20551251296322645,
+      "loss": 0.6536477558004044,
+      "calls": 3077,
+      "excess_winners": 47.47749237029502
+    },
+    {
+      "epoch": 55,
+      "train_loss": 0.6661302559726977,
+      "ap": 0.2057476649056445,
+      "loss": 0.6528640789636396,
+      "calls": 2992,
+      "excess_winners": 53.17700915564598
+    },
+    {
+      "epoch": 56,
+      "train_loss": 0.6669473074222099,
+      "ap": 0.2059934804163111,
+      "loss": 0.6519995748936099,
+      "calls": 2916,
+      "excess_winners": 52.108341810783315
+    },
+    {
+      "epoch": 57,
+      "train_loss": 0.6666143391267736,
+      "ap": 0.20627397395822872,
+      "loss": 0.6512068807169235,
+      "calls": 2821,
+      "excess_winners": 49.77250762970498
+    },
+    {
+      "epoch": 58,
+      "train_loss": 0.6653652812572236,
+      "ap": 0.2065554126606275,
+      "loss": 0.650515529595217,
+      "calls": 2754,
+      "excess_winners": 44.93565615462869
+    },
+    {
+      "epoch": 59,
+      "train_loss": 0.6653244978367984,
+      "ap": 0.20650349432554138,
+      "loss": 0.6496094718711908,
+      "calls": 2686,
+      "excess_winners": 40.29526958290946
+    },
+    {
+      "epoch": 60,
+      "train_loss": 0.6641924148831108,
+      "ap": 0.2067005952217049,
+      "loss": 0.6490096953732557,
+      "calls": 2637,
+      "excess_winners": 38.9220498474059
+    },
+    {
+      "epoch": 61,
+      "train_loss": 0.6653094172671584,
+      "ap": 0.20693228854744436,
+      "loss": 0.6481822154893031,
+      "calls": 2580,
+      "excess_winners": 41.1205493387589
+    },
+    {
+      "epoch": 62,
+      "train_loss": 0.6636382107893647,
+      "ap": 0.20696282717216113,
+      "loss": 0.647458026755984,
+      "calls": 2529,
+      "excess_winners": 43.14025940996948
+    },
+    {
+      "epoch": 63,
+      "train_loss": 0.6646717585834292,
+      "ap": 0.2072794671781389,
+      "loss": 0.64674156419137,
+      "calls": 2454,
+      "excess_winners": 40.875127161749745
+    },
+    {
+      "epoch": 64,
+      "train_loss": 0.664956223216705,
+      "ap": 0.2075188056450455,
+      "loss": 0.6461548532983658,
+      "calls": 2395,
+      "excess_winners": 44.466556459816886
+    },
+    {
+      "epoch": 65,
+      "train_loss": 0.6640345315168117,
+      "ap": 0.2076553281742844,
+      "loss": 0.6453470074754523,
+      "calls": 2337,
+      "excess_winners": 42.86152085452696
+    },
+    {
+      "epoch": 66,
+      "train_loss": 0.663623477543801,
+      "ap": 0.20787421299586406,
+      "loss": 0.6447857693519864,
+      "calls": 2287,
+      "excess_winners": 40.684766022380465
+    },
+    {
+      "epoch": 67,
+      "train_loss": 0.6633801205126892,
+      "ap": 0.20822287240620757,
+      "loss": 0.6441700843561702,
+      "calls": 2214,
+      "excess_winners": 47.02670396744659
+    },
+    {
+      "epoch": 68,
+      "train_loss": 0.6637807083527301,
+      "ap": 0.20851900810417992,
+      "loss": 0.6436633695057183,
+      "calls": 2183,
+      "excess_winners": 46.117115971515766
+    },
+    {
+      "epoch": 69,
+      "train_loss": 0.662813135107159,
+      "ap": 0.2086430844802488,
+      "loss": 0.6429518972384238,
+      "calls": 2131,
+      "excess_winners": 48.333290946083416
+    },
+    {
+      "epoch": 70,
+      "train_loss": 0.6628850009112133,
+      "ap": 0.20886322726439133,
+      "loss": 0.6422872910179418,
+      "calls": 2071,
+      "excess_winners": 46.12118514750763
+    },
+    {
+      "epoch": 71,
+      "train_loss": 0.6623617656105886,
+      "ap": 0.20904427781235693,
+      "loss": 0.6415637250106672,
+      "calls": 2007,
+      "excess_winners": 49.69493896236012
+    },
+    {
+      "epoch": 72,
+      "train_loss": 0.662818519609345,
+      "ap": 0.20924782006440176,
+      "loss": 0.6410615133729859,
+      "calls": 1979,
+      "excess_winners": 49.19595625635809
+    },
+    {
+      "epoch": 73,
+      "train_loss": 0.6624753668357046,
+      "ap": 0.20936021706302324,
+      "loss": 0.6405934724778635,
+      "calls": 1951,
+      "excess_winners": 49.696973550356056
+    },
+    {
+      "epoch": 74,
+      "train_loss": 0.6621949785914681,
+      "ap": 0.20952233330088144,
+      "loss": 0.640049032677469,
+      "calls": 1906,
+      "excess_winners": 50.53789420142421
+    },
+    {
+      "epoch": 75,
+      "train_loss": 0.6613645219418363,
+      "ap": 0.2097201259820801,
+      "loss": 0.6394225415960333,
+      "calls": 1866,
+      "excess_winners": 50.39649033570702
+    },
+    {
+      "epoch": 76,
+      "train_loss": 0.6629440639558273,
+      "ap": 0.2099355467767833,
+      "loss": 0.6390666171590043,
+      "calls": 1838,
+      "excess_winners": 48.89750762970498
+    },
+    {
+      "epoch": 77,
+      "train_loss": 0.6636332690982351,
+      "ap": 0.21011034624463185,
+      "loss": 0.6387529025727832,
+      "calls": 1819,
+      "excess_winners": 49.63034079348932
+    },
+    {
+      "epoch": 78,
+      "train_loss": 0.6618417475472008,
+      "ap": 0.21014787763053364,
+      "loss": 0.6382573509507359,
+      "calls": 1784,
+      "excess_winners": 55.506612410986776
+    },
+    {
+      "epoch": 79,
+      "train_loss": 0.6618354110605333,
+      "ap": 0.2101712780180288,
+      "loss": 0.6377241624214157,
+      "calls": 1742,
+      "excess_winners": 57.758138351983725
+    },
+    {
+      "epoch": 80,
+      "train_loss": 0.6628654466490869,
+      "ap": 0.21013523611104465,
+      "loss": 0.6372208441261843,
+      "calls": 1710,
+      "excess_winners": 57.04501525940997
+    },
+    {
+      "epoch": 81,
+      "train_loss": 0.6624279773256323,
+      "ap": 0.21019731304451092,
+      "loss": 0.6366960736766594,
+      "calls": 1663,
+      "excess_winners": 56.27886571719227
+    },
+    {
+      "epoch": 82,
+      "train_loss": 0.6609655412882546,
+      "ap": 0.21023874677052454,
+      "loss": 0.6361570320076035,
+      "calls": 1616,
+      "excess_winners": 54.51271617497457
+    },
+    {
+      "epoch": 83,
+      "train_loss": 0.6622890167741017,
+      "ap": 0.21013308789444995,
+      "loss": 0.6356012922458707,
+      "calls": 1582,
+      "excess_winners": 52.192522889114954
+    },
+    {
+      "epoch": 84,
+      "train_loss": 0.6614913520555797,
+      "ap": 0.21016100382233385,
+      "loss": 0.6349871749795466,
+      "calls": 1545,
+      "excess_winners": 51.46172431332655
+    },
+    {
+      "epoch": 85,
+      "train_loss": 0.6610282581080943,
+      "ap": 0.21017209836045841,
+      "loss": 0.6346097681311358,
+      "calls": 1531,
+      "excess_winners": 52.21223296032554
+    },
+    {
+      "epoch": 86,
+      "train_loss": 0.6606848454585258,
+      "ap": 0.21028785927256546,
+      "loss": 0.6341285614613236,
+      "calls": 1498,
+      "excess_winners": 51.69557477110885
+    },
+    {
+      "epoch": 87,
+      "train_loss": 0.6610220358565274,
+      "ap": 0.210426203362993,
+      "loss": 0.6338504380636516,
+      "calls": 1470,
+      "excess_winners": 52.19659206510681
+    },
+    {
+      "epoch": 88,
+      "train_loss": 0.6608103466770613,
+      "ap": 0.21062499591347456,
+      "loss": 0.6335808966433892,
+      "calls": 1442,
+      "excess_winners": 48.69760935910478
+    },
+    {
+      "epoch": 89,
+      "train_loss": 0.6605480844710542,
+      "ap": 0.2106081590821537,
+      "loss": 0.6329731340932215,
+      "calls": 1398,
+      "excess_winners": 50.34206510681587
+    },
+    {
+      "epoch": 90,
+      "train_loss": 0.6603927246001472,
+      "ap": 0.21069790708265934,
+      "loss": 0.632517197488647,
+      "calls": 1374,
+      "excess_winners": 49.057222787385555
+    },
+    {
+      "epoch": 91,
+      "train_loss": 0.6598043583162853,
+      "ap": 0.21095965043915466,
+      "loss": 0.6320738454073637,
+      "calls": 1357,
+      "excess_winners": 51.39712614445575
+    },
+    {
+      "epoch": 92,
+      "train_loss": 0.6604613925354448,
+      "ap": 0.211101989842464,
+      "loss": 0.6315802581919052,
+      "calls": 1324,
+      "excess_winners": 51.88046795523906
+    },
+    {
+      "epoch": 93,
+      "train_loss": 0.6605965605659655,
+      "ap": 0.21126893768201646,
+      "loss": 0.6313104845378794,
+      "calls": 1307,
+      "excess_winners": 50.220371312309254
+    },
+    {
+      "epoch": 94,
+      "train_loss": 0.6580142137092826,
+      "ap": 0.2112684422017002,
+      "loss": 0.6308696209959921,
+      "calls": 1274,
+      "excess_winners": 52.70371312309258
+    },
+    {
+      "epoch": 95,
+      "train_loss": 0.6602432950658678,
+      "ap": 0.21131732528031655,
+      "loss": 0.6306562335784656,
+      "calls": 1267,
+      "excess_winners": 54.07896744659207
+    },
+    {
+      "epoch": 96,
+      "train_loss": 0.6581441035308171,
+      "ap": 0.21141353137497398,
+      "loss": 0.6302807617890871,
+      "calls": 1260,
+      "excess_winners": 54.45422177009156
+    },
+    {
+      "epoch": 97,
+      "train_loss": 0.6584334606674568,
+      "ap": 0.21150638142921763,
+      "loss": 0.6298641011891991,
+      "calls": 1229,
+      "excess_winners": 56.54463377416073
+    },
+    {
+      "epoch": 98,
+      "train_loss": 0.6581835125468097,
+      "ap": 0.21163138411241106,
+      "loss": 0.6293772131598736,
+      "calls": 1203,
+      "excess_winners": 54.652721261444555
+    },
+    {
+      "epoch": 99,
+      "train_loss": 0.6591857841011954,
+      "ap": 0.21160048235123807,
+      "loss": 0.6289076930023768,
+      "calls": 1173,
+      "excess_winners": 55.546668362156666
+    },
+    {
+      "epoch": 100,
+      "train_loss": 0.6600866363985233,
+      "ap": 0.21152142001936833,
+      "loss": 0.6287395231963901,
+      "calls": 1165,
+      "excess_winners": 53.118387589013224
+    },
+    {
+      "epoch": 101,
+      "train_loss": 0.6590736063487291,
+      "ap": 0.2116058367470766,
+      "loss": 0.62848736771732,
+      "calls": 1156,
+      "excess_winners": 51.88657171922686
+    },
+    {
+      "epoch": 102,
+      "train_loss": 0.6595230571912514,
+      "ap": 0.21170121434863606,
+      "loss": 0.6280910664996926,
+      "calls": 1133,
+      "excess_winners": 52.40526449643947
+    },
+    {
+      "epoch": 103,
+      "train_loss": 0.6589805154364871,
+      "ap": 0.2119012303863903,
+      "loss": 0.6277449466932341,
+      "calls": 1124,
+      "excess_winners": 50.173448626653105
+    },
+    {
+      "epoch": 104,
+      "train_loss": 0.6584315813222638,
+      "ap": 0.2121344162260167,
+      "loss": 0.6274464129795256,
+      "calls": 1117,
+      "excess_winners": 51.548702950152595
+    },
+    {
+      "epoch": 105,
+      "train_loss": 0.6578861985818564,
+      "ap": 0.21222691755665551,
+      "loss": 0.6270237720267333,
+      "calls": 1103,
+      "excess_winners": 50.299211597151576
+    },
+    {
+      "epoch": 106,
+      "train_loss": 0.6594621140728444,
+      "ap": 0.2123146011303949,
+      "loss": 0.6267413070703935,
+      "calls": 1091,
+      "excess_winners": 50.65679043743642
+    },
+    {
+      "epoch": 107,
+      "train_loss": 0.6586023199346625,
+      "ap": 0.2123634753835616,
+      "loss": 0.6265358156008249,
+      "calls": 1078,
+      "excess_winners": 49.21083418107833
+    },
+    {
+      "epoch": 108,
+      "train_loss": 0.6601115910692548,
+      "ap": 0.2123315344015633,
+      "loss": 0.6263243432932686,
+      "calls": 1061,
+      "excess_winners": 50.550737538148525
+    },
+    {
+      "epoch": 109,
+      "train_loss": 0.6589681217269469,
+      "ap": 0.2124452436843602,
+      "loss": 0.6260862847068182,
+      "calls": 1032,
+      "excess_winners": 49.24821973550356
+    },
+    {
+      "epoch": 110,
+      "train_loss": 0.6588858460811341,
+      "ap": 0.2123766265542065,
+      "loss": 0.6257011269504396,
+      "calls": 1005,
+      "excess_winners": 49.552772126144454
+    },
+    {
+      "epoch": 111,
+      "train_loss": 0.6588208942963253,
+      "ap": 0.21235112952524435,
+      "loss": 0.625482663497071,
+      "calls": 980,
+      "excess_winners": 46.46439471007121
+    },
+    {
+      "epoch": 112,
+      "train_loss": 0.6573839678498106,
+      "ap": 0.21240992230383057,
+      "loss": 0.6252188022842485,
+      "calls": 969,
+      "excess_winners": 43.62550864699898
+    },
+    {
+      "epoch": 113,
+      "train_loss": 0.6580697024122197,
+      "ap": 0.21252154982662705,
+      "loss": 0.6249784136594615,
+      "calls": 942,
+      "excess_winners": 43.93006103763988
+    },
+    {
+      "epoch": 114,
+      "train_loss": 0.6575377888821023,
+      "ap": 0.2124684498242452,
+      "loss": 0.6246169173099018,
+      "calls": 938,
+      "excess_winners": 41.71592065106816
+    },
+    {
+      "epoch": 115,
+      "train_loss": 0.6576745929587483,
+      "ap": 0.2124557742586771,
+      "loss": 0.6242937009671697,
+      "calls": 920,
+      "excess_winners": 44.25228891149542
+    },
+    {
+      "epoch": 116,
+      "train_loss": 0.6562236177338092,
+      "ap": 0.2124312943690506,
+      "loss": 0.6240191147989562,
+      "calls": 895,
+      "excess_winners": 44.16391149542218
+    },
+    {
+      "epoch": 117,
+      "train_loss": 0.6571053809679561,
+      "ap": 0.21247756676952817,
+      "loss": 0.6237495490638795,
+      "calls": 868,
+      "excess_winners": 42.46846388606307
+    },
+    {
+      "epoch": 118,
+      "train_loss": 0.6581638165307991,
+      "ap": 0.21249230551016543,
+      "loss": 0.6235717706010883,
+      "calls": 845,
+      "excess_winners": 40.987156663275684
+    },
+    {
+      "epoch": 119,
+      "train_loss": 0.6579629947570851,
+      "ap": 0.21261574601097866,
+      "loss": 0.623376434901966,
+      "calls": 853,
+      "excess_winners": 42.415437436419126
+    },
+    {
+      "epoch": 120,
+      "train_loss": 0.6561051148921756,
+      "ap": 0.21279682206741582,
+      "loss": 0.6230726192950717,
+      "calls": 829,
+      "excess_winners": 40.13059511698881
+    },
+    {
+      "epoch": 121,
+      "train_loss": 0.6566884239040782,
+      "ap": 0.21284592012933587,
+      "loss": 0.6228001828960097,
+      "calls": 814,
+      "excess_winners": 39.07756866734486
+    },
+    {
+      "epoch": 122,
+      "train_loss": 0.6585253935015966,
+      "ap": 0.212981737467993,
+      "loss": 0.6223829530505416,
+      "calls": 805,
+      "excess_winners": 37.8457527975585
+    },
+    {
+      "epoch": 123,
+      "train_loss": 0.6583380397943838,
+      "ap": 0.21304051839474014,
+      "loss": 0.6222547242988283,
+      "calls": 794,
+      "excess_winners": 38.006866734486266
+    },
+    {
+      "epoch": 124,
+      "train_loss": 0.6578982791533589,
+      "ap": 0.21300370369018629,
+      "loss": 0.6220435968250613,
+      "calls": 781,
+      "excess_winners": 38.56091047812818
+    },
+    {
+      "epoch": 125,
+      "train_loss": 0.6564456212777467,
+      "ap": 0.21310345133413097,
+      "loss": 0.6217327547825244,
+      "calls": 763,
+      "excess_winners": 41.097278738555445
+    },
+    {
+      "epoch": 126,
+      "train_loss": 0.6569962258519221,
+      "ap": 0.21292956859836965,
+      "loss": 0.6214572851558425,
+      "calls": 753,
+      "excess_winners": 36.06192777212615
+    },
+    {
+      "epoch": 127,
+      "train_loss": 0.6567413434360001,
+      "ap": 0.21286387808948284,
+      "loss": 0.6213319754552017,
+      "calls": 743,
+      "excess_winners": 37.02657680569685
+    },
+    {
+      "epoch": 128,
+      "train_loss": 0.656522664172101,
+      "ap": 0.21296544568461512,
+      "loss": 0.6212662668218448,
+      "calls": 742,
+      "excess_winners": 35.223041709053916
+    },
+    {
+      "epoch": 129,
+      "train_loss": 0.6569427285919442,
+      "ap": 0.21297392414855038,
+      "loss": 0.6208915141082367,
+      "calls": 708,
+      "excess_winners": 30.902848423194303
+    },
+    {
+      "epoch": 130,
+      "train_loss": 0.6560278467877413,
+      "ap": 0.21305039370325962,
+      "loss": 0.6205092288955425,
+      "calls": 686,
+      "excess_winners": 30.225076297049846
+    },
+    {
+      "epoch": 131,
+      "train_loss": 0.6564851939460097,
+      "ap": 0.21312919703294095,
+      "loss": 0.6203103832529132,
+      "calls": 668,
+      "excess_winners": 29.761444557477112
+    },
+    {
+      "epoch": 132,
+      "train_loss": 0.6570144062879723,
+      "ap": 0.21312911649378383,
+      "loss": 0.620177146922778,
+      "calls": 665,
+      "excess_winners": 31.35083926754832
+    },
+    {
+      "epoch": 133,
+      "train_loss": 0.6557544268264828,
+      "ap": 0.21316157569093533,
+      "loss": 0.6200787943474274,
+      "calls": 653,
+      "excess_winners": 28.708418107833165
+    },
+    {
+      "epoch": 134,
+      "train_loss": 0.6550801543382339,
+      "ap": 0.21332867119167884,
+      "loss": 0.6197801456082752,
+      "calls": 636,
+      "excess_winners": 28.048321464903356
+    },
+    {
+      "epoch": 135,
+      "train_loss": 0.6552126558739119,
+      "ap": 0.21344922286310267,
+      "loss": 0.619508312713821,
+      "calls": 628,
+      "excess_winners": 28.620040691759918
+    },
+    {
+      "epoch": 136,
+      "train_loss": 0.6563127208004833,
+      "ap": 0.2135798207012831,
+      "loss": 0.6193449713085093,
+      "calls": 622,
+      "excess_winners": 27.79883011190234
+    },
+    {
+      "epoch": 137,
+      "train_loss": 0.6562426580567237,
+      "ap": 0.21381377632227805,
+      "loss": 0.6194536726569353,
+      "calls": 625,
+      "excess_winners": 26.20943540183113
+    },
+    {
+      "epoch": 138,
+      "train_loss": 0.6554367324478468,
+      "ap": 0.21370402836114552,
+      "loss": 0.6193167646079194,
+      "calls": 622,
+      "excess_winners": 25.79883011190234
+    },
+    {
+      "epoch": 139,
+      "train_loss": 0.6560418349905928,
+      "ap": 0.2135228421113206,
+      "loss": 0.618904302406408,
+      "calls": 596,
+      "excess_winners": 22.906917599186166
+    },
+    {
+      "epoch": 140,
+      "train_loss": 0.6565906372960788,
+      "ap": 0.21355407818666627,
+      "loss": 0.6186777769852266,
+      "calls": 583,
+      "excess_winners": 19.460961342828078
+    },
+    {
+      "epoch": 141,
+      "train_loss": 0.6561027708973144,
+      "ap": 0.2137747597823088,
+      "loss": 0.6184741352606159,
+      "calls": 587,
+      "excess_winners": 22.675101729399795
+    },
+    {
+      "epoch": 142,
+      "train_loss": 0.656087200002532,
+      "ap": 0.21397343263812652,
+      "loss": 0.618482593420442,
+      "calls": 588,
+      "excess_winners": 21.478636826042727
+    },
+    {
+      "epoch": 143,
+      "train_loss": 0.6565902897151348,
+      "ap": 0.2140445058579923,
+      "loss": 0.6183591037533896,
+      "calls": 575,
+      "excess_winners": 24.03268056968464
+    },
+    {
+      "epoch": 144,
+      "train_loss": 0.6559025640587187,
+      "ap": 0.214047934928604,
+      "loss": 0.6181186564941251,
+      "calls": 559,
+      "excess_winners": 19.176119023397764
+    },
+    {
+      "epoch": 145,
+      "train_loss": 0.6549457682117664,
+      "ap": 0.2140899957678418,
+      "loss": 0.618089248665958,
+      "calls": 546,
+      "excess_winners": 15.730162767039674
+    },
+    {
+      "epoch": 146,
+      "train_loss": 0.6566983362720141,
+      "ap": 0.21413711838513858,
+      "loss": 0.6180331938021787,
+      "calls": 544,
+      "excess_winners": 14.123092573753814
+    },
+    {
+      "epoch": 147,
+      "train_loss": 0.6553870836446757,
+      "ap": 0.21427532314596223,
+      "loss": 0.6179521600445799,
+      "calls": 538,
+      "excess_winners": 13.301881993896236
+    },
+    {
+      "epoch": 148,
+      "train_loss": 0.6555472766162419,
+      "ap": 0.21426292000964095,
+      "loss": 0.6175497625390729,
+      "calls": 533,
+      "excess_winners": 12.284206510681587
+    },
+    {
+      "epoch": 149,
+      "train_loss": 0.6557819079457785,
+      "ap": 0.21423836317390615,
+      "loss": 0.617210316391224,
+      "calls": 527,
+      "excess_winners": 13.462995930824007
+    },
+    {
+      "epoch": 150,
+      "train_loss": 0.6542546014101432,
+      "ap": 0.21437333941331316,
+      "loss": 0.6168852319309936,
+      "calls": 512,
+      "excess_winners": 14.409969481180061
+    },
+    {
+      "epoch": 151,
+      "train_loss": 0.6545888927606793,
+      "ap": 0.21451086622945525,
+      "loss": 0.6167613338235679,
+      "calls": 511,
+      "excess_winners": 15.606434384537131
+    },
+    {
+      "epoch": 152,
+      "train_loss": 0.6562272245313017,
+      "ap": 0.21450815662763387,
+      "loss": 0.61650627348212,
+      "calls": 503,
+      "excess_winners": 16.178153611393693
+    },
+    {
+      "epoch": 153,
+      "train_loss": 0.6542910906515368,
+      "ap": 0.2145837873386944,
+      "loss": 0.6163336252632606,
+      "calls": 499,
+      "excess_winners": 15.964013224821974
+    },
+    {
+      "epoch": 154,
+      "train_loss": 0.6550552474853065,
+      "ap": 0.21468469974554663,
+      "loss": 0.6162143037374967,
+      "calls": 492,
+      "excess_winners": 14.339267548321464
+    },
+    {
+      "epoch": 155,
+      "train_loss": 0.65326442250651,
+      "ap": 0.21451675713033092,
+      "loss": 0.6160320779678174,
+      "calls": 484,
+      "excess_winners": 14.910986775178026
+    },
+    {
+      "epoch": 156,
+      "train_loss": 0.6563713828614934,
+      "ap": 0.21473368526390602,
+      "loss": 0.6161379985139911,
+      "calls": 481,
+      "excess_winners": 13.500381485249237
+    },
+    {
+      "epoch": 157,
+      "train_loss": 0.6566478530038161,
+      "ap": 0.21464924211946942,
+      "loss": 0.6159927951113253,
+      "calls": 469,
+      "excess_winners": 11.85796032553408
+    },
+    {
+      "epoch": 158,
+      "train_loss": 0.6537464374157613,
+      "ap": 0.21471257502263616,
+      "loss": 0.6156909833240606,
+      "calls": 467,
+      "excess_winners": 12.25089013224822
+    },
+    {
+      "epoch": 159,
+      "train_loss": 0.6551557092053374,
+      "ap": 0.21466137275290617,
+      "loss": 0.6154916544775512,
+      "calls": 461,
+      "excess_winners": 13.42967955239064
+    },
+    {
+      "epoch": 160,
+      "train_loss": 0.6559804345311342,
+      "ap": 0.2147523161363842,
+      "loss": 0.615347598176279,
+      "calls": 457,
+      "excess_winners": 12.215539165818921
+    },
+    {
+      "epoch": 161,
+      "train_loss": 0.6554140424353593,
+      "ap": 0.2148327779076019,
+      "loss": 0.615205307094151,
+      "calls": 451,
+      "excess_winners": 12.394328585961343
+    },
+    {
+      "epoch": 162,
+      "train_loss": 0.6552706508184775,
+      "ap": 0.2148521432086501,
+      "loss": 0.6151130140009634,
+      "calls": 452,
+      "excess_winners": 12.197863682604273
+    },
+    {
+      "epoch": 163,
+      "train_loss": 0.6537948582630879,
+      "ap": 0.21484331810312,
+      "loss": 0.6148071691075516,
+      "calls": 453,
+      "excess_winners": 11.001398779247202
+    },
+    {
+      "epoch": 164,
+      "train_loss": 0.6524744894159149,
+      "ap": 0.21490435320710244,
+      "loss": 0.614702661246031,
+      "calls": 451,
+      "excess_winners": 12.394328585961343
+    },
+    {
+      "epoch": 165,
+      "train_loss": 0.6549895422183041,
+      "ap": 0.2148543953552851,
+      "loss": 0.6144527691063052,
+      "calls": 445,
+      "excess_winners": 11.573118006103764
+    },
+    {
+      "epoch": 166,
+      "train_loss": 0.6536997415376785,
+      "ap": 0.21490151574533062,
+      "loss": 0.6142733775587073,
+      "calls": 437,
+      "excess_winners": 11.144837232960326
+    },
+    {
+      "epoch": 167,
+      "train_loss": 0.6547275342807519,
+      "ap": 0.21490150532832897,
+      "loss": 0.6142839581410979,
+      "calls": 432,
+      "excess_winners": 12.127161749745676
+    },
+    {
+      "epoch": 168,
+      "train_loss": 0.6539590798188135,
+      "ap": 0.21496210317741873,
+      "loss": 0.6140761098929606,
+      "calls": 424,
+      "excess_winners": 11.698880976602238
+    },
+    {
+      "epoch": 169,
+      "train_loss": 0.654123655508036,
+      "ap": 0.21491387340302498,
+      "loss": 0.6136766563596948,
+      "calls": 422,
+      "excess_winners": 13.091810783316378
+    },
+    {
+      "epoch": 170,
+      "train_loss": 0.6536090610505184,
+      "ap": 0.21513996161512397,
+      "loss": 0.6135552969371799,
+      "calls": 424,
+      "excess_winners": 12.698880976602238
+    },
+    {
+      "epoch": 171,
+      "train_loss": 0.6550121369182877,
+      "ap": 0.21548179164631254,
+      "loss": 0.6136171679530721,
+      "calls": 425,
+      "excess_winners": 11.502416073245168
+    },
+    {
+      "epoch": 172,
+      "train_loss": 0.6545341215639002,
+      "ap": 0.21546232930170262,
+      "loss": 0.6135546066026115,
+      "calls": 423,
+      "excess_winners": 10.895345879959308
+    },
+    {
+      "epoch": 173,
+      "train_loss": 0.6548424877825105,
+      "ap": 0.21549366045887536,
+      "loss": 0.6136631607281713,
+      "calls": 421,
+      "excess_winners": 13.28827568667345
+    },
+    {
+      "epoch": 174,
+      "train_loss": 0.6532905763703515,
+      "ap": 0.2155322283025238,
+      "loss": 0.6134704566074655,
+      "calls": 412,
+      "excess_winners": 12.056459816887081
+    },
+    {
+      "epoch": 175,
+      "train_loss": 0.6538779003653428,
+      "ap": 0.2155599429321027,
+      "loss": 0.6134844194351111,
+      "calls": 412,
+      "excess_winners": 12.056459816887081
+    },
+    {
+      "epoch": 176,
+      "train_loss": 0.6537416054491978,
+      "ap": 0.21558719463971035,
+      "loss": 0.6132772890500353,
+      "calls": 407,
+      "excess_winners": 12.038784333672432
+    },
+    {
+      "epoch": 177,
+      "train_loss": 0.6555873174382381,
+      "ap": 0.2157198273140276,
+      "loss": 0.6130734324333991,
+      "calls": 400,
+      "excess_winners": 12.414038657171922
+    },
+    {
+      "epoch": 178,
+      "train_loss": 0.6542968045261304,
+      "ap": 0.21569408294763878,
+      "loss": 0.6129627954195863,
+      "calls": 398,
+      "excess_winners": 10.806968463886063
+    },
+    {
+      "epoch": 179,
+      "train_loss": 0.653977461949421,
+      "ap": 0.21576560762795766,
+      "loss": 0.613020049409973,
+      "calls": 396,
+      "excess_winners": 11.199898270600203
+    },
+    {
+      "epoch": 180,
+      "train_loss": 0.6542663224797728,
+      "ap": 0.21591897689028547,
+      "loss": 0.6128500682412669,
+      "calls": 388,
+      "excess_winners": 10.771617497456765
+    },
+    {
+      "epoch": 181,
+      "train_loss": 0.6531902278999533,
+      "ap": 0.2159977074955134,
+      "loss": 0.6127412179721821,
+      "calls": 386,
+      "excess_winners": 12.164547304170906
+    },
+    {
+      "epoch": 182,
+      "train_loss": 0.6535946229590134,
+      "ap": 0.21613776083313077,
+      "loss": 0.6127490100516186,
+      "calls": 384,
+      "excess_winners": 11.557477110885046
+    },
+    {
+      "epoch": 183,
+      "train_loss": 0.6541615219406358,
+      "ap": 0.21622336410937895,
+      "loss": 0.6126394977647194,
+      "calls": 383,
+      "excess_winners": 12.753942014242115
+    },
+    {
+      "epoch": 184,
+      "train_loss": 0.6533095054598032,
+      "ap": 0.21627591582130246,
+      "loss": 0.612563635786334,
+      "calls": 374,
+      "excess_winners": 12.522126144455747
+    },
+    {
+      "epoch": 185,
+      "train_loss": 0.6530395427973456,
+      "ap": 0.2161869576812403,
+      "loss": 0.6122225579992315,
+      "calls": 362,
+      "excess_winners": 11.87970498474059
+    },
+    {
+      "epoch": 186,
+      "train_loss": 0.653899182385102,
+      "ap": 0.21621997229612072,
+      "loss": 0.6120398572114574,
+      "calls": 359,
+      "excess_winners": 10.469099694811801
+    },
+    {
+      "epoch": 187,
+      "train_loss": 0.6542314845689479,
+      "ap": 0.21623557751380137,
+      "loss": 0.6119373573534123,
+      "calls": 360,
+      "excess_winners": 12.272634791454731
+    },
+    {
+      "epoch": 188,
+      "train_loss": 0.6544957232016473,
+      "ap": 0.21616683583136573,
+      "loss": 0.6120370246871685,
+      "calls": 359,
+      "excess_winners": 12.469099694811801
+    },
+    {
+      "epoch": 189,
+      "train_loss": 0.6552994089376023,
+      "ap": 0.2162221672065149,
+      "loss": 0.6119732497182285,
+      "calls": 356,
+      "excess_winners": 12.058494404883012
+    },
+    {
+      "epoch": 190,
+      "train_loss": 0.6537288457401594,
+      "ap": 0.2162094371689819,
+      "loss": 0.6118264377784147,
+      "calls": 352,
+      "excess_winners": 12.844354018311291
+    },
+    {
+      "epoch": 191,
+      "train_loss": 0.6526930592977382,
+      "ap": 0.21625784249124955,
+      "loss": 0.6115860550352661,
+      "calls": 349,
+      "excess_winners": 12.433748728382502
+    },
+    {
+      "epoch": 192,
+      "train_loss": 0.6538158785458389,
+      "ap": 0.21628662280255923,
+      "loss": 0.6115022354426728,
+      "calls": 344,
+      "excess_winners": 9.416073245167853
+    },
+    {
+      "epoch": 193,
+      "train_loss": 0.6534348470648706,
+      "ap": 0.21640087013412718,
+      "loss": 0.6117584430067852,
+      "calls": 358,
+      "excess_winners": 10.66556459816887
+    },
+    {
+      "epoch": 194,
+      "train_loss": 0.6526371800426158,
+      "ap": 0.21647639578629915,
+      "loss": 0.6116559018560004,
+      "calls": 359,
+      "excess_winners": 10.469099694811801
+    },
+    {
+      "epoch": 195,
+      "train_loss": 0.6543740683882068,
+      "ap": 0.21644615261499595,
+      "loss": 0.6115445834816654,
+      "calls": 354,
+      "excess_winners": 9.451424211597152
+    },
+    {
+      "epoch": 196,
+      "train_loss": 0.6535350688945829,
+      "ap": 0.21647462752386834,
+      "loss": 0.6113536437918429,
+      "calls": 345,
+      "excess_winners": 10.219608341810783
+    },
+    {
+      "epoch": 197,
+      "train_loss": 0.6525583443400627,
+      "ap": 0.21657353332279172,
+      "loss": 0.6111395696172394,
+      "calls": 343,
+      "excess_winners": 10.612538148524923
+    },
+    {
+      "epoch": 198,
+      "train_loss": 0.6530987084081525,
+      "ap": 0.2165986418247918,
+      "loss": 0.6111538649696785,
+      "calls": 342,
+      "excess_winners": 10.809003051881994
+    },
+    {
+      "epoch": 199,
+      "train_loss": 0.6525249657357575,
+      "ap": 0.21670791891668187,
+      "loss": 0.6109419787039228,
+      "calls": 333,
+      "excess_winners": 7.577187182095626
+    },
+    {
+      "epoch": 200,
+      "train_loss": 0.6529592555379267,
+      "ap": 0.21689239564318477,
+      "loss": 0.6108668218551551,
+      "calls": 335,
+      "excess_winners": 9.184257375381485
+    },
+    {
+      "epoch": 201,
+      "train_loss": 0.653419407468321,
+      "ap": 0.21691652133840608,
+      "loss": 0.610699534719376,
+      "calls": 332,
+      "excess_winners": 11.773652085452696
+    },
+    {
+      "epoch": 202,
+      "train_loss": 0.6528867995113776,
+      "ap": 0.21698929491069555,
+      "loss": 0.6105340068604672,
+      "calls": 325,
+      "excess_winners": 11.148906408952188
+    },
+    {
+      "epoch": 203,
+      "train_loss": 0.6529185066411838,
+      "ap": 0.2168865977335029,
+      "loss": 0.6102200847191097,
+      "calls": 316,
+      "excess_winners": 7.917090539165819
+    },
+    {
+      "epoch": 204,
+      "train_loss": 0.6524173779674364,
+      "ap": 0.21695633235714587,
+      "loss": 0.6102544524056016,
+      "calls": 315,
+      "excess_winners": 7.113555442522889
+    },
+    {
+      "epoch": 205,
+      "train_loss": 0.6539093374963666,
+      "ap": 0.21695970567090314,
+      "loss": 0.6102092925190077,
+      "calls": 316,
+      "excess_winners": 7.917090539165819
+    },
+    {
+      "epoch": 206,
+      "train_loss": 0.6536032325563302,
+      "ap": 0.2170143602910766,
+      "loss": 0.6100485995487667,
+      "calls": 308,
+      "excess_winners": 6.4888097660223805
+    },
+    {
+      "epoch": 207,
+      "train_loss": 0.6519036635552533,
+      "ap": 0.21707889957173201,
+      "loss": 0.6097395132662442,
+      "calls": 304,
+      "excess_winners": 7.274669379450661
+    },
+    {
+      "epoch": 208,
+      "train_loss": 0.6526288408867339,
+      "ap": 0.21705106272456698,
+      "loss": 0.6096498278004713,
+      "calls": 305,
+      "excess_winners": 7.078204476093591
+    },
+    {
+      "epoch": 209,
+      "train_loss": 0.6535699818996673,
+      "ap": 0.21724019533255884,
+      "loss": 0.609686019340585,
+      "calls": 306,
+      "excess_winners": 7.881739572736521
+    },
+    {
+      "epoch": 210,
+      "train_loss": 0.6531080174404102,
+      "ap": 0.2173238380404163,
+      "loss": 0.6096715548152477,
+      "calls": 306,
+      "excess_winners": 8.881739572736521
+    },
+    {
+      "epoch": 211,
+      "train_loss": 0.6523056943414334,
+      "ap": 0.21727221760728918,
+      "loss": 0.6097015023595319,
+      "calls": 296,
+      "excess_winners": 7.846388606307222
+    },
+    {
+      "epoch": 212,
+      "train_loss": 0.6534735284938546,
+      "ap": 0.2174006008310211,
+      "loss": 0.6095948724998947,
+      "calls": 293,
+      "excess_winners": 7.4357833163784335
+    },
+    {
+      "epoch": 213,
+      "train_loss": 0.6526534985568663,
+      "ap": 0.21742709833458743,
+      "loss": 0.6094847075330398,
+      "calls": 289,
+      "excess_winners": 8.221642929806714
+    },
+    {
+      "epoch": 214,
+      "train_loss": 0.6536350697420334,
+      "ap": 0.2173410614114938,
+      "loss": 0.6092173652998186,
+      "calls": 284,
+      "excess_winners": 7.203967446592065
+    },
+    {
+      "epoch": 215,
+      "train_loss": 0.653173984110008,
+      "ap": 0.21734687867976282,
+      "loss": 0.6090624058355756,
+      "calls": 283,
+      "excess_winners": 5.400432349949135
+    },
+    {
+      "epoch": 216,
+      "train_loss": 0.6524431604020139,
+      "ap": 0.21746524237099144,
+      "loss": 0.6090333230134065,
+      "calls": 288,
+      "excess_winners": 6.418107833163784
+    },
+    {
+      "epoch": 217,
+      "train_loss": 0.652485784420978,
+      "ap": 0.21758765789482534,
+      "loss": 0.6089682754883324,
+      "calls": 288,
+      "excess_winners": 6.418107833163784
+    },
+    {
+      "epoch": 218,
+      "train_loss": 0.652017654390706,
+      "ap": 0.21762412187137006,
+      "loss": 0.6087063425433721,
+      "calls": 285,
+      "excess_winners": 5.007502543234995
+    },
+    {
+      "epoch": 219,
+      "train_loss": 0.6508474678507923,
+      "ap": 0.21760871495806422,
+      "loss": 0.6085638620967418,
+      "calls": 284,
+      "excess_winners": 5.203967446592065
+    },
+    {
+      "epoch": 220,
+      "train_loss": 0.6519422016002926,
+      "ap": 0.2178464772997428,
+      "loss": 0.6085857034093366,
+      "calls": 282,
+      "excess_winners": 5.596897253306206
+    },
+    {
+      "epoch": 221,
+      "train_loss": 0.6521650888858763,
+      "ap": 0.21803325896612533,
+      "loss": 0.6084062440713085,
+      "calls": 274,
+      "excess_winners": 6.168616480162767
+    },
+    {
+      "epoch": 222,
+      "train_loss": 0.6518705388962989,
+      "ap": 0.2179935203535112,
+      "loss": 0.6082153570736898,
+      "calls": 271,
+      "excess_winners": 6.758011190233978
+    },
+    {
+      "epoch": 223,
+      "train_loss": 0.6517322325257368,
+      "ap": 0.21808939526413582,
+      "loss": 0.6080208757280212,
+      "calls": 266,
+      "excess_winners": 6.740335707019328
+    },
+    {
+      "epoch": 224,
+      "train_loss": 0.6524463641674219,
+      "ap": 0.21815838884418232,
+      "loss": 0.6078764329364075,
+      "calls": 264,
+      "excess_winners": 6.133265513733469
+    },
+    {
+      "epoch": 225,
+      "train_loss": 0.651964186247262,
+      "ap": 0.2181152940003328,
+      "loss": 0.6077274849916887,
+      "calls": 263,
+      "excess_winners": 5.3297304170905395
+    },
+    {
+      "epoch": 226,
+      "train_loss": 0.6526587445087462,
+      "ap": 0.21813488268818296,
+      "loss": 0.6077262292315735,
+      "calls": 261,
+      "excess_winners": 5.72266022380468
+    },
+    {
+      "epoch": 227,
+      "train_loss": 0.6521250659089244,
+      "ap": 0.21818539500879375,
+      "loss": 0.6076916936455278,
+      "calls": 257,
+      "excess_winners": 7.50851983723296
+    },
+    {
+      "epoch": 228,
+      "train_loss": 0.6514530547186359,
+      "ap": 0.21823834833068648,
+      "loss": 0.6076039885941017,
+      "calls": 259,
+      "excess_winners": 6.1155900305188196
+    },
+    {
+      "epoch": 229,
+      "train_loss": 0.6516996948162316,
+      "ap": 0.2183324286092094,
+      "loss": 0.6076041011334921,
+      "calls": 257,
+      "excess_winners": 6.50851983723296
+    },
+    {
+      "epoch": 230,
+      "train_loss": 0.6517423892912947,
+      "ap": 0.21831195047051452,
+      "loss": 0.6074428138145959,
+      "calls": 258,
+      "excess_winners": 6.31205493387589
+    },
+    {
+      "epoch": 231,
+      "train_loss": 0.6516456122142478,
+      "ap": 0.2183772420064171,
+      "loss": 0.6074684259850278,
+      "calls": 258,
+      "excess_winners": 7.31205493387589
+    },
+    {
+      "epoch": 232,
+      "train_loss": 0.6518189329864501,
+      "ap": 0.21830932577231074,
+      "loss": 0.6073445913022799,
+      "calls": 257,
+      "excess_winners": 7.50851983723296
+    },
+    {
+      "epoch": 233,
+      "train_loss": 0.6526390678402143,
+      "ap": 0.21836801579952986,
+      "loss": 0.6072284551384732,
+      "calls": 256,
+      "excess_winners": 6.704984740590031
+    },
+    {
+      "epoch": 234,
+      "train_loss": 0.6509941279912386,
+      "ap": 0.2185486221738368,
+      "loss": 0.607406907139814,
+      "calls": 263,
+      "excess_winners": 7.3297304170905395
+    },
+    {
+      "epoch": 235,
+      "train_loss": 0.6512336465850046,
+      "ap": 0.21863038042443242,
+      "loss": 0.6072691600781127,
+      "calls": 263,
+      "excess_winners": 8.32973041709054
+    },
+    {
+      "epoch": 236,
+      "train_loss": 0.6519328783627593,
+      "ap": 0.21836081643561073,
+      "loss": 0.6072227959715337,
+      "calls": 247,
+      "excess_winners": 4.473168870803662
+    },
+    {
+      "epoch": 237,
+      "train_loss": 0.6531343156332762,
+      "ap": 0.21831704678850403,
+      "loss": 0.6072869620391093,
+      "calls": 251,
+      "excess_winners": 5.687309257375381
+    },
+    {
+      "epoch": 238,
+      "train_loss": 0.652898962416289,
+      "ap": 0.2182466146239399,
+      "loss": 0.6071639033081815,
+      "calls": 250,
+      "excess_winners": 3.8837741607324516
+    },
+    {
+      "epoch": 239,
+      "train_loss": 0.6505552681598387,
+      "ap": 0.21826062499689977,
+      "loss": 0.6068531142610257,
+      "calls": 241,
+      "excess_winners": 5.651958290946084
+    },
+    {
+      "epoch": 240,
+      "train_loss": 0.651986605425743,
+      "ap": 0.21835410978568645,
+      "loss": 0.6068005702502851,
+      "calls": 239,
+      "excess_winners": 7.044888097660224
+    },
+    {
+      "epoch": 241,
+      "train_loss": 0.6525037628458289,
+      "ap": 0.21854503301300376,
+      "loss": 0.6068593219968577,
+      "calls": 241,
+      "excess_winners": 8.651958290946084
+    },
+    {
+      "epoch": 242,
+      "train_loss": 0.6519871472149202,
+      "ap": 0.21864301374870954,
+      "loss": 0.6067174924717551,
+      "calls": 234,
+      "excess_winners": 6.027212614445575
+    },
+    {
+      "epoch": 243,
+      "train_loss": 0.6511384042867688,
+      "ap": 0.21872450276241645,
+      "loss": 0.6066253489662162,
+      "calls": 230,
+      "excess_winners": 4.813072227873856
+    },
+    {
+      "epoch": 244,
+      "train_loss": 0.6516203805123715,
+      "ap": 0.2188077871425859,
+      "loss": 0.6065658825096255,
+      "calls": 232,
+      "excess_winners": 5.420142421159715
+    },
+    {
+      "epoch": 245,
+      "train_loss": 0.6516563312764058,
+      "ap": 0.21887634208507145,
+      "loss": 0.6065047075886693,
+      "calls": 230,
+      "excess_winners": 4.813072227873856
+    },
+    {
+      "epoch": 246,
+      "train_loss": 0.6515425858838172,
+      "ap": 0.21894272082867244,
+      "loss": 0.6063177256957681,
+      "calls": 231,
+      "excess_winners": 5.616607324516785
+    },
+    {
+      "epoch": 247,
+      "train_loss": 0.650536734974793,
+      "ap": 0.21884943948693944,
+      "loss": 0.6062272499682095,
+      "calls": 221,
+      "excess_winners": 4.581256358087487
+    },
+    {
+      "epoch": 248,
+      "train_loss": 0.651310531487874,
+      "ap": 0.2189079076236043,
+      "loss": 0.6061479620264117,
+      "calls": 224,
+      "excess_winners": 4.991861648016276
+    },
+    {
+      "epoch": 249,
+      "train_loss": 0.6506789806735985,
+      "ap": 0.21896057630561996,
+      "loss": 0.6059735131166716,
+      "calls": 226,
+      "excess_winners": 4.598931841302137
+    },
+    {
+      "epoch": 250,
+      "train_loss": 0.6506075620247365,
+      "ap": 0.2189066229796726,
+      "loss": 0.6060084484115864,
+      "calls": 232,
+      "excess_winners": 5.420142421159715
+    },
+    {
+      "epoch": 251,
+      "train_loss": 0.6520522093188069,
+      "ap": 0.21886510189259129,
+      "loss": 0.6059340962558408,
+      "calls": 231,
+      "excess_winners": 5.616607324516785
+    },
+    {
+      "epoch": 252,
+      "train_loss": 0.6503469628182057,
+      "ap": 0.21880687848831404,
+      "loss": 0.6058913162499211,
+      "calls": 230,
+      "excess_winners": 5.813072227873856
+    },
+    {
+      "epoch": 253,
+      "train_loss": 0.6496175980613167,
+      "ap": 0.21888534821885225,
+      "loss": 0.6056224884482391,
+      "calls": 224,
+      "excess_winners": 4.991861648016276
+    },
+    {
+      "epoch": 254,
+      "train_loss": 0.6517156164325306,
+      "ap": 0.21893250096146347,
+      "loss": 0.605446007765928,
+      "calls": 223,
+      "excess_winners": 5.188326551373347
+    },
+    {
+      "epoch": 255,
+      "train_loss": 0.6507846148393069,
+      "ap": 0.2191014082482084,
+      "loss": 0.6054111280737186,
+      "calls": 226,
+      "excess_winners": 4.598931841302137
+    },
+    {
+      "epoch": 256,
+      "train_loss": 0.6511848541694794,
+      "ap": 0.21917545470386784,
+      "loss": 0.6053858495801535,
+      "calls": 230,
+      "excess_winners": 6.813072227873856
+    },
+    {
+      "epoch": 257,
+      "train_loss": 0.6519664815357827,
+      "ap": 0.21927647559189853,
+      "loss": 0.6053611619183878,
+      "calls": 231,
+      "excess_winners": 5.616607324516785
+    },
+    {
+      "epoch": 258,
+      "train_loss": 0.6510312715202251,
+      "ap": 0.21941235884063273,
+      "loss": 0.6053033529923867,
+      "calls": 236,
+      "excess_winners": 6.634282807731434
+    },
+    {
+      "epoch": 259,
+      "train_loss": 0.6518594134837764,
+      "ap": 0.21936160700683782,
+      "loss": 0.6051105813844279,
+      "calls": 227,
+      "excess_winners": 5.402466937945066
+    },
+    {
+      "epoch": 260,
+      "train_loss": 0.6507875087138744,
+      "ap": 0.21926229229163846,
+      "loss": 0.6049459049684712,
+      "calls": 218,
+      "excess_winners": 2.1706510681586977
+    },
+    {
+      "epoch": 261,
+      "train_loss": 0.6507894360707339,
+      "ap": 0.21921906333271524,
+      "loss": 0.6046867970896398,
+      "calls": 214,
+      "excess_winners": 2.9565106815869786
+    },
+    {
+      "epoch": 262,
+      "train_loss": 0.6517633385767473,
+      "ap": 0.21918974131496077,
+      "loss": 0.6045528729109895,
+      "calls": 209,
+      "excess_winners": 2.9388351983723298
+    },
+    {
+      "epoch": 263,
+      "train_loss": 0.6506265979550495,
+      "ap": 0.21917582206622288,
+      "loss": 0.6046628610042444,
+      "calls": 206,
+      "excess_winners": 2.52822990844354
+    },
+    {
+      "epoch": 264,
+      "train_loss": 0.6503685709405582,
+      "ap": 0.21907365106374396,
+      "loss": 0.6045119206393602,
+      "calls": 200,
+      "excess_winners": 3.7070193285859614
+    },
+    {
+      "epoch": 265,
+      "train_loss": 0.6496924447195852,
+      "ap": 0.21912992459572966,
+      "loss": 0.6045292377593194,
+      "calls": 199,
+      "excess_winners": 3.9034842319430316
+    },
+    {
+      "epoch": 266,
+      "train_loss": 0.6508174114958156,
+      "ap": 0.21913794953028226,
+      "loss": 0.604507168639349,
+      "calls": 199,
+      "excess_winners": 3.9034842319430316
+    },
+    {
+      "epoch": 267,
+      "train_loss": 0.6512086341432447,
+      "ap": 0.21918500262280005,
+      "loss": 0.6044572091539175,
+      "calls": 200,
+      "excess_winners": 2.7070193285859614
+    },
+    {
+      "epoch": 268,
+      "train_loss": 0.6505049481481083,
+      "ap": 0.21934284371208876,
+      "loss": 0.6043678271079234,
+      "calls": 203,
+      "excess_winners": 4.117624618514751
+    },
+    {
+      "epoch": 269,
+      "train_loss": 0.6498299757338003,
+      "ap": 0.2193574832363343,
+      "loss": 0.6044561886593381,
+      "calls": 197,
+      "excess_winners": 4.296414038657172
+    },
+    {
+      "epoch": 270,
+      "train_loss": 0.6512730409530689,
+      "ap": 0.21943384281097592,
+      "loss": 0.6044971844065832,
+      "calls": 197,
+      "excess_winners": 4.296414038657172
+    },
+    {
+      "epoch": 271,
+      "train_loss": 0.6511561354335238,
+      "ap": 0.21946367581042953,
+      "loss": 0.6045088381757572,
+      "calls": 192,
+      "excess_winners": 3.278738555442523
+    },
+    {
+      "epoch": 272,
+      "train_loss": 0.6499326058819552,
+      "ap": 0.2194419860247925,
+      "loss": 0.6044788364840185,
+      "calls": 193,
+      "excess_winners": 4.082273652085453
+    },
+    {
+      "epoch": 273,
+      "train_loss": 0.6499726147925665,
+      "ap": 0.21949243876468474,
+      "loss": 0.6043826498674837,
+      "calls": 191,
+      "excess_winners": 3.475203458799593
+    },
+    {
+      "epoch": 274,
+      "train_loss": 0.6514337696249141,
+      "ap": 0.21962241226474946,
+      "loss": 0.6043022829785352,
+      "calls": 186,
+      "excess_winners": 4.457527975584944
+    },
+    {
+      "epoch": 275,
+      "train_loss": 0.6508866973711007,
+      "ap": 0.21956043487154284,
+      "loss": 0.6041116044455845,
+      "calls": 185,
+      "excess_winners": 4.653992878942014
+    },
+    {
+      "epoch": 276,
+      "train_loss": 0.6498046507582075,
+      "ap": 0.2195271694318182,
+      "loss": 0.6040518422092814,
+      "calls": 181,
+      "excess_winners": 5.439852492370295
+    },
+    {
+      "epoch": 277,
+      "train_loss": 0.6501134983907467,
+      "ap": 0.2197113663574027,
+      "loss": 0.6040542402199545,
+      "calls": 176,
+      "excess_winners": 4.422177009155646
+    },
+    {
+      "epoch": 278,
+      "train_loss": 0.6503495518859768,
+      "ap": 0.21970062714986324,
+      "loss": 0.603811147496756,
+      "calls": 179,
+      "excess_winners": 4.832782299084435
+    },
+    {
+      "epoch": 279,
+      "train_loss": 0.6500620427598861,
+      "ap": 0.21983308772829271,
+      "loss": 0.6036454696257505,
+      "calls": 174,
+      "excess_winners": 4.815106815869786
+    },
+    {
+      "epoch": 280,
+      "train_loss": 0.6522982639564636,
+      "ap": 0.21999369404528285,
+      "loss": 0.6037762873291606,
+      "calls": 175,
+      "excess_winners": 3.6186419125127163
+    },
+    {
+      "epoch": 281,
+      "train_loss": 0.6500118498589582,
+      "ap": 0.22005111797312032,
+      "loss": 0.6035644846190513,
+      "calls": 174,
+      "excess_winners": 3.8151068158697865
+    },
+    {
+      "epoch": 282,
+      "train_loss": 0.6504166779406333,
+      "ap": 0.22003919445461087,
+      "loss": 0.6033768049940573,
+      "calls": 173,
+      "excess_winners": 3.0115717192268567
+    },
+    {
+      "epoch": 283,
+      "train_loss": 0.6499708407938779,
+      "ap": 0.22006684748288718,
+      "loss": 0.6033046291657891,
+      "calls": 173,
+      "excess_winners": 3.0115717192268567
+    },
+    {
+      "epoch": 284,
+      "train_loss": 0.6506115066971232,
+      "ap": 0.2202387728166737,
+      "loss": 0.6031182364675303,
+      "calls": 171,
+      "excess_winners": 3.4045015259409968
+    },
+    {
+      "epoch": 285,
+      "train_loss": 0.6496095979273488,
+      "ap": 0.22033803503117583,
+      "loss": 0.6031267307054475,
+      "calls": 168,
+      "excess_winners": 3.9938962360122074
+    },
+    {
+      "epoch": 286,
+      "train_loss": 0.6508493994419322,
+      "ap": 0.22035412465901455,
+      "loss": 0.6030676632907359,
+      "calls": 169,
+      "excess_winners": 3.797431332655137
+    },
+    {
+      "epoch": 287,
+      "train_loss": 0.6515847148183143,
+      "ap": 0.22033823617360015,
+      "loss": 0.6030706754778554,
+      "calls": 170,
+      "excess_winners": 4.600966429298067
+    },
+    {
+      "epoch": 288,
+      "train_loss": 0.6516709584484806,
+      "ap": 0.22038347732457772,
+      "loss": 0.6029574265315113,
+      "calls": 169,
+      "excess_winners": 3.797431332655137
+    },
+    {
+      "epoch": 289,
+      "train_loss": 0.6503964129833852,
+      "ap": 0.22043089567542054,
+      "loss": 0.6028577741747106,
+      "calls": 166,
+      "excess_winners": 3.386826042726348
+    },
+    {
+      "epoch": 290,
+      "train_loss": 0.6492737406911461,
+      "ap": 0.22022165544879452,
+      "loss": 0.6028644104212492,
+      "calls": 165,
+      "excess_winners": 4.583290946083418
+    },
+    {
+      "epoch": 291,
+      "train_loss": 0.6496188394065988,
+      "ap": 0.2202837933323986,
+      "loss": 0.6029455764853943,
+      "calls": 166,
+      "excess_winners": 3.386826042726348
+    },
+    {
+      "epoch": 292,
+      "train_loss": 0.6503325850906403,
+      "ap": 0.2203249291462813,
+      "loss": 0.6028041549762171,
+      "calls": 162,
+      "excess_winners": 3.172685656154629
+    },
+    {
+      "epoch": 293,
+      "train_loss": 0.6489209203026065,
+      "ap": 0.2203512469789734,
+      "loss": 0.6026482475373898,
+      "calls": 168,
+      "excess_winners": 3.9938962360122074
+    },
+    {
+      "epoch": 294,
+      "train_loss": 0.64932304439966,
+      "ap": 0.22041304255152325,
+      "loss": 0.6026215869194372,
+      "calls": 163,
+      "excess_winners": 4.976220752797558
+    },
+    {
+      "epoch": 295,
+      "train_loss": 0.6496376889704172,
+      "ap": 0.22045795315787087,
+      "loss": 0.602753995757622,
+      "calls": 160,
+      "excess_winners": 4.565615462868769
+    },
+    {
+      "epoch": 296,
+      "train_loss": 0.6491698368339781,
+      "ap": 0.22048437948287597,
+      "loss": 0.6025678342016886,
+      "calls": 158,
+      "excess_winners": 2.9585452695829093
+    },
+    {
+      "epoch": 297,
+      "train_loss": 0.6500214933864403,
+      "ap": 0.22052868371398326,
+      "loss": 0.6025258630726369,
+      "calls": 156,
+      "excess_winners": 4.35147507629705
+    },
+    {
+      "epoch": 298,
+      "train_loss": 0.6501773589687112,
+      "ap": 0.22068931929714994,
+      "loss": 0.6026079741402294,
+      "calls": 155,
+      "excess_winners": 3.54793997965412
+    },
+    {
+      "epoch": 299,
+      "train_loss": 0.6497699031323853,
+      "ap": 0.22073665268546452,
+      "loss": 0.6027082806322364,
+      "calls": 156,
+      "excess_winners": 4.35147507629705
+    },
+    {
+      "epoch": 300,
+      "train_loss": 0.6494513154643744,
+      "ap": 0.2207904769848494,
+      "loss": 0.6026925110501651,
+      "calls": 158,
+      "excess_winners": 3.9585452695829093
+    },
+    {
+      "epoch": 301,
+      "train_loss": 0.6494522402984112,
+      "ap": 0.22084381738921996,
+      "loss": 0.602605842682983,
+      "calls": 158,
+      "excess_winners": 3.9585452695829093
+    },
+    {
+      "epoch": 302,
+      "train_loss": 0.6499610534220276,
+      "ap": 0.2207248890814012,
+      "loss": 0.6025432162706874,
+      "calls": 156,
+      "excess_winners": 4.35147507629705
+    },
+    {
+      "epoch": 303,
+      "train_loss": 0.6498437560982684,
+      "ap": 0.2207373533661555,
+      "loss": 0.6025345822680639,
+      "calls": 150,
+      "excess_winners": 4.530264496439471
+    },
+    {
+      "epoch": 304,
+      "train_loss": 0.6493524382117318,
+      "ap": 0.22091548433098307,
+      "loss": 0.6027093287159443,
+      "calls": 152,
+      "excess_winners": 4.13733468972533
+    },
+    {
+      "epoch": 305,
+      "train_loss": 0.6501194884224885,
+      "ap": 0.22082850358836717,
+      "loss": 0.6027561293977445,
+      "calls": 150,
+      "excess_winners": 3.530264496439471
+    },
+    {
+      "epoch": 306,
+      "train_loss": 0.649376655086978,
+      "ap": 0.22061616475661966,
+      "loss": 0.6026834251315524,
+      "calls": 147,
+      "excess_winners": 4.119659206510682
+    },
+    {
+      "epoch": 307,
+      "train_loss": 0.6489316404051599,
+      "ap": 0.2208155893548917,
+      "loss": 0.6026876074009,
+      "calls": 148,
+      "excess_winners": 3.923194303153611
+    },
+    {
+      "epoch": 308,
+      "train_loss": 0.6487324089922545,
+      "ap": 0.22088267886841106,
+      "loss": 0.6025069625792402,
+      "calls": 147,
+      "excess_winners": 4.119659206510682
+    },
+    {
+      "epoch": 309,
+      "train_loss": 0.6491117899471835,
+      "ap": 0.2207407304125446,
+      "loss": 0.6023341419131686,
+      "calls": 145,
+      "excess_winners": 4.512589013224822
+    },
+    {
+      "epoch": 310,
+      "train_loss": 0.6497949926231851,
+      "ap": 0.22071400654912807,
+      "loss": 0.6022923227971835,
+      "calls": 141,
+      "excess_winners": 4.298448626653102
+    },
+    {
+      "epoch": 311,
+      "train_loss": 0.6488108304073888,
+      "ap": 0.2208273538902116,
+      "loss": 0.6021101277696759,
+      "calls": 140,
+      "excess_winners": 4.494913530010173
+    },
+    {
+      "epoch": 312,
+      "train_loss": 0.6494451468755663,
+      "ap": 0.22080188436493073,
+      "loss": 0.6020195497501175,
+      "calls": 141,
+      "excess_winners": 5.298448626653102
+    },
+    {
+      "epoch": 313,
+      "train_loss": 0.6484235174223923,
+      "ap": 0.22092059119667273,
+      "loss": 0.6018284835141163,
+      "calls": 140,
+      "excess_winners": 5.494913530010173
+    },
+    {
+      "epoch": 314,
+      "train_loss": 0.6492721974518519,
+      "ap": 0.22115967402863207,
+      "loss": 0.6017504018539087,
+      "calls": 141,
+      "excess_winners": 5.298448626653102
+    },
+    {
+      "epoch": 315,
+      "train_loss": 0.6494773073560872,
+      "ap": 0.22106008212862982,
+      "loss": 0.6014825149930991,
+      "calls": 139,
+      "excess_winners": 5.691378433367243
+    },
+    {
+      "epoch": 316,
+      "train_loss": 0.6487227916232873,
+      "ap": 0.22099973650455385,
+      "loss": 0.6014838317524744,
+      "calls": 139,
+      "excess_winners": 5.691378433367243
+    },
+    {
+      "epoch": 317,
+      "train_loss": 0.6485781505463617,
+      "ap": 0.2209847895153528,
+      "loss": 0.6013829970650852,
+      "calls": 138,
+      "excess_winners": 4.8878433367243135
+    },
+    {
+      "epoch": 318,
+      "train_loss": 0.6492223451091985,
+      "ap": 0.22101735443561066,
+      "loss": 0.6011298406160496,
+      "calls": 139,
+      "excess_winners": 5.691378433367243
+    },
+    {
+      "epoch": 319,
+      "train_loss": 0.6489983643695807,
+      "ap": 0.22114618453866616,
+      "loss": 0.6010214156439928,
+      "calls": 137,
+      "excess_winners": 6.084308240081383
+    },
+    {
+      "epoch": 320,
+      "train_loss": 0.6478758840028438,
+      "ap": 0.2211529948968327,
+      "loss": 0.6008219125312075,
+      "calls": 138,
+      "excess_winners": 3.8878433367243135
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "revision": "AHj4eMQNr6MjKwf-r6HnlzuxXT2G7jfTrBb9jyH_3wPA0nlVqEGs7s_jIZ_bMoq_faLQ5VoXrdc9E-SPhBTM",
+  "originalRules": [
+    {
+      "start": 2068,
+      "end": 2095,
+      "text": "1. RSI пересекает 50 вниз."
+    },
+    {
+      "start": 2095,
+      "end": 2122,
+      "text": "2. RSI пересекает 30 вниз."
+    },
+    {
+      "start": 2122,
+      "end": 2149,
+      "text": "3. RSI пересекает 70 вниз."
+    },
+    {
+      "start": 2149,
+      "end": 2176,
+      "text": "4. RSI пересекает 60 вниз."
+    },
+    {
+      "start": 2176,
+      "end": 2233,
+      "text": "5. RSI меняет рост на снижение; предыдущее значение >70."
+    },
+    {
+      "start": 2233,
+      "end": 2293,
+      "text": "6. RSI пересекает вниз среднее своих предыдущих 5 значений."
+    },
+    {
+      "start": 2293,
+      "end": 2323,
+      "text": "7. MACD пересекает ноль вниз."
+    },
+    {
+      "start": 2323,
+      "end": 2355,
+      "text": "8. MACD пересекает Signal вниз."
+    },
+    {
+      "start": 2355,
+      "end": 2402,
+      "text": "9. Hist меняет рост на снижение, оставаясь >0."
+    },
+    {
+      "start": 2402,
+      "end": 2450,
+      "text": "10. Hist меняет рост на снижение, оставаясь <0."
+    },
+    {
+      "start": 2450,
+      "end": 2498,
+      "text": "11. MACD меняет рост на снижение, оставаясь >0."
+    },
+    {
+      "start": 2498,
+      "end": 2531,
+      "text": "12. Signal пересекает ноль вниз."
+    },
+    {
+      "start": 2531,
+      "end": 2561,
+      "text": "13. DI− пересекает DI+ вверх."
+    },
+    {
+      "start": 2561,
+      "end": 2601,
+      "text": "14. ADX пересекает 25 вверх; DI− > DI+."
+    },
+    {
+      "start": 2601,
+      "end": 2670,
+      "text": "15. ADX меняет снижение на рост; предыдущее значение ≤20, DI− > DI+."
+    },
+    {
+      "start": 2670,
+      "end": 2721,
+      "text": "16. Разница DI− − DI+ пересекает 10 пунктов вверх."
+    },
+    {
+      "start": 2721,
+      "end": 2761,
+      "text": "17. DI− пересекает 25 вверх; DI− > DI+."
+    },
+    {
+      "start": 2761,
+      "end": 2800,
+      "text": "18. DI+ пересекает 20 вниз; DI− > DI+."
+    },
+    {
+      "start": 2800,
+      "end": 2869,
+      "text": "19. ADX меняет рост на снижение; предыдущее значение >35, DI+ > DI−."
+    },
+    {
+      "start": 2869,
+      "end": 2939,
+      "text": "20. Впервые DI− растет, а DI+ уменьшается 3 последовательных периода."
+    },
+    {
+      "start": 2939,
+      "end": 2978,
+      "text": "21. ADX пересекает 25 вниз; DI+ > DI−."
+    },
+    {
+      "start": 2978,
+      "end": 3023,
+      "text": "22. MACD пересекает Signal вниз при ADX >25."
+    },
+    {
+      "start": 3023,
+      "end": 3088,
+      "text": "23. Впервые DI− > DI+ на протяжении 3 последовательных периодов."
+    },
+    {
+      "start": 3088,
+      "end": 3161,
+      "text": "24. Hist опускается ниже минимума своих предыдущих 10 значений; MACD <0."
+    },
+    {
+      "start": 3161,
+      "end": 3243,
+      "text": "25. ATR пересекает вверх 75-й процентиль своих предыдущих 80 значений; DI− > DI+."
+    },
+    {
+      "start": 3243,
+      "end": 3315,
+      "text": "26. Объем впервые >2 × средний объем предыдущих 20 периодов; DI− > DI+."
+    },
+    {
+      "start": 3315,
+      "end": 3389,
+      "text": "27. ATR пересекает вверх среднее своих предыдущих 20 значений; DI− > DI+."
+    },
+    {
+      "start": 3389,
+      "end": 3467,
+      "text": "28. RSI опускается ниже минимума своих предыдущих 10 значений, оставаясь <50."
+    },
+    {
+      "start": 3467,
+      "end": 3496,
+      "text": "29. RSI пересекает 70 вверх."
+    },
+    {
+      "start": 3496,
+      "end": 3546,
+      "text": "30. Signal меняет рост на снижение, оставаясь >0."
+    },
+    {
+      "start": 3546,
+      "end": 3619,
+      "text": "31. Впервые H уменьшается 3 последовательных периода; все 3 значения >0."
+    },
+    {
+      "start": 3619,
+      "end": 3672,
+      "text": "32. DI+ меняет рост на снижение, оставаясь выше DI−."
+    },
+    {
+      "start": 3672,
+      "end": 3729,
+      "text": "33. Прирост DI− за период впервые >5 пунктов; DI− > DI+."
+    },
+    {
+      "start": 3729,
+      "end": 3799,
+      "text": "34. Объем впервые >3 × средний объем предыдущих 20 периодов; RSI >70."
+    },
+    {
+      "start": 3799,
+      "end": 3867,
+      "text": "35. ATR уменьшается после 3 последовательных увеличений; DI+ > DI−."
+    }
+  ],
+  "groups": [
+    "Начало движения",
+    "Усиление движения",
+    "Возможное изменение тренда",
+    "Потенциальные развороты",
+    "Конец тренда",
+    "Объем"
+  ],
+  "comments": {
+    "fileId": "13-9HR0mEcAhQ7WrKXFY0Cw4QPH3R1xc8wR0N-xpn8Pg",
+    "comments": [
+      {
+        "id": "AAACJFH8dcw",
+        "kind": "drive#comment",
+        "content": "трудно проверить в ручную",
+        "htmlContent": "трудно проверить в ручную",
+        "createdTime": "2026-10-21T14:14:41.582Z",
+        "modifiedTime": "2026-10-21T14:14:41.582Z",
+        "resolved": false,
+        "anchor": "kix.iyzkzyf7y24",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "25. ATR пересекает вверх 75-й процентиль своих предыдущих 80 значений; DI− &gt; DI+."
+        },
+        "author": {
+          "displayName": "михаил колесниченко",
+          "emailAddress": null,
+          "me": true,
+          "photoLink": "//lh3.googleusercontent.com/a/ACg8ocJOUc2zqnQYr6ynzoFR2x4Ii3zu1xhB6KLqzWIgcQrt81tYjcLVbg=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "AAACJFH8dcs",
+        "kind": "drive#comment",
+        "content": "трудно проверить в ручную",
+        "htmlContent": "трудно проверить в ручную",
+        "createdTime": "2026-10-21T14:14:25.410Z",
+        "modifiedTime": "2026-10-21T14:14:25.410Z",
+        "resolved": false,
+        "anchor": "kix.7s5tudcvn0nx",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "26. Объем впервые &gt;2 &#215; средний объем предыдущих 20 периодов; DI− &gt; DI+."
+        },
+        "author": {
+          "displayName": "михаил колесниченко",
+          "emailAddress": null,
+          "me": true,
+          "photoLink": "//lh3.googleusercontent.com/a/ACg8ocJOUc2zqnQYr6ynzoFR2x4Ii3zu1xhB6KLqzWIgcQrt81tYjcLVbg=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "AAACJHBWstI",
+        "kind": "drive#comment",
+        "content": "Не ясно, что считается периодом ?",
+        "htmlContent": "Не ясно, что считается периодом ?",
+        "createdTime": "2026-10-21T13:54:10.374Z",
+        "modifiedTime": "2026-10-21T13:54:10.374Z",
+        "resolved": false,
+        "anchor": "kix.9gvar59843dc",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "DI"
+        },
+        "author": {
+          "displayName": "скайклауд Skycloud",
+          "emailAddress": null,
+          "me": false,
+          "photoLink": "//lh3.googleusercontent.com/a-/ALV-UjU6qbtDNoqtIhseJ0aXpBQBcvaZe_qJ_iVtdCMMm-if37DXg_k=s50-c-k-no"
+        },
+        "replies": []
+      },
+      {
+        "id": "AAACJG8sxjs",
+        "kind": "drive#comment",
+        "content": "Криво написано ? Вариант: (DI-) - (DI+) > 10",
+        "htmlContent": "Криво написано ? Вариант: (DI-) - (DI+) &gt; 10",
+        "createdTime": "2026-10-21T10:53:03.619Z",
+        "modifiedTime": "2026-10-21T10:53:03.619Z",
+        "resolved": false,
+        "anchor": "kix.mf6uujkl79vg",
+        "deleted": false,
+        "quotedFileContent": {
+          "mimeType": "text/html",
+          "value": "вверх"
+        },
+        "author": {
+          "displayName": "скайклауд Skycloud",
+          "emailAddress": null,
+          "me": false,
+          "photoLink": "//lh3.googleusercontent.com/a-/ALV-UjU6qbtDNoqtIhseJ0aXpBQBcvaZe_qJ_iVtdCMMm-if37DXg_k=s50-c-k-no"
+        },
+        "replies": []
+      }
+    ],
+    "nextPageToken": null,
+    "file_url": "https://drive.google.com/file/d/13-9HR0mEcAhQ7WrKXFY0Cw4QPH3R1xc8wR0N-xpn8Pg"
+  }
+}

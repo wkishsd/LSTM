@@ -1,0 +1,36 @@
+{
+  "train_prior_only_validation_loss": 0.8567156700715325,
+  "validation_positive_rate": 0.3974107207796931,
+  "best.pt": {
+    "epoch": 46,
+    "wrong_rate": 0.39770165102916577,
+    "mean_wrong_top_confidence": 0.6473109126091003,
+    "mean_loss_when_wrong": 1.5990142822265625,
+    "mean_loss_when_correct": 0.4282963275909424,
+    "overall_loss": 0.893892765045166,
+    "binary_nonnegative_bucket_ap": 0.4308381636882486,
+    "class_ap": [
+      0.6226708430042036,
+      0.3770055928456339,
+      0.07593544631252758,
+      0.03187640468270154,
+      0.12172343335651341
+    ]
+  },
+  "last.pt": {
+    "epoch": 160,
+    "wrong_rate": 0.4377045603316605,
+    "mean_wrong_top_confidence": 0.8822042942047119,
+    "mean_loss_when_wrong": 4.890369415283203,
+    "mean_loss_when_correct": 0.10963313281536102,
+    "overall_loss": 2.2021830081939697,
+    "binary_nonnegative_bucket_ap": 0.3998047965259211,
+    "class_ap": [
+      0.6129566724142699,
+      0.3558688720147977,
+      0.06096283086016179,
+      0.0160813546170506,
+      0.01994090683953169
+    ]
+  }
+}

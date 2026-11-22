@@ -1,0 +1,97 @@
+{
+  "epoch": 310,
+  "validation": {
+    "all_pairs": {
+      "matched_pairs": 5925,
+      "winners": 1626,
+      "base_rate": 0.27443037974683543,
+      "early_ap": 0.30288146025780815,
+      "five_minutes_later_ap": 0.29958382228804714,
+      "visible_five_minute_short_move_ap": 0.5987221185275307
+    },
+    "already_resolved": {
+      "matched_pairs": 10,
+      "winners": 0,
+      "base_rate": 0.0,
+      "early_ap": 0.0,
+      "five_minutes_later_ap": 0.0,
+      "visible_five_minute_short_move_ap": 0.0
+    },
+    "still_unresolved": {
+      "matched_pairs": 5915,
+      "winners": 1626,
+      "base_rate": 0.274894336432798,
+      "early_ap": 0.30347362876021966,
+      "five_minutes_later_ap": 0.3003785655103399,
+      "visible_five_minute_short_move_ap": 0.5987259974967774
+    },
+    "filled_and_unresolved": {
+      "matched_pairs": 5328,
+      "winners": 1543,
+      "base_rate": 0.2896021021021021,
+      "early_ap": 0.3192206253677348,
+      "five_minutes_later_ap": 0.3163271054293768,
+      "visible_five_minute_short_move_ap": 0.6167296115800713
+    },
+    "no_fill_yet_and_unresolved": {
+      "matched_pairs": 587,
+      "winners": 83,
+      "base_rate": 0.141396933560477,
+      "early_ap": 0.155278639714734,
+      "five_minutes_later_ap": 0.1506960918433285,
+      "visible_five_minute_short_move_ap": 0.15588092085973618
+    },
+    "within_week_call_baseline": {
+      "calls": 2566,
+      "winners": 605,
+      "expected_from_each_week_win_rate": 583.2599918175649
+    }
+  },
+  "test": {
+    "all_pairs": {
+      "matched_pairs": 5994,
+      "winners": 1345,
+      "base_rate": 0.22439105772439105,
+      "early_ap": 0.27178363855303295,
+      "five_minutes_later_ap": 0.2721912147928889,
+      "visible_five_minute_short_move_ap": 0.49366501470524454
+    },
+    "already_resolved": {
+      "matched_pairs": 22,
+      "winners": 0,
+      "base_rate": 0.0,
+      "early_ap": 0.0,
+      "five_minutes_later_ap": 0.0,
+      "visible_five_minute_short_move_ap": 0.0
+    },
+    "still_unresolved": {
+      "matched_pairs": 5972,
+      "winners": 1345,
+      "base_rate": 0.22521768251841928,
+      "early_ap": 0.27233467085721347,
+      "five_minutes_later_ap": 0.27314207127535634,
+      "visible_five_minute_short_move_ap": 0.4937604746598525
+    },
+    "filled_and_unresolved": {
+      "matched_pairs": 5415,
+      "winners": 1282,
+      "base_rate": 0.23674976915974147,
+      "early_ap": 0.2844580409342075,
+      "five_minutes_later_ap": 0.28656951184272816,
+      "visible_five_minute_short_move_ap": 0.5082011388619682
+    },
+    "no_fill_yet_and_unresolved": {
+      "matched_pairs": 557,
+      "winners": 63,
+      "base_rate": 0.11310592459605028,
+      "early_ap": 0.13739678877212724,
+      "five_minutes_later_ap": 0.13798950771917315,
+      "visible_five_minute_short_move_ap": 0.10400484689402278
+    },
+    "within_week_call_baseline": {
+      "calls": 1518,
+      "winners": 327,
+      "expected_from_each_week_win_rate": 257.14579930415584
+    }
+  }
+}

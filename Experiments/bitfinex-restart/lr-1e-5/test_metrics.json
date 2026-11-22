@@ -1,0 +1,42 @@
+{
+  "best_epoch": 40,
+  "timing": {
+    "epochs_completed": 48,
+    "total_epoch_seconds": 66.78579761101719,
+    "average_epoch_seconds": 1.3913707835628581
+  },
+  "checkpoint_epoch": 40,
+  "checkpoint_file": "best.pt",
+  "test": {
+    "loss": 0.517346485809222,
+    "accuracy": 0.8425972713491663,
+    "always_skip_accuracy": 0.8432920667003537,
+    "confusion_matrix": {
+      "TP": 3,
+      "FP": 14,
+      "TN": 13337,
+      "FN": 2478
+    },
+    "precision_enter": 0.17647058823529413,
+    "recall_enter": 0.0012091898428053204,
+    "balanced_accuracy": 0.5000802896259192,
+    "profitable_above_baseline": 0.3359651339060131,
+    "allowed": 17,
+    "rejected": 15815,
+    "count": 15832,
+    "class_counts": {
+      "0": 13351,
+      "1": 2481
+    },
+    "average_precision": 0.18101719170392327
+  },
+  "memory": {
+    "device": "cuda:0",
+    "name": "AMD Radeon RX 9070",
+    "allocated_mib": 524.5048828125,
+    "reserved_mib": 2756.0,
+    "peak_allocated_mib": 2331.10693359375,
+    "free_mib": 11144.53125,
+    "total_mib": 16191.21875
+  }
+}

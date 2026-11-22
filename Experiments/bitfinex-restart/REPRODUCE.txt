@@ -1,0 +1,30 @@
+Run these commands in the Ubuntu-24.04 WSL session as mlp-runner, from the LSTM workspace root.
+
+Re-score the recorded checkpoints and repeat the two continuations:
+
+  export HSA_ENABLE_DXG_DETECTION=1
+  export LD_LIBRARY_PATH="/opt/rocm/lib:/usr/lib/wsl/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+  export OPENBLAS_NUM_THREADS=1
+  audit_python="$HOME/.venvs/bitfinex-mlp/bin/python"
+
+  "$audit_python" outputs/bitfinex-restart/checkpoints.py \
+    --control outputs/bitfinex-restart/lr-1e-5 \
+    --control outputs/bitfinex-restart/lr-1e-5-relative-price \
+    --control outputs/bitfinex-restart/lr-1e-5-30m
+
+  "$audit_python" outputs/bitfinex-restart/continue_checkpoint.py
+
+The scripts regenerate checkpoint_results.json and continuation_results.json.
+The original run history and checkpoints are read from Training/rocm-9070/runs/rx9070-20261120-024355-b25e.
+
+To train the 48-epoch controls again through the normal ROCm launcher, use fresh output directories:
+
+  cd Training/rocm-9070
+  bash train.sh --config ../../outputs/bitfinex-restart/lr-control.json \
+    --output-dir ../../outputs/bitfinex-restart/replay-lr-1e-5
+  bash train.sh --config ../../outputs/bitfinex-restart/relative-price-control.json \
+    --output-dir ../../outputs/bitfinex-restart/replay-lr-1e-5-relative-price
+  bash train.sh --config ../../outputs/bitfinex-restart/short-lookback-control.json \
+    --output-dir ../../outputs/bitfinex-restart/replay-lr-1e-5-30m
+
+To score the replayed checkpoints, return to the workspace root and use the three replay directories in the --control arguments.

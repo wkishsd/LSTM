@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-26",
+  "scope": "Existing English and Russian Google Docs simplified in place; production code unchanged",
+  "english_document_id": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+  "russian_document_id": "1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g",
+  "pages_per_document": 3,
+  "native_equations_per_document": 0,
+  "pipeline_diagrams_per_document": 1,
+  "verification": [
+    "Read-back text exactly matches planned replacement content",
+    "All six exported PDF pages visually inspected",
+    "No clipping or overflow observed",
+    "Variable dictionary defines all pipeline variable names used",
+    "Example dimensions are 60 by 36, flattened 2160, older summary 64, flags 18, joined input 2242"
+  ],
+  "note": "Earlier technical DOCX copies are prior versions; the Google Docs and pipeline_simple_EN/RU.json contain this simplified revision."
+}

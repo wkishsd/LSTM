@@ -1,0 +1,194 @@
+{
+  "start_epoch": 320,
+  "start_validation": {
+    "loss": 0.6008219125312075,
+    "accuracy": 0.7987029501525941,
+    "always_skip_accuracy": 0.8035350966429298,
+    "confusion_matrix": {
+      "TP": 31,
+      "FP": 107,
+      "TN": 12531,
+      "FN": 3059
+    },
+    "precision_enter": 0.2246376811594203,
+    "recall_enter": 0.010032362459546926,
+    "balanced_accuracy": 0.5007829164726917,
+    "profitable_above_baseline": 3.8878433367243135,
+    "allowed": 138,
+    "rejected": 15590,
+    "count": 15728,
+    "class_counts": {
+      "0": 12638,
+      "1": 3090
+    },
+    "average_precision": 0.2211529948968327
+  },
+  "branches": {
+    "1e-07": [
+      {
+        "continuation_epoch": 1,
+        "train_loss": 0.6485811332971977,
+        "validation": {
+          "loss": 0.6007314477786649,
+          "accuracy": 0.798766531027467,
+          "always_skip_accuracy": 0.8035350966429298,
+          "confusion_matrix": {
+            "TP": 31,
+            "FP": 106,
+            "TN": 12532,
+            "FN": 3059
+          },
+          "precision_enter": 0.22627737226277372,
+          "recall_enter": 0.010032362459546926,
+          "balanced_accuracy": 0.5008224796947205,
+          "profitable_above_baseline": 4.084308240081383,
+          "allowed": 137,
+          "rejected": 15591,
+          "count": 15728,
+          "class_counts": {
+            "0": 12638,
+            "1": 3090
+          },
+          "average_precision": 0.22114061833668683
+        }
+      },
+      {
+        "continuation_epoch": 4,
+        "train_loss": 0.6484238137218554,
+        "validation": {
+          "loss": 0.600818108141968,
+          "accuracy": 0.7992115971515769,
+          "always_skip_accuracy": 0.8035350966429298,
+          "confusion_matrix": {
+            "TP": 31,
+            "FP": 99,
+            "TN": 12539,
+            "FN": 3059
+          },
+          "precision_enter": 0.23846153846153847,
+          "recall_enter": 0.010032362459546926,
+          "balanced_accuracy": 0.501099422248922,
+          "profitable_above_baseline": 5.459562563580874,
+          "allowed": 130,
+          "rejected": 15598,
+          "count": 15728,
+          "class_counts": {
+            "0": 12638,
+            "1": 3090
+          },
+          "average_precision": 0.2212128842423987
+        }
+      },
+      {
+        "continuation_epoch": 12,
+        "train_loss": 0.6486384790963735,
+        "validation": {
+          "loss": 0.6000720762163553,
+          "accuracy": 0.7994023397761953,
+          "always_skip_accuracy": 0.8035350966429298,
+          "confusion_matrix": {
+            "TP": 27,
+            "FP": 92,
+            "TN": 12546,
+            "FN": 3063
+          },
+          "precision_enter": 0.226890756302521,
+          "recall_enter": 0.008737864077669903,
+          "balanced_accuracy": 0.5007291156121851,
+          "profitable_above_baseline": 3.620676500508647,
+          "allowed": 119,
+          "rejected": 15609,
+          "count": 15728,
+          "class_counts": {
+            "0": 12638,
+            "1": 3090
+          },
+          "average_precision": 0.22085192557834632
+        }
+      }
+    ],
+    "1e-05": [
+      {
+        "continuation_epoch": 1,
+        "train_loss": 0.6491733003250708,
+        "validation": {
+          "loss": 0.5967618943715993,
+          "accuracy": 0.8009282807731435,
+          "always_skip_accuracy": 0.8035350966429298,
+          "confusion_matrix": {
+            "TP": 21,
+            "FP": 62,
+            "TN": 12576,
+            "FN": 3069
+          },
+          "precision_enter": 0.25301204819277107,
+          "recall_enter": 0.006796116504854369,
+          "balanced_accuracy": 0.5009451384866415,
+          "profitable_above_baseline": 4.693413021363174,
+          "allowed": 83,
+          "rejected": 15645,
+          "count": 15728,
+          "class_counts": {
+            "0": 12638,
+            "1": 3090
+          },
+          "average_precision": 0.22871943710660034
+        }
+      },
+      {
+        "continuation_epoch": 4,
+        "train_loss": 0.6440100255205082,
+        "validation": {
+          "loss": 0.580140612678392,
+          "accuracy": 0.8026449643947101,
+          "always_skip_accuracy": 0.8035350966429298,
+          "confusion_matrix": {
+            "TP": 9,
+            "FP": 23,
+            "TN": 12615,
+            "FN": 3081
+          },
+          "precision_enter": 0.28125,
+          "recall_enter": 0.002912621359223301,
+          "balanced_accuracy": 0.5005463565729492,
+          "profitable_above_baseline": 2.713123092573754,
+          "allowed": 32,
+          "rejected": 15696,
+          "count": 15728,
+          "class_counts": {
+            "0": 12638,
+            "1": 3090
+          },
+          "average_precision": 0.22715313464826603
+        }
+      },
+      {
+        "continuation_epoch": 12,
+        "train_loss": 0.6351939114262247,
+        "validation": {
+          "loss": 0.5706391939675456,
+          "accuracy": 0.802263479145473,
+          "always_skip_accuracy": 0.8035350966429298,
+          "confusion_matrix": {
+            "TP": 16,
+            "FP": 36,
+            "TN": 12602,
+            "FN": 3074
+          },
+          "precision_enter": 0.3076923076923077,
+          "recall_enter": 0.005177993527508091,
+          "balanced_accuracy": 0.5011647207707172,
+          "profitable_above_baseline": 5.78382502543235,
+          "allowed": 52,
+          "rejected": 15676,
+          "count": 15728,
+          "class_counts": {
+            "0": 12638,
+            "1": 3090
+          },
+          "average_precision": 0.2332471913112043
+        }
+      }
+    ]
+  }
+}

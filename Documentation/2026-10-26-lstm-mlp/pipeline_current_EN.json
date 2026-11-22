@@ -1,0 +1,366 @@
+[
+  {
+    "kind": "title",
+    "text": "LSTM + recent window + MLP",
+    "oldStart": 1,
+    "start": 1,
+    "end": 28
+  },
+  {
+    "kind": "sub",
+    "text": "A plain-English guide to the proposed prediction pipeline",
+    "oldStart": 28,
+    "start": 28,
+    "end": 86
+  },
+  {
+    "kind": "p",
+    "text": "The MLP receives individual recent feature values and an LSTM summary of older history. Anchor flags are included in every feature row. LSTM is a sequence model with memory; MLP is a feedforward network that makes the final prediction. The LSTM does not recreate the recent window.",
+    "oldStart": 86,
+    "start": 86,
+    "end": 368
+  },
+  {
+    "kind": "image",
+    "text": "￼",
+    "oldStart": 438,
+    "start": 368,
+    "end": 370
+  },
+  {
+    "kind": "h",
+    "text": "What goes in",
+    "oldStart": 440,
+    "start": 370,
+    "end": 383
+  },
+  {
+    "kind": "p",
+    "text": "Use a continuous timeline with one row per minute, including minutes without anchors. Each row has 54 features: 36 normalized market values and 18 main-anchor flags. M1, M5, M15 and M30 mean 1-, 5-, 15- and 30-minute candles. Only closed, available candles are used.",
+    "oldStart": 453,
+    "start": 383,
+    "end": 650
+  },
+  {
+    "kind": "p",
+    "text": "The 36 market values are nine features for each timeframe: log price, log candle volume, RSI, relative ATR, MACD/ATR, MACD signal/ATR, ADX, DI+ and DI−. Each anchor flag is 1 when that event becomes confirmed, otherwise 0. Several flags can be 1 together. Flags are not kept at 1 throughout a trade.",
+    "oldStart": 737,
+    "start": 650,
+    "end": 950
+  },
+  {
+    "kind": "p",
+    "text": "Rows are timestamped by availability: the 13:05 row uses M1 candle 13:04 and the anchor confirmed by M5 candle 13:00 closing at 13:05. The current flags are already in that row; do not append them again. Raw OHLCV (open, high, low, close, volume), identifiers and future outcomes are excluded from model inputs. This architecture is proposed, not yet trained in the script.",
+    "oldStart": 1037,
+    "start": 950,
+    "end": 1324
+  },
+  {
+    "kind": "page",
+    "text": "How one prediction is produced",
+    "oldStart": 1326,
+    "start": 1324,
+    "end": 1355
+  },
+  {
+    "kind": "sub",
+    "text": "Example: a decision at 13:05 UTC+3; a 60-row recent window and a 64-value LSTM summary. Both sizes are illustrative settings, not trained results.",
+    "oldStart": 1357,
+    "start": 1355,
+    "end": 1502
+  },
+  {
+    "kind": "step",
+    "text": "1. Fix the information available now",
+    "oldStart": 1487,
+    "start": 1502,
+    "end": 1539
+  },
+  {
+    "kind": "p",
+    "text": "At 13:05, the latest completed M1 candle opened at 13:04. The latest completed M5, M15 and M30 candles opened at 13:00, 12:45 and 12:30. Include the newly confirmed anchor flags in the 13:05 feature row. The decision time is the initial-order placement time, even if it fills later.",
+    "oldStart": 1524,
+    "start": 1539,
+    "end": 1822
+  },
+  {
+    "kind": "step",
+    "text": "2. Build the older summary",
+    "oldStart": 1757,
+    "start": 1822,
+    "end": 1849
+  },
+  {
+    "kind": "p",
+    "text": "Feed the LSTM the 54-feature rows chronologically, including non-anchor minutes. For this decision, use its state after the 12:05 row, whose M1 candle opened at 12:04. There is no fixed LSTM lookback: carry hidden_state and cell_state from the start of the processed history. Send only hidden_state to the MLP as older_summary.",
+    "oldStart": 1784,
+    "start": 1849,
+    "end": 2177
+  },
+  {
+    "kind": "step",
+    "text": "3. Keep the recent values individually",
+    "oldStart": 2061,
+    "start": 2177,
+    "end": 2216
+  },
+  {
+    "kind": "p",
+    "text": "Take decision rows 12:06–13:05, whose M1 candles opened at 12:05–13:04. recent_window has 60 rows and 54 columns, including historical and current anchor flags. Flatten the rows oldest to newest into 3,240 values. Their positions preserve the lag and feature identity; nothing is averaged or compressed. Separate networks per lag are not part of this design.",
+    "oldStart": 2100,
+    "start": 2216,
+    "end": 2575
+  },
+  {
+    "kind": "step",
+    "text": "4. Join the inputs and run the MLP",
+    "oldStart": 2392,
+    "start": 2575,
+    "end": 2610
+  },
+  {
+    "kind": "p",
+    "text": "Join the 3,240 recent values and 64 older hidden-state values. mlp_input contains 3,304 values; there is no extra anchor block. One MLP learns relationships across lags and older context, then returns profit_probability: the estimated chance that the whole series exceeds the net-return threshold. Its first hidden-layer width is a separate choice, not automatically 3,304.",
+    "oldStart": 2427,
+    "start": 2610,
+    "end": 2984
+  },
+  {
+    "kind": "step",
+    "text": "5. Apply the entry decision",
+    "oldStart": 2706,
+    "start": 2984,
+    "end": 3012
+  },
+  {
+    "kind": "p",
+    "text": "Compare that probability with probability_cutoff. Start a series only if the prediction passes and the execution rules permit a new series. The prediction does not change the fixed stop, exit or re-entry rules. An accepted initial order can still remain unfilled.",
+    "oldStart": 2734,
+    "start": 3012,
+    "end": 3276
+  },
+  {
+    "kind": "step",
+    "text": "6. Advance one minute",
+    "oldStart": 2998,
+    "start": 3276,
+    "end": 3298
+  },
+  {
+    "kind": "p",
+    "text": "At 13:06, use decision rows 12:07–13:06 for the recent window and advance older_summary through row 12:06. The row leaving the window enters older memory. Keep the summary at that boundary; do not use a later state that already includes the window. Advance the LSTM every minute, retain both states and request a trading prediction at an eligible anchor.",
+    "oldStart": 3020,
+    "start": 3298,
+    "end": 3653
+  },
+  {
+    "kind": "page",
+    "text": "What the LSTM memory size means",
+    "inserted": true,
+    "start": 3653,
+    "end": 3685
+  },
+  {
+    "kind": "p",
+    "text": "memory_size is the number of learned memory units chosen when building the LSTM. In this example it is 64. It is not 64 minutes, 64 candles or one memory unit per input feature. A 54-feature input does not dictate this size.",
+    "inserted": true,
+    "start": 3685,
+    "end": 3910
+  },
+  {
+    "kind": "p",
+    "text": "A standard single-layer LSTM with memory_size 64 carries two lists: 64 cell-state values and 64 hidden-state values. These are 128 internal state values in total, but only the 64 hidden values go to the MLP. A 32-unit LSTM would have 32 values in each state, not a 64-value hidden output.",
+    "inserted": true,
+    "start": 3910,
+    "end": 4199
+  },
+  {
+    "kind": "p",
+    "text": "At every minute, the LSTM uses the new feature row and its previous states to update these lists. During training it learns what information to retain, update and expose. The units do not have predefined meanings such as “RSI memory” or “anchor 5 memory”; they can represent combinations of many inputs.",
+    "inserted": true,
+    "start": 4199,
+    "end": 4503
+  },
+  {
+    "kind": "p",
+    "text": "The lists stay the same length as history grows. The LSTM therefore compresses history and may forget details. Its hidden state is a learned view of memory, not necessarily “short-term memory”; here it supplies older context. We do not send the cell state directly to the MLP.",
+    "inserted": true,
+    "start": 4503,
+    "end": 4780
+  },
+  {
+    "kind": "p",
+    "text": "There is no fixed lookback cutoff in this LSTM branch. Preserve both states across consecutive processing chunks; restarting them at every window would break the design. Training may limit how far gradients travel while still carrying the state forward. That limit is separate from window_length. Useful memory is still finite and starts at initialization.",
+    "inserted": true,
+    "start": 4780,
+    "end": 5137
+  },
+  {
+    "kind": "p",
+    "text": "64 is an illustrative setting. Larger memory allows more capacity but adds parameters and computation; it does not guarantee better predictions. Choose the size using chronological validation.",
+    "inserted": true,
+    "start": 5137,
+    "end": 5330
+  },
+  {
+    "kind": "h",
+    "text": "What is retained, and what is learned",
+    "inserted": true,
+    "start": 5330,
+    "end": 5368
+  },
+  {
+    "kind": "p",
+    "text": "Flattening keeps every selected recent value in a fixed lag position. A one-minute outlier can reach the MLP directly. Older events may survive in older_summary and recent indicators, but not as separate original rows. The selected features do not preserve every detail of raw OHLCV.",
+    "inserted": true,
+    "start": 5368,
+    "end": 5652
+  },
+  {
+    "kind": "p",
+    "text": "During prediction, weights stay fixed while inputs and LSTM states change. During training, the historical target adjusts both models together. The MLP has no persistent recurrent memory. Train on all eligible anchor opportunities; separately simulate chronological series blocking. Keep targets out of inputs and never carry later LSTM state into earlier predictions.",
+    "inserted": true,
+    "start": 5652,
+    "end": 6021
+  },
+  {
+    "kind": "page",
+    "text": "Variable dictionary",
+    "oldStart": 3368,
+    "start": 6021,
+    "end": 6041
+  },
+  {
+    "kind": "p",
+    "text": "These names describe the proposal, not existing implemented model variables. All example times use fixed UTC+3. Feature rows use availability times; source candles use opening times.",
+    "oldStart": 3388,
+    "start": 6041,
+    "end": 6224
+  },
+  {
+    "kind": "def",
+    "text": "decision_time — When the prediction is made and an initial order may be placed; 13:05 in the example.",
+    "oldStart": 3581,
+    "start": 6224,
+    "end": 6326
+  },
+  {
+    "kind": "def",
+    "text": "last_closed_minute — The latest completed M1 candle available at decision_time; the 13:04 candle.",
+    "oldStart": 3683,
+    "start": 6326,
+    "end": 6424
+  },
+  {
+    "kind": "def",
+    "text": "market_features — One row’s 36 normalized market values in a fixed order; anchor_flags supplies its other 18 features.",
+    "oldStart": 3781,
+    "start": 6424,
+    "end": 6543
+  },
+  {
+    "kind": "def",
+    "text": "feature_row — One decision minute’s full input: market_features plus anchor_flags; 54 values available at that time.",
+    "inserted": true,
+    "start": 6543,
+    "end": 6660
+  },
+  {
+    "kind": "def",
+    "text": "window_length — Number of recent feature rows passed individually to the MLP; 60 in this example. It does not limit the LSTM history.",
+    "oldStart": 3859,
+    "start": 6660,
+    "end": 6794
+  },
+  {
+    "kind": "def",
+    "text": "memory_size — Number of LSTM memory units; 64 in this example. It controls state width, not the number of historical minutes.",
+    "inserted": true,
+    "start": 6794,
+    "end": 6920
+  },
+  {
+    "kind": "def",
+    "text": "recent_window — The latest feature rows, including flags: 60 rows × 54 features in this example.",
+    "oldStart": 3939,
+    "start": 6920,
+    "end": 7017
+  },
+  {
+    "kind": "def",
+    "text": "hidden_state — The LSTM’s exposed running summary. It has 64 values here and can reflect much older inputs.",
+    "oldStart": 4002,
+    "start": 7017,
+    "end": 7125
+  },
+  {
+    "kind": "def",
+    "text": "cell_state — Internal LSTM memory: 64 values here. Carried forward with hidden_state, not sent directly to the MLP.",
+    "oldStart": 4085,
+    "start": 7125,
+    "end": 7241
+  },
+  {
+    "kind": "def",
+    "text": "older_summary — hidden_state taken just before recent_window: after decision row 12:05 in this example; 64 values.",
+    "oldStart": 4197,
+    "start": 7241,
+    "end": 7356
+  },
+  {
+    "kind": "def",
+    "text": "anchor_flags — The 18 main-anchor event flags in each feature row, including the latest row; no duplicate block is appended.",
+    "oldStart": 4300,
+    "start": 7356,
+    "end": 7481
+  },
+  {
+    "kind": "def",
+    "text": "mlp_input — Flattened recent_window plus older_summary: 3,240 + 64 = 3,304 values in this example.",
+    "oldStart": 4436,
+    "start": 7481,
+    "end": 7580
+  },
+  {
+    "kind": "def",
+    "text": "profit_probability — The MLP’s output, between 0 and 1. It is an estimate, not a guaranteed or automatically calibrated probability.",
+    "oldStart": 4535,
+    "start": 7580,
+    "end": 7713
+  },
+  {
+    "kind": "def",
+    "text": "net_return — The result of the whole series, including re-entries, after the agreed fees and slippage. The existing target_gross_return_pct is a gross result and needs cost adjustment.",
+    "oldStart": 4668,
+    "start": 7713,
+    "end": 7898
+  },
+  {
+    "kind": "def",
+    "text": "profit_threshold — The minimum net return required for a positive target. Use the same return units as net_return.",
+    "oldStart": 4853,
+    "start": 7898,
+    "end": 8013
+  },
+  {
+    "kind": "def",
+    "text": "target — The historical training answer: 1 if net_return is above profit_threshold, otherwise 0. An unfilled order or unfinished outcome is unavailable, not automatically 0.",
+    "oldStart": 4968,
+    "start": 8013,
+    "end": 8187
+  },
+  {
+    "kind": "def",
+    "text": "probability_cutoff — The probability required to accept a prediction; separate from profit_threshold. For example, 0.60 means a 60% estimated chance.",
+    "oldStart": 5142,
+    "start": 8187,
+    "end": 8337
+  },
+  {
+    "kind": "p",
+    "text": "",
+    "oldStart": 6162,
+    "start": 8337,
+    "end": 8338
+  }
+]

@@ -1,0 +1,287 @@
+{
+  "horizon_minutes": 60,
+  "barrier_relative_to_entry": "one M5 ATR each side",
+  "unknown": "missing candle before first touch or both barriers touched in first hit candle",
+  "folds": [
+    {
+      "start": "2025-01-26",
+      "count": 4338,
+      "train": 11090,
+      "missing_before_touch": 11491,
+      "ambiguous_first_touch": 2,
+      "median_missing_minutes_in_input": 282.0,
+      "target_base_rates": {
+        "strategy": 0.3732134624250807,
+        "downside_first": 0.5437989857076994
+      },
+      "strategy_rates_by_barrier": {
+        "down": {
+          "count": 2359,
+          "strategy_win_rate": 0.5353963543874523
+        },
+        "up": {
+          "count": 1971,
+          "strategy_win_rate": 0.18011161846778284
+        },
+        "neither": {
+          "count": 8,
+          "strategy_win_rate": 0.125
+        }
+      },
+      "scores": {
+        "atr": {
+          "strategy": {
+            "average_precision": 0.3983938661944473,
+            "roc_auc": 0.5430120118735292,
+            "winners": 97,
+            "calls": 277
+          },
+          "downside_first": {
+            "average_precision": 0.5371395626361928,
+            "roc_auc": 0.4901139797462162,
+            "winners": 153,
+            "calls": 277
+          }
+        },
+        "strategy": {
+          "strategy": {
+            "average_precision": 0.4135717588122183,
+            "roc_auc": 0.5528778451729769,
+            "winners": 113,
+            "calls": 277
+          },
+          "downside_first": {
+            "average_precision": 0.5512365845363446,
+            "roc_auc": 0.5099866958297392,
+            "winners": 145,
+            "calls": 277
+          }
+        },
+        "downside_first": {
+          "strategy": {
+            "average_precision": 0.38038198459548367,
+            "roc_auc": 0.5055885186506957,
+            "winners": 117,
+            "calls": 277
+          },
+          "downside_first": {
+            "average_precision": 0.5976801767220736,
+            "roc_auc": 0.5515098016241327,
+            "winners": 188,
+            "calls": 277
+          }
+        }
+      }
+    },
+    {
+      "start": "2025-07-12",
+      "count": 8961,
+      "train": 15371,
+      "missing_before_touch": 6866,
+      "ambiguous_first_touch": 5,
+      "median_missing_minutes_in_input": 70.0,
+      "target_base_rates": {
+        "strategy": 0.34125655618792544,
+        "downside_first": 0.5201428412007588
+      },
+      "strategy_rates_by_barrier": {
+        "down": {
+          "count": 4661,
+          "strategy_win_rate": 0.5076163913323322
+        },
+        "up": {
+          "count": 4259,
+          "strategy_win_rate": 0.1598966893637004
+        },
+        "neither": {
+          "count": 41,
+          "strategy_win_rate": 0.2682926829268293
+        }
+      },
+      "scores": {
+        "atr": {
+          "strategy": {
+            "average_precision": 0.370278276264304,
+            "roc_auc": 0.5373558821616571,
+            "winners": 191,
+            "calls": 569
+          },
+          "downside_first": {
+            "average_precision": 0.5226824466707304,
+            "roc_auc": 0.5077156314395055,
+            "winners": 287,
+            "calls": 569
+          }
+        },
+        "strategy": {
+          "strategy": {
+            "average_precision": 0.3731087264354086,
+            "roc_auc": 0.5381607793401212,
+            "winners": 223,
+            "calls": 569
+          },
+          "downside_first": {
+            "average_precision": 0.5295601170338154,
+            "roc_auc": 0.5081497881979613,
+            "winners": 309,
+            "calls": 569
+          }
+        },
+        "downside_first": {
+          "strategy": {
+            "average_precision": 0.334949584556879,
+            "roc_auc": 0.4949987740545402,
+            "winners": 168,
+            "calls": 569
+          },
+          "downside_first": {
+            "average_precision": 0.5367564104215721,
+            "roc_auc": 0.5242799978046432,
+            "winners": 298,
+            "calls": 569
+          }
+        }
+      }
+    },
+    {
+      "start": "2025-12-23",
+      "count": 14227,
+      "train": 24318,
+      "missing_before_touch": 1596,
+      "ambiguous_first_touch": 9,
+      "median_missing_minutes_in_input": 2.0,
+      "target_base_rates": {
+        "strategy": 0.21072608420608702,
+        "downside_first": 0.5016517888521824
+      },
+      "strategy_rates_by_barrier": {
+        "down": {
+          "count": 7137,
+          "strategy_win_rate": 0.3350147120638924
+        },
+        "up": {
+          "count": 6892,
+          "strategy_win_rate": 0.08502611723737667
+        },
+        "neither": {
+          "count": 198,
+          "strategy_win_rate": 0.10606060606060606
+        }
+      },
+      "scores": {
+        "atr": {
+          "strategy": {
+            "average_precision": 0.2550740052414891,
+            "roc_auc": 0.5728068125804295,
+            "winners": 212,
+            "calls": 905
+          },
+          "downside_first": {
+            "average_precision": 0.4943407795946392,
+            "roc_auc": 0.4868150599994111,
+            "winners": 425,
+            "calls": 905
+          }
+        },
+        "strategy": {
+          "strategy": {
+            "average_precision": 0.23930057496415053,
+            "roc_auc": 0.5521845804407498,
+            "winners": 204,
+            "calls": 905
+          },
+          "downside_first": {
+            "average_precision": 0.49491212279716895,
+            "roc_auc": 0.4884710836651922,
+            "winners": 448,
+            "calls": 905
+          }
+        },
+        "downside_first": {
+          "strategy": {
+            "average_precision": 0.2158617721263001,
+            "roc_auc": 0.5067863243171405,
+            "winners": 194,
+            "calls": 905
+          },
+          "downside_first": {
+            "average_precision": 0.5013844724677351,
+            "roc_auc": 0.5019771120640505,
+            "winners": 421,
+            "calls": 905
+          }
+        }
+      }
+    },
+    {
+      "start": "2026-06-03",
+      "count": 14853,
+      "train": 38520,
+      "missing_before_touch": 972,
+      "ambiguous_first_touch": 7,
+      "median_missing_minutes_in_input": 0.0,
+      "target_base_rates": {
+        "strategy": 0.16441123005453442,
+        "downside_first": 0.4932336901636033
+      },
+      "strategy_rates_by_barrier": {
+        "down": {
+          "count": 7326,
+          "strategy_win_rate": 0.269041769041769
+        },
+        "up": {
+          "count": 7264,
+          "strategy_win_rate": 0.06305066079295155
+        },
+        "neither": {
+          "count": 263,
+          "strategy_win_rate": 0.049429657794676805
+        }
+      },
+      "scores": {
+        "atr": {
+          "strategy": {
+            "average_precision": 0.1998789631019109,
+            "roc_auc": 0.5693739424703892,
+            "winners": 230,
+            "calls": 942
+          },
+          "downside_first": {
+            "average_precision": 0.4938040391032047,
+            "roc_auc": 0.5017314771200782,
+            "winners": 445,
+            "calls": 942
+          }
+        },
+        "strategy": {
+          "strategy": {
+            "average_precision": 0.20609910523525893,
+            "roc_auc": 0.5809569045609655,
+            "winners": 199,
+            "calls": 942
+          },
+          "downside_first": {
+            "average_precision": 0.4948338513270044,
+            "roc_auc": 0.5036705062611799,
+            "winners": 442,
+            "calls": 942
+          }
+        },
+        "downside_first": {
+          "strategy": {
+            "average_precision": 0.16647284034658283,
+            "roc_auc": 0.504308217506187,
+            "winners": 154,
+            "calls": 942
+          },
+          "downside_first": {
+            "average_precision": 0.4942935320446673,
+            "roc_auc": 0.5014662203781375,
+            "winners": 448,
+            "calls": 942
+          }
+        }
+      }
+    }
+  ]
+}

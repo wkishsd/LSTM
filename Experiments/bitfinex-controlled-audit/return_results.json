@@ -1,0 +1,121 @@
+{
+  "unit": "mean realized net return per selected entry in percent",
+  "folds": [
+    {
+      "start": "2025-01-26",
+      "predictions": {
+        "atr": {
+          "winners": 334,
+          "calls": 1004,
+          "ap": 0.34866460590295,
+          "mean_realized_net_return_pct": -0.04411881075697213
+        },
+        "binary": {
+          "winners": 378,
+          "calls": 1004,
+          "ap": 0.3621538368561873,
+          "mean_realized_net_return_pct": 0.004533644422310746
+        },
+        "direct_net": {
+          "winners": 337,
+          "calls": 1004,
+          "ap": 0.34122045500436415,
+          "mean_realized_net_return_pct": -0.03138405079681276
+        },
+        "gross_minus_fees": {
+          "winners": 339,
+          "calls": 1004,
+          "ap": 0.34656140798034785,
+          "mean_realized_net_return_pct": -0.04359282569721116
+        }
+      }
+    },
+    {
+      "start": "2025-07-12",
+      "predictions": {
+        "atr": {
+          "winners": 338,
+          "calls": 1008,
+          "ap": 0.3453431694352958,
+          "mean_realized_net_return_pct": -0.005045558531746043
+        },
+        "binary": {
+          "winners": 335,
+          "calls": 1008,
+          "ap": 0.34270194418190025,
+          "mean_realized_net_return_pct": -0.03431453869047621
+        },
+        "direct_net": {
+          "winners": 299,
+          "calls": 1008,
+          "ap": 0.3247071817829543,
+          "mean_realized_net_return_pct": -0.030905139880952393
+        },
+        "gross_minus_fees": {
+          "winners": 302,
+          "calls": 1008,
+          "ap": 0.322735313120629,
+          "mean_realized_net_return_pct": -0.060996235119047636
+        }
+      }
+    },
+    {
+      "start": "2025-12-23",
+      "predictions": {
+        "atr": {
+          "winners": 231,
+          "calls": 1006,
+          "ap": 0.2516784458444557,
+          "mean_realized_net_return_pct": -0.13161992246520876
+        },
+        "binary": {
+          "winners": 221,
+          "calls": 1006,
+          "ap": 0.23776390121614405,
+          "mean_realized_net_return_pct": -0.1429830626242545
+        },
+        "direct_net": {
+          "winners": 217,
+          "calls": 1006,
+          "ap": 0.23106519348878496,
+          "mean_realized_net_return_pct": -0.15694273956262425
+        },
+        "gross_minus_fees": {
+          "winners": 235,
+          "calls": 1006,
+          "ap": 0.23185791028289232,
+          "mean_realized_net_return_pct": -0.13597454771371772
+        }
+      }
+    },
+    {
+      "start": "2026-06-03",
+      "predictions": {
+        "atr": {
+          "winners": 242,
+          "calls": 1009,
+          "ap": 0.19866815306631108,
+          "mean_realized_net_return_pct": -0.13046194449950446
+        },
+        "binary": {
+          "winners": 209,
+          "calls": 1009,
+          "ap": 0.2044171097869654,
+          "mean_realized_net_return_pct": -0.15543218037661052
+        },
+        "direct_net": {
+          "winners": 212,
+          "calls": 1009,
+          "ap": 0.19534748985305822,
+          "mean_realized_net_return_pct": -0.11206387512388503
+        },
+        "gross_minus_fees": {
+          "winners": 217,
+          "calls": 1009,
+          "ap": 0.19338471538302227,
+          "mean_realized_net_return_pct": -0.09025476412289396
+        }
+      }
+    }
+  ]
+}

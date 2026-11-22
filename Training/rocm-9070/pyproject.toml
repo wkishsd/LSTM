@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlp-trades"
+version = "0.1.0"
+description = "Chronologically validated MLP classification of anchor-triggered trades"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26,<3", "torch>=2.6,<3"]
+
+[project.scripts]
+mlp-trades = "mlp_trades.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mlp_trades*"]

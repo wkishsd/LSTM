@@ -1,0 +1,41 @@
+{
+  "rows": 5797,
+  "counts": {
+    "type2": 1487,
+    "type2_with_above_outliers": 1427
+  },
+  "above_examples": [
+    {
+      "key": [
+        12,
+        2
+      ],
+      "above_count": 21
+    },
+    {
+      "key": [
+        13,
+        3
+      ],
+      "above_count": 21
+    },
+    {
+      "key": [
+        14,
+        2
+      ],
+      "above_count": 21
+    }
+  ],
+  "case355": [
+    {
+      "entry_id": 355,
+      "search_no": 3,
+      "type": "type2",
+      "lower_saved": "04 Sep 16:36",
+      "lower_below": "04 Sep 16:34; 04 Sep 16:35; 04 Sep 16:36; 04 Sep 16:37",
+      "lower_all_outside": "04 Sep 16:34; 04 Sep 16:35; 04 Sep 16:36; 04 Sep 16:37",
+      "upper": "04 Sep 16:38; 04 Sep 16:39; 04 Sep 16:40"
+    }
+  ]
+}

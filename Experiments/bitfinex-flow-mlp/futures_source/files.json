@@ -1,0 +1,452 @@
+[
+  {
+    "file": "ETHUSDT-1m-2023-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-11.zip",
+    "sha256": "5eeb6b99e8dc6889fe9d317f373f4f587c4c8d35de9ee2854a6471d6fd7b3e1b"
+  },
+  {
+    "file": "ETHUSDT-1m-2023-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2023-12.zip",
+    "sha256": "6ebf84e9b991619d772af5d9835175c5e456688c33c72affa35b3aecbac30d09"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-01.zip",
+    "sha256": "7fa68ec5fedc6eef175ed0af6e9f252062f6ceaca016106c265e6e4b724b5ef2"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-02.zip",
+    "sha256": "de3f91fcd929d207b4382afd7a728c0f44527d6bdbcb0a585b01b0fe001e24ab"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-03.zip",
+    "sha256": "dd10515a9b010920bac628f2ec600405ff8e41de7d0f81694fbf391ca54b86b2"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-04.zip",
+    "sha256": "1856da8b501dbb831b9a5490e99be8564433c4a4d46de89200f0258c74dd4790"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-05.zip",
+    "sha256": "d512aa43b5b6a5168fa1b6242fe4cf01c88e51c78bb9f4d202f0ca2e42338f96"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-06.zip",
+    "sha256": "57e4b010904bbd754ee951ada7d9edd34bc4242379ae49fb66352e2c5f5cb525"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-07.zip",
+    "sha256": "34a3729eb2f6dd1563715e085eb936a4034357d95cba2605b96cf1cb5c533b65"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-08.zip",
+    "sha256": "2ccc1d0c491c63a6bfbabda39e8bd41e555a87052d77120199133e9e81bbf36c"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-09.zip",
+    "sha256": "317e18ce04f6312b4a3de3b5504bef2001a92bf72cb8e4988e160ee327c9c737"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-10.zip",
+    "sha256": "d1f340994285a075a97d7d0ed5e9aca3d82dadbba8f817b2f886188420a009f1"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-11.zip",
+    "sha256": "4170f68dd576e8af35ecc9b19808dcb673c0423838bd560c7c4c1fabefdad5ad"
+  },
+  {
+    "file": "ETHUSDT-1m-2024-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2024-12.zip",
+    "sha256": "82018947075e35e5ac0a771bb97a22118008db2c6fb6a94f8c1a2c4ebb34d12b"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-01.zip",
+    "sha256": "05e33ba3568c5381a36764097ea93917a7f1a93fadd1a0018e64bedb042526f6"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-02.zip",
+    "sha256": "79c07ecaaa04a04d815f428d0617b84cc536afe95f5cb2fc62bd93c10c3adfa1"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-03.zip",
+    "sha256": "82351bb41febb62d3680c761cf7cf9e29182435d9b4843e674ded63de3b29a32"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-04.zip",
+    "sha256": "75ea6a45c8bed04294449ff7d56f047c235a36fac176736816c01d6892bd8687"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-05.zip",
+    "sha256": "a2560653e2f602444d2201e44e77cdba6e48233649d22fb7e8c703ce9fc6277a"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-06.zip",
+    "sha256": "189aa2e5daf3621f6f7f9fd58df763e0667592f3baf407270e0ad42399155c69"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-07.zip",
+    "sha256": "e3af3ee3ac3251d313ad8987169d5c02bfd8c094bf047bbce9373eaf19ee479c"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-08.zip",
+    "sha256": "8cd85f1c417c4c65cd32348f3e4e23c8b35dd4e5e59a20a187e2a74777bd6664"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-09.zip",
+    "sha256": "dc1f5e05a0b873accd0ed2a854ee14086da03b08a581198b20b5658042c6dc5f"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-10.zip",
+    "sha256": "c0b8d557384ce1cd77df8f08cb6775f350a531a1792fa9deceb05f51a3939438"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-11.zip",
+    "sha256": "2dd6ded997100a92d11394eddccc54f1070b0fcf029c5e126859b5af80f6329e"
+  },
+  {
+    "file": "ETHUSDT-1m-2025-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2025-12.zip",
+    "sha256": "8fc3e01faeb240ed9f77e4ba8bbcdf42bb7b0c7004d35fe8010bd0fd9090e4a9"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-01.zip",
+    "sha256": "0dc9c455c6d0735fe7e177d98a5088ab473c7fc1fa723710e783ff5dd49df4bb"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-02.zip",
+    "sha256": "2109cab7fa27eee904a7d6d6dd982633579fc4091765dc8fa16c001f2da8a1c2"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-03.zip",
+    "sha256": "d61eeba7aed3067525c6503bfbfd4f8d55585b846b67115eb85eeb1d2f857bf1"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-04.zip",
+    "sha256": "fd01f08f331a0dcb5d89c718afb199f7cda63f43228b72ddda0bdd08bfd527c7"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-05.zip",
+    "sha256": "9710b3d1e350bef5bf31b8d1531c5801d35f963d223d0a42e73ae86ddd376e92"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-06.zip",
+    "sha256": "3b771e114b494805ac4cc677b34befb7e5f332bf5bd3a8a368cd21d65cd99cba"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-07.zip",
+    "sha256": "5c98ad0cfa152fbe08df59838ead7c8bbfa433af943bbfb4d082626ebee2d83e"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-08.zip",
+    "sha256": "038b412935c3349e95b4abe3e9cec8a7fd521d16ce73fff3c2f92d605b252b9e"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-09.zip",
+    "sha256": "c85c7ec631fa7fe3a90c30e4ef6a76aeac0b88be895872388d87a6a8fd3d2892"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/klines/ETHUSDT/1m/ETHUSDT-1m-2026-10.zip",
+    "sha256": "41cd347fd1ed1875a3ba78e245e377626dcd68528f742ba7a72694158967e26f"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-01.zip",
+    "sha256": "01cc6cc4bfd0db00866f3061f0c232ed53727896971638ff4a49ffba60fb53e1"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-02.zip",
+    "sha256": "3bf2d61eba01301ea5f89a3ed3b77c08e1ae0f482db2069c83904827a80cb3ae"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-03.zip",
+    "sha256": "e89e63f6092ddb919bdf4f8b0fb21c8930f2154afd7e4b4693c11c1a03777cea"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-04.zip",
+    "sha256": "f46df644b910e09f7d5fca3b8162f781ff59f83c302897bb3a00b75a1ffd77fa"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-05.zip",
+    "sha256": "7e789e2b63c5379077877342fe5f8f53276105d5c20268460eab3d7882a05283"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-06.zip",
+    "sha256": "5d15cf1483f59cc238755197b34255eb13de42596c8ba0af95054c2aac113135"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-07.zip",
+    "sha256": "15719758b71ac8abec73d77f99978309ebd5d18485bdd13eaa9654c9f7fdd209"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-08.zip",
+    "sha256": "2e75368504cd57ab1a1a37f662ab3b16d5559b92735dd59dacd20a3e3f931bc3"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-09.zip",
+    "sha256": "05fa56232812e3c5f2384547c2d62b5a85e936de761b80f1c874e6f9068efd46"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-10.zip",
+    "sha256": "8ea4fd1f531c130650a4a6ed77081b2f32ddd5059ddb81a62fa767d9683eb217"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-11.zip",
+    "sha256": "c054111693eb136236e8d0322116e0ad402808de611ff0405ea46e36bf8c6b9c"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-12.zip",
+    "sha256": "5b8f99439cae07f272493282ce79a3c6302c4e205c426b44b41677e8f5d42347"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-13.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-13.zip",
+    "sha256": "ea179ef2561fc6c5d02c77d5780e7bd11f4b9ac7237a9bed49494639874bfb7e"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-14.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-14.zip",
+    "sha256": "db8a53ed1f4b0527ad3217e71d04a34cb5af276de79e0409a1d41b67692d3d47"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-15.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-15.zip",
+    "sha256": "c8c9504628b99454ed74daca7f488961adcedf6a7c3352ff78e633e85d539fa7"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-16.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-16.zip",
+    "sha256": "b0389118c1bacd2d98a7ccca11ae850301c55896a4708b0ce11fc91d5e2446a9"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-17.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-17.zip",
+    "sha256": "251f838540ad914516a1070a8ae7c17a6a1eabd38d30373adc803a024a41ddd1"
+  },
+  {
+    "file": "ETHUSDT-1m-2026-11-18.zip",
+    "url": "https://data.binance.vision/data/futures/um/daily/klines/ETHUSDT/1m/ETHUSDT-1m-2026-11-18.zip",
+    "sha256": "adeab6d28e6285708aced3b6a6545c0e8d7fbbbe1881dc71b416e9d265a3e414"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2023-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2023-11.zip",
+    "sha256": "153ec1450eb5d999ce253e2c7ca2e81b79a523ff52dd18b14faefab8212b999b"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2023-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2023-12.zip",
+    "sha256": "91bdf41566cebb86c6f0e3646b0037de9c22e14ee2f592c5722c7e4a19c91119"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-01.zip",
+    "sha256": "5a71469b0b363886df904e784dddefc484dd943334b1fb7454713ce4ed715a4b"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-02.zip",
+    "sha256": "915fad950c48935f3875d88992b8d78290bc8a6fada44408e3ed14aef9a56670"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-03.zip",
+    "sha256": "e9c1d0f3e7e3b493277c7f826afb223482d56bdc7611144d398ac10e47307907"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-04.zip",
+    "sha256": "b54c9f05af116ccd921b32b25960ae26954c4983992d44f2390bf1de08b2c724"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-05.zip",
+    "sha256": "8350ab4d61b12ec61539611e30809039f54814213bc4c937609360b1ff28b5e0"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-06.zip",
+    "sha256": "def13f4a478c28b0111fb24c57f95fcee80e71982ed74f12e465d20d328e2275"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-07.zip",
+    "sha256": "9d236281ab6430250ad2b472cbbf03812a40aed42e73c8339fc6be55a2417a82"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-08.zip",
+    "sha256": "e17684bc761924eb5e1912c52cfa997eddeb99da303e68e28f6f37369f672b9d"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-09.zip",
+    "sha256": "ffb6e7441053137cb7ca81cc83bcdd996612f7dbb15aa2e168a7ee521f8cbbca"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-10.zip",
+    "sha256": "2124978c335473a5d9c0f0e9f238193d56c21ac7e250e065a36e9d1201beb049"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-11.zip",
+    "sha256": "636a4c7c86445c2774b4eae8598c480fcbc57de7dde5d40f6937c7fac510797c"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2024-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2024-12.zip",
+    "sha256": "11a0847e8aacb32eeb725611fda4fe6a8419c03eb0c16e14dfc3b9287e78ecc9"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-01.zip",
+    "sha256": "88c95b99d2784a7baac529fe578563d7e05038a1b8a498b2f59bf81b216fee20"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-02.zip",
+    "sha256": "9e116dd6754484a19ecc41ced40b8dfa7f62c33d41cdc3317336b1e1f043767f"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-03.zip",
+    "sha256": "62464a8bfb7ba515628acb76d3e2172d33b88805faa2e701a22537c51a17d139"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-04.zip",
+    "sha256": "7db62cb5e9f32397dacabb3d571b96397024bda3810bde0799c90f61cb773679"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-05.zip",
+    "sha256": "996aff38f046b50510301532ac5cbdca115afca971c49cb548f50e5d70e18d99"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-06.zip",
+    "sha256": "ae7ca242249ca3df06d1222a0c264fe83b18c4b2c19fe656e864f7d081d5e198"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-07.zip",
+    "sha256": "5f2d840c5669ca946529c33f6df32433c5d0cd973eb4adfd40459270c460e7f8"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-08.zip",
+    "sha256": "c3fca21c71afb4962e89f8e3d84afe5832019ed8f570ee7c7c299f2436a28b62"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-09.zip",
+    "sha256": "2fa09df245aadc73cf43f837a72c3009fcd7d10c8c4e3db48b2d1021c331841a"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-10.zip",
+    "sha256": "1ae86c5fb1f15d8792906b746cc7598ebe7e6e7194b74501db79c874e37d7e14"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-11.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-11.zip",
+    "sha256": "a3a8abb219373ec1e02e8d1a47015665d180d6130cfe1df71d2fa8fc9de59e59"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2025-12.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2025-12.zip",
+    "sha256": "ef9e84f53a5fa07702958c8700077c8be0a90ec8b3e25110f5611109c3c0090c"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-01.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-01.zip",
+    "sha256": "830cf7797ea6ecdc554ac2d9047a141df1a6a544f4ea58e7028227930462b139"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-02.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-02.zip",
+    "sha256": "e445f00c81a7fa8361d99b3660f24b4f58e5d952fe301d70bbc72c319bc01a77"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-03.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-03.zip",
+    "sha256": "9f5625846c503a1e94fcdecd2deb37dc8852e341add353fa48c2b9a0cc70df6a"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-04.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-04.zip",
+    "sha256": "86160f455478a8b262d96d1516f583355e6e0cec7beeb5784e69dda76f599e98"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-05.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-05.zip",
+    "sha256": "ff926ad3fc48493c26c85af16620b19c695cc1854faa1e7f0ea2ab9fdafc2084"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-06.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-06.zip",
+    "sha256": "cc6fb028a811bc423b711f6b89de067bf92a2eda61303e1ce0b219b5d3210e47"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-07.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-07.zip",
+    "sha256": "ece7f6c64d0e45fbd64929dec40bae525fe365381046e367de5ca0827bc623d3"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-08.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-08.zip",
+    "sha256": "8b843307038b3aedf725b1342003cce39f9526451ed92f407ca80bc637487839"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-09.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-09.zip",
+    "sha256": "d1916b9181cf3507ad5a6522ac6587cd84a424941f1a2132ab887f768b5dd4de"
+  },
+  {
+    "file": "ETHUSDT-fundingRate-2026-10.zip",
+    "url": "https://data.binance.vision/data/futures/um/monthly/fundingRate/ETHUSDT/ETHUSDT-fundingRate-2026-10.zip",
+    "sha256": "3aa5114f2e35dfd597354417de9bdb4622bf41e91e667169bd5366e6246e85bc"
+  }
+]

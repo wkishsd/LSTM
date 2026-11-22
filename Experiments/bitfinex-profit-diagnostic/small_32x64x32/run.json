@@ -1,0 +1,101 @@
+{
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "torch": "2.9.1+rocm7.2.1.gitff65f5bc",
+  "cuda_runtime": null,
+  "parameter_count": 626469,
+  "selection": "average_precision",
+  "selection_tie_break": "lower_validation_loss_then_earlier_epoch",
+  "macd_normalization": "x / sqrt(1 + x^2)",
+  "timeline_cached_on_gpu": true,
+  "config": {
+    "command": "train",
+    "config": "train.json",
+    "output_dir": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/outputs/bitfinex-profit-diagnostic/small_32x64x32",
+    "bitfinex_dir": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Training/rocm-9070/runs/.panel/rx9070-20261120-021347-60da/profit_export",
+    "current": null,
+    "current_ids": null,
+    "current_times": null,
+    "history": null,
+    "history_ids": null,
+    "history_times": null,
+    "schema": null,
+    "dataset": "bitfinex_profit",
+    "data_period": "all",
+    "gross": null,
+    "commission": null,
+    "outcome_ids": null,
+    "close_times": null,
+    "gross_unit": null,
+    "gross_currency": null,
+    "commission_unit": null,
+    "commission_currency": null,
+    "max_holding_minutes": null,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15,
+    "model": "dense",
+    "feature_input": "exported",
+    "hidden1": 32,
+    "hidden2": 64,
+    "hidden3": 32,
+    "activation": "relu",
+    "dropout": 0.4,
+    "epochs": 160,
+    "lookback_minutes": 360,
+    "learning_rate": 0.0001,
+    "optimizer": "adam",
+    "selection": "average_precision",
+    "min_entry_calls": 30,
+    "feature_scaling": "standardize",
+    "timeline_cache": "auto",
+    "batch_size": 2048,
+    "device": "cuda:0",
+    "seed": 42,
+    "num_workers": 0,
+    "torch_threads": 0
+  },
+  "paths": {
+    "timeline": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Training/rocm-9070/runs/.panel/rx9070-20261120-021347-60da/profit_export/feature_timeline.npy",
+    "entries": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Training/rocm-9070/runs/.panel/rx9070-20261120-021347-60da/profit_export/entry_targets.csv",
+    "manifest": "/mnt/c/Users/wkishsd/Downloads/otcheti/LSTM/Training/rocm-9070/runs/.panel/rx9070-20261120-021347-60da/profit_export/manifest.json"
+  },
+  "memory_at_start": {
+    "device": "cuda:0",
+    "name": "AMD Radeon RX 9070",
+    "allocated_mib": 328.3955078125,
+    "reserved_mib": 348.0,
+    "peak_allocated_mib": 328.39599609375,
+    "free_mib": 8012.8515625,
+    "total_mib": 16191.21875
+  },
+  "files": {
+    "timeline": {
+      "bytes": 341195888,
+      "mtime_ns": 1795036562767862900
+    },
+    "entries": {
+      "bytes": 24760261,
+      "mtime_ns": 1795133632994153200
+    },
+    "manifest": {
+      "bytes": 2668,
+      "mtime_ns": 1795133633007095400
+    }
+  },
+  "profit_target": {
+    "hold_minutes": 60,
+    "side": "short",
+    "decision_clock": "confirmed_fill",
+    "exit_clock": "first_actual_m1_open_at_or_after_hold",
+    "label_clock": "exit_m1_close",
+    "class_names": [
+      "Negative",
+      "0–<1%",
+      "1–<2%",
+      "2–<3%",
+      "3%+"
+    ],
+    "entry_commission_pct_per_fill": "0.05",
+    "exit_commission_pct_per_fill": "0.05"
+  }
+}

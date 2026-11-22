@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-26",
+  "english_document_id": "1CmJk8bIMW3_vAx8Al3es_-o9EwvoNDLI3ZiWBwO37Og",
+  "russian_document_id": "1CgZqpUrya5tUCcXVJsTnw4JAvJOzq_CKxBZGHre7M_g",
+  "pages_each": 4,
+  "native_equations_each": 0,
+  "diagrams_each": 1,
+  "design": {
+    "market_features": 36,
+    "anchor_flags_per_row": 18,
+    "total_features_per_row": 54,
+    "example_recent_rows": 60,
+    "example_flattened_values": 3240,
+    "example_hidden_state_width": 64,
+    "example_cell_state_width": 64,
+    "states_carried_forward": ["hidden_state", "cell_state"],
+    "state_sent_to_mlp": "hidden_state at older boundary",
+    "example_mlp_input_width": 3304,
+    "fixed_lstm_lookback_cutoff": false,
+    "duplicate_current_anchor_block": false,
+    "time_alignment": "Decision rows are indexed by availability; row 13:05 uses completed M1 candle 13:04 and newly confirmed anchor flags."
+  },
+  "checks": [
+    "Both documents edited in place with revision guards",
+    "Read-back text matched the planned changes",
+    "No obsolete 2160 / 2242 dimensions remained",
+    "All final PDF pages visually inspected, including unchanged pages verified as pixel-identical",
+    "No production strategy or training code changed"
+  ]
+}
