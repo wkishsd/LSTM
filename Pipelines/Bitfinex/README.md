@@ -121,6 +121,16 @@ Entries, re-entries, support searches, ADX and wave-6 exits are unchanged. Stop 
 
 `--anchor-timeframe` (default `5m`) chooses the candles on which the 35 anchor rules are evaluated. With `15m`, the identical rules run on native M15 candles, and an entry is placed at the M15 close, which is also an M5 boundary. Order placement, the M5 exit waves and the stop rules are unchanged. The 18 main-anchor flags in the feature timeline then mark M15 anchor closes. The manifest records `anchor_timeframe`.
 
+## Wave horizon
+
+`--wave-horizon H` (`ExitSettings.wave_horizon`, default 6, allowed 6–60) moves the series cutoff from the start of M5 half-wave 6 to the start of half-wave H. Counting still starts at wave 1, the negative half-wave at order placement. An open position closes at the first actual M1 Open at or after the cutoff. Entries, the ADX check on waves 2 and 4, stops and re-entries are unchanged. Internal names keep "wave6" for the cutoff whatever H is (for example `wave6_start_ms_utc`, `market_close_wave6`).
+
+`wave_horizon_study.py` labels one set of entries at several horizons with the fast exit path and writes a summary by horizon and period:
+
+```powershell
+python Pipelines/Bitfinex/wave_horizon_study.py --anchor-timeframe 15m --stop-timeframe 15m --horizons 6-20
+```
+
 ## Export size and speed
 
 `X_train.npy` / `X_test.npy` (about 32 GB for three years) are written only with `--precompute-windows`. Training slices its windows from `feature_timeline.npy` using `feature_end_row` in `entry_targets.csv`, so it does not need them. The manifest records `precomputed_windows`.

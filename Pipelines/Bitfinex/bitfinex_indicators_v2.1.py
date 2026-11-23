@@ -2675,10 +2675,14 @@ class ExitSettings:
     # Candles that MOVE the trailing exit stop. The resting stop is still
     # checked against every M1 High; "5m"/"15m" only change when it is set/moved.
     stop_timeframe: str = "1m"
+    # M5 half-wave whose start ends the series (open positions close at market there).
+    wave_horizon: int = 6
 
     def namespace(self):
         if self.stop_timeframe not in STOP_TIMEFRAMES:
             raise ValueError(f"stop_timeframe must be one of {STOP_TIMEFRAMES}")
+        if int(self.wave_horizon) != self.wave_horizon or not 6 <= int(self.wave_horizon) <= 60:
+            raise ValueError("wave_horizon must be an integer from 6 to 60")
         for fee in (self.entry_commission_pct, self.exit_commission_pct):
             if not np.isfinite(fee) or fee < 0:
                 raise ValueError("Order commission must be finite and nonnegative")
@@ -3151,12 +3155,16 @@ class LegacyExitInputBuilder:
         # wave without moving the order timestamp or the M1 simulation.
         if wid >= 0 and self.waves[wid].sign > 0:
             wid += 1
-        if wid < 0 or wid + 5 >= len(self.waves):
+        horizon = int(self.settings.wave_horizon)
+        if wid < 0 or wid + horizon - 1 >= len(self.waves):
             summary = {"entry_id": int(entry.entry_id), "entry_datetime": entry.entry_datetime,
                        "entry_ms_utc": entry_ms, "entry_price": float(entry.entry_price), "wave6_start_time": ""}
             return (pd.DataFrame([summary]), pd.DataFrame(columns=wave.ADX_COLUMNS),
                     pd.DataFrame(columns=wave.MINUTE_COLUMNS), pd.DataFrame(columns=wave.MACD_1M_WAVE_COLUMNS))
-        starts = [int(self.mts[self.waves[wid + k].start_i]) for k in range(6)]
+        # The series cutoff is the start of M5 half-wave `wave_horizon` (default 6). Downstream
+        # code keeps the v9 name "wave6" for this cutoff whatever the horizon.
+        starts = [int(self.mts[self.waves[wid + k].start_i]) for k in range(5)]
+        starts.append(int(self.mts[self.waves[wid + horizon - 1].start_i]))
         end = starts[5]
         actual_work = self.minute_range(entry_ms - 3 * 86400000, entry_ms + TF_MS_1M)
         context_start, reds = wave.find_pre_entry_red_context_start_ms(actual_work, entry_ms)
@@ -3932,6 +3940,8 @@ def main():
                         help="Candles that set/move the trailing exit stop; M1 Highs always trigger it")
     parser.add_argument("--anchor-timeframe", choices=ANCHOR_TIMEFRAMES, default=ANCHOR_TIMEFRAME,
                         help="Candles on which the 35 anchor rules are evaluated; entries are placed at their close")
+    parser.add_argument("--wave-horizon", type=int, default=6,
+                        help="M5 half-wave whose start ends each series (default 6); open positions close at market there")
     parser.add_argument("--precompute-windows", action="store_true",
                         help="Also write X_train/X_test.npy (about 32 GB); training does not need them")
     parser.add_argument("--support-threshold", type=float, default=0.0003)
@@ -3955,7 +3965,7 @@ def main():
                             initial_entry_offset_down=args.initial_entry_offset_down,
                             entry_commission_pct=args.entry_commission_pct,
                             exit_commission_pct=args.exit_commission_pct,
-                            stop_timeframe=args.stop_timeframe)
+                            stop_timeframe=args.stop_timeframe, wave_horizon=args.wave_horizon)
     settings.namespace()
     if args.cache_dir:
         native, cutoff = load_training_candles(args.cache_dir, args.cutoff)
