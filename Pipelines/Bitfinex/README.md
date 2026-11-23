@@ -127,6 +127,25 @@ Entries, re-entries, support searches, ADX and wave-6 exits are unchanged. Stop 
 
 Labeling replaces two v9 helpers with faster versions that give identical results: tagging a red-history row builds the enlarged Series directly, and pre-entry red history scans back from the entry and stops at 20 red candles. On a 60-entry sample, targets, trades and stop events were identical, and labeling ran 1.5× (1m stop), 4× (5m) and 5× (15m) faster.
 
+### Fast exit path (opt-in)
+
+`fast_exit.py` re-implements the per-minute exit loop (`process_filled_initial_order`: v9 plus the fill-timing, wave-6 close and 5m/15m stop adapters) on plain arrays instead of pandas rows. It also provides two v5 helpers, the MACD EMA (`ema_sma_seed`) and the half-wave builder (`build_waves`), that run the same recursion on Python floats, so the doubles are identical. The collector file and the embedded v9/v5 sources are unchanged. Run the collector through the launcher to use it:
+
+```powershell
+python Pipelines/Bitfinex/run_fast.py --workers 11 --stop-timeframe 5m --output Exports/training/mlp_...
+```
+
+It takes the same options as `bitfinex_indicators_v2.1.py`. It produces the trade, stop-event, support-search, order and summary fields that labels depend on, but not the display-only audit fields (local time strings, trade path statistics), so use the plain collector when those audit tables are needed.
+
+`tests_fast_exit.py` checks the two paths against each other offline and exits non-zero on any difference. It compares targets, trades, stop events, support searches and re-entry orders exactly, and the MACD/EMA and waves bit for bit on the full 1m series:
+
+```powershell
+python Pipelines/Bitfinex/tests_fast_exit.py --samples 300 --stop-timeframes 1m 5m 15m
+python Pipelines/Bitfinex/tests_fast_exit.py --samples 100 --anchor-timeframe 15m
+```
+
+Rerun it after any change to the exit rules, the adapters or `fast_exit.py`. On 60 entries all tables were identical and labeling ran 3.3× (1m stop) to 4.2× (5m, 15m) faster than the v9 path above, about 5× to 20× faster than the original code. The remaining time is mostly the per-entry input builder (indicators and wave markers per entry).
+
 ## Anchor membership
 
 The confirmed workbook is **Основные и допополнительные якоря 15.10.2026.xlsx**.
