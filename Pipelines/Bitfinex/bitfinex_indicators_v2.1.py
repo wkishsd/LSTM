@@ -36,8 +36,12 @@ except ModuleNotFoundError:
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parents[2] / ".python-deps"))
     import requests
-from openpyxl.styles import Alignment, Font
-from openpyxl.utils import get_column_letter
+try:
+    from openpyxl.styles import Alignment, Font
+    from openpyxl.utils import get_column_letter
+except ModuleNotFoundError:
+    # Only the Excel exports need openpyxl; the MLP export writes CSV, NumPy and JSON files.
+    Alignment = Font = get_column_letter = None
 
 VERSION = "2.1"
 BASE_URL = "https://api-pub.bitfinex.com/v2"
@@ -725,6 +729,8 @@ def parameters(cutoff, counts):
 
 def export_excel(raw, normalized, cutoff, counts, output=OUTPUT_FILE, anchors=None):
     """Export indicator sheets and, when supplied, the separate anchor table."""
+    if Font is None:
+        raise RuntimeError("Excel export needs openpyxl: pip install openpyxl")
     frames = {"raw_data": raw.copy(), "normalized_data": normalized.copy()}
     if anchors is not None:
         if not anchors.index.equals(raw.index) or not anchors["timestamp"].equals(raw["timestamp"]):
