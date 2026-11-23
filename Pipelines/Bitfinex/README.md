@@ -109,13 +109,23 @@ python Pipelines/Bitfinex/random_minute_control.py --samples 12000 --anchor-samp
 
 ## Stop timeframe
 
-`--stop-timeframe` (`ExitSettings.stop_timeframe`, default `1m`) chooses the candles that **set and move** the trailing exit stop. With `5m`, the M1 rules are applied unchanged to M5 candles built from actual M1 candles (a leading partial bucket is dropped):
+`--stop-timeframe` (`ExitSettings.stop_timeframe`, default `1m`) chooses the candles that **set and move** the trailing exit stop. With `5m` or `15m`, the M1 rules are applied unchanged to M5 or M15 candles built from actual M1 candles (a leading partial bucket is dropped):
 
-- A closed red M5 candle joins the trade's red history. Up to 20 red M5 candles closed at or before the trade entry seed it, from one day of pre-entry M1 history.
-- A closed green M5 candle searches left for the nearest red M5 candle whose High is at least its High. The candidate stop is that High plus `stop_x` ($0.30). It sets the first stop or lowers the current one; it never raises it.
-- The stop is acted on at the M5 close and is **triggered by every M1 High** at or above it, as a resting order would be.
+- A closed red candle joins the trade's red history. Up to 20 red candles closed at or before the trade entry seed it, from one day (5m) or two days (15m) of pre-entry M1 history.
+- A closed green candle searches left for the nearest red candle whose High is at least its High. The candidate stop is that High plus `stop_x` ($0.30). It sets the first stop or lowers the current one; it never raises it.
+- The stop is acted on at the candle close and is **triggered by every M1 High** at or above it, as a resting order would be.
 
-Entries, re-entries, support searches, ADX and wave-6 exits are unchanged. Stop events carry `candle_timeframe = 5m`. The verified v9 source is not edited; the change is applied through the same named adapter as the initial-fill timing.
+Entries, re-entries, support searches, ADX and wave-6 exits are unchanged. Stop events carry `candle_timeframe = 5m` or `15m`. The verified v9 source is not edited; the change is applied through the same named adapter as the initial-fill timing.
+
+## Anchor timeframe
+
+`--anchor-timeframe` (default `5m`) chooses the candles on which the 35 anchor rules are evaluated. With `15m`, the identical rules run on native M15 candles, and an entry is placed at the M15 close, which is also an M5 boundary. Order placement, the M5 exit waves and the stop rules are unchanged. The 18 main-anchor flags in the feature timeline then mark M15 anchor closes. The manifest records `anchor_timeframe`.
+
+## Export size and speed
+
+`X_train.npy` / `X_test.npy` (about 32 GB for three years) are written only with `--precompute-windows`. Training slices its windows from `feature_timeline.npy` using `feature_end_row` in `entry_targets.csv`, so it does not need them. The manifest records `precomputed_windows`.
+
+Labeling replaces two v9 helpers with faster versions that give identical results: tagging a red-history row builds the enlarged Series directly, and pre-entry red history scans back from the entry and stops at 20 red candles. On a 60-entry sample, targets, trades and stop events were identical, and labeling ran 1.5× (1m stop), 4× (5m) and 5× (15m) faster.
 
 ## Anchor membership
 

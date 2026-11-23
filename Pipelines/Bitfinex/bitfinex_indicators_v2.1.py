@@ -444,8 +444,10 @@ def normalize(raw):
     return normalized.astype(float)
 
 
-def detect_anchor_events(native_5m):
-    """Return 0/1 events for all 35 rules on unnormalized native 5m data.
+def detect_anchor_events(native_5m, timeframe=ANCHOR_TIMEFRAME):
+    """Return 0/1 events for all 35 rules on unnormalized native candles (5m by default).
+
+    timeframe="15m" applies the identical rules to native 15m candles.
 
     Cross down: previous >= boundary and current < boundary; cross up:
     previous <= boundary and current > boundary. Moving boundaries use
@@ -456,15 +458,15 @@ def detect_anchor_events(native_5m):
     Hist is MACD minus its signal, including rule 32's 'H' in the document.
     """
     native = native_5m.sort_values("timestamp").reset_index(drop=True)
-    duration = pd.Timedelta(minutes=TIMEFRAME_MINUTES[ANCHOR_TIMEFRAME])
+    duration = pd.Timedelta(minutes=TIMEFRAME_MINUTES[timeframe])
     timestamps = pd.to_datetime(native["timestamp"], utc=True)
     closes = pd.to_datetime(native["available_at"], utc=True)
     if timestamps.duplicated().any() or not (closes - timestamps == duration).all():
-        raise ValueError("Anchor history must contain unique native 5m candles")
-    if not (timestamps == timestamps.dt.floor("5min")).all():
-        raise ValueError("Anchor candles must align to 5m openings")
+        raise ValueError(f"Anchor history must contain unique native {timeframe} candles")
+    if not (timestamps == timestamps.dt.floor(f"{TIMEFRAME_MINUTES[timeframe]}min")).all():
+        raise ValueError(f"Anchor candles must align to {timeframe} openings")
     if len(native) > 1 and not (timestamps.diff().iloc[1:] == duration).all():
-        raise ValueError("Fill missing 5m slots before detecting anchors")
+        raise ValueError(f"Fill missing {timeframe} slots before detecting anchors")
 
     r = native[f"rsi_{RSI_PERIOD}"]
     atr = native[f"atr_{ATR_PERIOD}"]
@@ -2636,8 +2638,13 @@ from concurrent.futures import ProcessPoolExecutor as _ProcessPoolExecutor
 # Execution-clock constants outside the isolated embedded original modules.
 TF_MS_1M = 60_000
 TF_MS_5M = 300_000
-STOP_TIMEFRAMES = ("1m", "5m")
-M5_STOP_CONTEXT_MS = 86_400_000  # Pre-entry M1 history aggregated for up to 20 red M5 candles.
+TF_MS_15M = 900_000
+STOP_TIMEFRAMES = ("1m", "5m", "15m")
+# Higher stop timeframes: candle length, and pre-entry M1 history aggregated
+# into that timeframe to seed up to 20 red candles.
+STOP_CANDLE_MS = {"5m": TF_MS_5M, "15m": TF_MS_15M}
+STOP_CONTEXT_MS = {"5m": 86_400_000, "15m": 2 * 86_400_000}
+ANCHOR_TIMEFRAMES = ("5m", "15m")
 
 TRAINING_CASES = 2000
 ML_WINDOW_MINUTES = 47 * 30
@@ -2666,7 +2673,7 @@ class ExitSettings:
     entry_commission_pct: float = ENTRY_COMMISSION_PCT
     exit_commission_pct: float = EXIT_COMMISSION_PCT
     # Candles that MOVE the trailing exit stop. The resting stop is still
-    # checked against every M1 High; "5m" only changes when it is set/moved.
+    # checked against every M1 High; "5m"/"15m" only change when it is set/moved.
     stop_timeframe: str = "1m"
 
     def namespace(self):
@@ -2961,7 +2968,7 @@ def collect_training_history(start, cutoff, cache_dir, window_minutes=ML_WINDOW_
 
 
 def filter_main_anchor_entries(native, case_limit=TRAINING_CASES, start=None, end=None,
-                               initial_entry_offset_down=0.1):
+                               initial_entry_offset_down=0.1, anchor_timeframe=ANCHOR_TIMEFRAME):
     """Only main anchors create rows; simultaneous main triggers share one row.
 
     All 35 flags remain available on the complete 5m event timeline. Additional
@@ -2970,8 +2977,10 @@ def filter_main_anchor_entries(native, case_limit=TRAINING_CASES, start=None, en
     closed M1 Low minus an absolute offset. Missing source minutes use the
     existing flat previous-close indicator slot and are explicitly flagged.
     """
-    features_5m = calculate_native(native["5m"])
-    all_flags = detect_anchor_events(features_5m)
+    if anchor_timeframe not in ANCHOR_TIMEFRAMES:
+        raise ValueError(f"anchor_timeframe must be one of {ANCHOR_TIMEFRAMES}")
+    # 15m anchors close on M5 boundaries too, so order placement and M5 waves are unchanged.
+    all_flags = detect_anchor_events(calculate_native(native[anchor_timeframe]), anchor_timeframe)
     first = native["1m"].timestamp.iloc[0] + pd.Timedelta(days=3)
     last = native["1m"].available_at.iloc[-1]
     if start is not None:
@@ -3171,10 +3180,12 @@ class LegacyExitInputBuilder:
                                  "plus_di_14": round(float(row.plus_di_14), 6), "minus_di_14": round(float(row.minus_di_14), 6)})
         wave_rows, markers = wave.build_macd_1m_wave_markers_for_entry(entry, work, context_start, end, args)
         export_start = context_start
-        if self.settings.stop_timeframe == "5m":
-            # Extra pre-entry rows only seed M5 red history; they carry no
-            # M1 MACD wave markers, so support searches are unaffected.
-            export_start = min(context_start, (entry_ms - M5_STOP_CONTEXT_MS) // TF_MS_5M * TF_MS_5M)
+        if self.settings.stop_timeframe in STOP_CANDLE_MS:
+            # Extra pre-entry rows only seed the stop timeframe's red history; they
+            # carry no M1 MACD wave markers, so support searches are unaffected.
+            tf_ms = STOP_CANDLE_MS[self.settings.stop_timeframe]
+            export_start = min(context_start,
+                               (entry_ms - STOP_CONTEXT_MS[self.settings.stop_timeframe]) // tf_ms * tf_ms)
         exported = self.minute_range(export_start, end + TF_MS_5M).copy()
         exported.insert(0, "entry_id", int(entry.entry_id))
         exported = exported.rename(columns={"mts": "minute_mts_utc"})
@@ -3225,15 +3236,15 @@ def filled_initial_order_engine():
             '            last_state = "position_open_at_study_end"',
     })
     substitutions.update({
-        # M5 stop movement: same red/green rules, applied to closed M5 candles.
+        # M5/M15 stop movement: same red/green rules, applied to closed higher-timeframe candles.
         "    for idx, mrow in minutes.iterrows():":
             "    m5_state = {}\n    for idx, mrow in minutes.iterrows():",
         "        assert active_trade is not None\n":
             "        assert active_trade is not None\n"
-            '        if args.stop_timeframe == "5m":\n'
+            '        if args.stop_timeframe != "1m":\n'
             "            advance_m5_stop(active_trade, m5_state, minutes_all_for_entry, m_start, entry, args, stop_events_rows)\n",
         "        color = candle_color(mrow)\n        if color == \"red\":":
-            '        if args.stop_timeframe == "5m":\n'
+            '        if args.stop_timeframe != "1m":\n'
             "            continue  # M1 candles only trigger the resting stop.\n"
             "        color = candle_color(mrow)\n        if color == \"red\":",
     })
@@ -3242,46 +3253,93 @@ def filled_initial_order_engine():
             raise RuntimeError("Initial-fill adapter no longer matches verified v9 source")
         source = source.replace(before, after, 1)
     engine.advance_m5_stop = _functools.partial(_advance_m5_stop, engine)
+    engine._v9_build_initial_red_history = engine.build_initial_red_history
     exec(compile("from __future__ import annotations\n" + source,
                  str(Path(__file__).resolve()) + "::initial_order_adapter", "exec"), engine.__dict__)
+    # Speed-only replacements with identical results (see their docstrings).
+    engine.make_red_history_row = _fast_make_red_history_row
+    engine.build_initial_red_history = _functools.partial(_fast_build_initial_red_history, engine)
     return engine
 
 
-def _m5_candles(minutes):
-    """Aggregate actual M1 candles into M5 candles; drop a leading partial bucket."""
+def _fast_make_red_history_row(row, origin):
+    """Same as v9 make_red_history_row (copy of the row plus red_history_origin).
+
+    v9 enlarges a copied Series, which pandas does slowly; this builds the
+    enlarged object Series directly.
+    """
+    values = np.empty(len(row) + 1, dtype=object)
+    values[:-1] = row.to_numpy(dtype=object)
+    values[-1] = origin
+    return pd.Series(values, index=row.index.append(pd.Index(["red_history_origin"])), name=row.name)
+
+
+def _fast_build_initial_red_history(engine, minutes, entry_candle_start_ms, limit=None):
+    """Same result as v9 build_initial_red_history: the last `limit` red candles at or
+    before the entry candle, oldest first. Scans backwards and stops once `limit` reds
+    are found instead of tagging every red candle in the history."""
+    limit = engine.PRE_ENTRY_RED_HISTORY_LIMIT if limit is None else limit
+    if minutes is None or minutes.empty:
+        return [], None, None
+    df = minutes.dropna(subset=["minute_mts_utc"]).copy()
+    df["minute_mts_utc"] = pd.to_numeric(df["minute_mts_utc"], errors="coerce")
+    df = df.dropna(subset=["minute_mts_utc"])
+    df = df[df["minute_mts_utc"] <= int(entry_candle_start_ms)].sort_values("minute_mts_utc")
+    if limit <= 0:
+        return engine.__dict__["_v9_build_initial_red_history"](minutes, entry_candle_start_ms, limit)
+    reds = []
+    for _, r in df.iloc[::-1].iterrows():
+        if engine.candle_color(r) == "red":
+            reds.append(_fast_make_red_history_row(r, "pre_entry_context"))
+            if len(reds) == int(limit):
+                break
+    reds.reverse()
+    if not reds:
+        return [], None, None
+    return reds, engine.safe_int(reds[0].get("minute_mts_utc")), engine.safe_int(reds[-1].get("minute_mts_utc"))
+
+
+def _m5_candles(minutes, tf_ms=TF_MS_5M):
+    """Aggregate actual M1 candles into tf_ms candles (M5 by default); drop a leading partial bucket."""
     frame = minutes[["minute_mts_utc", "open", "high", "low", "close"]].copy()
     for column in frame.columns:
         frame[column] = pd.to_numeric(frame[column], errors="coerce")
     frame = frame.dropna().sort_values("minute_mts_utc")
     if frame.empty:
         return pd.DataFrame(columns=["minute_mts_utc", "open", "high", "low", "close", "close_ms"])
-    frame["bucket"] = frame.minute_mts_utc.astype("int64") // TF_MS_5M * TF_MS_5M
+    frame["bucket"] = frame.minute_mts_utc.astype("int64") // tf_ms * tf_ms
     candles = frame.groupby("bucket", sort=True).agg(
         open=("open", "first"), high=("high", "max"), low=("low", "min"), close=("close", "last"),
         first_minute=("minute_mts_utc", "min"))
     candles = candles.iloc[1:] if candles.first_minute.iloc[0] > candles.index[0] else candles
     candles = candles.drop(columns="first_minute").reset_index().rename(columns={"bucket": "minute_mts_utc"})
-    candles["close_ms"] = candles.minute_mts_utc + TF_MS_5M
+    candles["close_ms"] = candles.minute_mts_utc + tf_ms
     return candles
 
 
 def _advance_m5_stop(engine, trade, state, minutes, upto_ms, entry, args, stop_events_rows):
-    """Apply the v9 M1 stop rules to every M5 candle closed by upto_ms.
+    """Apply the v9 M1 stop rules to every stop-timeframe candle closed by upto_ms.
 
-    Red M5 candles join the trade's red history; a green M5 candle searches
-    left for the nearest red M5 High >= its High and proposes High + stop_x,
-    which can only set or lower the stop. M5 candles closed at or before the
-    trade entry seed history (up to 20 reds); later ones are live.
+    args.stop_timeframe is "5m" or "15m". Red candles join the trade's red
+    history; a green candle searches left for the nearest red High >= its High
+    and proposes High + stop_x, which can only set or lower the stop. Candles
+    closed at or before the trade entry seed history (up to 20 reds); later
+    ones are live.
     """
+    tf = args.stop_timeframe
     if "candles" not in state:
-        state["candles"] = _m5_candles(minutes)
+        state["candles"] = _m5_candles(minutes, STOP_CANDLE_MS[tf])
     candles = state["candles"]
     if state.get("trade_no") != trade.trade_no:
         entry_ms = int(trade.entry_time_ms)
         before = candles.loc[candles.close_ms.le(entry_ms)]
-        reds = [engine.make_red_history_row(row, "pre_entry_context_m5")
-                for _, row in before.iterrows() if engine.candle_color(row) == "red"]
-        trade.red_history = reds[-engine.PRE_ENTRY_RED_HISTORY_LIMIT:]
+        reds = []
+        for _, row in before.iloc[::-1].iterrows():  # newest first; stop at the limit
+            if len(reds) == engine.PRE_ENTRY_RED_HISTORY_LIMIT:
+                break
+            if engine.candle_color(row) == "red":
+                reds.append(engine.make_red_history_row(row, f"pre_entry_context_{tf}"))
+        trade.red_history = reds[::-1]
         trade.initial_red_history_count = len(trade.red_history)
         trade.initial_red_history_start_time_ms = (int(trade.red_history[0]["minute_mts_utc"])
                                                    if trade.red_history else None)
@@ -3293,7 +3351,7 @@ def _advance_m5_stop(engine, trade, state, minutes, upto_ms, entry, args, stop_e
         state["done_ms"] = close_ms = int(row.close_ms)
         color = engine.candle_color(row)
         if color == "red":
-            trade.red_history.append(engine.make_red_history_row(row, "after_entry_m5"))
+            trade.red_history.append(engine.make_red_history_row(row, f"after_entry_{tf}"))
             continue
         if color != "green":
             continue
@@ -3304,7 +3362,7 @@ def _advance_m5_stop(engine, trade, state, minutes, upto_ms, entry, args, stop_e
         candidate = np.nan
         if basis is None:
             trade.stop_ignored_count += 1
-            event_type, reason, new_stop = "candidate_not_found", "no_previous_red_m5_high_gte_green_high", old_stop
+            event_type, reason, new_stop = "candidate_not_found", f"no_previous_red_{tf}_high_gte_green_high", old_stop
         else:
             candidate = float(basis["high"]) + float(args.stop_x)
             if old_stop is None:
@@ -3323,7 +3381,7 @@ def _advance_m5_stop(engine, trade, state, minutes, upto_ms, entry, args, stop_e
         event.update({
             "stop_event_no": len(stop_events_rows) + 1, "trade_no": trade.trade_no,
             "event_type": event_type, "event_time": local(close_ms), "event_ms_utc": close_ms,
-            "minute_start_time": local(start_ms), "minute_mts_utc": start_ms, "candle_timeframe": "5m",
+            "minute_start_time": local(start_ms), "minute_mts_utc": start_ms, "candle_timeframe": tf,
             "candle_color": color, "candle_open": float(row.open), "candle_high": float(row.high),
             "candle_low": float(row.low), "candle_close": float(row.close),
             "old_stop_level": old_stop if old_stop is not None else np.nan,
@@ -3508,8 +3566,12 @@ def commission_targets(targets, trades, initial_orders, settings):
     return result
 
 
-def build_mlp_feature_timeline(native, entries, window_minutes=ML_WINDOW_MINUTES):
-    """One row per closed M1 slot, with higher TFs aligned by their close."""
+def build_mlp_feature_timeline(native, entries, window_minutes=ML_WINDOW_MINUTES,
+                               anchor_timeframe=ANCHOR_TIMEFRAME):
+    """One row per closed M1 slot, with higher TFs aligned by their close.
+
+    Anchor flags come from anchor_timeframe and are set on that candle's close minute.
+    """
     first = entries.entry_at.iloc[0] - pd.Timedelta(minutes=window_minutes - 1)
     last = entries.entry_at.iloc[-1]
     clocks = pd.date_range(first, last, freq="min")
@@ -3526,9 +3588,9 @@ def build_mlp_feature_timeline(native, entries, window_minutes=ML_WINDOW_MINUTES
         block = normalized_timeframe(candles, tf)
         matrix[:, len(names):len(names) + block.shape[1]] = block.to_numpy()[positions]
         names.extend(f"norm_{c}" for c in block.columns)
-        if tf == ANCHOR_TIMEFRAME:
+        if tf == anchor_timeframe:
             columns = [f"anchor_{n:02d}" for n in MAIN_ANCHOR_IDS]
-            flags = detect_anchor_events(history)[columns].reindex(clocks, fill_value=0)
+            flags = detect_anchor_events(history, tf)[columns].reindex(clocks, fill_value=0)
             matrix[:, -len(columns):] = flags.to_numpy(dtype=np.float32)
     names.extend(columns)
     positions = clocks.get_indexer(entries.entry_at)
@@ -3599,10 +3661,16 @@ def label_mlp_entries(entries, native, settings, output_dir, workers=1):
     return pd.concat(results, sort=False)
 
 
-def export_mlp_splits(native, entries, audit, output_dir, window_minutes, start, end, cutoff, settings):
-    """Save dense FP32 windows to disk, building a small batch at a time."""
+def export_mlp_splits(native, entries, audit, output_dir, window_minutes, start, end, cutoff, settings,
+                      anchor_timeframe=ANCHOR_TIMEFRAME, precompute_windows=False):
+    """Save the feature timeline, targets and splits; optionally dense FP32 windows.
+
+    Training slices windows from feature_timeline.npy using feature_end_row, so
+    X_train/X_test (about 32 GB for three years) are only written on request.
+    """
     output_dir = Path(output_dir)
-    matrix, feature_names, positions = build_mlp_feature_timeline(native, entries, window_minutes)
+    matrix, feature_names, positions = build_mlp_feature_timeline(native, entries, window_minutes,
+                                                                  anchor_timeframe)
     audit = audit.reindex(entries.index)
     labeled = np.flatnonzero(audit.binary_target.notna())
     boundary = int(len(labeled) * 0.8)
@@ -3623,17 +3691,18 @@ def export_mlp_splits(native, entries, audit, output_dir, window_minutes, start,
     audit.loc[audit.index[purged], "split"] = "boundary_purged"
     offsets = np.arange(1 - window_minutes, 1)
     for name, rows in (("train", train), ("test", test)):
-        path = output_dir / f"X_{name}.npy"
-        temp = path.with_suffix(".tmp")
-        out = np.lib.format.open_memmap(temp, mode="w+", dtype=np.float32,
-                                      shape=(len(rows), window_minutes * len(feature_names)))
-        for i in range(0, len(rows), 128):
-            selection = positions[rows[i:i + 128]]
-            windows = matrix[selection[:, None] + offsets]
-            out[i:i + len(selection)] = windows.reshape(len(selection), -1)
-        out.flush()
-        del out
-        temp.replace(path)
+        if precompute_windows:
+            path = output_dir / f"X_{name}.npy"
+            temp = path.with_suffix(".tmp")
+            out = np.lib.format.open_memmap(temp, mode="w+", dtype=np.float32,
+                                          shape=(len(rows), window_minutes * len(feature_names)))
+            for i in range(0, len(rows), 128):
+                selection = positions[rows[i:i + 128]]
+                windows = matrix[selection[:, None] + offsets]
+                out[i:i + len(selection)] = windows.reshape(len(selection), -1)
+            out.flush()
+            del out
+            temp.replace(path)
         np.save(output_dir / f"y_{name}.npy", audit.binary_target.iloc[rows].to_numpy(dtype=np.int64))
         audit.loc[audit.index[rows], "split"] = name
         audit.loc[audit.index[rows], "split_row"] = np.arange(len(rows), dtype=np.int64)
@@ -3652,6 +3721,8 @@ def export_mlp_splits(native, entries, audit, output_dir, window_minutes, start,
         "exit_commission_pct_per_fill": settings.exit_commission_pct,
         "exit_settings": vars(settings),
         "native_candle_counts": {tf: len(frame) for tf, frame in native.items()},
+        "anchor_timeframe": anchor_timeframe,
+        "precomputed_windows": bool(precompute_windows),
         "main_anchor_ids": list(MAIN_ANCHOR_IDS),
         "unique_entry_ids": len(audit), "binary_labels": len(labeled),
         "individual_anchor_activations": int(entries[[f"anchor_{n:02d}" for n in MAIN_ANCHOR_IDS]].sum().sum()),
@@ -3859,6 +3930,10 @@ def main():
     parser.add_argument("--stop-x", type=float, default=0.3)
     parser.add_argument("--stop-timeframe", choices=STOP_TIMEFRAMES, default="1m",
                         help="Candles that set/move the trailing exit stop; M1 Highs always trigger it")
+    parser.add_argument("--anchor-timeframe", choices=ANCHOR_TIMEFRAMES, default=ANCHOR_TIMEFRAME,
+                        help="Candles on which the 35 anchor rules are evaluated; entries are placed at their close")
+    parser.add_argument("--precompute-windows", action="store_true",
+                        help="Also write X_train/X_test.npy (about 32 GB); training does not need them")
     parser.add_argument("--support-threshold", type=float, default=0.0003)
     parser.add_argument("--reentry-offset-down", type=float, default=0.0)
     parser.add_argument("--initial-entry-offset-down", type=float, default=0.1,
@@ -3894,10 +3969,11 @@ def main():
         parser.error("Expected --start < --end <= --cutoff")
     if not args.cache_dir:
         native, cutoff = collect_training_history(start, cutoff, args.history_cache, args.window_minutes)
-    entries, _ = filter_main_anchor_entries(native, args.cases, start, end, settings.initial_entry_offset_down)
+    entries, _ = filter_main_anchor_entries(native, args.cases, start, end, settings.initial_entry_offset_down,
+                                            args.anchor_timeframe)
     audit = label_mlp_entries(entries, native, settings, args.output, workers=args.workers)
     manifest = export_mlp_splits(native, entries, audit, args.output, args.window_minutes,
-                                 start, end, cutoff, settings)
+                                 start, end, cutoff, settings, args.anchor_timeframe, args.precompute_windows)
     print(_json.dumps(manifest, indent=2), flush=True)
 
 
