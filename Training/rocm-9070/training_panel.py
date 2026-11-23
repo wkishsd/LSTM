@@ -71,7 +71,7 @@ CHOICES = {
     "activation": ("relu", "leaky_relu"),
     "loss": tuple(LOSS_LABELS.values()),
 }
-BASELINE_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees"}
+BASELINE_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees", "hour": "Hour-of-day rule"}
 BENCHMARK_CLASSES = {"uci_har": ("downstairs", "Upstairs"), "uci_air": ("no rise", "PM2.5 rise")}
 BENCHMARK_DESCRIPTIONS = {
     "uci_har": "UCI HAR · Upstairs vs. downstairs · 50 samples/sec",

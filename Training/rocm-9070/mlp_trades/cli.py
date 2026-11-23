@@ -17,7 +17,7 @@ PATH_OPTIONS = {field.name for field in fields(DataPaths)} | {
 }
 # The baseline scripts live in the workspace's Models/Baselines folder.
 BASELINES_DIR = Path(__file__).resolve().parents[3] / "Models" / "Baselines"
-BASELINE_MODELS = ("atr", "logistic", "gbt")
+BASELINE_MODELS = ("atr", "logistic", "gbt", "hour")
 
 
 def start_baselines(data, args, out):

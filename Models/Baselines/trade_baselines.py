@@ -9,6 +9,8 @@ Models
     logistic  L2-regularized logistic regression (one-vs-rest for profit buckets),
               fitted by Newton's method on standardized decision-time features.
     gbt       Histogram gradient-boosted trees with early stopping on validation.
+    hour      Hour-of-day rule: each test entry scores its UTC hour's outcome rates on the
+              train split. Fitted on train only, so no hour picked from the test period.
 
 The decision-time features use only rows at or before each entry's feature end row.
 """
@@ -22,13 +24,14 @@ from time import perf_counter
 
 import numpy as np
 
-MODELS = ("atr", "logistic", "gbt")
-MODEL_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees"}
+MODELS = ("atr", "logistic", "gbt", "hour")
+MODEL_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees", "hour": "Hour-of-day rule"}
 TIMEFRAMES = ("M1", "M5", "M15", "M30")
 RETURN_LAGS = (1, 5, 15, 60, 240, 720, 1409)
 ANCHOR_WINDOW = 120
 VOLUME_WINDOW = 60
 BOUNDED_LIMIT = 1 - 2.0 ** -24
+HOUR_SMOOTHING = 20.0  # pseudo-entries pulling a thin hour towards the overall train rates
 
 
 def log(message):
@@ -300,6 +303,20 @@ class HistogramGBT:
         return dict(sorted(counts.items(), key=lambda item: -item[1])[:15])
 
 
+# ----------------------------------------------------------------------------- hour-of-day rule
+
+def utc_hours(times):
+    return ((np.asarray(times, dtype=np.int64) % 86400) // 3600).astype(np.int64)
+
+
+def fit_hour_rates(hours, y, num_classes, smoothing=HOUR_SMOOTHING):
+    """Per-hour class probabilities on the train split, smoothed towards the overall rates."""
+    overall = np.bincount(y, minlength=num_classes) / len(y)
+    counts = np.zeros((24, num_classes))
+    np.add.at(counts, (hours, y), 1.0)
+    return (counts + smoothing * overall) / (counts.sum(axis=1, keepdims=True) + smoothing)
+
+
 # ----------------------------------------------------------------------------- runner
 
 def run(data, args, out):
@@ -315,8 +332,9 @@ def run(data, args, out):
     num_classes = len(target["class_names"]) if target else 2
     timeline = mmap_array(data.paths.timeline, "timeline", (WIDTH,))
     bounded = data.schema.get("macd_normalization") == "x / sqrt(1 + x^2)"
-    features, labels, returns = {}, {}, {}
+    features, labels, returns, hours = {}, {}, {}, {}
     for name, rows in splits.items():
+        hours[name] = utc_hours(data.times[rows])
         features[name], names = decision_features(timeline, data.history_rows[rows], data.times[rows], bounded)
         labels[name] = data.labels[rows]
         returns[name] = None if getattr(data, "returns", None) is None else data.returns[rows]
@@ -378,6 +396,16 @@ def run(data, args, out):
                 entry["validation"] = score("validation", model.predict_proba(features["validation"]))
             entry["test"] = score("test", model.predict_proba(features["test"]))
             entry["most_used_features"] = model.split_counts(names)
+        elif name == "hour":
+            rates = fit_hour_rates(hours["train"], labels["train"], num_classes)
+            entry["settings"] = {"score": "train-split outcome rates of the entry's UTC hour",
+                                 "smoothing_entries": HOUR_SMOOTHING}
+            if has_validation:
+                entry["validation"] = score("validation", rates[hours["validation"]])
+            entry["test"] = score("test", rates[hours["test"]])
+            column = 1 if num_classes == 2 else num_classes - 1
+            entry["train_rate_by_utc_hour"] = {f"{h:02d}": float(rates[h, column]) for h in range(24)}
+            entry["train_entries_by_utc_hour"] = np.bincount(hours["train"], minlength=24).tolist()
         else:
             raise ValueError(f"Unknown baseline model: {name}")
         entry["seconds"] = perf_counter() - model_started
