@@ -45,7 +45,7 @@ class PerMinuteLinear(nn.Module):
 class TradeMLP(nn.Module):
     def __init__(self, hidden1=128, hidden2=64, activation="relu", standardize=False,
                  dropout=0.0, lookback_minutes=STATES, hidden3=0, model="dense",
-                 feature_input="exported", num_classes=2, input_timeframe="1m"):
+                 feature_input="exported", num_classes=2, input_timeframe="1m", compact_inputs=0):
         super().__init__()
         if hidden1 < 1 or hidden2 < 1:
             raise ValueError("Hidden layer widths must be positive")
@@ -64,6 +64,10 @@ class TradeMLP(nn.Module):
         # checkpoints and inference need no change.
         self.rows = lookback_minutes // self.step
         self.columns = WIDTH - (M1_COLUMNS if self.step > 1 else 0)
+        # compact_inputs > 0: each sample is one row of decision-time features, not a candle window.
+        self.compact = int(compact_inputs)
+        if self.compact and (model != "dense" or feature_input != "exported" or self.step != 1):
+            raise ValueError("Compact features use the dense model with exported features and 1m input")
         self.num_classes = num_classes
         activations = {"relu": nn.ReLU, "leaky_relu": nn.LeakyReLU}
         if activation not in activations:
@@ -76,6 +80,8 @@ class TradeMLP(nn.Module):
         activate = activations[activation]
         self.encoder = None
         head_inputs = self.rows * self.columns
+        if self.compact:
+            head_inputs = self.input_size = self.compact
         if model != "dense":
             hidden, encoded = ENCODER_WIDTHS
             if model == "shared":
@@ -95,12 +101,19 @@ class TradeMLP(nn.Module):
         layers.append(nn.Linear(widths[-1], num_classes))
         self.layers = nn.Sequential(*layers)
         self.dropout = nn.Dropout(dropout)
-        self.register_buffer("feature_mean", torch.zeros(WIDTH) if standardize else None)
-        self.register_buffer("feature_scale", torch.ones(WIDTH) if standardize else None)
+        width = self.compact or WIDTH
+        self.register_buffer("feature_mean", torch.zeros(width) if standardize else None)
+        self.register_buffer("feature_scale", torch.ones(width) if standardize else None)
 
     def forward(self, x):
         if x.ndim != 2 or x.shape[1] != self.input_size:
             raise ValueError(f"Expected (batch, {self.input_size}), got {tuple(x.shape)}")
+        if self.compact:
+            if self.feature_mean is not None:
+                x = (x - self.feature_mean) / self.feature_scale
+            for index in range(0, len(self.layers) - 1, 2):
+                x = self.dropout(self.layers[index + 1](self.layers[index](x)))
+            return self.layers[-1](x)
         x = x.reshape(-1, self.lookback_minutes, WIDTH)
         if self.step > 1:
             # The last row is the entry's M5 close, so every fifth row back is one M5 candle exactly once.

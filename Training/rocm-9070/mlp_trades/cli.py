@@ -9,7 +9,7 @@ from .data import DataPaths, prepare
 from .io_utils import new_output_dir, write_json
 from .schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, FEATURE_INPUT_LABELS,
-    INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, TARGET_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
+    INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, MODEL_INPUT_LABELS, TARGET_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
 )
 
 PATH_OPTIONS = {field.name for field in fields(DataPaths)} | {
@@ -68,6 +68,9 @@ def build_parser():
             # Also accepted by validate so the exact training config can be checked first.
             p.add_argument("--model", choices=MODEL_LABELS, default="dense",
                            help="Model architecture. The encoder models map each minute from 54 to 16 to 8 features.")
+            p.add_argument("--model-input", choices=MODEL_INPUT_LABELS, default="window",
+                           help="window: the candle window of --lookback-minutes rows. compact: one row of the 85 "
+                                "decision-time features the CPU baselines use, standardized on train.")
             p.add_argument("--target", choices=TARGET_LABELS, default="net",
                            help="net: class 1 when the series net return is >= 0 (the export label). risk_units: class 1 "
                                 "when net / ATR 14 on M15 at the decision minute >= --risk-threshold, on every split.")
@@ -208,6 +211,11 @@ def parse_args(argv=None):
         raise ValueError("dropout must be a finite fraction from 0 up to but excluding 1")
     if hasattr(first, "lookback_minutes"):
         window_input_size(first.lookback_minutes)
+    if getattr(first, "model_input", "window") == "compact":
+        if dataset in BENCHMARK_LOOKBACKS or not first.bitfinex_dir:
+            raise ValueError("Compact features need a Bitfinex timeline export")
+        if first.model != "dense" or first.feature_input != "exported" or first.input_timeframe != "1m":
+            raise ValueError("Compact features use the Dense MLP with exported features and 1m input candles")
     if getattr(first, "target", "net") != "net":
         if dataset != "bitfinex" or not first.bitfinex_dir:
             raise ValueError("Risk-unit targets need the binary Bitfinex dataset from --bitfinex-dir")

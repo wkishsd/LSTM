@@ -14,7 +14,8 @@ from uuid import uuid4
 
 from mlp_trades.schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, DEFAULT_PROFIT_HOLD, ENCODER_PRESET,
-    ENCODER_WIDTHS, FEATURE_INPUT_LABELS, INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, TARGET_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_CLASSES, PROFIT_DATASET, STATES, WIDTH,
+    ENCODER_WIDTHS, FEATURE_INPUT_LABELS, INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, MODEL_INPUT_LABELS,
+    TARGET_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_CLASSES, PROFIT_DATASET, STATES, WIDTH,
     window_input_size,
 )
 
@@ -31,6 +32,7 @@ OPTIONS = (
     ("data_period", "Data period", str, "all"),
     ("profit_hold_minutes", "Hold after fill (min)", int, DEFAULT_PROFIT_HOLD),
     ("model", "Model", str, "dense"),
+    ("model_input", "Model input", str, "window"),
     ("input_timeframe", "Input candles", str, "1m"),
     ("feature_input", "Feature input", str, "exported"),
     ("epochs", "Epochs", int, 20),
@@ -64,7 +66,7 @@ OPTION_LABELS = {
     "dataset": DATASET_LABELS, "data_period": DATA_PERIOD_LABELS, "model": MODEL_LABELS,
     "feature_input": FEATURE_INPUT_LABELS, "selection": SELECTION_LABELS,
     "loss": LOSS_LABELS, "label_agreement": LABEL_AGREEMENT_LABELS, "input_timeframe": INPUT_TIMEFRAME_LABELS,
-    "target": TARGET_LABELS,
+    "target": TARGET_LABELS, "model_input": MODEL_INPUT_LABELS,
 }
 CHOICES = {
     # "Weights 1, biases 0" stays labeled for old run reports but can no longer be launched.
@@ -79,6 +81,7 @@ CHOICES = {
     "label_agreement": tuple(LABEL_AGREEMENT_LABELS.values()),
     "input_timeframe": tuple(INPUT_TIMEFRAME_LABELS.values()),
     "target": tuple(TARGET_LABELS.values()),
+    "model_input": tuple(MODEL_INPUT_LABELS.values()),
 }
 BASELINE_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees", "hour": "Hour-of-day rule"}
 BENCHMARK_CLASSES = {"uci_har": ("downstairs", "Upstairs"), "uci_air": ("no rise", "PM2.5 rise")}
@@ -579,7 +582,7 @@ class TrainingPanel:
                 width = {"dataset": 23, "data_period": 18, "model": 18, "feature_input": 18,
                          "selection": 17, "activation": 10, "initialization": 19, "loss": 19,
                          "label_agreement": 19, "bitfinex_dir": 23,
-                         "input_timeframe": 21, "target": 21}[key]
+                         "input_timeframe": 21, "target": 21, "model_input": 21}[key]
                 entry = ttk.Combobox(frame, values=CHOICES[key], textvariable=field,
                                      state="readonly", width=width)
             else:
@@ -850,6 +853,12 @@ class TrainingPanel:
             values.pop("bitfinex_dir")
         if dataset != "bitfinex":
             values["target"] = "net"
+        if dataset in BENCHMARK_LOOKBACKS:
+            values["model_input"] = "window"
+        if values["model_input"] == "compact" and (values["model"] != "dense" or values["feature_input"] != "exported"
+                                                   or values["input_timeframe"] != "1m"):
+            raise ValueError("85 compact features need Model: Dense MLP, Feature input: Exported features and "
+                             "Input candles: 1m rows.")
         if values["target"] != "net" and values["label_agreement"] != "off":
             raise ValueError("Risk-unit targets cannot be combined with Train labels; set Train labels to Export labels.")
         if not math.isfinite(values["risk_threshold"]):

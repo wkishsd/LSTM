@@ -15,6 +15,7 @@ from torch import nn
 from torch.utils.data import DataLoader, TensorDataset, WeightedRandomSampler
 
 from .agreement import default_path, train_labels
+from .compact import compact_matrix
 from .data import TimelinePaths, TradeDataset, mmap_array
 from .io_utils import write_json
 from .metrics import FIXED_QUOTA, Metrics, average_precision, quota_metrics
@@ -70,7 +71,7 @@ class DeviceWindows:
 
 
 def make_loader(data, indices, args, device, shuffle=False, batch_size=None, windows=None,
-                lookback_minutes=None, sample_weights=None):
+                lookback_minutes=None, sample_weights=None, compact=None):
     generator = torch.Generator().manual_seed(args.seed)
     sampler = None
     if sample_weights is not None:
@@ -78,7 +79,9 @@ def make_loader(data, indices, args, device, shuffle=False, batch_size=None, win
         sampler = WeightedRandomSampler(torch.as_tensor(sample_weights, dtype=torch.double), len(indices),
                                         replacement=True, generator=generator)
         shuffle = False
-    if windows is None:
+    if compact is not None:
+        dataset = TensorDataset(torch.from_numpy(compact[indices]), torch.from_numpy(data.labels[indices]))
+    elif windows is None:
         if lookback_minutes is None:
             lookback_minutes = getattr(args, "lookback_minutes", STATES)
         dataset = TradeDataset(data, indices, lookback_minutes)
@@ -91,7 +94,7 @@ def make_loader(data, indices, args, device, shuffle=False, batch_size=None, win
         drop_last=False, worker_init_fn=seed_worker, generator=generator,
         persistent_workers=args.num_workers > 0,
     )
-    return loader if windows is None else DeviceWindowLoader(loader, windows)
+    return loader if windows is None or compact is not None else DeviceWindowLoader(loader, windows)
 
 
 class DeviceWindowLoader:
@@ -227,7 +230,7 @@ def load_model(path, device, schema=None):
     if checkpoint.get("format_version") != 1:
         raise ValueError("Incompatible checkpoint format or input size")
     architecture = checkpoint["architecture"]
-    expected_inputs = window_input_size(architecture.get("lookback_minutes", STATES))
+    expected_inputs = architecture.get("compact_inputs") or window_input_size(architecture.get("lookback_minutes", STATES))
     if checkpoint.get("input_size") != expected_inputs:
         raise ValueError("Incompatible checkpoint format or input size")
     if schema is not None and checkpoint["schema"] != schema:
@@ -297,6 +300,10 @@ def train(data, args, out):
                     "lookback_minutes": getattr(args, "lookback_minutes", STATES),
                     "input_timeframe": getattr(args, "input_timeframe", "1m"),
                     "standardize": getattr(args, "feature_scaling", "none") == "standardize"}
+    compact_x, compact_names = None, None
+    if getattr(args, "model_input", "window") == "compact":
+        compact_x, compact_names = compact_matrix(data)
+        architecture.update(compact_inputs=compact_x.shape[1], standardize=True)
     if target:
         architecture["num_classes"] = len(target["class_names"])
     if architecture["input_timeframe"] != "1m":
@@ -305,7 +312,12 @@ def train(data, args, out):
         if np.any(valid_times % step):
             raise ValueError(f"{architecture['input_timeframe']} input needs every entry on a candle close of that size")
     model = TradeMLP(**architecture)
-    if architecture["standardize"]:
+    if compact_x is not None:
+        rows = compact_x[splits["train"]].astype(np.float64)
+        scale = rows.std(axis=0)
+        model.feature_mean.copy_(torch.from_numpy(rows.mean(axis=0)))
+        model.feature_scale.copy_(torch.from_numpy(np.where(scale > 1e-8, scale, 1.0)))
+    elif architecture["standardize"]:
         fit_feature_scaling(model, data, splits["train"])
     # Constant initializations (e.g. all weights 1) make every unit in a layer identical, so
     # they receive identical gradients and the layer collapses to one effective neuron.
@@ -317,17 +329,17 @@ def train(data, args, out):
     loss_name = getattr(args, "loss", "cross_entropy")
     eval_split = "validation" if has_validation else "train"
     eval_batch = args.batch_size if has_validation else 256
-    windows = cache_timeline(data, args, device, max(args.batch_size, eval_batch))
-    train_loader = make_loader(train_data, splits["train"], args, device, shuffle=True, windows=windows,
+    windows = None if compact_x is not None else cache_timeline(data, args, device, max(args.batch_size, eval_batch))
+    train_loader = make_loader(train_data, splits["train"], args, device, shuffle=True, windows=windows, compact=compact_x,
                                sample_weights=train_weights)
-    eval_loader = make_loader(data, splits[eval_split], args, device, batch_size=eval_batch, windows=windows)
+    eval_loader = make_loader(data, splits[eval_split], args, device, batch_size=eval_batch, windows=windows, compact=compact_x)
     diagnostic_steps = getattr(args, "diagnostic_steps", 0)
     fixed_train_loader = None
     if diagnostic_steps:
         indices = splits["train"]
         sample = np.random.default_rng(args.seed).choice(indices, min(len(indices), 512), replace=False)
         fixed_train_loader = make_loader(train_data, np.sort(sample), args, device, batch_size=min(eval_batch, 512),
-                                         windows=windows)
+                                         windows=windows, compact=compact_x)
     # Fixed-quota precision makes the MLP comparable with the baseline models on the same test entries.
     quota = FIXED_QUOTA if getattr(args, "dataset", "bitfinex") == "bitfinex" and model.num_classes == 2 else 0
     print(f"Bitfinex window assembly: {'GPU timeline cache' if windows else 'CPU loader'}", flush=True)
@@ -338,6 +350,7 @@ def train(data, args, out):
         "selection_tie_break": "lower_validation_loss_then_earlier_epoch" if has_validation else None,
         "macd_normalization": data.schema.get("macd_normalization"),
         "timeline_cached_on_gpu": windows is not None,
+        "compact_feature_names": compact_names,
         "config": vars(args), "paths": asdict(data.paths), "memory_at_start": memory_stats(device),
         "files": {name: {"bytes": Path(path).stat().st_size, "mtime_ns": Path(path).stat().st_mtime_ns}
                   for name, path in asdict(data.paths).items() if path},
@@ -402,7 +415,7 @@ def train(data, args, out):
     else:
         checkpoint_file = "best.pt" if has_validation else "last.pt"
         model, checkpoint = load_model(out / checkpoint_file, device, data.schema)
-        test_loader = make_loader(data, splits["test"], args, device, batch_size=eval_batch, windows=windows)
+        test_loader = make_loader(data, splits["test"], args, device, batch_size=eval_batch, windows=windows, compact=compact_x)
         test = run_epoch(model, test_loader, device, loss_name=loss_name, quota=quota,
                          returns=split_returns(data, splits["test"]))
         summary.update(checkpoint_epoch=checkpoint["epoch"], checkpoint_file=checkpoint_file, test=test)
@@ -418,7 +431,12 @@ def predict(data, args, out):
     seed_everything(args.seed)
     device = resolve_device(args.device)
     model, checkpoint = load_model(args.checkpoint, device, data.schema)
-    loader = make_loader(data, data.valid, args, device, lookback_minutes=model.lookback_minutes)
+    if model.compact:
+        matrix, _ = compact_matrix(data)
+        loader = DataLoader(TensorDataset(torch.from_numpy(matrix[data.valid]), torch.from_numpy(data.valid)),
+                            batch_size=args.batch_size)
+    else:
+        loader = make_loader(data, data.valid, args, device, lookback_minutes=model.lookback_minutes)
     allowed, total = 0, 0
     target = checkpoint["schema"].get("profit_target")
     counts = np.zeros(model.num_classes, dtype=np.int64)
