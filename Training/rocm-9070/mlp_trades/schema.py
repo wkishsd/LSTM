@@ -19,6 +19,9 @@ DEFAULT_MAX_EXIT_DELAY = 5
 # Features end at the last M1 close before the fill candle opened (see profit_collector.feature_end).
 FILL_DECISION_CLOCK = "m1_close_before_fill_candle"
 DATA_PERIOD_LABELS = {"all": "Full export", "last_6_months": "Last 6 months"}
+# Binary target: the export's net >= 0, or net in units of ATR 14 on M15 >= --risk-threshold
+# (risk_targets.csv from Pipelines/Bitfinex/risk_targets.py). Applies to train, validation and test.
+TARGET_LABELS = {"net": "Net >= 0 (export)", "risk_units": "Net >= k x ATR M15"}
 # Train-split label options from label_agreement.csv; see mlp_trades/agreement.py.
 LABEL_AGREEMENT_LABELS = {"off": "Export labels", "weight": "Weight by agreement",
                           "unanimous": "All 15 win vs rest", "unanimous_vs_lose": "All 15 win vs all lose"}

@@ -24,6 +24,30 @@ def export_paths(directory, entries=None):
                          str(root / "manifest.json"))
 
 
+def apply_risk_target(data, path, threshold):
+    """Relabel every valid entry: class 1 when net / ATR 14 on M15 >= threshold (risk_targets.csv).
+
+    Net returns used for the money metrics stay the export's own. Entry times are checked against the file.
+    """
+    with Path(path).open(encoding="utf-8-sig", newline="") as stream:
+        table = {row["entry_id"]: (row["entry_at"], float(row["r_atr_m15"])) for row in csv.DictReader(stream)}
+    ids = data.ids[data.valid]
+    missing = [i for i in ids if i not in table]
+    if missing:
+        raise ValueError(f"{len(missing):,} entries are missing from {path}, e.g. {missing[:3]}")
+    times = np.array([timestamp(table[i][0]) for i in ids])
+    if not np.array_equal(times, data.times[data.valid]):
+        raise ValueError(f"Entry times in {path} differ from the export; rebuild it with risk_targets.py")
+    risk = np.array([table[i][1] for i in ids])
+    if not np.isfinite(risk).all():
+        raise ValueError(f"Nonfinite risk targets in {path}")
+    labels = data.labels.copy()
+    labels[data.valid] = (risk >= threshold).astype(np.int64)
+    report = dict(data.report, target={"mode": "risk_units", "unit": "ATR 14 on M15", "threshold": threshold,
+                                       "file": str(path), "positive_rate": float(labels[data.valid].mean())})
+    return replace(data, labels=labels, report=report)
+
+
 def timestamp(value):
     dt = datetime.fromisoformat(value)
     if dt.utcoffset() is None or dt.microsecond:

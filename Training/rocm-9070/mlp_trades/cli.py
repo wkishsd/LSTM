@@ -9,11 +9,11 @@ from .data import DataPaths, prepare
 from .io_utils import new_output_dir, write_json
 from .schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, FEATURE_INPUT_LABELS,
-    INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
+    INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, TARGET_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
 )
 
 PATH_OPTIONS = {field.name for field in fields(DataPaths)} | {
-    "checkpoint", "output_dir", "bitfinex_dir", "bitfinex_entries", "agreement_file",
+    "checkpoint", "output_dir", "bitfinex_dir", "bitfinex_entries", "agreement_file", "risk_file",
 }
 # The baseline scripts live in the workspace's Models/Baselines folder.
 BASELINES_DIR = Path(__file__).resolve().parents[3] / "Models" / "Baselines"
@@ -68,6 +68,12 @@ def build_parser():
             # Also accepted by validate so the exact training config can be checked first.
             p.add_argument("--model", choices=MODEL_LABELS, default="dense",
                            help="Model architecture. The encoder models map each minute from 54 to 16 to 8 features.")
+            p.add_argument("--target", choices=TARGET_LABELS, default="net",
+                           help="net: class 1 when the series net return is >= 0 (the export label). risk_units: class 1 "
+                                "when net / ATR 14 on M15 at the decision minute >= --risk-threshold, on every split.")
+            p.add_argument("--risk-threshold", type=float, default=1.0,
+                           help="Class-1 threshold in M15 ATR units for --target risk_units")
+            p.add_argument("--risk-file", help="risk_targets.csv to use; defaults to the one in --bitfinex-dir")
             p.add_argument("--input-timeframe", choices=INPUT_TIMEFRAME_LABELS, default="1m",
                            help="1m feeds every minute row; 5m feeds one row per M5 close without the M1 "
                                 "columns. The lookback stays in minutes and must be a multiple of 5 for 5m.")
@@ -202,6 +208,16 @@ def parse_args(argv=None):
         raise ValueError("dropout must be a finite fraction from 0 up to but excluding 1")
     if hasattr(first, "lookback_minutes"):
         window_input_size(first.lookback_minutes)
+    if getattr(first, "target", "net") != "net":
+        if dataset != "bitfinex" or not first.bitfinex_dir:
+            raise ValueError("Risk-unit targets need the binary Bitfinex dataset from --bitfinex-dir")
+        if not math.isfinite(first.risk_threshold):
+            raise ValueError("risk_threshold must be finite")
+        if getattr(first, "label_agreement", "off") != "off":
+            raise ValueError("Label agreement relabels by net result; use it with --target net only")
+        risk = Path(first.risk_file or Path(first.bitfinex_dir) / "risk_targets.csv")
+        if not risk.is_file():
+            raise ValueError(f"{risk} not found; build it with Pipelines/Bitfinex/risk_targets.py")
     if getattr(first, "input_timeframe", "1m") != "1m":
         if dataset != "bitfinex" or not first.bitfinex_dir:
             raise ValueError("5m input needs the binary Bitfinex dataset from --bitfinex-dir")
@@ -248,6 +264,10 @@ def main(argv=None):
             if training and ("profit_target" in data.schema) != (args.dataset == PROFIT_DATASET):
                 raise ValueError("The Bitfinex export does not match the selected dataset")
             data = select_bitfinex_period(data, getattr(args, "data_period", "all"))
+            if training and getattr(args, "target", "net") == "risk_units":
+                from .bitfinex import apply_risk_target
+                data = apply_risk_target(data, args.risk_file or Path(args.bitfinex_dir) / "risk_targets.csv",
+                                         args.risk_threshold)
         else:
             paths = DataPaths(**{field.name: getattr(args, field.name, None) for field in fields(DataPaths)})
             kwargs = {name: getattr(args, name) for name in (
