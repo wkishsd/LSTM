@@ -14,7 +14,7 @@ from uuid import uuid4
 
 from mlp_trades.schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, DEFAULT_PROFIT_HOLD, ENCODER_PRESET,
-    ENCODER_WIDTHS, FEATURE_INPUT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_CLASSES, PROFIT_DATASET, STATES, WIDTH,
+    ENCODER_WIDTHS, FEATURE_INPUT_LABELS, LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_CLASSES, PROFIT_DATASET, STATES, WIDTH,
     window_input_size,
 )
 
@@ -35,6 +35,7 @@ OPTIONS = (
     ("batch_size", "Batch size", int, 32),
     ("learning_rate", "Learning rate", float, 0.0001),
     ("loss", "Loss", str, "cross_entropy"),
+    ("label_agreement", "Train labels", str, "off"),
     ("selection", "Keep best by", str, "accuracy"),
     ("min_entry_calls", "Min. entry calls", int, 30),
     ("hidden1", "First hidden layer", int, 128),
@@ -58,7 +59,7 @@ OPTION_LABELS = {
     "initialization": {"default": "Default", "ones_zero_bias": "Weights 1, biases 0"},
     "dataset": DATASET_LABELS, "data_period": DATA_PERIOD_LABELS, "model": MODEL_LABELS,
     "feature_input": FEATURE_INPUT_LABELS, "selection": SELECTION_LABELS,
-    "loss": LOSS_LABELS,
+    "loss": LOSS_LABELS, "label_agreement": LABEL_AGREEMENT_LABELS,
 }
 CHOICES = {
     # "Weights 1, biases 0" stays labeled for old run reports but can no longer be launched.
@@ -70,6 +71,7 @@ CHOICES = {
     "selection": tuple(SELECTION_LABELS.values()),
     "activation": ("relu", "leaky_relu"),
     "loss": tuple(LOSS_LABELS.values()),
+    "label_agreement": tuple(LABEL_AGREEMENT_LABELS.values()),
 }
 BASELINE_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees", "hour": "Hour-of-day rule"}
 BENCHMARK_CLASSES = {"uci_har": ("downstairs", "Upstairs"), "uci_air": ("no rise", "PM2.5 rise")}
@@ -529,7 +531,8 @@ class TrainingPanel:
             self.fields[key] = field
             if key in CHOICES:
                 width = {"dataset": 23, "data_period": 18, "model": 18, "feature_input": 18,
-                         "selection": 17, "activation": 10, "initialization": 19, "loss": 19}[key]
+                         "selection": 17, "activation": 10, "initialization": 19, "loss": 19,
+                         "label_agreement": 19}[key]
                 entry = ttk.Combobox(frame, values=CHOICES[key], textvariable=field,
                                      state="readonly", width=width)
             else:

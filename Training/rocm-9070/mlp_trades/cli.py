@@ -9,11 +9,11 @@ from .data import DataPaths, prepare
 from .io_utils import new_output_dir, write_json
 from .schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, FEATURE_INPUT_LABELS,
-    LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
+    LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
 )
 
 PATH_OPTIONS = {field.name for field in fields(DataPaths)} | {
-    "checkpoint", "output_dir", "bitfinex_dir", "bitfinex_entries",
+    "checkpoint", "output_dir", "bitfinex_dir", "bitfinex_entries", "agreement_file",
 }
 # The baseline scripts live in the workspace's Models/Baselines folder.
 BASELINES_DIR = Path(__file__).resolve().parents[3] / "Models" / "Baselines"
@@ -98,6 +98,12 @@ def build_parser():
             p.add_argument("--timeline-cache", choices=("off", "auto"), default="off",
                            help="Auto builds Bitfinex windows on GPU when the timeline fits in VRAM")
             if command == "train":
+                p.add_argument("--label-agreement", choices=LABEL_AGREEMENT_LABELS, default="off",
+                               help="Train-split labels from label_agreement.csv: weight entries by agreement, or "
+                                    "make class 1 the entries every exit configuration wins (against the rest, or "
+                                    "against entries every configuration loses). Validation and test are unchanged.")
+                p.add_argument("--agreement-file",
+                               help="label_agreement.csv to use; defaults to the one in --bitfinex-dir")
                 p.add_argument("--baselines", default="",
                                help="Comma-separated CPU baselines trained alongside the MLP on the same split: "
                                     + ", ".join(BASELINE_MODELS))
@@ -193,6 +199,13 @@ def parse_args(argv=None):
         raise ValueError("dropout must be a finite fraction from 0 up to but excluding 1")
     if hasattr(first, "lookback_minutes"):
         window_input_size(first.lookback_minutes)
+    if getattr(first, "label_agreement", "off") != "off":
+        if dataset != "bitfinex" or not first.bitfinex_dir:
+            raise ValueError("Label agreement needs the binary Bitfinex dataset from --bitfinex-dir")
+        from .agreement import default_path
+        agreement = Path(first.agreement_file or default_path(first.bitfinex_dir))
+        if not agreement.is_file():
+            raise ValueError(f"{agreement} not found; build it with Pipelines/Bitfinex/label_agreement.py")
     if getattr(first, "baselines", ""):
         names = [name.strip() for name in first.baselines.split(",") if name.strip()]
         unknown = sorted(set(names) - set(BASELINE_MODELS))

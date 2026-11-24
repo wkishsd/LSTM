@@ -50,6 +50,17 @@ The average epoch time appears above the tabs. New runs record the duration and 
 
 **Also train and test** runs CPU baselines alongside the MLP: an ATR rule, logistic regression, and boosted trees. They use the same entries and chronological split, start in a forked process before the GPU work begins, and write `baselines.json` to the run folder. The Results tab compares each model's test average precision, the precision of its top 1,000 test entries, and the mean net return per trade of those entries with the MLP, with a random ranking, and with taking every test trade. Net return is the series' gross return minus all fees, in percent. The CLI option is `--baselines atr,logistic,gbt`. The models are in [Models/Baselines](../../Models/Baselines/README.md). **Force pause** pauses the baselines together with the trainer.
 
+**Train labels** changes only what the model trains on, using `label_agreement.csv` in the export folder. That file records, for each filled entry, in how many of 15 exit configurations (stop 1m, 5m, 15m × cutoff at M5 half-wave 6, 10, 15, 20, 30, ADX close off) its series ends with a net return above zero. Build it with `python Pipelines/Bitfinex/label_agreement.py --anchor-timeframe 5m --export <export folder>` from the exit strategy study runs; the trainer refuses a file whose entry times differ from the export.
+
+| Option | CLI value | Training split |
+|---|---|---|
+| Export labels | `off` | The export's own labels (default) |
+| Weight by agreement | `weight` | Same labels; each epoch draws entries with weight \|2 × wins / 15 − 1\|, so unanimous entries count fully and a 7–8 split barely counts |
+| All 15 win vs rest | `unanimous` | Class 1 only for entries every configuration wins |
+| All 15 win vs all lose | `unanimous_vs_lose` | Class 1 for unanimous winners, class 0 for unanimous losers; the entries in between are left out |
+
+Validation and test keep every entry and the export labels in every mode, so results compare directly with an `off` run. The baselines train on the same labels (weight mode draws their training set once with the same weights). `split_report.json` and `baselines.json` record the mode, the entries kept and the class-1 rate before and after. The CLI options are `--label-agreement` and `--agreement-file`.
+
 **Export run** saves a Markdown report for the selected run with its summary, saved launch parameters, data split, and available epoch and test metrics.
 
 **Dropout** controls the fraction of hidden activations randomly masked during training after each hidden activation. The launcher default `0.2` masks 20%, and `0` disables it. A fresh mask is sampled on each forward pass. Frozen evaluation, validation, test and inference use all activations. The run parameters and checkpoint save this setting. Open **Metric guide** for the explanation.

@@ -6,14 +6,15 @@ import os
 import platform
 import random
 from time import perf_counter
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import Path
 
 import numpy as np
 import torch
 from torch import nn
-from torch.utils.data import DataLoader, TensorDataset
+from torch.utils.data import DataLoader, TensorDataset, WeightedRandomSampler
 
+from .agreement import default_path, train_labels
 from .data import TimelinePaths, TradeDataset, mmap_array
 from .io_utils import write_json
 from .metrics import FIXED_QUOTA, Metrics, average_precision, quota_metrics
@@ -69,8 +70,14 @@ class DeviceWindows:
 
 
 def make_loader(data, indices, args, device, shuffle=False, batch_size=None, windows=None,
-                lookback_minutes=None):
+                lookback_minutes=None, sample_weights=None):
     generator = torch.Generator().manual_seed(args.seed)
+    sampler = None
+    if sample_weights is not None:
+        # Each epoch draws len(indices) entries with these weights: the same as weighting the loss, in expectation.
+        sampler = WeightedRandomSampler(torch.as_tensor(sample_weights, dtype=torch.double), len(indices),
+                                        replacement=True, generator=generator)
+        shuffle = False
     if windows is None:
         if lookback_minutes is None:
             lookback_minutes = getattr(args, "lookback_minutes", STATES)
@@ -80,7 +87,7 @@ def make_loader(data, indices, args, device, shuffle=False, batch_size=None, win
                                 torch.from_numpy(data.labels[indices]))
     loader = DataLoader(
         dataset, batch_size=batch_size or args.batch_size,
-        shuffle=shuffle, num_workers=args.num_workers, pin_memory=device.type == "cuda",
+        shuffle=shuffle, sampler=sampler, num_workers=args.num_workers, pin_memory=device.type == "cuda",
         drop_last=False, worker_init_fn=seed_worker, generator=generator,
         persistent_workers=args.num_workers > 0,
     )
@@ -252,8 +259,20 @@ def fit_feature_scaling(model, data, train_indices):
 def train(data, args, out):
     splits, split_report = training_split(data, args.train_fraction, args.validation_fraction)
     target = data.schema.get("profit_target")
+    # Label agreement changes only what the model trains on; validation and test keep the export labels.
+    train_data, train_weights = data, None
+    agreement_mode = getattr(args, "label_agreement", "off")
+    if agreement_mode != "off":
+        rows, labels, train_weights, agreement_report = train_labels(
+            data, splits["train"], agreement_mode, args.agreement_file or default_path(args.bitfinex_dir))
+        relabeled = data.labels.copy()
+        relabeled[rows] = labels
+        train_data = replace(data, labels=relabeled)
+        splits = {**splits, "train": rows}
+        split_report["label_agreement"] = agreement_report
+        print(json.dumps({"label_agreement": agreement_report}), flush=True)
     write_json(out / "split_report.json", split_report)
-    if len(np.unique(data.labels[splits["train"]])) < 2:
+    if len(np.unique(train_data.labels[splits["train"]])) < 2:
         raise ValueError("Training partition contains only one class")
     seed_everything(args.seed)
     device = resolve_device(args.device)
@@ -293,14 +312,15 @@ def train(data, args, out):
     eval_split = "validation" if has_validation else "train"
     eval_batch = args.batch_size if has_validation else 256
     windows = cache_timeline(data, args, device, max(args.batch_size, eval_batch))
-    train_loader = make_loader(data, splits["train"], args, device, shuffle=True, windows=windows)
+    train_loader = make_loader(train_data, splits["train"], args, device, shuffle=True, windows=windows,
+                               sample_weights=train_weights)
     eval_loader = make_loader(data, splits[eval_split], args, device, batch_size=eval_batch, windows=windows)
     diagnostic_steps = getattr(args, "diagnostic_steps", 0)
     fixed_train_loader = None
     if diagnostic_steps:
         indices = splits["train"]
         sample = np.random.default_rng(args.seed).choice(indices, min(len(indices), 512), replace=False)
-        fixed_train_loader = make_loader(data, np.sort(sample), args, device, batch_size=min(eval_batch, 512),
+        fixed_train_loader = make_loader(train_data, np.sort(sample), args, device, batch_size=min(eval_batch, 512),
                                          windows=windows)
     # Fixed-quota precision makes the MLP comparable with the baseline models on the same test entries.
     quota = FIXED_QUOTA if getattr(args, "dataset", "bitfinex") == "bitfinex" and model.num_classes == 2 else 0

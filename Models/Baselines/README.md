@@ -19,6 +19,8 @@ The trainer prepares the data once, then forks the baselines before PyTorch star
 
 The hour rule exists because the exit strategy study found a real time-of-day effect (16:00–20:00 UTC+3 was the best block). If the MLP cannot beat this rule, it has probably learned the hour plus noise. The rule learns its hours from the train split only; hard-coding the block from the study would leak the test period. `baselines.json` lists the learned rate and train entry count for each UTC hour.
 
+With `--label-agreement` set, every baseline fits on the same train labels as the MLP. In weight mode the training set is drawn once, with replacement, using the MLP's per-entry weights. Validation and test are unchanged.
+
 ## Decision-time features (85)
 
 Every value uses only rows at or before the entry's last closed minute.

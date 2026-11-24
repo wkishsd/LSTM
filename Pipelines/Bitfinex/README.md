@@ -131,6 +131,18 @@ Entries, re-entries, support searches, ADX and wave-6 exits are unchanged. Stop 
 python Pipelines/Bitfinex/wave_horizon_study.py --anchor-timeframe 15m --stop-timeframe 15m --horizons 6-20
 ```
 
+## Exit strategy study and label agreement
+
+`exit_strategy_study.py` labels every entry for each anchor and stop timeframe with the ADX close off and the cutoff at `--wave-horizon` (default 30), and writes one row per distinct trade (`trades_*.parquet`) and per series (`series_*.csv`). The runs used for the training labels are in `Exports/training/exit_strategy_study` (wave 30) and `exit_strategy_study_w6`, `_w10`, `_w15`, `_w20`.
+
+`label_agreement.py` turns those runs into `label_agreement.csv` in a training export: for each filled entry, how many of the 15 configurations (3 stops × 5 cutoffs) end its series with net return above zero. The trainer's `--label-agreement` option reads it (see `Training/rocm-9070/README.md`).
+
+```powershell
+python Pipelines/Bitfinex/label_agreement.py --anchor-timeframe 5m --export Exports/training/mlp_2023-11-13_to_2026-11-13_current_rules_15m
+```
+
+The script stops if an export has a filled entry that is not filled in every study run, so a file is never built from a different set of anchors.
+
 ## Export size and speed
 
 `X_train.npy` / `X_test.npy` (about 32 GB for three years) are written only with `--precompute-windows`. Training slices its windows from `feature_timeline.npy` using `feature_end_row` in `entry_targets.csv`, so it does not need them. The manifest records `precomputed_windows`.

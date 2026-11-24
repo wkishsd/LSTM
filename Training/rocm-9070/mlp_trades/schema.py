@@ -19,6 +19,9 @@ DEFAULT_MAX_EXIT_DELAY = 5
 # Features end at the last M1 close before the fill candle opened (see profit_collector.feature_end).
 FILL_DECISION_CLOCK = "m1_close_before_fill_candle"
 DATA_PERIOD_LABELS = {"all": "Full export", "last_6_months": "Last 6 months"}
+# Train-split label options from label_agreement.csv; see mlp_trades/agreement.py.
+LABEL_AGREEMENT_LABELS = {"off": "Export labels", "weight": "Weight by agreement",
+                          "unanimous": "All 15 win vs rest", "unanimous_vs_lose": "All 15 win vs all lose"}
 HAR_STEPS = 128
 AIR_STEPS = 168
 BENCHMARK_LOOKBACKS = {"uci_har": (HAR_STEPS, "samples"), "uci_air": (AIR_STEPS, "hours")}

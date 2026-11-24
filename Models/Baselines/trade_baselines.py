@@ -328,6 +328,18 @@ def run(data, args, out):
     started = perf_counter()
     requested = [name.strip() for name in args.baselines.split(",") if name.strip()]
     splits, _ = training_split(data, args.train_fraction, args.validation_fraction)
+    # Same train labels as the MLP; validation and test keep the export labels.
+    train_override, agreement_report = None, None
+    if getattr(args, "label_agreement", "off") != "off":
+        from mlp_trades.agreement import default_path, train_labels
+
+        rows, train_override, weights, agreement_report = train_labels(
+            data, splits["train"], args.label_agreement, args.agreement_file or default_path(args.bitfinex_dir))
+        if weights is not None:
+            # Draw the train set once with the MLP's per-epoch weights, so unweighted fits see the same emphasis.
+            pick = np.random.default_rng(args.seed).choice(len(rows), len(rows), p=weights / weights.sum())
+            rows, train_override = rows[pick], train_override[pick]
+        splits = {**splits, "train": rows}
     target = data.schema.get("profit_target")
     num_classes = len(target["class_names"]) if target else 2
     timeline = mmap_array(data.paths.timeline, "timeline", (WIDTH,))
@@ -336,7 +348,7 @@ def run(data, args, out):
     for name, rows in splits.items():
         hours[name] = utc_hours(data.times[rows])
         features[name], names = decision_features(timeline, data.history_rows[rows], data.times[rows], bounded)
-        labels[name] = data.labels[rows]
+        labels[name] = train_override if name == "train" and train_override is not None else data.labels[rows]
         returns[name] = None if getattr(data, "returns", None) is None else data.returns[rows]
 
     def score(split, values, probabilities=True):
@@ -345,6 +357,8 @@ def run(data, args, out):
     has_validation = "validation" in splits
     report = {"feature_names": names, "split_counts": {k: int(len(v)) for k, v in labels.items()},
               "num_classes": num_classes, "models": {}}
+    if agreement_report:
+        report["label_agreement"] = agreement_report
     for name in requested:
         model_started = perf_counter()
         entry = {"label": MODEL_LABELS[name]}
