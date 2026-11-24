@@ -1,5 +1,5 @@
 {
-  "bitfinex_dir": "../../Exports/training/mlp_2023-11-13_to_2026-11-13_bounded_macd",
+  "bitfinex_dir": "../../Exports/training/mlp_2023-11-13_to_2026-11-13_current_rules_15m",
   "output_dir": "runs/first-rx9070-run",
   "device": "cuda:0",
   "train_fraction": 0.7,
