@@ -34,6 +34,8 @@ From `Training/rocm-9070`, the data-only CLI check is `python -m mlp_trades vali
 
 ## Bitfinex dataset and run controls
 
+**Export** picks the training export the run reads, listed by anchor and stop timeframe from each manifest in `Exports/training`: **5m anchors · 1m stop**, **5m anchors · 5m stop**, **5m anchors · 15m stop**, **15m anchors · 1m stop**. Exports built before the current ADX / wave-6 rules are listed last as **Old rules**. The form opens on `bitfinex_dir` from `train.json`; the choice is passed as `--bitfinex-dir` and saved with the run. It applies to the binary Bitfinex dataset only. Profit buckets still collect from `train.json`'s export, and the UCI benchmarks ignore it.
+
 With **Bitfinex ETHUSD** selected, **Data period → Last 6 months** takes the six calendar months ending at the frozen export's exclusive end date. It filters signal dates before the chronological split and retains the original timeline for lookback and outcome validation. Launch `Training Panel.cmd --bitfinex-six-months` to open the matched preset from the full-export average-precision pilot. The CLI option is `--data-period last_6_months`.
 
 The **Model** dropdown offers **Dense MLP**, **Shared encoder**, and **Per-minute encoder**. Selecting an encoder fills in a 720-minute lookback and a `128 → 64 → 2` classifier. Both encoders map each minute through `54 → 16 → 8`. The classifier receives the resulting 5,760 values in chronological order. The shared encoder uses the same weights at every minute. The per-minute encoder learns a separate set of weights for each position in the window. The selected activation applies throughout, and dropout applies to the classifier's hidden layers. Run reports and checkpoints record the selected model.

@@ -27,6 +27,7 @@ WSL = Path(os.environ.get("SystemRoot", r"C:\Windows")) / "System32" / "wsl.exe"
 WSL_SESSION = [str(WSL), "-d", "Ubuntu-24.04", "-u", "mlp-runner"]
 OPTIONS = (
     ("dataset", "Dataset", str, "bitfinex"),
+    ("bitfinex_dir", "Export", str, ""),
     ("data_period", "Data period", str, "all"),
     ("profit_hold_minutes", "Hold after fill (min)", int, DEFAULT_PROFIT_HOLD),
     ("model", "Model", str, "dense"),
@@ -86,6 +87,43 @@ def read_json(path):
         return json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
+
+
+EXPORTS = ROOT.parents[1] / "Exports" / "training"
+
+
+def bitfinex_exports(current=None):
+    """--bitfinex-dir value (relative to this folder, as train.json writes it) -> label, for each binary export.
+
+    The label names the anchor and stop timeframes from the manifest. Exports built before the stop-timeframe
+    option follow the old ADX / wave-6 rules and are marked as such.
+    """
+    exports = {}
+    for path in sorted(EXPORTS.glob("mlp_*")):
+        if not all((path / name).is_file() for name in ("manifest.json", "feature_timeline.npy", "entry_targets.csv")):
+            continue
+        manifest = read_json(path / "manifest.json")
+        if manifest.get("profit_target"):
+            continue
+        stop = manifest.get("exit_settings", {}).get("stop_timeframe")
+        if stop:
+            label = f"{manifest.get('anchor_timeframe', '5m')} anchors · {stop} stop"
+        else:
+            suffix = path.name.split("2026-11-13")[-1].strip("_").replace("_", " ") or "original"
+            label = f"Old rules · {suffix.replace('macd', 'MACD')}"
+        if label in exports.values():
+            label += f" · {path.name}"
+        exports[f"../../Exports/training/{path.name}"] = label
+    if current and current not in exports:
+        exports[current] = Path(current).name
+    minutes = {"1m": 1, "5m": 5, "15m": 15}
+
+    def order(item):
+        parts = item[1].split(" ")
+        if parts[0] in minutes and len(parts) > 3:
+            return (0, minutes[parts[0]], minutes.get(parts[3], 99))
+        return (1, 0, 0)
+    return dict(sorted(exports.items(), key=order))
 
 
 def read_history(path):
@@ -504,6 +542,8 @@ class TrainingPanel:
         frame.pack(side="left", anchor="n", fill="y")
         defaults = read_json(ROOT / "train.json")
         self.default_lookback = defaults.get("lookback_minutes", 360)
+        OPTION_LABELS["bitfinex_dir"] = bitfinex_exports(defaults.get("bitfinex_dir"))
+        CHOICES["bitfinex_dir"] = tuple(OPTION_LABELS["bitfinex_dir"].values())
         for row, (key, title, kind, default) in enumerate(OPTIONS):
             value = defaults.get(key, default)
             if key == "hidden3":
@@ -532,7 +572,7 @@ class TrainingPanel:
             if key in CHOICES:
                 width = {"dataset": 23, "data_period": 18, "model": 18, "feature_input": 18,
                          "selection": 17, "activation": 10, "initialization": 19, "loss": 19,
-                         "label_agreement": 19}[key]
+                         "label_agreement": 19, "bitfinex_dir": 23}[key]
                 entry = ttk.Combobox(frame, values=CHOICES[key], textvariable=field,
                                      state="readonly", width=width)
             else:
@@ -548,6 +588,8 @@ class TrainingPanel:
                 entry.bind("<<ComboboxSelected>>", self.apply_dataset_preset)
             elif key == "feature_input":
                 self.feature_input_box = entry
+            elif key == "bitfinex_dir":
+                self.export_box = entry
             elif key == "data_period":
                 self.data_period_box = entry
                 entry.bind("<<ComboboxSelected>>", self.apply_bitfinex_period)
@@ -664,6 +706,8 @@ class TrainingPanel:
                 self.fields["selection"].set(SELECTION_LABELS["average_precision"])
         self.feature_input_box.configure(state="disabled" if benchmark else "readonly")
         self.data_period_box.configure(state="disabled" if benchmark else "readonly")
+        # Profit buckets collect from train.json's export; only the binary dataset trains on the chosen one.
+        self.export_box.configure(state="readonly" if dataset == "bitfinex" else "disabled")
         for box in getattr(self, "baseline_boxes", []):
             box.configure(state="disabled" if benchmark else "normal")
 
@@ -784,8 +828,13 @@ class TrainingPanel:
         if not 0 <= values["seed"] < 2**32:
             raise ValueError("Seed must be between 0 and 4,294,967,295.")
         for key, labels in OPTION_LABELS.items():
-            values[key] = next(value for value, label in labels.items() if label == values[key])
+            chosen = next((value for value, label in labels.items() if label == values[key]), None)
+            if chosen is None:
+                raise ValueError(f"Choose a listed value for {key.replace('_', ' ')}.")
+            values[key] = chosen
         dataset = values["dataset"]
+        if dataset != "bitfinex":
+            values.pop("bitfinex_dir")
         selected = [key for key, chosen in self.baseline_vars.items() if chosen.get()]
         if selected and dataset not in BENCHMARK_LOOKBACKS:
             values["baselines"] = ",".join(selected)
