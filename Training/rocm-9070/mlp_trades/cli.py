@@ -9,7 +9,7 @@ from .data import DataPaths, prepare
 from .io_utils import new_output_dir, write_json
 from .schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, FEATURE_INPUT_LABELS,
-    LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
+    INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_DATASET, STATES, window_input_size,
 )
 
 PATH_OPTIONS = {field.name for field in fields(DataPaths)} | {
@@ -68,6 +68,9 @@ def build_parser():
             # Also accepted by validate so the exact training config can be checked first.
             p.add_argument("--model", choices=MODEL_LABELS, default="dense",
                            help="Model architecture. The encoder models map each minute from 54 to 16 to 8 features.")
+            p.add_argument("--input-timeframe", choices=INPUT_TIMEFRAME_LABELS, default="1m",
+                           help="1m feeds every minute row; 5m feeds one row per M5 close without the M1 "
+                                "columns. The lookback stays in minutes and must be a multiple of 5 for 5m.")
             p.add_argument("--feature-input", choices=FEATURE_INPUT_LABELS, default="exported",
                            help="Optional input transformation for the Bitfinex timeline")
             p.add_argument("--hidden1", type=int, default=128)
@@ -199,6 +202,11 @@ def parse_args(argv=None):
         raise ValueError("dropout must be a finite fraction from 0 up to but excluding 1")
     if hasattr(first, "lookback_minutes"):
         window_input_size(first.lookback_minutes)
+    if getattr(first, "input_timeframe", "1m") != "1m":
+        if dataset != "bitfinex" or not first.bitfinex_dir:
+            raise ValueError("5m input needs the binary Bitfinex dataset from --bitfinex-dir")
+        if first.lookback_minutes % 5:
+            raise ValueError("5m input needs a lookback that is a multiple of 5 minutes")
     if getattr(first, "label_agreement", "off") != "off":
         if dataset != "bitfinex" or not first.bitfinex_dir:
             raise ValueError("Label agreement needs the binary Bitfinex dataset from --bitfinex-dir")

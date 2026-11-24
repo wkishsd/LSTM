@@ -19,7 +19,7 @@ from .data import TimelinePaths, TradeDataset, mmap_array
 from .io_utils import write_json
 from .metrics import FIXED_QUOTA, Metrics, average_precision, quota_metrics
 from .model import MACD_RELATIVE_INPUTS, TradeMLP, relative_macd_features
-from .schema import FEATURES, STATES, WIDTH, window_input_size
+from .schema import FEATURES, INPUT_STEP, STATES, WIDTH, window_input_size
 from .split import training_split
 
 
@@ -295,9 +295,15 @@ def train(data, args, out):
                     "activation": getattr(args, "activation", "relu"),
                     "dropout": getattr(args, "dropout", 0.0),
                     "lookback_minutes": getattr(args, "lookback_minutes", STATES),
+                    "input_timeframe": getattr(args, "input_timeframe", "1m"),
                     "standardize": getattr(args, "feature_scaling", "none") == "standardize"}
     if target:
         architecture["num_classes"] = len(target["class_names"])
+    if architecture["input_timeframe"] != "1m":
+        valid_times = data.times[np.concatenate(list(splits.values()))]
+        step = 60 * INPUT_STEP[architecture["input_timeframe"]]
+        if np.any(valid_times % step):
+            raise ValueError(f"{architecture['input_timeframe']} input needs every entry on a candle close of that size")
     model = TradeMLP(**architecture)
     if architecture["standardize"]:
         fit_feature_scaling(model, data, splits["train"])

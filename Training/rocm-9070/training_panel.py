@@ -14,7 +14,7 @@ from uuid import uuid4
 
 from mlp_trades.schema import (
     BENCHMARK_LOOKBACKS, DATA_PERIOD_LABELS, DATASET_LABELS, DEFAULT_PROFIT_HOLD, ENCODER_PRESET,
-    ENCODER_WIDTHS, FEATURE_INPUT_LABELS, LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_CLASSES, PROFIT_DATASET, STATES, WIDTH,
+    ENCODER_WIDTHS, FEATURE_INPUT_LABELS, INPUT_TIMEFRAME_LABELS, LABEL_AGREEMENT_LABELS, LOSS_LABELS, MODEL_LABELS, PROFIT_CLASSES, PROFIT_DATASET, STATES, WIDTH,
     window_input_size,
 )
 
@@ -31,6 +31,7 @@ OPTIONS = (
     ("data_period", "Data period", str, "all"),
     ("profit_hold_minutes", "Hold after fill (min)", int, DEFAULT_PROFIT_HOLD),
     ("model", "Model", str, "dense"),
+    ("input_timeframe", "Input candles", str, "1m"),
     ("feature_input", "Feature input", str, "exported"),
     ("epochs", "Epochs", int, 20),
     ("batch_size", "Batch size", int, 32),
@@ -60,7 +61,7 @@ OPTION_LABELS = {
     "initialization": {"default": "Default", "ones_zero_bias": "Weights 1, biases 0"},
     "dataset": DATASET_LABELS, "data_period": DATA_PERIOD_LABELS, "model": MODEL_LABELS,
     "feature_input": FEATURE_INPUT_LABELS, "selection": SELECTION_LABELS,
-    "loss": LOSS_LABELS, "label_agreement": LABEL_AGREEMENT_LABELS,
+    "loss": LOSS_LABELS, "label_agreement": LABEL_AGREEMENT_LABELS, "input_timeframe": INPUT_TIMEFRAME_LABELS,
 }
 CHOICES = {
     # "Weights 1, biases 0" stays labeled for old run reports but can no longer be launched.
@@ -73,6 +74,7 @@ CHOICES = {
     "activation": ("relu", "leaky_relu"),
     "loss": tuple(LOSS_LABELS.values()),
     "label_agreement": tuple(LABEL_AGREEMENT_LABELS.values()),
+    "input_timeframe": tuple(INPUT_TIMEFRAME_LABELS.values()),
 }
 BASELINE_LABELS = {"atr": "ATR rule", "logistic": "Logistic regression", "gbt": "Boosted trees", "hour": "Hour-of-day rule"}
 BENCHMARK_CLASSES = {"uci_har": ("downstairs", "Upstairs"), "uci_air": ("no rise", "PM2.5 rise")}
@@ -572,7 +574,8 @@ class TrainingPanel:
             if key in CHOICES:
                 width = {"dataset": 23, "data_period": 18, "model": 18, "feature_input": 18,
                          "selection": 17, "activation": 10, "initialization": 19, "loss": 19,
-                         "label_agreement": 19, "bitfinex_dir": 23}[key]
+                         "label_agreement": 19, "bitfinex_dir": 23,
+                         "input_timeframe": 21}[key]
                 entry = ttk.Combobox(frame, values=CHOICES[key], textvariable=field,
                                      state="readonly", width=width)
             else:
@@ -590,6 +593,8 @@ class TrainingPanel:
                 self.feature_input_box = entry
             elif key == "bitfinex_dir":
                 self.export_box = entry
+            elif key == "input_timeframe":
+                self.input_timeframe_box = entry
             elif key == "data_period":
                 self.data_period_box = entry
                 entry.bind("<<ComboboxSelected>>", self.apply_bitfinex_period)
@@ -708,6 +713,10 @@ class TrainingPanel:
         self.data_period_box.configure(state="disabled" if benchmark else "readonly")
         # Profit buckets collect from train.json's export; only the binary dataset trains on the chosen one.
         self.export_box.configure(state="readonly" if dataset == "bitfinex" else "disabled")
+        # Only the binary export has every entry on an M5 close; profit fills and benchmarks use 1m rows.
+        if dataset != "bitfinex":
+            self.fields["input_timeframe"].set(INPUT_TIMEFRAME_LABELS["1m"])
+        self.input_timeframe_box.configure(state="readonly" if dataset == "bitfinex" else "disabled")
         for box in getattr(self, "baseline_boxes", []):
             box.configure(state="disabled" if benchmark else "normal")
 
@@ -835,6 +844,8 @@ class TrainingPanel:
         dataset = values["dataset"]
         if dataset != "bitfinex":
             values.pop("bitfinex_dir")
+        if values["input_timeframe"] == "5m" and values["lookback_minutes"] % 5:
+            raise ValueError("With 5m input candles, use a lookback that is a multiple of 5 minutes.")
         selected = [key for key, chosen in self.baseline_vars.items() if chosen.get()]
         if selected and dataset not in BENCHMARK_LOOKBACKS:
             values["baselines"] = ",".join(selected)

@@ -3,7 +3,8 @@ import math
 import torch
 from torch import nn
 
-from .schema import ENCODER_WIDTHS, FEATURE_INPUT_LABELS, MODEL_LABELS, STATES, WIDTH, window_input_size
+from .schema import (ENCODER_WIDTHS, FEATURE_INPUT_LABELS, INPUT_STEP, MODEL_LABELS, STATES, WIDTH,
+                     window_input_size)
 
 
 PRICE_COLUMNS = slice(0, 36, 9)
@@ -12,6 +13,8 @@ PRICE_RELATIVE_INPUTS = ("relative_price", "stationary")
 MACD_RELATIVE_INPUTS = ("relative_macd", "stationary")
 # Largest float32 below 1; keeps the inverse transform finite if a stored value rounds to +-1.
 BOUNDED_LIMIT = 1 - 2.0 ** -24
+M1_COLUMNS = 9
+ANCHOR_START = 36
 
 
 def relative_macd_features(features):
@@ -42,7 +45,7 @@ class PerMinuteLinear(nn.Module):
 class TradeMLP(nn.Module):
     def __init__(self, hidden1=128, hidden2=64, activation="relu", standardize=False,
                  dropout=0.0, lookback_minutes=STATES, hidden3=0, model="dense",
-                 feature_input="exported", num_classes=2):
+                 feature_input="exported", num_classes=2, input_timeframe="1m"):
         super().__init__()
         if hidden1 < 1 or hidden2 < 1:
             raise ValueError("Hidden layer widths must be positive")
@@ -52,6 +55,15 @@ class TradeMLP(nn.Module):
             raise ValueError("Dropout must be a finite fraction from 0 up to but excluding 1")
         self.input_size = window_input_size(lookback_minutes)
         self.lookback_minutes = lookback_minutes
+        if input_timeframe not in INPUT_STEP:
+            raise ValueError(f"Unknown input timeframe: {input_timeframe}")
+        self.step = INPUT_STEP[input_timeframe]
+        if lookback_minutes % self.step:
+            raise ValueError(f"A {input_timeframe} input needs a lookback that is a multiple of {self.step} minutes")
+        # The model always receives the full minute window; 5m input reduces it here, so loaders,
+        # checkpoints and inference need no change.
+        self.rows = lookback_minutes // self.step
+        self.columns = WIDTH - (M1_COLUMNS if self.step > 1 else 0)
         self.num_classes = num_classes
         activations = {"relu": nn.ReLU, "leaky_relu": nn.LeakyReLU}
         if activation not in activations:
@@ -63,16 +75,16 @@ class TradeMLP(nn.Module):
         self.feature_input = feature_input
         activate = activations[activation]
         self.encoder = None
-        head_inputs = self.input_size
+        head_inputs = self.rows * self.columns
         if model != "dense":
             hidden, encoded = ENCODER_WIDTHS
             if model == "shared":
-                first, second = nn.Linear(WIDTH, hidden), nn.Linear(hidden, encoded)
+                first, second = nn.Linear(self.columns, hidden), nn.Linear(hidden, encoded)
             else:
-                first = PerMinuteLinear(lookback_minutes, WIDTH, hidden)
-                second = PerMinuteLinear(lookback_minutes, hidden, encoded)
+                first = PerMinuteLinear(self.rows, self.columns, hidden)
+                second = PerMinuteLinear(self.rows, hidden, encoded)
             self.encoder = nn.Sequential(first, activate(), second, activate())
-            head_inputs = lookback_minutes * encoded
+            head_inputs = self.rows * encoded
 
         widths = [head_inputs, hidden1, hidden2]
         if hidden3:
@@ -90,6 +102,10 @@ class TradeMLP(nn.Module):
         if x.ndim != 2 or x.shape[1] != self.input_size:
             raise ValueError(f"Expected (batch, {self.input_size}), got {tuple(x.shape)}")
         x = x.reshape(-1, self.lookback_minutes, WIDTH)
+        if self.step > 1:
+            # The last row is the entry's M5 close, so every fifth row back is one M5 candle exactly once.
+            blocks = x.unflatten(1, (self.rows, self.step))
+            x = torch.cat((blocks[:, :, -1, :ANCHOR_START], blocks[..., ANCHOR_START:].amax(dim=2)), dim=-1)
         if self.feature_input in MACD_RELATIVE_INPUTS:
             x = relative_macd_features(x)
         prices = x[..., PRICE_COLUMNS]
@@ -104,6 +120,8 @@ class TradeMLP(nn.Module):
             # ln(volume) relative to its mean over this window, so the absolute level cannot identify the period.
             volume = x[..., VOLUME_COLUMNS]
             x[..., VOLUME_COLUMNS] = volume - volume.mean(dim=1, keepdim=True)
+        if self.step > 1:
+            x = x[..., M1_COLUMNS:]
         if self.encoder is not None:
             x = self.encoder(x)
         x = x.flatten(1)

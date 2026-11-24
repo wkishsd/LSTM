@@ -32,6 +32,10 @@ MODEL_LABELS = {
 }
 ENCODER_WIDTHS = (16, 8)
 ENCODER_PRESET = {"lookback_minutes": 720, "hidden1": 128, "hidden2": 64}
+# 5m keeps one row per M5 close (the entry row and every fifth row before it) and drops the M1 columns;
+# anchor flags become "fired during that 5-minute block". The lookback stays in minutes.
+INPUT_TIMEFRAME_LABELS = {"1m": "1m rows (all columns)", "5m": "5m rows (M5, M15, M30)"}
+INPUT_STEP = {"1m": 1, "5m": 5}
 FEATURE_INPUT_LABELS = {
     "exported": "Exported features",
     "relative_price": "Relative price",
