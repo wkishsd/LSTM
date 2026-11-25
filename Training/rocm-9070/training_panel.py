@@ -115,7 +115,12 @@ def bitfinex_exports(current=None):
         if manifest.get("profit_target"):
             continue
         stop = manifest.get("exit_settings", {}).get("stop_timeframe")
-        if stop:
+        bracket = manifest.get("bracket")
+        if bracket:
+            anchors = "anchors off" if manifest.get("anchor_inputs") == "zeroed" else "anchors on"
+            label = (f"Every 5m candle · {bracket['side']} +{bracket['take_profit_pct']:g}% / "
+                     f"−{bracket['stop_pct']:g}% · {anchors}")
+        elif stop:
             label = f"{manifest.get('anchor_timeframe', '5m')} anchors · {stop} stop"
         else:
             suffix = path.name.split("2026-11-13")[-1].strip("_").replace("_", " ") or "original"

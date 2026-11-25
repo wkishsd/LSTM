@@ -199,7 +199,8 @@ def prepare_bitfinex(paths, *, training):
                         raise ValueError("Missing source anchor before the confirmed fill")
                 except (TypeError, ValueError):
                     reasons.append("invalid_fill_anchor")
-            elif not np.any(timeline[pos, 36:] == 1):
+            elif manifest.get("entry_rule") != "every_m5_close" and not np.any(timeline[pos, 36:] == 1):
+                # Bracket exports (bracket_targets.py) label every M5 close, anchor or not.
                 reasons.append("no_current_anchor")
         if training and not profit and row["initial_order_status"] != "filled":
             # The export labels canceled orders 0, but "never filled" is not "lost money".

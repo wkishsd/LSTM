@@ -143,6 +143,35 @@ python Pipelines/Bitfinex/label_agreement.py --anchor-timeframe 5m --export Expo
 
 The script stops if an export has a filled entry that is not filled in every study run, so a file is never built from a different set of anchors.
 
+## Fixed-bracket targets on every 5m candle
+
+A test of whether entries can be ranked at all, without the moving stop. Every M5 close is a market entry at the next M1 open. The trade is held until it reaches +tp% net or −sl% net, checked on M1 candles. Net includes both fills' commissions, so the default short bracket sits 1.1% below and 0.9% above the entry. A minute that touches both levels counts as a stop, and trades still open after 24 hours close at the market.
+
+1. Build the labels and the random-entry baseline. This writes two training exports with identical entries, `..._bracket_short_tp1_sl1` and `..._noanchors`; the second has the 18 anchor columns of the feature timeline set to 0. The first hard-links the source export's timeline instead of copying it. Each export's `summary.json` holds the win rate and mean net per period and month, how a random pick of 1,000 candles varies, and one-position trading of every candle in order (the "always in" random trader).
+
+   ```powershell
+   python Pipelines/Bitfinex/bracket_targets.py
+   python Pipelines/Bitfinex/bracket_targets.py --tp 2 --sl 1
+   ```
+
+2. Relate the 35 anchors to the bracket win rate: `bracket_anchor_study.py`. For each anchor it reports the flag on the decision candle and in the previous hour, any main anchor, and two or more anchors. It gives the win-rate lift and the net difference per period, with 95% intervals from a bootstrap over whole UTC days and Benjamini-Hochberg q-values across all flags.
+
+   ```powershell
+   python Pipelines/Bitfinex/bracket_anchor_study.py --export Exports/training/mlp_2023-11-13_to_2026-11-13_bracket_short_tp1_sl1
+   ```
+
+3. Train the MLP on either export, from the training panel (Export: "Every 5m candle · …") or `python -m mlp_trades train --bitfinex-dir …`. Score every candle with `python -m mlp_trades predict`. The loader skips the anchor requirement for these exports (`entry_rule: every_m5_close` in the manifest).
+
+4. Compare the scores with random rankings and with each other: `Models/Baselines/bracket_ranking.py` (steps 3 and 5 of the plan). It reports AUC and top-k win rates with day-bootstrap intervals, one-position trading against 500 random gates of the same pass rate, and paired comparisons (`--compare a,b`). `--baselines logistic,gbt` adds simple models fitted on the 85 decision-time features.
+
+   ```powershell
+   python Models/Baselines/bracket_ranking.py --export Exports/training/mlp_2023-11-13_to_2026-11-13_bracket_short_tp1_sl1 --scores mlp_anchors=<run>/predictions.csv --scores mlp_no_anchors=<run>/predictions.csv --baselines logistic,gbt --compare mlp_anchors,mlp_no_anchors
+   ```
+
+   Pass the no-anchor run's predictions against the anchored export: both exports have the same entries and labels. Run `--baselines` once per export to get baselines with and without anchors.
+
+Neighbouring 5m candles share most of their future price path, so their labels are strongly correlated. Treating every candle as an independent sample overstates significance, which is why every interval here resamples whole days.
+
 ## Export size and speed
 
 `X_train.npy` / `X_test.npy` (about 32 GB for three years) are written only with `--precompute-windows`. Training slices its windows from `feature_timeline.npy` using `feature_end_row` in `entry_targets.csv`, so it does not need them. The manifest records `precomputed_windows`.
