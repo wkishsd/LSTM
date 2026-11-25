@@ -233,8 +233,11 @@ class BracketPanel:
         tabs.pack(fill="both", expand=True, pady=(12, 0))
         results = ttk.Frame(tabs, padding=10)
         console = ttk.Frame(tabs, padding=6)
+        epochs = ttk.Frame(tabs, padding=10)
         tabs.add(results, text="Results")
+        tabs.add(epochs, text="Epochs")
         tabs.add(console, text="Console")
+        self.build_epochs(epochs)
         self.summary = tk.Text(results, height=9, wrap="word", relief="flat", font=("Segoe UI", 10))
         self.summary.pack(fill="x")
         columns = ("scorer", "auc", "auc95", "top10", "lift95", "p5", "p10", "p20", "verdict")
@@ -316,6 +319,131 @@ class BracketPanel:
             self.steps.heading(column, text=head)
             self.steps.column(column, width=width, anchor="w")
         self.steps.pack(fill="both", expand=True)
+
+    def build_epochs(self, parent):
+        bar = ttk.Frame(parent)
+        bar.pack(fill="x")
+        ttk.Label(bar, text="Training run").pack(side="left")
+        self.epoch_run = tk.StringVar()
+        self.epoch_runs = ttk.Combobox(bar, textvariable=self.epoch_run, state="readonly", width=18)
+        self.epoch_runs.pack(side="left", padx=(6, 12))
+        self.epoch_runs.bind("<<ComboboxSelected>>", lambda _: self.show_epochs(force=True))
+        self.epoch_info = tk.StringVar()
+        ttk.Label(bar, textvariable=self.epoch_info).pack(side="left")
+        self.epoch_chart = tk.Canvas(parent, height=190, background="white", highlightthickness=0)
+        self.epoch_chart.pack(fill="x", pady=(8, 8))
+        self.epoch_chart.bind("<Configure>", lambda _: self.draw_epochs())
+        columns = ("epoch", "train_loss", "val_loss", "val_ap", "ap_lift", "val_bal", "val_enter", "seconds", "best")
+        heads = ("Epoch", "Train loss", "Validation loss", "Validation AP", "AP − base rate", "Balanced accuracy",
+                 "Calls 'enter'", "Seconds", "Best")
+        frame = ttk.Frame(parent)
+        frame.pack(fill="both", expand=True)
+        self.epoch_table = ttk.Treeview(frame, columns=columns, show="headings")
+        for column, head in zip(columns, heads):
+            self.epoch_table.heading(column, text=head)
+            self.epoch_table.column(column, width=60 if column in ("epoch", "best") else 115, anchor="center")
+        scroll = ttk.Scrollbar(frame, command=self.epoch_table.yview)
+        self.epoch_table.configure(yscrollcommand=scroll.set)
+        scroll.pack(side="right", fill="y")
+        self.epoch_table.pack(fill="both", expand=True)
+        self.epoch_records, self._epoch_stamp = [], None
+
+    def epoch_folders(self, name, config):
+        """Run label -> folder for the study's training runs that have started."""
+        labels = {"noanchors": "Anchors off", "anchors": "Anchors on"}
+        return {labels[suffix]: run_folder(name, suffix) for key, _, suffix in study_steps(config)
+                if key.startswith("train") and (run_folder(name, suffix) / "history.jsonl").is_file()}
+
+    def show_epochs(self, name=None, config=None, force=False):
+        name = name or self.study.get()
+        config = config or read_json(STUDIES / name / "study.json")
+        folders = self.epoch_folders(name, config) if name else {}
+        self.epoch_runs["values"] = list(folders)
+        if self.epoch_run.get() not in folders:
+            # Follow the run that is training now: the last one that has started.
+            self.epoch_run.set(list(folders)[-1] if folders else "")
+        folder = folders.get(self.epoch_run.get())
+        history = folder / "history.jsonl" if folder else None
+        stamp = (str(history), history.stat().st_size if history and history.is_file() else None)
+        if not force and stamp == self._epoch_stamp:
+            return
+        self._epoch_stamp = stamp
+        self.epoch_records = [r for r in read_history(history) if "epoch" in r] if history else []
+        self.epoch_table.delete(*self.epoch_table.get_children())
+        total = config.get("model", {}).get("epochs") if config else None
+        if not self.epoch_records:
+            self.epoch_info.set("No epochs yet." if name else "")
+            self.draw_epochs()
+            return
+        best = None
+        for record in self.epoch_records:
+            if record.get("best"):
+                best = record
+        for record in reversed(self.epoch_records):
+            train, val = record.get("train", {}), record.get("validation", {})
+            base = val.get("class_counts", {}).get("1", 0) / max(val.get("count", 0), 1)
+            ap = val.get("average_precision")
+            enter = val.get("allowed", 0) / max(val.get("count", 0), 1)
+            self.epoch_table.insert("", "end", values=(
+                record["epoch"], f"{train.get('loss', float('nan')):.4f}", f"{val.get('loss', float('nan')):.4f}",
+                f"{ap:.4f}" if ap is not None else "—", f"{(ap - base) * 100:+.2f} pts" if ap is not None else "—",
+                fmt_pct(val.get("balanced_accuracy")), fmt_pct(enter), f"{record.get('epoch_seconds', 0):.1f}",
+                "★" if record is best else ""))
+        last = self.epoch_records[-1]
+        text = f"Epoch {last['epoch']}" + (f" of {total}" if total else "")
+        if best:
+            text += f"  ·  best epoch {best['epoch']}, validation AP {best['validation'].get('average_precision', 0):.4f}"
+        seconds = last.get("average_epoch_seconds")
+        if seconds and total and last["epoch"] < total:
+            text += f"  ·  {seconds:.1f} s per epoch, about {(total - last['epoch']) * seconds / 60:.0f} min left"
+        self.epoch_info.set(text)
+        self.draw_epochs()
+
+    def draw_epochs(self):
+        canvas = self.epoch_chart
+        canvas.delete("all")
+        records = self.epoch_records
+        width, height = max(canvas.winfo_width(), 400), int(canvas["height"])
+        if len(records) < 2:
+            canvas.create_text(width / 2, height / 2, text="The chart starts after two epochs.", fill="#777")
+            return
+        epochs = [r["epoch"] for r in records]
+        series = {
+            "loss": [("Train loss", "#2b6cb0", [r["train"].get("loss") for r in records]),
+                     ("Validation loss", "#dd6b20", [r["validation"].get("loss") for r in records])],
+            "ap": [("Validation AP", "#2f855a", [r["validation"].get("average_precision") for r in records]),
+                   ("Base rate", "#999999", [r["validation"].get("class_counts", {}).get("1", 0)
+                                             / max(r["validation"].get("count", 0), 1) for r in records])],
+        }
+        best = [r["epoch"] for r in records if r.get("best")]
+        half = (width - 30) / 2
+        for index, (key, lines) in enumerate(series.items()):
+            left, top, right, bottom = 50 + index * (half + 15), 22, 50 + index * (half + 15) + half - 50, height - 22
+            values = [v for _, _, line in lines for v in line if v is not None]
+            low, high = min(values), max(values)
+            pad = (high - low) * 0.08 or 0.001
+            low, high = low - pad, high + pad
+
+            def x(epoch):
+                return left + (epoch - epochs[0]) / max(epochs[-1] - epochs[0], 1) * (right - left)
+
+            def y(value):
+                return bottom - (value - low) / (high - low) * (bottom - top)
+            canvas.create_rectangle(left, top, right, bottom, outline="#ddd")
+            for value in (low + pad, high - pad):
+                canvas.create_text(left - 4, y(value), text=f"{value:.3f}", anchor="e", fill="#666", font=("Segoe UI", 8))
+            canvas.create_text(left, bottom + 10, text=str(epochs[0]), anchor="w", fill="#666", font=("Segoe UI", 8))
+            canvas.create_text(right, bottom + 10, text=str(epochs[-1]), anchor="e", fill="#666", font=("Segoe UI", 8))
+            if best:
+                canvas.create_line(x(best[-1]), top, x(best[-1]), bottom, fill="#bbb", dash=(3, 3))
+            legend = left
+            for label, color, line in lines:
+                points = [coord for epoch, value in zip(epochs, line) if value is not None
+                          for coord in (x(epoch), y(value))]
+                if len(points) >= 4:
+                    canvas.create_line(*points, fill=color, width=2, dash=(4, 3) if label == "Base rate" else None)
+                canvas.create_text(legend, top - 10, text=f"— {label}", anchor="w", fill=color, font=("Segoe UI", 9))
+                legend += 9 * len(label) + 30
 
     def show_pair(self):
         pair = self.selected_pair()
@@ -528,6 +656,7 @@ class BracketPanel:
         self.open_button.configure(state="normal")
         self.show_console(folder)
         self.show_results(folder, config, force)
+        self.show_epochs(name, config, force)
 
     def show_console(self, folder):
         text = decoded_tail(folder / "console.log")
