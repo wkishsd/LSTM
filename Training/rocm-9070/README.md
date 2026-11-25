@@ -14,7 +14,7 @@ Double-click `Bracket Panel.cmd` for steps 3 and 5 of the bracket plan (see `Pip
 4. It scores every candle with that run's best checkpoint.
 5. It runs `Models/Baselines/bracket_ranking.py` on the test period. The ranking compares both MLPs, and optionally logistic regression and boosted trees, against a random ranking, and compares anchors on with anchors off.
 
-The split is always 70/15/15, the same as the ranking script, and the best epoch is kept by validation average precision. Training and scoring run in WSL on the GPU under `nice` with 2 PyTorch threads. The ranking runs on Windows at below-normal priority with 2 BLAS threads, so other jobs keep running.
+The split is always 70/15/15, the same as the ranking script, and the best epoch is kept by validation average precision. Training and scoring run in WSL on the GPU with no thread or priority limits, and the ranking runs on Windows.
 
 The **Results** tab shows the pass rule for each scorer, the anchors-on minus anchors-off differences, and the step 6 go / not-yet line. A study lives in `runs/.bracket/<study>`. Its two training runs are ordinary `runs/<study>-noanchors` and `runs/<study>-anchors` folders, so `Training Panel.cmd` lists them too. **Pause training** pauses the current training step. If a study stops, **Resume study** continues from its first unfinished step. `train.sh --predict ...` is the scoring entry point the panel uses.
 

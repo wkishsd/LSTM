@@ -11,8 +11,8 @@ in order and unattended:
 5. Models/Baselines/bracket_ranking.py on the test period: both MLPs, logistic regression and boosted trees
    against a random ranking, and anchors on against anchors off.
 
-Training and scoring run in WSL on the RX 9070 through train.sh, at lower CPU priority with 2 PyTorch
-threads. The ranking runs on Windows at below-normal priority with 2 BLAS threads, so other jobs keep running.
+Training and scoring run in WSL on the RX 9070 through train.sh with the GPU and CPU to themselves; the
+ranking runs on Windows.
 A study lives in runs/.bracket/<study>; its two training runs are ordinary runs/<study>-noanchors and
 runs/<study>-anchors folders, which Training Panel.cmd lists too. A stopped study resumes at its first
 unfinished step.
@@ -38,7 +38,6 @@ STUDIES = RUNS / ".bracket"
 REPO = ROOT.parents[1]
 RANKING = REPO / "Models" / "Baselines" / "bracket_ranking.py"
 SITE_PACKAGES = REPO / ".venv-shared-lstm" / "Lib" / "site-packages"
-CPU_THREADS = "2"
 INPUTS = {"compact": "85 decision features", "window": "1m candle window"}
 DEFAULTS = {
     "model_input": "compact", "lookback_minutes": 360, "hidden1": 32, "hidden2": 16, "dropout": 0.2,
@@ -105,7 +104,7 @@ def step_command(study, config, key, suffix, launcher):
     export = config["off" if suffix == "noanchors" else "on"]
     relative = f"../../Exports/training/{export}"
     run = f"runs/{study}-{suffix}"
-    wsl = [*WSL_SESSION, "--", "nice", "-n", "10", "bash", launcher]
+    wsl = [*WSL_SESSION, "--", "bash", launcher]
     model = config["model"]
     if key.startswith("train"):
         command = [
@@ -114,14 +113,13 @@ def step_command(study, config, key, suffix, launcher):
             "--feature-input", "exported", "--target", "net", "--loss", "cross_entropy",
             "--selection", "average_precision", "--min-entry-calls", "30", "--activation", "leaky_relu",
             "--hidden3", "0", "--train-fraction", "0.7", "--validation-fraction", "0.15",
-            "--torch-threads", CPU_THREADS,
         ]
         for name in ("hidden1", "hidden2", "dropout", "epochs", "batch_size", "learning_rate", "lookback_minutes",
                      "seed"):
             command += [f"--{name.replace('_', '-')}", str(model[name])]
         return wsl + command
     return wsl + ["--predict", "--checkpoint", f"{run}/best.pt", "--bitfinex-dir", relative,
-                  "--output-dir", f"{run}/predictions", "--batch-size", "4096", "--torch-threads", CPU_THREADS]
+                  "--output-dir", f"{run}/predictions", "--batch-size", "4096"]
 
 
 def ranking_command(study, config):
@@ -132,10 +130,7 @@ def ranking_command(study, config):
                "--compare", "mlp_anchors,mlp_no_anchors", "--output", str(STUDIES / study / "ranking")]
     if config.get("baselines"):
         command += ["--baselines", "logistic,gbt"]
-    env = dict(os.environ, PYTHONPATH=str(SITE_PACKAGES), PYTHONIOENCODING="utf-8")
-    for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
-        env[name] = CPU_THREADS
-    return command, env
+    return command, dict(os.environ, PYTHONPATH=str(SITE_PACKAGES), PYTHONIOENCODING="utf-8")
 
 
 def clear_partial(study, key, suffix):
@@ -163,15 +158,13 @@ def run_study(study):
                 clear_partial(study, key, suffix)
                 if key == "ranking":
                     command, env = ranking_command(study, config)
-                    flags = subprocess.CREATE_NO_WINDOW | subprocess.BELOW_NORMAL_PRIORITY_CLASS
                 else:
                     launcher = launcher or wsl_launcher()
                     command, env = step_command(study, config, key, suffix, launcher), None
-                    flags = subprocess.CREATE_NO_WINDOW
                 log.write(("> " + " ".join(command) + "\n").encode("utf-8"))
                 log.flush()
                 code = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env, cwd=ROOT,
-                                        creationflags=flags).wait()
+                                        creationflags=subprocess.CREATE_NO_WINDOW).wait()
             except (OSError, ValueError, subprocess.SubprocessError) as error:
                 log.write(f"{error}\n".encode("utf-8"))
                 code = 1
@@ -277,7 +270,7 @@ class BracketPanel:
         ttk.Checkbutton(box, text="Also rank with logistic regression and boosted trees",
                         variable=self.baselines).grid(row=row + 1, column=0, columnspan=2, sticky="w", pady=(6, 2))
         ttk.Label(box, text="Split 70 / 15 / 15 by time, kept best by validation AP.\n"
-                            "Uses the GPU in WSL, 2 CPU threads, lower priority.",
+                            "Trains on the RX 9070 in WSL.",
                   foreground="#555").grid(row=row + 2, column=0, columnspan=2, sticky="w", pady=(4, 6))
         self.start_button = ttk.Button(box, text="Start study", command=self.start)
         self.start_button.grid(row=row + 3, column=0, columnspan=2, sticky="we")
@@ -363,16 +356,6 @@ class BracketPanel:
         self.study.set(name)
         self.refresh(force=True)
 
-    def gpu_clear(self, name):
-        self.check_trainers()
-        others = sorted(run for run, paused in self.trainers.items() if not paused and not run.startswith(name))
-        if not others:
-            return True
-        return messagebox.askyesno(
-            "Other training is running",
-            "These runs are training on the GPU now:\n\n" + "\n".join(others) +
-            "\n\nStart anyway? Both will share the GPU and run slower.", parent=self.window)
-
     def start(self):
         busy = self.busy_study()
         if busy:
@@ -388,8 +371,6 @@ class BracketPanel:
             return
         key = pair["on"].split("bracket_")[-1]
         name = f"bracket-{key}-{datetime.now():%Y%m%d-%H%M%S}"
-        if not self.gpu_clear(name):
-            return
         folder = STUDIES / name
         folder.mkdir(parents=True)
         config = {"label": pair["label"], "on": pair["on"], "off": pair["off"], "break_even": pair["break_even"],
@@ -401,8 +382,7 @@ class BracketPanel:
         name = self.study.get()
         if not name or self.busy_study():
             return
-        if self.gpu_clear(name):
-            self.launch(name)
+        self.launch(name)
 
     def current_run(self, name):
         state = read_json(STUDIES / name / "status.json")
