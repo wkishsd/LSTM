@@ -6,17 +6,18 @@ Double-click `Training Panel.cmd` in Windows Explorer. Edit the settings on the 
 
 ## Bracket study panel
 
-Double-click `Bracket Panel.cmd` for steps 3 and 5 of the bracket plan (see `Pipelines/Bitfinex/README.md`, "Fixed-bracket targets on every 5m candle"). Choose a bracket export pair (1:1 or 2:1) and the MLP settings, and click **Start study**. The study runs five steps unattended:
+Double-click `Bracket Panel.cmd` for steps 3 and 5 of the bracket plan (see `Pipelines/Bitfinex/README.md`, "Fixed-bracket targets on every 5m candle"). Choose a bracket export pair (1:1 or 2:1) and the MLP settings, and click **Start study**. The study runs these steps unattended:
 
 1. It trains the MLP on the twin export with the anchor inputs zeroed.
 2. It scores every candle with that run's best checkpoint.
-3. It trains the same MLP on the export with anchors.
-4. It scores every candle with that run's best checkpoint.
-5. It runs `Models/Baselines/bracket_ranking.py` on the test period. The ranking compares both MLPs, and optionally logistic regression and boosted trees, against a random ranking, and compares anchors on with anchors off.
+3. Only with **Also train with the 18 anchors as inputs**: it trains the same MLP on the export with anchors and scores every candle with it.
+4. It runs `Models/Baselines/bracket_ranking.py` on the test period. The ranking compares the MLP, and optionally logistic regression and boosted trees, against a random ranking. With anchors it also compares anchors on with anchors off.
+
+The anchor option is off by default, so nothing in a study sees an anchor. The MLP and the ranking's baselines both use the zeroed twin, which leaves 49 decision features.
 
 The split is always 70/15/15, the same as the ranking script, and the best epoch is kept by validation average precision. Training and scoring run in WSL on the GPU with no thread or priority limits, and the ranking runs on Windows.
 
-The **Results** tab shows the pass rule for each scorer, the anchors-on minus anchors-off differences, and the step 6 go / not-yet line. A study lives in `runs/.bracket/<study>`. Its two training runs are ordinary `runs/<study>-noanchors` and `runs/<study>-anchors` folders, so `Training Panel.cmd` lists them too. **Pause training** pauses the current training step. If a study stops, **Resume study** continues from its first unfinished step. `train.sh --predict ...` is the scoring entry point the panel uses.
+The **Results** tab shows the pass rule for each scorer, the anchors-on minus anchors-off differences, and the step 6 go / not-yet line. A study lives in `runs/.bracket/<study>`. Its two training runs are ordinary `runs/<study>-noanchors` and `runs/<study>-anchors` folders, so `Training Panel.cmd` lists them too. **Pause training** pauses the current training step. If a study stops, **Resume study** continues from its first unfinished step. **Reload panel** restarts the window with the current code and exports and keeps the form values; a running study carries on. `train.sh --predict ...` is the scoring entry point the panel uses.
 
 ## Bitfinex profit buckets
 

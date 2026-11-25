@@ -6,10 +6,12 @@ in order and unattended:
 
 1. train the MLP on the twin without anchors (step 3),
 2. score every candle with its best checkpoint,
-3. train the same MLP on the export with anchors (step 5),
-4. score every candle with it,
-5. Models/Baselines/bracket_ranking.py on the test period: both MLPs, logistic regression and boosted trees
-   against a random ranking, and anchors on against anchors off.
+3. only with "Also train with anchors": train the same MLP on the export with anchors and score it (step 5),
+4. Models/Baselines/bracket_ranking.py on the test period: the MLP(s), logistic regression and boosted trees
+   against a random ranking, and with anchors also anchors on against anchors off.
+
+By default nothing in a study sees an anchor: the MLP, its scores and the ranking's baselines all use the
+twin export whose 36 anchor inputs are zero.
 
 Training and scoring run in WSL on the RX 9070 through train.sh with the GPU and CPU to themselves; the
 ranking runs on Windows.
@@ -38,7 +40,7 @@ STUDIES = RUNS / ".bracket"
 REPO = ROOT.parents[1]
 RANKING = REPO / "Models" / "Baselines" / "bracket_ranking.py"
 SITE_PACKAGES = REPO / ".venv-shared-lstm" / "Lib" / "site-packages"
-INPUTS = {"compact": "85 decision features", "window": "1m candle window"}
+INPUTS = {"compact": "Decision features", "window": "1m candle window"}
 DEFAULTS = {
     "model_input": "compact", "lookback_minutes": 360, "hidden1": 32, "hidden2": 16, "dropout": 0.2,
     "epochs": 100, "batch_size": 2048, "learning_rate": 0.0003, "seed": 42,
@@ -82,6 +84,12 @@ def bracket_pairs():
     return pairs
 
 
+def study_steps(config):
+    if config.get("with_anchors"):
+        return STEPS
+    return tuple(step for step in STEPS if step[2] != "anchors")
+
+
 def run_folder(study, suffix):
     return RUNS / f"{study}-{suffix}"
 
@@ -123,11 +131,15 @@ def step_command(study, config, key, suffix, launcher):
 
 
 def ranking_command(study, config):
+    with_anchors = config.get("with_anchors")
+    # Baselines are fitted on --export, so without anchors they get the zeroed twin too.
     command = [str(Path(sys.executable).with_name("python.exe")), str(RANKING),
-               "--export", str(EXPORTS / config["on"]),
+               "--export", str(EXPORTS / config["on" if with_anchors else "off"]),
                "--scores", f"mlp_no_anchors={run_folder(study, 'noanchors') / 'predictions' / 'predictions.csv'}",
-               "--scores", f"mlp_anchors={run_folder(study, 'anchors') / 'predictions' / 'predictions.csv'}",
-               "--compare", "mlp_anchors,mlp_no_anchors", "--output", str(STUDIES / study / "ranking")]
+               "--output", str(STUDIES / study / "ranking")]
+    if with_anchors:
+        command += ["--scores", f"mlp_anchors={run_folder(study, 'anchors') / 'predictions' / 'predictions.csv'}",
+                    "--compare", "mlp_anchors,mlp_no_anchors"]
     if config.get("baselines"):
         command += ["--baselines", "logistic,gbt"]
     return command, dict(os.environ, PYTHONPATH=str(SITE_PACKAGES), PYTHONIOENCODING="utf-8")
@@ -148,7 +160,7 @@ def run_study(study):
     config = read_json(folder / "study.json")
     with (folder / "console.log").open("ab") as log:
         launcher = None
-        for key, title, suffix in STEPS:
+        for key, title, suffix in study_steps(config):
             if step_done(study, key, suffix):
                 continue
             write_state(folder, phase="running", step=key, pid=os.getpid())
@@ -269,11 +281,16 @@ class BracketPanel:
         self.baselines = tk.BooleanVar(value=True)
         ttk.Checkbutton(box, text="Also rank with logistic regression and boosted trees",
                         variable=self.baselines).grid(row=row + 1, column=0, columnspan=2, sticky="w", pady=(6, 2))
-        ttk.Label(box, text="Split 70 / 15 / 15 by time, kept best by validation AP.\n"
+        self.with_anchors = tk.BooleanVar(value=False)
+        ttk.Checkbutton(box, text="Also train with the 18 anchors as inputs (step 5)",
+                        variable=self.with_anchors).grid(row=row + 2, column=0, columnspan=2, sticky="w", pady=2)
+        ttk.Label(box, text="Without anchors: 49 decision features (indicators on M1/M5/M15/M30,\n"
+                            "returns, volatility, hour, weekday); the anchor inputs are zero.\n"
+                            "Split 70 / 15 / 15 by time, kept best by validation AP.\n"
                             "Trains on the RX 9070 in WSL.",
-                  foreground="#555").grid(row=row + 2, column=0, columnspan=2, sticky="w", pady=(4, 6))
+                  foreground="#555").grid(row=row + 3, column=0, columnspan=2, sticky="w", pady=(4, 6))
         self.start_button = ttk.Button(box, text="Start study", command=self.start)
-        self.start_button.grid(row=row + 3, column=0, columnspan=2, sticky="we")
+        self.start_button.grid(row=row + 4, column=0, columnspan=2, sticky="we")
         self.show_pair()
 
     def build_study(self, parent):
@@ -285,6 +302,7 @@ class BracketPanel:
         self.studies = ttk.Combobox(bar, textvariable=self.study, state="readonly", width=44)
         self.studies.pack(side="left")
         self.studies.bind("<<ComboboxSelected>>", lambda _: self.refresh(force=True))
+        ttk.Button(bar, text="Reload panel", command=self.reload_panel).pack(side="right", padx=(6, 0))
         self.open_button = ttk.Button(bar, text="Open folder", command=self.open_folder)
         self.open_button.pack(side="right")
         self.pause_button = ttk.Button(bar, text="Pause training", command=self.toggle_pause)
@@ -374,7 +392,8 @@ class BracketPanel:
         folder = STUDIES / name
         folder.mkdir(parents=True)
         config = {"label": pair["label"], "on": pair["on"], "off": pair["off"], "break_even": pair["break_even"],
-                  "model": model, "baselines": self.baselines.get(), "created": datetime.now().isoformat(timespec="seconds")}
+                  "model": model, "baselines": self.baselines.get(), "with_anchors": self.with_anchors.get(),
+                  "created": datetime.now().isoformat(timespec="seconds")}
         (folder / "study.json").write_text(json.dumps(config, indent=2), encoding="utf-8")
         self.launch(name)
 
@@ -402,6 +421,39 @@ class BracketPanel:
             messagebox.showerror("Training control failed", str(error), parent=self.window)
         self.refresh(force=True)
 
+    def form_state(self):
+        return {"pair": self.pair.get(), "model_input": self.model_input.get(), "baselines": self.baselines.get(),
+                "with_anchors": self.with_anchors.get(), "study": self.study.get(),
+                "fields": {key: variable.get() for key, variable in self.fields.items()}}
+
+    def restore_form(self, state):
+        if state.get("pair") in (pair["label"] for pair in self.pairs.values()):
+            self.pair.set(state["pair"])
+        if state.get("model_input") in INPUTS.values():
+            self.model_input.set(state["model_input"])
+        for key, value in state.get("fields", {}).items():
+            if key in self.fields:
+                self.fields[key].set(value)
+        self.baselines.set(bool(state.get("baselines", True)))
+        self.with_anchors.set(bool(state.get("with_anchors", False)))
+        if state.get("study"):
+            self.study.set(state["study"])
+        self.show_pair()
+        self.refresh(force=True)
+
+    def reload_panel(self):
+        """Restart the window with the current code and exports; a running study is a separate process and goes on."""
+        path = STUDIES / ".reload_form.json"
+        try:
+            path.write_text(json.dumps(self.form_state()), encoding="utf-8")
+            subprocess.Popen([sys.executable, str(Path(__file__).resolve()), "--restore", str(path)],
+                             creationflags=subprocess.CREATE_NO_WINDOW, stdin=subprocess.DEVNULL,
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except OSError as error:
+            messagebox.showerror("Could not reload", str(error), parent=self.window)
+            return
+        self.window.destroy()
+
     def open_folder(self):
         folder = STUDIES / self.study.get()
         if self.study.get() and folder.is_dir():
@@ -422,7 +474,7 @@ class BracketPanel:
         self.start_button.configure(state="disabled" if busy or not self.pairs else "normal")
         name = self.study.get()
         if not name:
-            self.study_info.set("Start a study to train both MLPs and rank them against random.")
+            self.study_info.set("Start a study to train the MLP and rank it against random.")
             for button in (self.resume_button, self.pause_button, self.open_button):
                 button.configure(state="disabled")
             return
@@ -431,7 +483,8 @@ class BracketPanel:
         state = read_json(folder / "status.json")
         alive = self.worker_alive(name)
         model = config.get("model", {})
-        shape = f"{INPUTS.get(model.get('model_input'), '?')}"
+        shape = f"{INPUTS.get(model.get('model_input'), '?')} · " + \
+            ("anchors off and on" if config.get("with_anchors") else "no anchors")
         if model.get("model_input") == "window":
             shape += f" · {model.get('lookback_minutes')} min"
         self.study_info.set(
@@ -443,7 +496,7 @@ class BracketPanel:
             self.check_trainers()
         paused = bool(run and self.trainers.get(run))
         self.steps.delete(*self.steps.get_children())
-        for key, title, suffix in STEPS:
+        for key, title, suffix in study_steps(config):
             detail = ""
             if step_done(name, key, suffix):
                 status = "done"
@@ -523,6 +576,8 @@ class BracketPanel:
                 f"Anchors on − off: AUC {item['auc_difference']:+.4f} {fmt_interval(item['auc_difference_95'], digits=4)}"
                 f" · top-10% win rate {item['top10_win_rate_difference'] * 100:+.2f} pts "
                 f"{fmt_interval(item['top10_difference_95'], 100, 2)}")
+        if off and not on:
+            lines.append("No anchors in this study; step 5 waits for the anchors-as-entry-points test.")
         if off and on:
             go = off["verdict_beats_random"] and on["verdict_beats_random"] and anchors_help
             lines.append(f"Step 6 · move to the ATR exit: {'GO' if go else 'NOT YET'} (needs both MLPs to beat "
@@ -539,5 +594,7 @@ if __name__ == "__main__":
         run_study(sys.argv[2])
     else:
         window = tk.Tk()
-        BracketPanel(window)
+        panel = BracketPanel(window)
+        if "--restore" in sys.argv[:-1]:
+            panel.restore_form(read_json(Path(sys.argv[sys.argv.index("--restore") + 1])))
         window.mainloop()
