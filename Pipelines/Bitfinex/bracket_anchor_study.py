@@ -56,11 +56,14 @@ def day_bootstrap(day, flags, win, net, draws, rng):
     """Bootstrap over days of (win rate on - off) and (mean net on - off) for every flag column."""
     days, d = np.unique(day, return_inverse=True)
     D = len(days)
-    onehot = np.zeros((D, len(day)), dtype=np.float32)
-    onehot[d, np.arange(len(day))] = 1
-    f = flags.astype(np.float32)
-    n_on, w_on, s_on = onehot @ f, onehot @ (f * win[:, None]), onehot @ (f * net[:, None])
-    n_all, w_all, s_all = onehot.sum(1), onehot @ win, onehot @ net
+    f = flags.astype(np.float64)
+
+    def per_day(weights):
+        return np.bincount(d, weights=weights, minlength=D)
+    n_on = np.column_stack([per_day(f[:, j]) for j in range(f.shape[1])])
+    w_on = np.column_stack([per_day(f[:, j] * win) for j in range(f.shape[1])])
+    s_on = np.column_stack([per_day(f[:, j] * net) for j in range(f.shape[1])])
+    n_all, w_all, s_all = per_day(np.ones(len(day))), per_day(win), per_day(net)
     counts = rng.multinomial(D, np.full(D, 1 / D), size=draws).astype(np.float32)
 
     def stat(c):
