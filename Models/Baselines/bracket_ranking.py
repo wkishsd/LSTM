@@ -153,29 +153,43 @@ def evaluate(name, score, data, splits, period, net, boot, rng, gates):
             c = chosen[b]
             if c.any():
                 lifts.append(y[b][c].mean() - y[b].mean())
-        tops[f"top_{top:.0%}"] = {"candles": k, "win_rate": float(y[chosen].mean()), "mean_net": float(r[chosen].mean()),
+        tops[f"top_{top:.0%}"] = {"candles": k, "winners": int(y[chosen].sum()),
+                                  "share_of_all_winners": float(y[chosen].sum() / max(y.sum(), 1)),
+                                  "win_rate": float(y[chosen].mean()), "mean_net": float(r[chosen].mean()),
                                   "lift": float(y[chosen].mean() - base), "lift_95": interval(lifts)}
     out["tops"] = tops
+    out["candles"], out["winners"] = int(len(s)), int(y.sum())
     # One position at a time; thresholds from validation scores.
     val = score[splits["validation"]]
     times, ends = data.times[idx], data.ends[idx]
     chron = np.argsort(times, kind="stable")
     every = replay(chron, times, ends, np.ones(len(s), dtype=bool))
-    out["every_candle_when_flat"] = {"trades": len(every), "total_net": float(r[every].sum()),
-                                     "win_rate": float(y[every].mean())}
+    out["every_candle_when_flat"] = {"trades": len(every), "trade_wins": int(y[every].sum()),
+                                     "total_net": float(r[every].sum()), "win_rate": float(y[every].mean())}
     replays = {}
     for rate in PASS_RATES:
         cut = np.quantile(val, 1 - rate)
         passes = s >= cut
         taken = replay(chron, times, ends, passes)
         realized = float(passes.mean())
-        random_totals = np.array([r[replay(chron, times, ends, rng.random(len(s)) < realized)].sum()
-                                  for _ in range(gates)])
+        random_runs = [replay(chron, times, ends, rng.random(len(s)) < realized) for _ in range(gates)]
+        random_totals = np.array([r[run].sum() for run in random_runs])
+        random_trades = np.array([len(run) for run in random_runs])
         total = float(r[taken].sum()) if len(taken) else 0.0
         replays[f"pass_{rate:.0%}"] = {
-            "threshold": float(cut), "realized_pass_rate": realized, "trades": len(taken), "total_net": total,
+            "threshold": float(cut), "realized_pass_rate": realized,
+            # Every candle the gate passes, whether or not a position was already open.
+            "passed": int(passes.sum()), "passed_winners": int(y[passes].sum()),
+            "share_of_all_winners": float(y[passes].sum() / max(y.sum(), 1)),
+            "passed_win_rate": float(y[passes].mean()) if passes.any() else np.nan,
+            "passed_mean_net": float(r[passes].mean()) if passes.any() else np.nan,
+            # One position at a time: what was actually traded.
+            "trades": len(taken), "trade_wins": int(y[taken].sum()), "total_net": total,
+            "net_per_trade": total / len(taken) if len(taken) else np.nan,
             "win_rate": float(y[taken].mean()) if len(taken) else np.nan,
             "random_gate_total_net_p5_p50_p95": np.percentile(random_totals, [5, 50, 95]).round(3).tolist(),
+            "random_gate_trades_median": float(np.median(random_trades)),
+            "random_gate_net_per_trade_median": float(np.median(random_totals / np.maximum(random_trades, 1))),
             "beats_random_share": float(np.mean(total > random_totals)),
         }
     out["one_position"] = replays

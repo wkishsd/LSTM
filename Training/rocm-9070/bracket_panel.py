@@ -215,7 +215,8 @@ class BracketPanel:
     def __init__(self, window):
         self.window = window
         window.title("Bracket study · MLP against random rankings")
-        window.geometry("1220x820")
+        width, height = min(1520, window.winfo_screenwidth() - 40), min(1000, window.winfo_screenheight() - 90)
+        window.geometry(f"{width}x{height}+20+10")
         window.minsize(980, 640)
         self.pairs = bracket_pairs()
         self.trainers = {}
@@ -239,17 +240,19 @@ class BracketPanel:
         tabs.add(epochs, text="Epochs")
         tabs.add(console, text="Console")
         self.build_epochs(epochs)
-        self.summary = tk.Text(results, height=9, wrap="word", relief="flat", font=("Segoe UI", 10))
+        self.summary = tk.Text(results, height=6, wrap="word", relief="flat", font=("Segoe UI", 10))
         self.summary.pack(fill="x")
         columns = ("scorer", "auc", "auc95", "top10", "lift95", "p5", "p10", "p20", "verdict")
-        self.table = ttk.Treeview(results, columns=columns, show="headings", height=6)
+        self.table = ttk.Treeview(results, columns=columns, show="headings", height=5)
         heads = ("Scorer", "AUC", "AUC 95%", "Top-10% win", "Top-10% lift 95% (pts)", "Beats random · 5%",
                  "· 10%", "· 20%", "Beats random")
         widths = (135, 55, 115, 80, 130, 100, 50, 50, 80)
         for column, head, width in zip(columns, heads, widths):
             self.table.heading(column, text=head)
             self.table.column(column, width=width, anchor="w" if column == "scorer" else "center")
-        self.table.pack(fill="both", expand=True, pady=(8, 0))
+        self.table.pack(fill="x", pady=(8, 0))
+        self.table.bind("<<TreeviewSelect>>", lambda _: self.pick_detail_from_table())
+        self.build_detail(results)
         self.console = tk.Text(console, wrap="none", font=("Consolas", 9))
         scroll = ttk.Scrollbar(console, command=self.console.yview)
         self.console.configure(yscrollcommand=scroll.set)
@@ -324,6 +327,98 @@ class BracketPanel:
             self.steps.heading(column, text=head)
             self.steps.column(column, width=width, minwidth=60, anchor="w")
         self.steps.pack(fill="x")
+
+    def build_detail(self, parent):
+        bar = ttk.Frame(parent)
+        bar.pack(fill="x", pady=(10, 4))
+        ttk.Label(bar, text="Entries for").pack(side="left")
+        self.detail_scorer = tk.StringVar()
+        self.detail_scorers = ttk.Combobox(bar, textvariable=self.detail_scorer, state="readonly", width=22)
+        self.detail_scorers.pack(side="left", padx=6)
+        self.detail_scorers.bind("<<ComboboxSelected>>", lambda _: self.show_detail())
+        self.detail_info = tk.StringVar()
+        ttk.Label(bar, textvariable=self.detail_info, foreground="#555").pack(side="left", padx=(6, 0))
+        frame = ttk.Frame(parent)
+        frame.pack(fill="both", expand=True)
+        columns = (
+            ("selection", "Selection", 100), ("passed", "Candles passed", 110), ("winners", "Winners caught", 110),
+            ("share", "Of all winners", 105), ("win", "Win rate", 70), ("net", "Net / candle", 90),
+            ("trades", "Trades taken", 95), ("wins", "Trade wins", 85), ("losses", "Trade losses", 90),
+            ("twin", "Trade win rate", 105), ("total", "Total net", 80), ("per", "Net / trade", 85),
+            ("random", "Random gates: trades · net/trade · total (median)", 280),
+        )
+        self.detail = ttk.Treeview(frame, columns=[c for c, _, _ in columns], show="headings", height=8)
+        for column, head, width in columns:
+            self.detail.heading(column, text=head)
+            self.detail.column(column, width=width, minwidth=50, stretch=False,
+                               anchor="w" if column in ("selection", "random") else "center")
+        across = ttk.Scrollbar(frame, orient="horizontal", command=self.detail.xview)
+        down = ttk.Scrollbar(frame, command=self.detail.yview)
+        self.detail.configure(xscrollcommand=across.set, yscrollcommand=down.set)
+        across.pack(side="bottom", fill="x")
+        down.pack(side="right", fill="y")
+        self.detail.pack(fill="both", expand=True)
+        ttk.Label(parent, foreground="#555", wraplength=900, justify="left", text=(
+            "Top x%: the x% of test candles with the highest score; no trading, every candle counts. "
+            "Gate x%: the score threshold that passes x% of validation candles, applied to test. Candles passed "
+            "counts every candle over the threshold; trades are what one position at a time actually takes "
+            "(a passed candle is skipped while a trade is open). Net in % per trade after fees; total is the sum."
+        )).pack(fill="x", pady=(6, 0))
+        self.report = {}
+
+    def pick_detail_from_table(self):
+        selected = self.table.selection()
+        if selected:
+            label = self.table.item(selected[0])["values"][0]
+            if label in self.detail_scorers["values"]:
+                self.detail_scorer.set(label)
+                self.show_detail()
+
+    def show_detail(self):
+        self.detail.delete(*self.detail.get_children())
+        scorers = self.report.get("scorers", {})
+        name = next((key for key in scorers if SCORER_LABELS.get(key, key) == self.detail_scorer.get()), None)
+        if not name:
+            self.detail_info.set("")
+            return
+        result = scorers[name]
+        candles = result.get("candles", self.report.get("candles"))
+        winners = result.get("winners")
+        self.detail_info.set(f"test: {candles:,} candles, {winners:,} winners ({fmt_pct(result['base_win_rate'])})"
+                             if winners is not None else "")
+
+        def count(value):
+            return f"{value:,}" if isinstance(value, int) else "—"
+
+        def net(value, digits=3):
+            return "—" if value is None or (isinstance(value, float) and math.isnan(value)) else f"{value:+.{digits}f}%"
+        for key, item in result["tops"].items():
+            caught = item.get("winners")
+            self.detail.insert("", "end", values=(
+                f"Top {key.split('_')[1]}", count(item["candles"]), count(caught),
+                fmt_pct(item.get("share_of_all_winners")), fmt_pct(item["win_rate"]), net(item["mean_net"]),
+                "—", "—", "—", "—", "—", "—", ""))
+        for key, item in result["one_position"].items():
+            trades, wins = item["trades"], item.get("trade_wins")
+            random = item["random_gate_total_net_p5_p50_p95"][1]
+            random_trades = item.get("random_gate_trades_median")
+            random_text = (f"{random_trades:,.0f} · {net(item.get('random_gate_net_per_trade_median'))} · {random:+.1f}%"
+                           if random_trades is not None else f"total {random:+.1f}%")
+            self.detail.insert("", "end", values=(
+                f"Gate {key.split('_')[1]}", count(item.get("passed")), count(item.get("passed_winners")),
+                fmt_pct(item.get("share_of_all_winners")), fmt_pct(item.get("passed_win_rate", float("nan"))),
+                net(item.get("passed_mean_net")), count(trades), count(wins),
+                count(trades - wins) if wins is not None else "—", fmt_pct(item["win_rate"]),
+                f"{item['total_net']:+.1f}%", net(item.get("net_per_trade", item["total_net"] / max(trades, 1))),
+                random_text))
+        every = result.get("every_candle_when_flat")
+        if every:
+            wins = every.get("trade_wins")
+            self.detail.insert("", "end", values=(
+                "Every candle", count(candles), count(winners), fmt_pct(1.0), fmt_pct(result["base_win_rate"]),
+                net(result["base_mean_net"]), count(every["trades"]), count(wins),
+                count(every["trades"] - wins) if wins is not None else "—", fmt_pct(every["win_rate"]),
+                f"{every['total_net']:+.1f}%", net(every["total_net"] / max(every["trades"], 1)), ""))
 
     def build_epochs(self, parent):
         bar = ttk.Frame(parent)
@@ -683,6 +778,13 @@ class BracketPanel:
         self.summary.configure(state="normal")
         self.summary.delete("1.0", "end")
         report = read_json(path)
+        self.report = report
+        labels = [SCORER_LABELS.get(key, key) for key in report.get("scorers", {})]
+        self.detail_scorers["values"] = labels
+        if self.detail_scorer.get() not in labels:
+            preferred = SCORER_LABELS["mlp_no_anchors"]
+            self.detail_scorer.set(preferred if preferred in labels else (labels[0] if labels else ""))
+        self.show_detail()
         if not report:
             self.summary.insert("1.0", "Results appear here when the ranking step has finished.")
             self.summary.configure(state="disabled")
