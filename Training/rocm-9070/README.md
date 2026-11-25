@@ -4,6 +4,20 @@
 
 Double-click `Training Panel.cmd` in Windows Explorer. Edit the settings on the left and click **Start training**. The panel creates a new output folder for each run. It uses the same three-year export and Radeon launcher as the PowerShell commands below.
 
+## Bracket study panel
+
+Double-click `Bracket Panel.cmd` for steps 3 and 5 of the bracket plan (see `Pipelines/Bitfinex/README.md`, "Fixed-bracket targets on every 5m candle"). Choose a bracket export pair (1:1 or 2:1) and the MLP settings, and click **Start study**. The study runs five steps unattended:
+
+1. It trains the MLP on the twin export with the anchor inputs zeroed.
+2. It scores every candle with that run's best checkpoint.
+3. It trains the same MLP on the export with anchors.
+4. It scores every candle with that run's best checkpoint.
+5. It runs `Models/Baselines/bracket_ranking.py` on the test period. The ranking compares both MLPs, and optionally logistic regression and boosted trees, against a random ranking, and compares anchors on with anchors off.
+
+The split is always 70/15/15, the same as the ranking script, and the best epoch is kept by validation average precision. Training and scoring run in WSL on the GPU under `nice` with 2 PyTorch threads. The ranking runs on Windows at below-normal priority with 2 BLAS threads, so other jobs keep running.
+
+The **Results** tab shows the pass rule for each scorer, the anchors-on minus anchors-off differences, and the step 6 go / not-yet line. A study lives in `runs/.bracket/<study>`. Its two training runs are ordinary `runs/<study>-noanchors` and `runs/<study>-anchors` folders, so `Training Panel.cmd` lists them too. **Pause training** pauses the current training step. If a study stops, **Resume study** continues from its first unfinished step. `train.sh --predict ...` is the scoring entry point the panel uses.
+
 ## Bitfinex profit buckets
 
 Select **Bitfinex · Profit buckets**, set **Hold after fill (min)**, and click **Start training**. The default hold is 60 minutes. The collector reuses the original export's confirmed ETHUSD short fills and the frozen M1 candle cache. Features end at the last M1 close before the fill candle opened, so the candle that filled the order never reaches the model. (The source export stamps level-touch fills at their candle's close and open fills at their candle's open without saying which, so the window ends one minute before the stamp.) The hold is measured from the recorded fill time. Each example exits at the first actual M1 open at or after the timed exit. Missing candles postpone that exit by at most 5 minutes (`--max-exit-delay-minutes`); longer gaps leave the trade unlabeled. Exports collected before this change are rejected and must be re-collected. Split purging treats the profit as known at the exit candle's close. The mode excludes unfilled orders and leaves trades without an available exit unlabeled.
