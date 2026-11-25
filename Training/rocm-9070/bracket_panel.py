@@ -224,12 +224,13 @@ class BracketPanel:
 
         outer = ttk.Frame(window, padding=12)
         outer.pack(fill="both", expand=True)
-        top = ttk.Frame(outer)
-        top.pack(fill="x")
-        self.build_setup(top)
-        self.build_study(top)
+        # Settings on the left; on the right the study's steps stay compact and the tabs take the height.
+        self.build_setup(outer)
+        right = ttk.Frame(outer)
+        right.pack(side="left", fill="both", expand=True, padx=(12, 0))
+        self.build_study(right)
 
-        tabs = ttk.Notebook(outer)
+        tabs = ttk.Notebook(right)
         tabs.pack(fill="both", expand=True, pady=(12, 0))
         results = ttk.Frame(tabs, padding=10)
         console = ttk.Frame(tabs, padding=6)
@@ -244,7 +245,7 @@ class BracketPanel:
         self.table = ttk.Treeview(results, columns=columns, show="headings", height=6)
         heads = ("Scorer", "AUC", "AUC 95%", "Top-10% win", "Top-10% lift 95% (pts)", "Beats random · 5%",
                  "· 10%", "· 20%", "Beats random")
-        widths = (170, 70, 130, 100, 160, 120, 70, 70, 100)
+        widths = (135, 55, 115, 80, 130, 100, 50, 50, 80)
         for column, head, width in zip(columns, heads, widths):
             self.table.heading(column, text=head)
             self.table.column(column, width=width, anchor="w" if column == "scorer" else "center")
@@ -298,27 +299,31 @@ class BracketPanel:
 
     def build_study(self, parent):
         box = ttk.LabelFrame(parent, text="Study", padding=10)
-        box.pack(side="left", fill="both", expand=True, padx=(12, 0))
+        box.pack(fill="x")
         bar = ttk.Frame(box)
         bar.pack(fill="x")
         self.study = tk.StringVar()
-        self.studies = ttk.Combobox(bar, textvariable=self.study, state="readonly", width=44)
-        self.studies.pack(side="left")
+        self.studies = ttk.Combobox(bar, textvariable=self.study, state="readonly", width=40)
+        self.studies.pack(side="left", fill="x", expand=True)
         self.studies.bind("<<ComboboxSelected>>", lambda _: self.refresh(force=True))
-        ttk.Button(bar, text="Reload panel", command=self.reload_panel).pack(side="right", padx=(6, 0))
-        self.open_button = ttk.Button(bar, text="Open folder", command=self.open_folder)
-        self.open_button.pack(side="right")
-        self.pause_button = ttk.Button(bar, text="Pause training", command=self.toggle_pause)
-        self.pause_button.pack(side="right", padx=6)
-        self.resume_button = ttk.Button(bar, text="Resume study", command=self.resume)
-        self.resume_button.pack(side="right")
+        buttons = ttk.Frame(box)
+        buttons.pack(fill="x", pady=(6, 0))
+        self.resume_button = ttk.Button(buttons, text="Resume study", command=self.resume)
+        self.resume_button.pack(side="left")
+        self.pause_button = ttk.Button(buttons, text="Pause training", command=self.toggle_pause)
+        self.pause_button.pack(side="left", padx=6)
+        self.open_button = ttk.Button(buttons, text="Open folder", command=self.open_folder)
+        self.open_button.pack(side="left")
+        ttk.Button(buttons, text="Reload panel", command=self.reload_panel).pack(side="right")
         self.study_info = tk.StringVar()
-        ttk.Label(box, textvariable=self.study_info, foreground="#555").pack(fill="x", pady=(6, 4))
+        info = ttk.Label(box, textvariable=self.study_info, foreground="#555")
+        info.pack(fill="x", pady=(6, 4))
+        info.bind("<Configure>", lambda event: info.configure(wraplength=max(event.width - 4, 200)))
         self.steps = ttk.Treeview(box, columns=("step", "status", "detail"), show="headings", height=5)
-        for column, head, width in (("step", "Step", 230), ("status", "Status", 90), ("detail", "Detail", 400)):
+        for column, head, width in (("step", "Step", 210), ("status", "Status", 70), ("detail", "Detail", 260)):
             self.steps.heading(column, text=head)
-            self.steps.column(column, width=width, anchor="w")
-        self.steps.pack(fill="both", expand=True)
+            self.steps.column(column, width=width, minwidth=60, anchor="w")
+        self.steps.pack(fill="x")
 
     def build_epochs(self, parent):
         bar = ttk.Frame(parent)
@@ -334,14 +339,15 @@ class BracketPanel:
         self.epoch_chart.pack(fill="x", pady=(8, 8))
         self.epoch_chart.bind("<Configure>", lambda _: self.draw_epochs())
         columns = ("epoch", "train_loss", "val_loss", "val_ap", "ap_lift", "val_bal", "val_enter", "seconds", "best")
-        heads = ("Epoch", "Train loss", "Validation loss", "Validation AP", "AP − base rate", "Balanced accuracy",
-                 "Calls 'enter'", "Seconds", "Best")
+        heads = ("Epoch", "Train loss", "Val. loss", "Val. AP", "AP − base", "Bal. acc.", "Enter share", "Sec.",
+                 "Best")
         frame = ttk.Frame(parent)
         frame.pack(fill="both", expand=True)
         self.epoch_table = ttk.Treeview(frame, columns=columns, show="headings")
         for column, head in zip(columns, heads):
             self.epoch_table.heading(column, text=head)
-            self.epoch_table.column(column, width=60 if column in ("epoch", "best") else 115, anchor="center")
+            self.epoch_table.column(column, width=46 if column in ("epoch", "best") else 76, minwidth=40,
+                                    anchor="center")
         scroll = ttk.Scrollbar(frame, command=self.epoch_table.yview)
         self.epoch_table.configure(yscrollcommand=scroll.set)
         scroll.pack(side="right", fill="y")
