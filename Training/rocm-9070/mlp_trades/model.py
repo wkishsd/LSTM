@@ -45,7 +45,8 @@ class PerMinuteLinear(nn.Module):
 class TradeMLP(nn.Module):
     def __init__(self, hidden1=128, hidden2=64, activation="relu", standardize=False,
                  dropout=0.0, lookback_minutes=STATES, hidden3=0, model="dense",
-                 feature_input="exported", num_classes=2, input_timeframe="1m", compact_inputs=0):
+                 feature_input="exported", num_classes=2, input_timeframe="1m", compact_inputs=0,
+                 zero_columns=()):
         super().__init__()
         if hidden1 < 1 or hidden2 < 1:
             raise ValueError("Hidden layer widths must be positive")
@@ -104,6 +105,16 @@ class TradeMLP(nn.Module):
         width = self.compact or WIDTH
         self.register_buffer("feature_mean", torch.zeros(width) if standardize else None)
         self.register_buffer("feature_scale", torch.ones(width) if standardize else None)
+        # Inputs switched off (e.g. the anchor flags): multiplied by 0 inside the model, so training,
+        # evaluation and later predictions from the checkpoint all see them the same way.
+        self.zero_columns = tuple(int(c) for c in zero_columns)
+        keep = None
+        if self.zero_columns:
+            if min(self.zero_columns) < 0 or max(self.zero_columns) >= width:
+                raise ValueError("zero_columns must index the model's input columns")
+            keep = torch.ones(width)
+            keep[list(self.zero_columns)] = 0
+        self.register_buffer("input_keep", keep)
 
     def forward(self, x):
         if x.ndim != 2 or x.shape[1] != self.input_size:
@@ -111,10 +122,14 @@ class TradeMLP(nn.Module):
         if self.compact:
             if self.feature_mean is not None:
                 x = (x - self.feature_mean) / self.feature_scale
+            if self.input_keep is not None:
+                x = x * self.input_keep
             for index in range(0, len(self.layers) - 1, 2):
                 x = self.dropout(self.layers[index + 1](self.layers[index](x)))
             return self.layers[-1](x)
         x = x.reshape(-1, self.lookback_minutes, WIDTH)
+        if self.input_keep is not None:
+            x = x * self.input_keep
         if self.step > 1:
             # The last row is the entry's M5 close, so every fifth row back is one M5 candle exactly once.
             blocks = x.unflatten(1, (self.rows, self.step))

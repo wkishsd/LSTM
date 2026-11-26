@@ -6,7 +6,11 @@ Double-click `Training Panel.cmd` in Windows Explorer. Edit the settings on the 
 
 ## +1% / −1% bracket exports in the training panel
 
-The **Export** list also offers the fixed-bracket exports from `Pipelines/Bitfinex/bracket_targets.py` ("Every 5m candle · short +1% / −1% · anchors on / off", and the same for +2% / −1%). See "Fixed-bracket targets on every 5m candle" in `Pipelines/Bitfinex/README.md` for what they contain. Choosing one sets the 70/15/15 split and keeps the best epoch by validation average precision, the same split the comparison scripts use. The "anchors off" export has the anchor inputs zeroed, which leaves 49 decision features. Results, Epochs, Optimizer, the baselines and **Export run** work as they do for the trailing-stop exports.
+The **Export** list also offers the fixed-bracket exports from `Pipelines/Bitfinex/bracket_targets.py` ("Every 5m candle · short +1% / −1%", and the same for +2% / −1%). See "Fixed-bracket targets on every 5m candle" in `Pipelines/Bitfinex/README.md` for what they contain. Choosing one sets the 70/15/15 split and keeps the best epoch by validation average precision, the same split the comparison scripts use. Results, Epochs, Optimizer, the baselines and **Export run** work as they do for the trailing-stop exports.
+
+**Anchors** switches every anchor input on or off for any export (`--anchor-inputs on|off`). Off multiplies the anchor flags by 0 inside the model, so the checkpoint keeps the setting and later predictions zero them too; the baselines get the same switch. With the 85 compact features that leaves 49 informative inputs. Off gives the same results as training on the zeroed `_noanchors` twin export.
+
+The panel always trains a dense MLP on the export's labels. Inputs are always normalised: the 85 compact features are standardised on the train split, and a candle window uses the stationary form (price as the return from the last candle, MACD relative to price, volume against its window mean), standardised too, so no absolute price or volume level reaches the model.
 
 To compare a run with random and anchor entries, score every candle with its best checkpoint and run the comparison:
 

@@ -304,6 +304,10 @@ def train(data, args, out):
     if getattr(args, "model_input", "window") == "compact":
         compact_x, compact_names = compact_matrix(data)
         architecture.update(compact_inputs=compact_x.shape[1], standardize=True)
+    if getattr(args, "anchor_inputs", "on") == "off":
+        # Anchor flags are the timeline's columns 36+ (window) or the anchorNN.* compact features.
+        architecture["zero_columns"] = ([i for i, name in enumerate(compact_names) if name.startswith("anchor")]
+                                        if compact_names is not None else list(range(len(FEATURES), WIDTH)))
     if target:
         architecture["num_classes"] = len(target["class_names"])
     if architecture["input_timeframe"] != "1m":

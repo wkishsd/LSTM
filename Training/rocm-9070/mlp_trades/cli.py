@@ -110,6 +110,9 @@ def build_parser():
             p.add_argument("--timeline-cache", choices=("off", "auto"), default="off",
                            help="Auto builds Bitfinex windows on GPU when the timeline fits in VRAM")
             if command == "train":
+                p.add_argument("--anchor-inputs", choices=("on", "off"), default="on",
+                               help="off zeroes every anchor input (timeline columns 36+, or the anchor compact "
+                                    "features) for the MLP and the baselines; the checkpoint keeps the setting")
                 p.add_argument("--label-agreement", choices=LABEL_AGREEMENT_LABELS, default="off",
                                help="Train-split labels from label_agreement.csv: weight entries by agreement, or "
                                     "make class 1 the entries every exit configuration wins (against the rest, or "

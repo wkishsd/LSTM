@@ -348,6 +348,9 @@ def run(data, args, out):
     for name, rows in splits.items():
         hours[name] = utc_hours(data.times[rows])
         features[name], names = decision_features(timeline, data.history_rows[rows], data.times[rows], bounded)
+        if getattr(args, "anchor_inputs", "on") == "off":
+            # Same switch as the MLP: the anchor features carry no information.
+            features[name][:, [i for i, n in enumerate(names) if n.startswith("anchor")]] = 0
         labels[name] = train_override if name == "train" and train_override is not None else data.labels[rows]
         returns[name] = None if getattr(data, "returns", None) is None else data.returns[rows]
 

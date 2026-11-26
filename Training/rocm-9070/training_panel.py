@@ -29,19 +29,17 @@ WSL_SESSION = [str(WSL), "-d", "Ubuntu-24.04", "-u", "mlp-runner"]
 OPTIONS = (
     ("dataset", "Dataset", str, "bitfinex"),
     ("bitfinex_dir", "Export", str, ""),
+    ("anchor_inputs", "Anchors", str, "on"),
     ("data_period", "Data period", str, "all"),
     ("profit_hold_minutes", "Hold after fill (min)", int, DEFAULT_PROFIT_HOLD),
-    ("model", "Model", str, "dense"),
     ("model_input", "Model input", str, "window"),
     ("input_timeframe", "Input candles", str, "1m"),
-    ("feature_input", "Feature input", str, "exported"),
     ("epochs", "Epochs", int, 20),
     ("batch_size", "Batch size", int, 32),
     ("learning_rate", "Learning rate", float, 0.0001),
     ("loss", "Loss", str, "cross_entropy"),
     ("target", "Target", str, "net"),
     ("risk_threshold", "Risk threshold (ATR M15)", float, 1.0),
-    ("label_agreement", "Train labels", str, "off"),
     ("selection", "Keep best by", str, "accuracy"),
     ("min_entry_calls", "Min. entry calls", int, 30),
     ("hidden1", "First hidden layer", int, 128),
@@ -55,6 +53,7 @@ OPTIONS = (
     ("validation_fraction", "Validation fraction", float, 0.0),
     ("seed", "Random seed", int, 42),
 )
+ANCHOR_LABELS = {"on": "On (18 main anchors)", "off": "Off (anchor inputs zeroed)"}
 SELECTION_LABELS = {
     "accuracy": "accuracy",
     "loss": "loss",
@@ -63,9 +62,8 @@ SELECTION_LABELS = {
 }
 OPTION_LABELS = {
     "initialization": {"default": "Default", "ones_zero_bias": "Weights 1, biases 0"},
-    "dataset": DATASET_LABELS, "data_period": DATA_PERIOD_LABELS, "model": MODEL_LABELS,
-    "feature_input": FEATURE_INPUT_LABELS, "selection": SELECTION_LABELS,
-    "loss": LOSS_LABELS, "label_agreement": LABEL_AGREEMENT_LABELS, "input_timeframe": INPUT_TIMEFRAME_LABELS,
+    "dataset": DATASET_LABELS, "data_period": DATA_PERIOD_LABELS, "anchor_inputs": ANCHOR_LABELS,
+    "selection": SELECTION_LABELS, "loss": LOSS_LABELS, "input_timeframe": INPUT_TIMEFRAME_LABELS,
     "target": TARGET_LABELS, "model_input": MODEL_INPUT_LABELS,
 }
 CHOICES = {
@@ -73,12 +71,10 @@ CHOICES = {
     "initialization": (OPTION_LABELS["initialization"]["default"],),
     "dataset": tuple(DATASET_LABELS.values()),
     "data_period": tuple(DATA_PERIOD_LABELS.values()),
-    "model": tuple(MODEL_LABELS.values()),
-    "feature_input": tuple(FEATURE_INPUT_LABELS.values()),
+    "anchor_inputs": tuple(ANCHOR_LABELS.values()),
     "selection": tuple(SELECTION_LABELS.values()),
     "activation": ("relu", "leaky_relu"),
     "loss": tuple(LOSS_LABELS.values()),
-    "label_agreement": tuple(LABEL_AGREEMENT_LABELS.values()),
     "input_timeframe": tuple(INPUT_TIMEFRAME_LABELS.values()),
     "target": tuple(TARGET_LABELS.values()),
     "model_input": tuple(MODEL_INPUT_LABELS.values()),
@@ -117,9 +113,11 @@ def bitfinex_exports(current=None):
         stop = manifest.get("exit_settings", {}).get("stop_timeframe")
         bracket = manifest.get("bracket")
         if bracket:
-            anchors = "anchors off" if manifest.get("anchor_inputs") == "zeroed" else "anchors on"
+            if manifest.get("anchor_inputs") == "zeroed":
+                # The zeroed-anchor twin is the same as Anchors: Off on its source export.
+                continue
             label = (f"Every 5m candle · {bracket['side']} +{bracket['take_profit_pct']:g}% / "
-                     f"−{bracket['stop_pct']:g}% · {anchors}")
+                     f"−{bracket['stop_pct']:g}%")
         elif stop:
             label = f"{manifest.get('anchor_timeframe', '5m')} anchors · {stop} stop"
         else:
@@ -584,9 +582,9 @@ class TrainingPanel:
             field = tk.StringVar(value=str(value))
             self.fields[key] = field
             if key in CHOICES:
-                width = {"dataset": 23, "data_period": 18, "model": 18, "feature_input": 18,
+                width = {"dataset": 23, "data_period": 18, "anchor_inputs": 23,
                          "selection": 17, "activation": 10, "initialization": 19, "loss": 19,
-                         "label_agreement": 19, "bitfinex_dir": 23,
+                         "bitfinex_dir": 23,
                          "input_timeframe": 21, "target": 21, "model_input": 21}[key]
                 entry = ttk.Combobox(frame, values=CHOICES[key], textvariable=field,
                                      state="readonly", width=width)
@@ -597,14 +595,13 @@ class TrainingPanel:
                 checkpoint_choice = entry
             elif key == "min_entry_calls":
                 minimum_entry = entry
-            elif key == "model":
-                entry.bind("<<ComboboxSelected>>", self.apply_encoder_preset)
             elif key == "dataset":
                 entry.bind("<<ComboboxSelected>>", self.apply_dataset_preset)
-            elif key == "feature_input":
-                self.feature_input_box = entry
+            elif key == "anchor_inputs":
+                self.anchor_box = entry
             elif key == "bitfinex_dir":
                 self.export_box = entry
+                entry.bind("<<ComboboxSelected>>", self.apply_bitfinex_period)
             elif key == "input_timeframe":
                 self.input_timeframe_box = entry
             elif key == "data_period":
@@ -643,16 +640,6 @@ class TrainingPanel:
             row=len(OPTIONS) + 2, columnspan=2, sticky="w"
         )
 
-    def apply_encoder_preset(self, _event):
-        if self.fields["model"].get() == MODEL_LABELS["dense"]:
-            return
-        for key, value in ENCODER_PRESET.items():
-            self.fields[key].set(str(value))
-        dataset = self.selected_dataset()
-        if dataset in BENCHMARK_LOOKBACKS:
-            self.fields["lookback_minutes"].set(str(BENCHMARK_LOOKBACKS[dataset][0]))
-        self.enable_hidden3.set(False)
-
     def selected_dataset(self):
         label = self.fields["dataset"].get()
         return next(key for key, value in DATASET_LABELS.items() if value == label)
@@ -661,8 +648,7 @@ class TrainingPanel:
         self.fields["dataset"].set(DATASET_LABELS["bitfinex"])
         self.apply_dataset_preset()
         preset = {
-            "data_period": DATA_PERIOD_LABELS["all"], "model": MODEL_LABELS["dense"],
-            "feature_input": FEATURE_INPUT_LABELS["exported"], "loss": LOSS_LABELS["cross_entropy"],
+            "data_period": DATA_PERIOD_LABELS["all"], "loss": LOSS_LABELS["cross_entropy"],
             "initialization": OPTION_LABELS["initialization"]["default"],
             "epochs": 10000, "batch_size": 2048, "learning_rate": 1e-5,
             "selection": SELECTION_LABELS["average_precision"], "hidden1": 32, "hidden2": 16,
@@ -688,14 +674,12 @@ class TrainingPanel:
     def apply_six_month_preset(self):
         preset = {
             "data_period": DATA_PERIOD_LABELS["last_6_months"],
-            "model": MODEL_LABELS["per_minute"], "feature_input": FEATURE_INPUT_LABELS["exported"],
             "activation": "relu", "dropout": 0.2, "epochs": 40, "batch_size": 4096,
             "learning_rate": 0.0001, "train_fraction": 0.7, "validation_fraction": 0.15,
             "selection": SELECTION_LABELS["average_precision"], "seed": 42,
         }
         for key, value in preset.items():
             self.fields[key].set(str(value))
-        self.apply_encoder_preset(None)
         self.apply_bitfinex_period()
 
     def apply_dataset_preset(self, _event=None):
@@ -714,19 +698,15 @@ class TrainingPanel:
             self.dataset_description.set(BENCHMARK_DESCRIPTIONS[dataset])
             self.fields["data_period"].set(DATA_PERIOD_LABELS["all"])
             self.fields["lookback_minutes"].set(str(lookback))
-            self.fields["feature_input"].set(FEATURE_INPUT_LABELS["exported"])
             criterion = "accuracy" if dataset == "uci_har" else "average_precision"
             self.fields["selection"].set(SELECTION_LABELS[criterion])
         else:
             self.lookback_label.set("Lookback (min)")
             self.apply_bitfinex_period()
-            lookback = self.default_lookback
-            if self.fields["model"].get() != MODEL_LABELS["dense"]:
-                lookback = ENCODER_PRESET["lookback_minutes"]
-            self.fields["lookback_minutes"].set(str(lookback))
+            self.fields["lookback_minutes"].set(str(self.default_lookback))
             if dataset == PROFIT_DATASET and self.fields["selection"].get() == SELECTION_LABELS["profitable_above_baseline"]:
                 self.fields["selection"].set(SELECTION_LABELS["average_precision"])
-        self.feature_input_box.configure(state="disabled" if benchmark else "readonly")
+        self.anchor_box.configure(state="disabled" if benchmark else "readonly")
         self.data_period_box.configure(state="disabled" if benchmark else "readonly")
         # Profit buckets collect from train.json's export; only the binary dataset trains on the chosen one.
         self.export_box.configure(state="readonly" if dataset == "bitfinex" else "disabled")
@@ -865,12 +845,17 @@ class TrainingPanel:
             values["target"] = "net"
         if dataset in BENCHMARK_LOOKBACKS:
             values["model_input"] = "window"
-        if values["model_input"] == "compact" and (values["model"] != "dense" or values["feature_input"] != "exported"
-                                                   or values["input_timeframe"] != "1m"):
-            raise ValueError("85 compact features need Model: Dense MLP, Feature input: Exported features and "
-                             "Input candles: 1m rows.")
-        if values["target"] != "net" and values["label_agreement"] != "off":
-            raise ValueError("Risk-unit targets cannot be combined with Train labels; set Train labels to Export labels.")
+            values.pop("anchor_inputs")
+        # Fixed choices: a dense MLP trained on the export's labels. Every input is normalised: the 85 compact
+        # features are standardised on the train split; a Bitfinex candle window uses the stationary form
+        # (price as returns from the last candle, MACD relative to price, volume against its window mean),
+        # standardised too, so no absolute price or volume level reaches the model.
+        values["model"] = "dense"
+        values["label_agreement"] = "off"
+        stationary = dataset != "uci_har" and dataset != "uci_air" and values["model_input"] == "window"
+        values["feature_input"] = "stationary" if stationary else "exported"
+        if values["model_input"] == "compact" and values["input_timeframe"] != "1m":
+            raise ValueError("85 compact features need Input candles: 1m rows.")
         if not math.isfinite(values["risk_threshold"]):
             raise ValueError("Enter a finite risk threshold.")
         if values["input_timeframe"] == "5m" and values["lookback_minutes"] % 5:
