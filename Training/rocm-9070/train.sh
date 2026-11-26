@@ -7,7 +7,7 @@ export HSA_ENABLE_DXG_DETECTION=1
 export LD_LIBRARY_PATH="/opt/rocm/lib:/usr/lib/wsl/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 if [[ "${1:-}" == --predict ]]; then
-    # Score every entry of an export with a trained checkpoint (used by Bracket Panel.cmd).
+    # Score every entry of an export with a trained checkpoint (see README: bracket exports).
     shift
     exec "$python" -m mlp_trades predict --device cuda:0 "$@"
 fi

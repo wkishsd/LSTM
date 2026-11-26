@@ -4,20 +4,23 @@
 
 Double-click `Training Panel.cmd` in Windows Explorer. Edit the settings on the left and click **Start training**. The panel creates a new output folder for each run. It uses the same three-year export and Radeon launcher as the PowerShell commands below.
 
-## Bracket study panel
+## +1% / −1% bracket exports in the training panel
 
-Double-click `Bracket Panel.cmd` for steps 3 and 5 of the bracket plan (see `Pipelines/Bitfinex/README.md`, "Fixed-bracket targets on every 5m candle"). Choose a bracket export pair (1:1 or 2:1) and the MLP settings, and click **Start study**. The study runs these steps unattended:
+The **Export** list also offers the fixed-bracket exports from `Pipelines/Bitfinex/bracket_targets.py` ("Every 5m candle · short +1% / −1% · anchors on / off", and the same for +2% / −1%). See "Fixed-bracket targets on every 5m candle" in `Pipelines/Bitfinex/README.md` for what they contain. Choosing one sets the 70/15/15 split and keeps the best epoch by validation average precision, the same split the comparison scripts use. The "anchors off" export has the anchor inputs zeroed, which leaves 49 decision features. Results, Epochs, Optimizer, the baselines and **Export run** work as they do for the trailing-stop exports.
 
-1. It trains the MLP on the twin export with the anchor inputs zeroed.
-2. It scores every candle with that run's best checkpoint.
-3. Only with **Also train with the 18 anchors as inputs**: it trains the same MLP on the export with anchors and scores every candle with it.
-4. It runs `Models/Baselines/bracket_ranking.py` on the test period. The ranking compares the MLP, and optionally logistic regression and boosted trees, against a random ranking. With anchors it also compares anchors on with anchors off.
+To compare a run with random and anchor entries, score every candle with its best checkpoint and run the comparison:
 
-The anchor option is off by default, so nothing in a study sees an anchor. The MLP and the ranking's baselines both use the zeroed twin, which leaves 49 decision features.
+```bash
+bash train.sh --predict --checkpoint runs/<run>/best.pt \
+    --bitfinex-dir ../../Exports/training/mlp_2023-11-13_to_2026-11-13_bracket_short_tp1_sl1_noanchors \
+    --output-dir runs/<run>/predictions --batch-size 4096
+```
 
-The split is always 70/15/15, the same as the ranking script, and the best epoch is kept by validation average precision. Training and scoring run in WSL on the GPU with no thread or priority limits, and the ranking runs on Windows.
+```powershell
+py -3.12 ..\..\Models\Baselines\bracket_comparison.py --export ..\..\Exports\training\mlp_2023-11-13_to_2026-11-13_bracket_short_tp1_sl1 --predictions runs\<run>\predictions\predictions.csv
+```
 
-The **Results** tab shows the pass rule for each scorer, the anchors-on minus anchors-off differences, and the step 6 go / not-yet line. A study lives in `runs/.bracket/<study>`. Its two training runs are ordinary `runs/<study>-noanchors` and `runs/<study>-anchors` folders, so `Training Panel.cmd` lists them too. **Pause training** pauses the current training step. If a study stops, **Resume study** continues from its first unfinished step. The **Epochs** tab follows the training run epoch by epoch: train and validation loss, validation AP against the base rate, a star on the kept epoch, and the time left. **Reload panel** restarts the window with the current code and exports and keeps the form values; a running study carries on. `train.sh --predict ...` is the scoring entry point the panel uses.
+`bracket_comparison.py` writes win rate, accuracy, entries, winners caught, net per trade and the MLP's AUC for random picks, anchor entries (any of the 35, and per anchor) and the MLP. `Models/Baselines/bracket_ranking.py` adds day-bootstrap intervals and the comparison against random gates.
 
 ## Bitfinex profit buckets
 

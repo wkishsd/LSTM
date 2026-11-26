@@ -675,10 +675,15 @@ class TrainingPanel:
         self.diagnostic_steps.set("100")
         self.apply_bitfinex_period()
 
-    def apply_bitfinex_period(self, _event=None):
+    def apply_bitfinex_period(self, event=None):
         period = self.fields["data_period"].get()
         market = "ETHUSD · Timed short exits" if self.selected_dataset() == PROFIT_DATASET else "ETHUSD"
         self.dataset_description.set(f"{market} · {period} · Radeon RX 9070")
+        if event is not None and self.fields["bitfinex_dir"].get().startswith("Every 5m candle"):
+            # Bracket exports are compared on the 70/15/15 split (bracket_ranking.py, bracket_comparison.py).
+            self.fields["train_fraction"].set("0.7")
+            self.fields["validation_fraction"].set("0.15")
+            self.fields["selection"].set(SELECTION_LABELS["average_precision"])
 
     def apply_six_month_preset(self):
         preset = {
